@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Besign — an AI-powered custom tailoring platform by Maya Helmi. 2nd place at NTP13 2026 and Best Entrepreneurial Project.">
+  <title>Maya Helmi | Besign</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
+
+  <link rel="stylesheet" href="style.css">
+  
+  <script>
+    // Runs before first paint so the saved theme doesn't flash.
+    const root = document.documentElement;
+    let saved; try { saved = localStorage.getItem("theme"); } catch (e) { }
+    root.dataset.theme = saved || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+
+    function closeMenu() {
+      if (!root.classList.contains("nav-open")) return;
+      // Blur a focused menu link BEFORE hiding the panel, or the browser's
+      // focus fixup cancels the smooth scroll to the link's anchor.
+      if (document.activeElement?.closest(".nav-links")) document.activeElement.blur();
+      root.classList.remove("nav-open");
+      document.querySelector(".nav-toggle")?.setAttribute("aria-expanded", "false");
+    }
+
+    document.addEventListener("click", (e) => {
+      if (e.target.closest(".theme-toggle")) {
+        const next = root.dataset.theme === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch (err) { }
+      } else if (e.target.closest(".nav-toggle")) {
+        const open = root.classList.toggle("nav-open");
+        e.target.closest(".nav-toggle").setAttribute("aria-expanded", String(open));
+      } else if (e.target.closest(".nav-links a, .logo a") || !e.target.closest(".navbar")) {
+        closeMenu();
+      }
+    });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
+  </script>
+</head>
+
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="header">
+    <nav class="navbar" aria-label="Main">
+      <h2 class="logo"><a href="index.html">Maya Helmi</a></h2>
+      <ul class="nav-links" id="site-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="recognition.html">Recognition</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li class="nav-cv"><a href="Maya-Helmi-CV.pdf" download>Download My CV</a></li>
+      </ul>
+      <div class="nav-actions">
+
+        <button class="theme-toggle" type="button" aria-label="Switch between light and dark theme">
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7Z" />
+          </svg>
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="8" cy="8" r="3.25" />
+            <path d="M8 1v1.5M8 13.5V15M15 8h-1.5M2.5 8H1M12.95 3.05l-1.06 1.06M4.11 11.89l-1.06 1.06M12.95 12.95l-1.06-1.06M4.11 4.11 3.05 3.05" />
+          </svg>
+        </button>
+
+        <a class="btn cv-btn" href="Maya-Helmi-CV.pdf" download>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M8 2.5v7.5" />
+            <path d="M4.5 7 8 10.5 11.5 7" />
+            <path d="M2.5 13.5h11" />
+          </svg>
+          Download My CV
+        </a>
+
+        <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false"
+          aria-controls="site-menu">
+          <svg class="icon-burger" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+            stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+            <path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" />
+          </svg>
+          <svg class="icon-close" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+            stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+            <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ================= CASE ================= -->
+    <section class="section">
+
+      <p class="kicker kicker--accent">Flutter &middot; AI &middot; Graduation Project</p>
+      <h1 class="section-title case-title">Besign</h1>
+
+      <div class="project-badges case-badges">
+        <span class="project-badge">2nd Place &middot; NTP13 2026</span>
+        <span class="project-badge">Best Entrepreneurial Project</span>
+      </div>
+
+      <div class="about-content">
+        <p>
+          An AI-powered custom tailoring platform connecting customers with tailors
+          and fabric stores in Amman. My graduation project &mdash; awarded Best
+          Entrepreneurial Project against a field of more than 100, and second place
+          at NTP13 2026.
+        </p>
+        <p>
+          <strong>Problem:</strong>
+          Getting clothes made runs on guesswork. Customers cannot picture the result before
+          committing, measurements are taken by hand and vary from tailor to tailor, and there
+          is no way to check what arrived against what was promised.
+        </p>
+        <p>
+          <strong>Solution:</strong>
+          A Flutter marketplace covering the whole loop: a customer app, a tailor studio, and a
+          shared design system. Its body-measurement feature runs a YOLOv8-pose model
+          <em>on the phone</em>, turning a single photo into 12 measurements with no server
+          round-trip. AI features sit behind a provider-neutral gateway, so the model can be
+          swapped without touching app code.
+        </p>
+      </div>
+
+      <p class="project-tech">
+        <span class="tech-tag">Flutter</span>
+        <span class="tech-tag">Dart</span>
+        <span class="tech-tag">Riverpod</span>
+        <span class="tech-tag">Supabase</span>
+        <span class="tech-tag">TensorFlow Lite</span>
+        <span class="tech-tag">Arabic / English RTL</span>
+      </p>
+
+      <p class="project-note">
+        Private project &mdash; source available on request.
+      </p>
+
+      <div class="section-cta">
+        <a class="btn secondary-btn" href="projects.html">&larr; See all projects</a>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER / CONTACT ================= -->
+  <footer id="contact" class="footer">
+
+    <div class="footer-grid">
+
+      <div>
+        <h2 class="footer-title">Let's talk.</h2>
+        <p class="footer-note">
+          Open to junior frontend and mobile roles, and always happy to talk about
+          a project worth building.
+        </p>
+      </div>
+
+      <ul class="contact-list">
+        <li>
+          <span class="contact-label">Email</span>
+          <a href="mailto:mayahelmi@gmail.com">mayahelmi@gmail.com</a>
+        </li>
+        <li>
+          <span class="contact-label">Location</span>
+          <span>Amman, Jordan</span>
+        </li>
+        <li>
+          <span class="contact-label">LinkedIn</span>
+          <a href="https://www.linkedin.com/in/maya-helmi-934349292" target="_blank" rel="noopener">
+            linkedin.com/in/maya-helmi
+          </a>
+        </li>
+        <li>
+          <span class="contact-label">GitHub</span>
+          <a href="https://github.com/MayaHelmi" target="_blank" rel="noopener">
+            github.com/MayaHelmi
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+    <p class="footer-base">Maya Helmi &middot; Software Engineer &middot; Amman, Jordan</p>
+  </footer>
+
+</body>
+
+</html>

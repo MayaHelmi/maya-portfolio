@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="All projects by Maya Helmi — Besign, VocalEyes, Glamé AI, and hand-coded training work from Orange Digital Center.">
+  <title>Maya Helmi | Projects</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
+
+  <link rel="stylesheet" href="style.css">
+  
+  <script>
+    // Runs before first paint so the saved theme doesn't flash.
+    const root = document.documentElement;
+    let saved; try { saved = localStorage.getItem("theme"); } catch (e) { }
+    root.dataset.theme = saved || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+
+    function closeMenu() {
+      if (!root.classList.contains("nav-open")) return;
+      // Blur a focused menu link BEFORE hiding the panel, or the browser's
+      // focus fixup cancels the smooth scroll to the link's anchor.
+      if (document.activeElement?.closest(".nav-links")) document.activeElement.blur();
+      root.classList.remove("nav-open");
+      document.querySelector(".nav-toggle")?.setAttribute("aria-expanded", "false");
+    }
+
+    document.addEventListener("click", (e) => {
+      if (e.target.closest(".theme-toggle")) {
+        const next = root.dataset.theme === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch (err) { }
+      } else if (e.target.closest(".nav-toggle")) {
+        const open = root.classList.toggle("nav-open");
+        e.target.closest(".nav-toggle").setAttribute("aria-expanded", String(open));
+      } else if (e.target.closest(".nav-links a, .logo a") || !e.target.closest(".navbar")) {
+        closeMenu();
+      }
+    });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
+  </script>
+</head>
+
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="header">
+    <nav class="navbar" aria-label="Main">
+      <h2 class="logo"><a href="index.html">Maya Helmi</a></h2>
+      <ul class="nav-links" id="site-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html" class="is-current" aria-current="page">Projects</a></li>
+        <li><a href="recognition.html">Recognition</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li class="nav-cv"><a href="Maya-Helmi-CV.pdf" download>Download My CV</a></li>
+      </ul>
+      <div class="nav-actions">
+
+        <button class="theme-toggle" type="button" aria-label="Switch between light and dark theme">
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7Z" />
+          </svg>
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="8" cy="8" r="3.25" />
+            <path d="M8 1v1.5M8 13.5V15M15 8h-1.5M2.5 8H1M12.95 3.05l-1.06 1.06M4.11 11.89l-1.06 1.06M12.95 12.95l-1.06-1.06M4.11 4.11 3.05 3.05" />
+          </svg>
+        </button>
+
+        <a class="btn cv-btn" href="Maya-Helmi-CV.pdf" download>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M8 2.5v7.5" />
+            <path d="M4.5 7 8 10.5 11.5 7" />
+            <path d="M2.5 13.5h11" />
+          </svg>
+          Download My CV
+        </a>
+
+        <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false"
+          aria-controls="site-menu">
+          <svg class="icon-burger" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+            stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+            <path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" />
+          </svg>
+          <svg class="icon-close" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+            stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+            <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ================= PROJECTS ================= -->
+    <section id="projects" class="section">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-intro">
+        Everything in one place: the products I have designed and built, the
+        specification work behind them, and the hand-coded exercises from my
+        Orange Digital Center training.
+      </p>
+
+      <div class="grid grid--half">
+
+        <!-- ---------- Besign ---------- -->
+          <article class="project-card card-shell">
+            <div class="project-head">
+              <h3 class="project-title">Besign</h3>
+              <div class="project-badges">
+                <span class="project-badge">2nd Place &middot; NTP13 2026</span>
+                <span class="project-badge">Best Entrepreneurial Project</span>
+              </div>
+            </div>
+
+            <p class="project-description">
+              An AI-powered custom tailoring platform connecting customers with tailors
+              and fabric stores in Amman. My graduation project &mdash; awarded Best
+              Entrepreneurial Project against a field of more than 100, and second place
+              at NTP13 2026.
+            </p>
+
+            <p>
+              <strong>Problem:</strong>
+              Getting clothes made runs on guesswork. Customers cannot picture the result before
+              committing, measurements are taken by hand and vary from tailor to tailor, and there
+              is no way to check what arrived against what was promised.
+            </p>
+
+            <p>
+              <strong>Solution:</strong>
+              A Flutter marketplace covering the whole loop: a customer app, a tailor studio, and a
+              shared design system. Its body-measurement feature runs a YOLOv8-pose model
+              <em>on the phone</em>, turning a single photo into 12 measurements with no server
+              round-trip. AI features sit behind a provider-neutral gateway, so the model can be
+              swapped without touching app code.
+            </p>
+
+            <p class="project-tech">
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Dart</span>
+              <span class="tech-tag">Riverpod</span>
+              <span class="tech-tag">Supabase</span>
+              <span class="tech-tag">TensorFlow Lite</span>
+              <span class="tech-tag">Arabic / English RTL</span>
+            </p>
+
+            <div class="project-links">
+              <!-- TODO: replace with the repo URL once Besign is pushed to GitHub -->
+              <a href="besign.html">Read the story</a>
+              <span class="project-private">Private project &mdash; source available on request</span>
+            </div>
+          </article>
+
+        <!-- ---------- VocalEyes ---------- -->
+          <article class="project-card card-shell">
+            <div class="project-head">
+              <h3 class="project-title">VocalEyes</h3>
+              <div class="project-badges">
+                <span class="project-badge badge-muted">Prototype</span>
+              </div>
+            </div>
+
+            <p class="project-description">
+              An assistive companion app for smart glasses, built for people with visual
+              impairments and the caregivers who support them.
+            </p>
+
+            <p>
+              <strong>Problem:</strong>
+              People with visual impairments depend on someone else for everyday visual decisions,
+              such as what they are wearing or what is in front of them. Their caregivers, meanwhile,
+              have no straightforward way to stay in the loop.
+            </p>
+
+            <p>
+              <strong>Solution:</strong>
+              A Flutter app built around two distinct roles. The user side handles pairing with the
+              glasses, outfit assistance, and scan history; the caregiver side connects to a user and
+              reviews their scans and location. I designed the role-based navigation and an
+              accessibility-first interface.
+            </p>
+
+            <p class="project-tech">
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Dart</span>
+              <span class="tech-tag">Supabase</span>
+              <span class="tech-tag">Accessibility</span>
+            </p>
+
+            <p class="project-note">
+              Honest status: a working prototype. The device and caregiver services run on mocked
+              data while the glasses hardware integration is still pending.
+            </p>
+
+            <div class="project-links">
+              <!-- TODO: replace with the repo URL once VocalEyes is pushed to GitHub -->
+              <a href="vocaleyes.html">Read the story</a>
+              <span class="project-private">Private project &mdash; source available on request</span>
+            </div>
+          </article>
+
+        <!-- ---------- Glamé AI ---------- -->
+          <article class="project-card card-shell">
+            <div class="project-head">
+              <h3 class="project-title">Glam&eacute; AI</h3>
+              <div class="project-badges">
+                <span class="project-badge badge-muted">Design &amp; Specification</span>
+              </div>
+            </div>
+
+            <p class="project-description">
+              An AI makeup companion app. This one is not code &mdash; it is the full product
+              specification and system design behind it.
+            </p>
+
+            <p>
+              <strong>Problem:</strong>
+              Beauty apps recommend what they want to sell you. They ignore the products already
+              sitting in your makeup bag, and they ignore what your face actually needs.
+            </p>
+
+            <p>
+              <strong>Solution:</strong>
+              As the software engineer on a two-person team, I authored the complete specification
+              for an owned-first product: an AI architecture where facial-feature analysis,
+              adaptation, and recommendation engines sit behind a provider-neutral inference
+              gateway; a phased roadmap from MVP to Pro; a requirements traceability matrix; and the
+              full UML set &mdash; class, architecture, ER, sequence, use case, activity, and
+              deployment diagrams.
+            </p>
+
+            <p class="project-tech">
+              <span class="tech-tag">Software Specification</span>
+              <span class="tech-tag">UML / PlantUML</span>
+              <span class="tech-tag">System Architecture</span>
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Supabase</span>
+            </p>
+
+            <p class="project-note">
+              Honest status: design and specification work. The app itself is not built; an early
+              Flutter prototype is archived.
+            </p>
+
+            <div class="project-links">
+              <a href="glame-ai.html">Read the story</a>
+              <span class="project-private">Private project &mdash; specification available on request</span>
+            </div>
+          </article>
+
+      </div>
+
+      <!-- ---------- Training projects (Orange Digital Center) ---------- -->
+      <h3 class="subsection-title" id="training">Training Projects</h3>
+      <p class="subsection-note">
+        Hand-coded exercises from my Orange Digital Center track. Small on purpose &mdash;
+        but every one is live and open source.
+      </p>
+
+      <div class="grid grid--4">
+          <article class="training-card card-shell">
+            <h4>HTML Foundations</h4>
+            <p>
+              Forms, lists, and tables written from scratch. Each page stands on its own and ships
+              with a screenshot of the output it was built to match.
+            </p>
+            <p class="project-tech">
+              <span class="tech-tag">HTML5</span>
+            </p>
+            <div class="project-links">
+              <a href="https://github.com/MayaHelmi/HTML-Task" target="_blank" rel="noopener">GitHub</a>
+              <a href="https://mayahelmi.github.io/HTML-Task/" target="_blank" rel="noopener">Live Demo</a>
+            </div>
+          </article>
+          <article class="training-card card-shell">
+            <h4>CSS Image Recreation</h4>
+            <p>
+              Four target images rebuilt in HTML and CSS to land as close to the original as I could
+              get &mdash; table styling, floating layouts, text styling, and flexbox.
+            </p>
+            <p class="project-tech">
+              <span class="tech-tag">CSS3</span>
+              <span class="tech-tag">Flexbox</span>
+            </p>
+            <div class="project-links">
+              <a href="https://github.com/MayaHelmi/CSS-Task" target="_blank" rel="noopener">GitHub</a>
+              <a href="https://mayahelmi.github.io/CSS-Task/" target="_blank" rel="noopener">Live Demo</a>
+            </div>
+          </article>
+          <article class="training-card card-shell">
+            <h4>Flexbox &amp; Grid</h4>
+            <p>
+              Three standalone pages that rebuild layout mockups using Flexbox and CSS Grid, one
+              layout problem at a time.
+            </p>
+            <p class="project-tech">
+              <span class="tech-tag">Flexbox</span>
+              <span class="tech-tag">CSS Grid</span>
+            </p>
+            <div class="project-links">
+              <a href="https://github.com/MayaHelmi/Flex-and-Grid" target="_blank" rel="noopener">GitHub</a>
+              <a href="https://mayahelmi.github.io/Flex-and-Grid/" target="_blank" rel="noopener">Live Demo</a>
+            </div>
+          </article>
+          <article class="training-card card-shell">
+            <h4>nth-child Selectors</h4>
+            <p>
+              Zig-zag boxes, hidden even items, and repeating groups of three &mdash; built with
+              <code>:nth-child()</code> formulas and no JavaScript at all.
+            </p>
+            <p class="project-tech">
+              <span class="tech-tag">CSS3</span>
+              <span class="tech-tag">Selectors</span>
+            </p>
+            <div class="project-links">
+              <a href="https://github.com/MayaHelmi/nth-child" target="_blank" rel="noopener">GitHub</a>
+              <a href="https://mayahelmi.github.io/nth-child/" target="_blank" rel="noopener">Live Demo</a>
+            </div>
+          </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER / CONTACT ================= -->
+  <footer id="contact" class="footer">
+
+    <div class="footer-grid">
+
+      <div>
+        <h2 class="footer-title">Let's talk.</h2>
+        <p class="footer-note">
+          Open to junior frontend and mobile roles, and always happy to talk about
+          a project worth building.
+        </p>
+      </div>
+
+      <ul class="contact-list">
+        <li>
+          <span class="contact-label">Email</span>
+          <a href="mailto:mayahelmi@gmail.com">mayahelmi@gmail.com</a>
+        </li>
+        <li>
+          <span class="contact-label">Location</span>
+          <span>Amman, Jordan</span>
+        </li>
+        <li>
+          <span class="contact-label">LinkedIn</span>
+          <a href="https://www.linkedin.com/in/maya-helmi-934349292" target="_blank" rel="noopener">
+            linkedin.com/in/maya-helmi
+          </a>
+        </li>
+        <li>
+          <span class="contact-label">GitHub</span>
+          <a href="https://github.com/MayaHelmi" target="_blank" rel="noopener">
+            github.com/MayaHelmi
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+    <p class="footer-base">Maya Helmi &middot; Software Engineer &middot; Amman, Jordan</p>
+  </footer>
+
+</body>
+
+</html>
