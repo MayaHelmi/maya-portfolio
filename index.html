@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Maya Helmi — Software Engineer in Amman, Jordan. I design and build web and mobile applications, from Flutter apps to hand-written HTML and CSS.">
+  <title>Maya Helmi | Software Engineer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    // Runs before first paint so the saved theme doesn't flash.
+    const root = document.documentElement;
+    let saved; try { saved = localStorage.getItem("theme"); } catch (e) { }
+    root.dataset.theme = saved || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+
+    function closeMenu() {
+      if (!root.classList.contains("nav-open")) return;
+      // Blur a focused menu link BEFORE hiding the panel, or the browser's
+      // focus fixup cancels the smooth scroll to the link's anchor.
+      if (document.activeElement?.closest(".nav-links")) document.activeElement.blur();
+      root.classList.remove("nav-open");
+      document.querySelector(".nav-toggle")?.setAttribute("aria-expanded", "false");
+    }
+
+    document.addEventListener("click", (e) => {
+      if (e.target.closest(".theme-toggle")) {
+        const next = root.dataset.theme === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch (err) { }
+      } else if (e.target.closest(".nav-toggle")) {
+        const open = root.classList.toggle("nav-open");
+        e.target.closest(".nav-toggle").setAttribute("aria-expanded", String(open));
+      } else if (e.target.closest(".nav-links a, .logo a") || !e.target.closest(".navbar")) {
+        closeMenu();
+      }
+    });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
+  </script>
+</head>
+
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="header">
+    <nav class="navbar" aria-label="Main">
+      <h2 class="logo"><a href="#home">Maya Helmi</a></h2>
+
+      <ul class="nav-links" id="site-menu">
+        <li><a href="#home" class="is-current" aria-current="page">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="recognition.html">Recognition</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li class="nav-cv"><a href="Maya-Helmi-CV.pdf" download>Download My CV</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" type="button" aria-label="Switch between light and dark theme">
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7Z" />
+          </svg>
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="8" cy="8" r="3.25" />
+            <path d="M8 1v1.5M8 13.5V15M15 8h-1.5M2.5 8H1M12.95 3.05l-1.06 1.06M4.11 11.89l-1.06 1.06M12.95 12.95l-1.06-1.06M4.11 4.11 3.05 3.05" />
+          </svg>
+        </button>
+
+        <a class="btn cv-btn" href="Maya-Helmi-CV.pdf" download>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M8 2.5v7.5M4.5 7 8 10.5 11.5 7M2.5 13.5h11" />
+          </svg>
+          Download My CV
+        </a>
+
+        <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
+          <svg class="icon-burger" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+            stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+            <path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" />
+          </svg>
+          <svg class="icon-close" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+            stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+            <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+
+      <div class="hero-stage">
+        <p class="hero-role" aria-hidden="true">
+          <span class="hero-role-label">Contact me</span>
+
+          <!-- "Contact me" orbits the capsules on this traced track.
+               2246.34 / 1134.75 = each track's measured length, so the two text
+               copies stay one lap apart. Re-measure with getTotalLength()
+               if a path ever changes. -->
+          <svg class="hero-role-snake" viewBox="0 0 814 328" preserveAspectRatio="none" aria-hidden="true"
+            focusable="false">
+            <path id="snake-track" fill="none" d="M -16 132.4
+              A 82 82 0 0 1 120.7 71.3
+              A 24 24 0 0 0 156 67.7
+              A 82 82 0 0 1 276 54.7
+              A 24 24 0 0 0 312.3 49.1
+              A 111 111 0 0 1 501.7 49.1
+              A 24 24 0 0 0 538 54.7
+              A 82 82 0 0 1 658 67.7
+              A 24 24 0 0 0 693.3 71.3
+              A 82 82 0 0 1 830 132.4
+              L 830 211.6
+              A 82 82 0 0 1 682 260.3
+              A 24 24 0 0 0 646.7 256.7
+              A 82 82 0 0 1 542.7 261.1
+              A 24 24 0 0 0 506.7 269.8
+              A 111 111 0 0 1 307.3 269.8
+              A 24 24 0 0 0 271.3 261.1
+              A 82 82 0 0 1 167.3 256.7
+              A 24 24 0 0 0 132 260.3
+              A 82 82 0 0 1 -16 211.6 Z" />
+            <text class="snake-text">
+              <textPath href="#snake-track" startOffset="0">Contact me
+                <animate attributeName="startOffset" from="0" to="2246.34" dur="23s" repeatCount="indefinite" />
+              </textPath>
+              <textPath href="#snake-track" startOffset="-2246.34">Contact me
+                <animate attributeName="startOffset" from="-2246.34" to="0" dur="23s" repeatCount="indefinite" />
+              </textPath>
+            </text>
+          </svg>
+
+          <svg class="hero-role-snake--phone" viewBox="-16 -16 252 372" aria-hidden="true" focusable="false">
+            <path id="snake-track-phone" fill="none" d="M 50 -16
+              L 170 -16
+              A 66 66 0 0 1 236 50
+              L 236 290
+              A 66 66 0 0 1 170 356
+              L 50 356
+              A 66 66 0 0 1 -16 290
+              L -16 50
+              A 66 66 0 0 1 50 -16 Z" />
+            <text class="snake-text">
+              <textPath href="#snake-track-phone" startOffset="0">Contact me
+                <animate attributeName="startOffset" from="0" to="1134.75" dur="12s" repeatCount="indefinite" />
+              </textPath>
+              <textPath href="#snake-track-phone" startOffset="-1134.75">Contact me
+                <animate attributeName="startOffset" from="-1134.75" to="0" dur="12s" repeatCount="indefinite" />
+              </textPath>
+            </text>
+          </svg>
+        </p>
+
+        <ul class="hero-capsules">
+          <li class="capsule capsule--rot-l">
+            <a class="capsule-link" href="mailto:mayahelmi@gmail.com" aria-label="Email me" title="Email">
+              <svg viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" />
+              </svg>
+            </a>
+          </li>
+
+          <li class="capsule capsule--lift">
+            <a class="capsule-link" href="https://github.com/MayaHelmi" target="_blank" rel="noopener"
+              aria-label="GitHub profile" title="GitHub">
+              <svg viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+              </svg>
+            </a>
+          </li>
+
+          <li class="capsule capsule-photo">
+            <img src="images/profile.jpg" alt="Portrait of Maya Helmi, Software Engineer" width="190" height="304">
+          </li>
+
+          <li class="capsule capsule--drop">
+            <a class="capsule-link" href="https://www.linkedin.com/in/maya-helmi-934349292" target="_blank"
+              rel="noopener" aria-label="LinkedIn profile" title="LinkedIn">
+              <svg viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z" />
+              </svg>
+            </a>
+          </li>
+
+          <li class="capsule capsule--rot-r">
+            <a class="capsule-link" href="tel:+962781016964" aria-label="Call me" title="Phone">
+              <svg viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <p class="hero-role-line">Software Engineer</p>
+      <h1 class="hero-title">Let's build something meaningful.</h1>
+
+    </section>
+
+    <!-- About + education -->
+    <section id="about" class="section section--sunken">
+      <div class="section-inner">
+        <h2 class="section-title">The Mind Behind the Work</h2>
+
+        <div class="grid grid--about">
+
+          <div class="about-content">
+            <p>
+              I design it, and then I build it — and I try not to let either side lose.
+            </p>
+            <p>
+              I'm a Software Engineering graduate from Applied Science Private University, ranked second in my
+              cohort, and a designer who got tired of handing over Figma files and hoping for the best. So I
+              earned a Google UX Design certificate, learned Flutter to watch my own screens actually move, and
+              started building: Besign, an AI tailoring platform that took second place at NTP13 2026 and Best
+              Entrepreneurial Project at my university's graduation-projects competition, and VocalEyes, an
+              assistive companion app for people with visual impairments.
+            </p>
+            <p>
+              Both started the same way: with a person, not a technology. Besign exists because customers pay
+              for clothes they cannot picture before committing; VocalEyes because everyday visual decisions
+              should not depend on waiting for someone else. I build for the person using the product, not for
+              the developer in me — a beautiful screen that ships broken is worth nothing, and a clever
+              feature nobody asked for is not far behind.
+            </p>
+            <p>
+              These days I'm a full-stack development intern at Orange Digital Center, treating my own skills
+              the way I treat my products: never settled at “good enough”, always looking for the
+              next thing to improve.
+            </p>
+            <p>
+              I'd rather show than tell — the projects speak for me. Whether you have a project in mind or
+              just want to say hi, my inbox is always open, right at the bottom of the page.
+            </p>
+          </div>
+
+          <article id="education" class="education-card card-shell">
+            <p class="kicker">Education</p>
+
+            <div class="education-photo">
+              <img src="images/maya-grad-photo.jpg"
+                alt="Maya Helmi in graduation cap and gown, holding her diploma folder from Applied Science Private University"
+                loading="lazy">
+              <img src="images/asu-logo.png" alt="" aria-hidden="true" class="education-photo-badge" loading="lazy"
+                width="48" height="48">
+            </div>
+
+            <ul class="education-facts">
+              <li><span>University</span>Applied Science Private University</li>
+              <li><span>Degree</span>Software Engineering</li>
+              <li><span>GPA</span>91.2% (Excellent)</li>
+              <li><span>Rank</span>2nd among my cohort</li>
+              <li><span>Duration</span>October 2022 – July 2026</li>
+              <li><span>Location</span>Amman, Jordan</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Showcase (scroll strip) -->
+    <section id="showcase" class="showcase" aria-labelledby="showcase-title">
+
+      <div class="showcase-head section-head">
+        <h2 class="section-title" id="showcase-title">Some of My Work</h2>
+        <a class="btn secondary-btn" href="projects.html">All my projects →</a>
+      </div>
+
+      <div class="showcase-strip" role="region" aria-label="Some of my work, scrolls sideways" tabindex="0">
+
+        <a class="showcase-card showcase-card--ink" href="besign.html" target="_blank" rel="noopener"
+          style="--tilt: -1.2deg">
+          <p class="kicker">Flutter · AI · Graduation Project</p>
+          <h3>Besign</h3>
+          <p class="showcase-line">AI custom tailoring platform — 2nd place at NTP13 2026.</p>
+          <span class="showcase-cta">Read the story</span>
+        </a>
+
+        <a class="showcase-card" href="vocaleyes.html" target="_blank" rel="noopener" style="--tilt: 1deg">
+          <p class="kicker kicker--accent">Assistive Tech · Flutter</p>
+          <h3>VocalEyes</h3>
+          <p class="showcase-line">A smart-glasses companion for people with visual impairments.</p>
+          <span class="showcase-cta">Read the story</span>
+        </a>
+
+        <a class="showcase-card showcase-card--warm" href="glame-ai.html" target="_blank" rel="noopener"
+          style="--tilt: -0.8deg">
+          <p class="kicker kicker--accent">Product Spec · System Design</p>
+          <h3>Glamé AI</h3>
+          <p class="showcase-line">The full specification behind an AI makeup companion.</p>
+          <span class="showcase-cta">Read the story</span>
+        </a>
+
+        <a class="showcase-card" href="https://github.com/MayaHelmi" target="_blank" rel="noopener"
+          style="--tilt: 1.2deg">
+          <p class="kicker kicker--accent">Hand-coded HTML &amp; CSS</p>
+          <h3>Training Projects</h3>
+          <p class="showcase-line">Live, open-source exercises from my Orange Digital Center track.</p>
+          <span class="showcase-cta">See them on GitHub</span>
+        </a>
+
+        <a class="showcase-card showcase-card--accent" href="#contact" style="--tilt: -1deg">
+          <p class="kicker">Open to junior roles</p>
+          <h3>Your project here?</h3>
+          <p class="showcase-line">I'm looking for my next thing worth building.</p>
+          <span class="showcase-cta">Get in touch</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section section--sunken">
+      <div class="section-inner">
+        <h2 class="section-title">Skills</h2>
+
+        <div class="grid grid--3">
+
+          <article class="skill-card card-shell">
+            <h3>Frontend Development</h3>
+            <ul class="skill-list">
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>JavaScript</li>
+              <li>Bootstrap</li>
+              <li>Responsive Web Design</li>
+              <li>UI/UX Design</li>
+              <li>Figma</li>
+            </ul>
+          </article>
+
+          <article class="skill-card card-shell">
+            <h3>Mobile Development</h3>
+            <ul class="skill-list">
+              <li>Flutter</li>
+              <li>Dart</li>
+              <li>Cross-Platform Development</li>
+              <li>Mobile UI Development</li>
+            </ul>
+          </article>
+
+          <article class="skill-card card-shell">
+            <h3>Programming Languages</h3>
+            <ul class="skill-list">
+              <li>Java</li>
+              <li>C++</li>
+              <li>Python</li>
+              <li>Dart</li>
+            </ul>
+          </article>
+
+          <article class="skill-card card-shell">
+            <h3>Artificial Intelligence</h3>
+            <ul class="skill-list">
+              <li>Artificial Intelligence (AI)</li>
+              <li>Generative AI</li>
+              <li>Azure AI Services</li>
+              <li>AI Fundamentals</li>
+            </ul>
+          </article>
+
+          <article class="skill-card card-shell">
+            <h3>Tools &amp; Technologies</h3>
+            <ul class="skill-list">
+              <li>Git</li>
+              <li>GitHub</li>
+              <li>VS Code</li>
+              <li>Android Studio</li>
+              <li>Visual Studio</li>
+            </ul>
+          </article>
+
+          <article class="skill-card card-shell">
+            <h3>Professional Skills</h3>
+            <ul class="skill-list">
+              <li>Problem Solving</li>
+              <li>Teamwork</li>
+              <li>Communication</li>
+              <li>Public Speaking</li>
+              <li>Entrepreneurship</li>
+              <li>Business Innovation</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="section">
+      <div class="section-inner">
+        <h2 class="section-title">Experience</h2>
+
+        <article class="experience-card card-shell">
+          <h3>Orange Digital Center</h3>
+          <p class="experience-role">Full-Stack Development Intern</p>
+          <p class="experience-dates">July 2026 – Present · Amman, Jordan</p>
+
+          <ul class="experience-list">
+            <li>Developing responsive web pages using HTML5 and CSS3.</li>
+            <li>Applying Flexbox, CSS Grid, and Bootstrap to build modern layouts.</li>
+            <li>Using Git and GitHub for version control and project management.</li>
+            <li>Building practical web development projects while strengthening problem-solving and teamwork skills.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Recognition highlights -->
+    <section id="recognition" class="section section--sunken">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2 class="section-title">Recognition</h2>
+          <a class="btn secondary-btn" href="recognition.html">All my recognition →</a>
+        </div>
+
+        <p class="section-intro">
+          A few things I am proud of. The certificates, the full award list, and my
+          volunteer work all live on their own page.
+        </p>
+
+        <div class="grid grid--half">
+
+          <article class="award-feature card-shell">
+            <p class="kicker kicker--accent">Award · Graduation Projects Competition</p>
+            <h3>Best Entrepreneurial Project</h3>
+            <p class="award-feature-line">
+              Besign — chosen from a field of more than 100 graduation
+              projects at Applied Science Private University.
+            </p>
+            <p class="award-feature-year" aria-hidden="true">2026</p>
+          </article>
+
+          <div class="highlight-stack">
+            <article class="highlight-card card-shell">
+              <p class="kicker kicker--accent">Award · July 2026</p>
+              <h3>2nd Place, NTP13 2026</h3>
+              <p>Business &amp; Social Technologies, National Technology Parade, Al Ahliyya Amman University.</p>
+            </article>
+
+            <article class="highlight-card card-shell">
+              <p class="kicker kicker--accent">Certification · May 2026</p>
+              <h3>Azure AI Fundamentals</h3>
+              <p>Microsoft Certified (AI-900).</p>
+            </article>
+
+            <article class="highlight-card card-shell">
+              <p class="kicker kicker--accent">Certification · June 2024</p>
+              <h3>Google UX Design</h3>
+              <p>Foundations of User Experience Design, Google via Coursera.</p>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer / contact -->
+  <footer id="contact" class="footer">
+    <div class="footer-grid">
+
+      <div>
+        <h2 class="footer-title">Let's talk.</h2>
+        <p class="footer-note">
+          Open to junior frontend and mobile roles, and always happy to talk about
+          a project worth building.
+        </p>
+      </div>
+
+      <ul class="contact-list">
+        <li>
+          <span class="contact-label">Email</span>
+          <a href="mailto:mayahelmi@gmail.com">mayahelmi@gmail.com</a>
+        </li>
+        <li>
+          <span class="contact-label">Location</span>
+          <span>Amman, Jordan</span>
+        </li>
+        <li>
+          <span class="contact-label">LinkedIn</span>
+          <a href="https://www.linkedin.com/in/maya-helmi-934349292" target="_blank" rel="noopener">
+            linkedin.com/in/maya-helmi
+          </a>
+        </li>
+        <li>
+          <span class="contact-label">GitHub</span>
+          <a href="https://github.com/MayaHelmi" target="_blank" rel="noopener">
+            github.com/MayaHelmi
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+    <p class="footer-base">Maya Helmi · Software Engineer · Amman, Jordan</p>
+  </footer>
+
+</body>
+
+</html>
