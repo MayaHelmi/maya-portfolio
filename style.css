@@ -92,6 +92,9 @@ p:last-child { margin-bottom: 0; }
 
 ul { margin: 0; padding: 0; list-style: none; }
 
+/* The hidden attribute must beat any author display value (pager relies on it) */
+[hidden] { display: none !important; }
+
 img { max-width: 100%; height: auto; vertical-align: middle; }
 
 a {
@@ -337,17 +340,29 @@ a:focus-visible, button:focus-visible {
 
 .capsule-link {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: .3rem;
   width: 100%;
   height: 100%;
   border-radius: inherit;
   color: var(--ink);
   font-size: clamp(1.25rem, 2.6vw, 1.9rem);
+  text-decoration: none;
   transition: transform .15s ease, color .15s ease;
 }
 .capsule-link:hover { color: var(--accent); transform: translateY(-4px); }
 .capsule-link:focus-visible { border-radius: inherit; outline-offset: 4px; }
+
+.capsule-label {
+  font-size: clamp(.6rem, 1.1vw, .7rem);
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.capsule-link:hover .capsule-label { color: var(--accent); }
 
 .capsule-photo {
   width: clamp(128px, 16vw, 190px);
@@ -523,7 +538,6 @@ a:focus-visible, button:focus-visible {
   .grid--3 { grid-template-columns: repeat(2, 1fr); }
 }
 @media (min-width: 992px) {
-  .grid--about { grid-template-columns: 7fr 5fr; gap: 3rem; }
   .grid--3 { grid-template-columns: repeat(3, 1fr); }
   .grid--4 { grid-template-columns: repeat(4, 1fr); }
   .grid--half { grid-template-columns: 1fr 1fr; }
@@ -551,7 +565,7 @@ a:focus-visible, button:focus-visible {
   max-width: 68ch;
 }
 
-.education-card { display: flex; flex-direction: column; gap: 1.25rem; padding: 1.75rem; }
+.education-card { display: flex; flex-direction: column; gap: 1.25rem; padding: 1.75rem; max-width: 520px; }
 
 .education-photo {
   position: relative;
@@ -682,6 +696,9 @@ a:focus-visible, button:focus-visible {
 }
 .skill-list { display: flex; flex-wrap: wrap; gap: .4rem; }
 .skill-list li {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
   padding: .3rem .7rem;
   background: var(--surface-sunken);
   border: 1px solid var(--border);
@@ -690,6 +707,8 @@ a:focus-visible, button:focus-visible {
   font-weight: 500;
   color: var(--text-muted);
 }
+.skill-list img { width: 16px; height: 16px; }
+:root[data-theme="dark"] .skill-list img[src*="github"] { filter: invert(1); }
 
 /* ============ Experience ============ */
 .experience-card { padding: 2rem; }
@@ -839,6 +858,26 @@ a.card-media:hover { background: var(--accent-soft); }
 .training-card { display: flex; flex-direction: column; padding: 1.5rem; }
 .training-card h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: .5rem; }
 .training-card p { font-size: .9rem; color: var(--text-muted); }
+
+/* Numbered pager under long card grids (built by the script on recognition.html) */
+.pager { display: flex; gap: .5rem; margin-top: 1.5rem; }
+.pager button {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font: 600 .9rem/1 var(--font-sans);
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+.pager button:hover { background: var(--surface-sunken); color: var(--ink); border-color: var(--text-faint); }
+.pager button[aria-current="page"] {
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
 
 /* ============ Footer ============ */
 .footer {
