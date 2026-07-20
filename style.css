@@ -220,6 +220,12 @@ a:focus-visible, button:focus-visible {
 .secondary-btn { background: var(--surface); color: var(--ink); border-color: var(--border-strong); }
 .secondary-btn:hover { background: var(--surface-sunken); color: var(--ink); border-color: var(--text-faint); }
 
+.primary-btn { background: var(--accent); color: #fff; border-color: transparent; }
+.primary-btn:hover { background: var(--accent-strong); color: #fff; }
+/* Dark-mode accent is light; use dark ink for legible text (matches the accent showcase card) */
+:root[data-theme="dark"] .primary-btn,
+:root[data-theme="dark"] .primary-btn:hover { color: var(--surface); }
+
 .cv-btn {
   padding: .4rem .85rem;
   gap: .4rem;
@@ -565,6 +571,8 @@ a:focus-visible, button:focus-visible {
   color: var(--text-muted);
   max-width: 68ch;
 }
+
+.about-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
 
 .education-card { display: flex; flex-direction: column; gap: 1.25rem; padding: 1.75rem; }
 
