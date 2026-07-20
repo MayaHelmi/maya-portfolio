@@ -708,29 +708,45 @@ a:focus-visible, button:focus-visible {
 :root[data-theme="dark"] .showcase-card--accent .showcase-cta { color: var(--surface); }
 
 /* ============ Skills ============ */
-.skill-card { padding: 1.5rem; }
-.skill-card h3 {
-  margin-bottom: 1rem;
-  padding-bottom: .75rem;
-  border-bottom: 1px solid var(--border);
-  font-size: 1.05rem;
-  font-weight: 600;
+
+/* Logo grid: one tile per tool, logo above its name */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: 2rem 1rem;
 }
+.skill-grid li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .7rem;
+  text-align: center;
+  font-size: .875rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.skill-grid img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  transition: transform .18s ease;
+}
+.skill-grid li:hover img { transform: translateY(-4px) scale(1.06); }
+/* GitHub's mark is near-black; lift it out of the dark background */
+:root[data-theme="dark"] .skill-grid img[src*="github"] { filter: invert(1); }
+
+/* Skills that have no logo (concepts, soft skills) stay as chips */
+.skill-also { margin: 2.75rem 0 .9rem; }
 .skill-list { display: flex; flex-wrap: wrap; gap: .4rem; }
 .skill-list li {
-  display: inline-flex;
-  align-items: center;
-  gap: .45rem;
   padding: .3rem .7rem;
-  background: var(--surface-sunken);
+  background: var(--surface-raised);
   border: 1px solid var(--border);
   border-radius: 999px;
   font-size: .825rem;
   font-weight: 500;
   color: var(--text-muted);
 }
-.skill-list img { width: 16px; height: 16px; }
-:root[data-theme="dark"] .skill-list img[src*="github"] { filter: invert(1); }
 
 /* ============ Experience ============ */
 .experience-card { padding: 2rem; }
