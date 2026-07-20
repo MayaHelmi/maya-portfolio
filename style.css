@@ -538,6 +538,7 @@ a:focus-visible, button:focus-visible {
   .grid--3 { grid-template-columns: repeat(2, 1fr); }
 }
 @media (min-width: 992px) {
+  .grid--about { grid-template-columns: 7fr 5fr; gap: 3rem; }
   .grid--3 { grid-template-columns: repeat(3, 1fr); }
   .grid--4 { grid-template-columns: repeat(4, 1fr); }
   .grid--half { grid-template-columns: 1fr 1fr; }
@@ -565,7 +566,7 @@ a:focus-visible, button:focus-visible {
   max-width: 68ch;
 }
 
-.education-card { display: flex; flex-direction: column; gap: 1.25rem; padding: 1.75rem; max-width: 520px; }
+.education-card { display: flex; flex-direction: column; gap: 1.25rem; padding: 1.75rem; }
 
 .education-photo {
   position: relative;
