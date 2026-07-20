@@ -136,6 +136,19 @@ a:focus-visible, button:focus-visible {
   border-radius: var(--radius-sm);
 }
 
+/* Visible to screen readers only — keeps icon-only labels readable */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Small uppercase label used on cards */
 .kicker {
   margin: 0;
@@ -902,16 +915,20 @@ a.card-media:hover { background: var(--accent-soft); }
 .footer-note { margin: 0; color: rgba(255, 255, 255, .62); max-width: 48ch; }
 
 .contact-list { display: grid; gap: .85rem; align-content: start; }
-.contact-list li { display: flex; flex-wrap: wrap; align-items: baseline; gap: .75rem; }
+.contact-list li { display: flex; align-items: center; gap: .75rem; }
 .contact-list a { font-weight: 600; }
-.contact-label {
+
+/* Icon stands in for the old text label; the label lives on in .sr-only */
+.contact-icon {
   flex: none;
-  width: 5.5rem;
-  font-size: .8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: rgba(255, 255, 255, .5);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, .6);
 }
 
 .footer-base {
