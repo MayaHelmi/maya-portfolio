@@ -1,0 +1,90 @@
+/* ==========================================================================
+   TAILWIND SOURCE FILE
+
+   This is the file you edit. It is NOT the file the pages load.
+
+   Running the build turns this file into ../tailwind.css, which is the one
+   linked from every page:
+
+       npm run build:css      (build once)
+       npm run watch:css      (rebuild automatically while you work)
+
+   The built file is kept in the project on purpose, so the site still opens
+   and looks right by double-clicking index.html, with no tools installed.
+   You only need npm if you want to CHANGE the styling.
+   ========================================================================== */
+
+
+/* ============ 1. Which files to scan ============
+   Tailwind only writes out the classes it actually finds. These lines tell
+   it where to look, so a class typed into any page ends up in the build. */
+@source "../*.html";
+
+
+/* ============ 2. Importing Tailwind, without the reset ============
+   Tailwind normally ships a "preflight" reset that strips margins, heading
+   sizes, list bullets and more. This site already has its own carefully
+   tuned styling in style.css, so that reset would undo it.
+
+   Importing the two parts below gives us every utility class but none of
+   the reset, which is why adding Tailwind here changed nothing about how
+   the site already looked. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+
+/* ============ 3. Dark mode ============
+   Out of the box, Tailwind's dark: prefix follows the operating system.
+   This site doesn't - it follows the sun/moon button in the navbar, which
+   writes data-theme="dark" onto the <html> element (see script.js).
+
+   This line points dark: at that attribute instead, so the button stays in
+   charge and dark:... classes agree with the rest of the site. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+
+/* ============ 4. Design tokens ============
+   Everything here teaches Tailwind the values this site already uses, so
+   utility classes and style.css can never drift apart. */
+@theme {
+
+  /* ---- Breakpoints ----
+     Tailwind's own defaults are 640 / 768 / 1024 / 1280. The stylesheet
+     was written to 576 / 768 / 992, so these are overridden to match.
+     One set of breakpoints for the whole site means md: in the HTML and
+     @media (min-width: 768px) in style.css always mean the same thing. */
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+
+  /* ---- Page width ----
+     max-w-site matches the 1180px used by .section and .navbar. */
+  --container-site: 1180px;
+
+  /* ---- Colours ----
+     These point at the variables already defined at the top of style.css
+     rather than repeating the hex codes. Because they are pointers, they
+     follow the theme automatically: switching to dark mode changes
+     --text-strong, so text-ink changes with it. No dark: prefix needed.
+
+     Change a colour in style.css and it changes here too. */
+  --color-ink: var(--text-strong);      /* headings, bold text */
+  --color-body: var(--text);            /* normal body text */
+  --color-soft: var(--text-soft);       /* less important text */
+  --color-fade: var(--text-fade);       /* dates, small labels */
+
+  --color-page: var(--page-bg);         /* the page itself */
+  --color-sunken: var(--soft-bg);       /* tinted strips and chips */
+  --color-card: var(--card-bg);         /* cards */
+  --color-panel: var(--dark-panel);     /* footer, dark award card */
+
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+
+  --color-accent: var(--pink);          /* the pink */
+  --color-accent-strong: var(--pink-strong);
+  --color-accent-soft: var(--pink-bg);
+  --color-accent-line: var(--pink-border);
+}

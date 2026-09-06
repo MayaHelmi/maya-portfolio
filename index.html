@@ -8,41 +8,20 @@
     content="Maya Helmi — Software Engineer. I design and build web and mobile applications, from Flutter apps to hand-written HTML and CSS.">
   <title>Maya Helmi | Software Engineer</title>
 
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
-  <link rel="stylesheet" href="style.css">
+  <!-- Tailwind first, so the hand-written rules in style.css stay in charge. -->
+  <link rel="stylesheet" href="tailwind.css?v=20260906e">
+  <link rel="stylesheet" href="style.css?v=20260906e">
 
-  <script>
-    // Runs before first paint so the saved theme doesn't flash.
-    const root = document.documentElement;
-    let saved; try { saved = localStorage.getItem("theme"); } catch (e) { }
-    root.dataset.theme = saved || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-
-    function closeMenu() {
-      if (!root.classList.contains("nav-open")) return;
-      // Blur a focused menu link BEFORE hiding the panel, or the browser's
-      // focus fixup cancels the smooth scroll to the link's anchor.
-      if (document.activeElement?.closest(".nav-links")) document.activeElement.blur();
-      root.classList.remove("nav-open");
-      document.querySelector(".nav-toggle")?.setAttribute("aria-expanded", "false");
-    }
-
-    document.addEventListener("click", (e) => {
-      if (e.target.closest(".theme-toggle")) {
-        const next = root.dataset.theme === "dark" ? "light" : "dark";
-        root.dataset.theme = next;
-        try { localStorage.setItem("theme", next); } catch (err) { }
-      } else if (e.target.closest(".nav-toggle")) {
-        const open = root.classList.toggle("nav-open");
-        e.target.closest(".nav-toggle").setAttribute("aria-expanded", String(open));
-      } else if (e.target.closest(".nav-links a, .logo a") || !e.target.closest(".navbar")) {
-        closeMenu();
-      }
-    });
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
-  </script>
+  <!-- Theme switch + phone menu. Deliberately has no "defer": it needs to run
+       before the page is painted, so dark mode never flashes white first. -->
+  <script src="script.js"></script>
 </head>
 
 <body>
@@ -56,7 +35,7 @@
       <ul class="nav-links" id="site-menu">
         <li><a href="#home" class="is-current" aria-current="page">Home</a></li>
         <li><a href="projects.html">Projects</a></li>
-        <li><a href="recognition.html">Recognition</a></li>
+        <li><a href="certificates.html">Certificates</a></li>
         <li><a href="#contact">Contact</a></li>
         <li class="nav-cv"><a href="Maya-Helmi-CV.pdf" download>Download My CV</a></li>
       </ul>
@@ -105,10 +84,32 @@
         <p class="hero-role" aria-hidden="true">
           <span class="hero-role-label">Contact me</span>
 
-          <!-- "Contact me" orbits the capsules on this traced track.
-               2246.34 / 1134.75 = each track's measured length, so the two text
-               copies stay one lap apart. Re-measure with getTotalLength()
-               if a path ever changes. -->
+          <!-- ============ The "Contact me" loop ============
+               Three pieces make this work:
+
+                 1. <path> draws an invisible track around the pills
+                    (fill="none" and no stroke, so you never see the line).
+                 2. <textPath> glues the words onto that track, so they bend
+                    along it instead of running in a straight line.
+                 3. startOffset says how far along the track the words begin.
+                    <animate> slides that number from 0 up to the track's
+                    full length, which walks the text once all the way
+                    around. repeatCount="indefinite" starts it over forever.
+
+               Why the text is written twice: a single copy would disappear
+               off the end of the track and leave a gap before coming back.
+               The second copy is exactly one lap behind (that's the minus
+               sign), so it arrives at the start just as the first one
+               leaves the end.
+
+               2246.34 is this track's length in pixels, measured once. If
+               you ever reshape the path, get the new number by running this
+               in the browser console and paste it into all four places:
+                 document.getElementById("snake-track").getTotalLength()
+
+               There are two of these: this wide one for laptops, and a
+               simpler rounded-rectangle one below for phones. The CSS
+               decides which one is shown. -->
           <svg class="hero-role-snake" viewBox="0 0 814 328" preserveAspectRatio="none" aria-hidden="true"
             focusable="false">
             <path id="snake-track" fill="none" d="M -16 132.4
@@ -141,6 +142,9 @@
             </text>
           </svg>
 
+          <!-- The phone version: same idea as above, but the track is just a
+               rounded rectangle around the 2x2 block of pills, and one lap
+               is 1134.75px instead of 2246.34px. -->
           <svg class="hero-role-snake--phone" viewBox="-16 -16 252 372" aria-hidden="true" focusable="false">
             <path id="snake-track-phone" fill="none" d="M 50 -16
               L 170 -16
@@ -215,17 +219,16 @@
     <!-- About + education -->
     <section id="about" class="section section--sunken">
       <div class="section-inner">
-        <div class="grid grid--about">
+        <div class="grid gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-[7fr_5fr] lg:gap-12">
 
-          <div class="about-col">
+          <div>
             <h2 class="section-title">The Mind Behind the Work</h2>
 
             <div class="about-content">
               <p>
                 I design it, then I build it — a Software Engineering graduate and UX designer who ships her own
                 ideas. That mix produced Besign, an AI tailoring platform that won Best Entrepreneurial Project
-                and took 2nd at NTP13 2026, and VocalEyes, an assistive app for people with visual impairments.
-                These days I'm a full-stack development intern at Orange Digital Center, and my inbox is always
+                and took 2nd at NTP13 2026. These days I'm a full-stack development intern at Orange Digital Center, and my inbox is always
                 open — right at the bottom of the page.
               </p>
             </div>
@@ -256,7 +259,7 @@
             <ul class="education-facts">
               <li><span>Degree</span>Software Engineering</li>
               <li><span>Duration</span>October 2022 – July 2026</li>
-              </ul>
+            </ul>
           </article>
 
         </div>
@@ -273,42 +276,39 @@
 
       <div class="showcase-strip" role="region" aria-label="Some of my work, scrolls sideways" tabindex="0">
 
-        <a class="showcase-card showcase-card--ink" href="besign.html" target="_blank" rel="noopener"
+        <a class="showcase-card showcase-card--shot showcase-card--ink" href="besign.html" target="_blank" rel="noopener"
           style="--tilt: -1.2deg">
+          <img class="showcase-shot" src="images/projects/besign.jpg" width="960" height="600" alt="Besign app screens" loading="lazy">
           <p class="kicker">Flutter · AI · Graduation Project</p>
           <h3>Besign</h3>
           <p class="showcase-line">AI custom tailoring platform — 2nd place at NTP13 2026.</p>
           <span class="showcase-cta">Read the story</span>
         </a>
 
-        <a class="showcase-card" href="vocaleyes.html" target="_blank" rel="noopener" style="--tilt: 1deg">
-          <p class="kicker kicker--accent">Assistive Tech · Flutter</p>
-          <h3>VocalEyes</h3>
-          <p class="showcase-line">A smart-glasses companion for people with visual impairments.</p>
-          <span class="showcase-cta">Read the story</span>
+        <a class="showcase-card showcase-card--shot showcase-card--warm" href="https://mayahelmi.github.io/invite-sites/" target="_blank" rel="noopener"
+          style="--tilt: 0.8deg">
+          <img class="showcase-shot" src="images/projects/invite-sites.jpg?v=20260906e" width="960" height="600" alt="Invite Sites landing page" loading="lazy">
+          <p class="kicker kicker--accent">Own product · Live</p>
+          <h3>Invite Sites</h3>
+          <p class="showcase-line">Personalised invitation websites with RSVP, maps and photos — Arabic, English or both.</p>
+          <span class="showcase-cta">Visit the site</span>
         </a>
 
-        <a class="showcase-card showcase-card--warm" href="glame-ai.html" target="_blank" rel="noopener"
+        <a class="showcase-card showcase-card--shot showcase-card--warm" href="glame-ai.html" target="_blank" rel="noopener"
           style="--tilt: -0.8deg">
+          <img class="showcase-shot" src="images/projects/glame-ai.jpg" width="960" height="600" alt="Glamé AI screen designs" loading="lazy">
           <p class="kicker kicker--accent">Product Spec · System Design</p>
           <h3>Glamé AI</h3>
           <p class="showcase-line">The full specification behind an AI makeup companion.</p>
           <span class="showcase-cta">Read the story</span>
         </a>
 
-        <a class="showcase-card" href="https://github.com/MayaHelmi" target="_blank" rel="noopener"
-          style="--tilt: 1.2deg">
-          <p class="kicker kicker--accent">Hand-coded HTML &amp; CSS</p>
-          <h3>Training Projects</h3>
-          <p class="showcase-line">Live, open-source exercises from my Orange Digital Center track.</p>
-          <span class="showcase-cta">See them on GitHub</span>
-        </a>
-
-        <a class="showcase-card showcase-card--accent" href="#contact" style="--tilt: -1deg">
-          <p class="kicker">Open to junior roles</p>
-          <h3>Your project here?</h3>
-          <p class="showcase-line">I'm looking for my next thing worth building.</p>
-          <span class="showcase-cta">Get in touch</span>
+        <a class="showcase-card showcase-card--shot showcase-card--ink" href="projects.html#web" style="--tilt: 0.9deg">
+          <img class="showcase-shot" src="images/projects/hopebridge.jpg" width="960" height="600" alt="HopeBridge charity platform" loading="lazy">
+          <p class="kicker">Live on GitHub Pages</p>
+          <h3>Web Projects</h3>
+          <p class="showcase-line">Invite Sites, HopeBridge and more — full sites built during my training.</p>
+          <span class="showcase-cta">Browse the sites</span>
         </a>
 
       </div>
@@ -317,26 +317,53 @@
     <!-- Skills -->
     <section id="skills" class="section section--sunken">
       <div class="section-inner">
-        <h2 class="section-title">Skills</h2>
+        <h2 class="section-title">Skills and Tools</h2>
 
-        <ul class="skill-grid">
-          <li><img src="images/skills/html5.svg" alt="" width="48" height="48" loading="lazy"><span>HTML5</span></li>
-          <li><img src="images/skills/css3.svg" alt="" width="48" height="48" loading="lazy"><span>CSS3</span></li>
-          <li><img src="images/skills/javascript.svg" alt="" width="48" height="48" loading="lazy"><span>JavaScript</span></li>
-          <li><img src="images/skills/bootstrap.svg" alt="" width="48" height="48" loading="lazy"><span>Bootstrap</span></li>
-          <li><img src="images/skills/figma.svg" alt="" width="48" height="48" loading="lazy"><span>Figma</span></li>
-          <li><img src="images/skills/flutter.svg" alt="" width="48" height="48" loading="lazy"><span>Flutter</span></li>
-          <li><img src="images/skills/dart.svg" alt="" width="48" height="48" loading="lazy"><span>Dart</span></li>
-          <li><img src="images/skills/java.svg" alt="" width="48" height="48" loading="lazy"><span>Java</span></li>
-          <li><img src="images/skills/cplusplus.svg" alt="" width="48" height="48" loading="lazy"><span>C++</span></li>
-          <li><img src="images/skills/python.svg" alt="" width="48" height="48" loading="lazy"><span>Python</span></li>
-          <li><img src="images/skills/azure.svg" alt="" width="48" height="48" loading="lazy"><span>Azure AI</span></li>
-          <li><img src="images/skills/git.svg" alt="" width="48" height="48" loading="lazy"><span>Git</span></li>
-          <li><img src="images/skills/github.svg" alt="" width="48" height="48" loading="lazy"><span>GitHub</span></li>
-          <li><img src="images/skills/vscode.svg" alt="" width="48" height="48" loading="lazy"><span>VS Code</span></li>
-          <li><img src="images/skills/visualstudio.svg" alt="" width="48" height="48" loading="lazy"><span>Visual Studio</span></li>
-          <li><img src="images/skills/androidstudio.svg" alt="" width="48" height="48" loading="lazy"><span>Android Studio</span></li>
-        </ul>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <article class="skill-card card-shell">
+            <p class="kicker skill-group">Front end</p>
+            <ul class="skill-grid">
+              <li><img src="images/skills/html5.svg" alt="" width="48" height="48" loading="lazy"><span>HTML5</span></li>
+              <li><img src="images/skills/css3.svg" alt="" width="48" height="48" loading="lazy"><span>CSS3</span></li>
+              <li><img src="images/skills/javascript.svg" alt="" width="48" height="48" loading="lazy"><span>JavaScript</span></li>
+              <li><img src="images/skills/bootstrap.svg" alt="" width="48" height="48" loading="lazy"><span>Bootstrap</span></li>
+              <li><img src="images/skills/tailwindcss.svg" alt="" width="48" height="48" loading="lazy"><span>Tailwind CSS</span></li>
+              <li><img src="images/skills/react.svg" alt="" width="48" height="48" loading="lazy"><span>React</span></li>
+              <li><img src="images/skills/flutter.svg" alt="" width="48" height="48" loading="lazy"><span>Flutter</span></li>
+              <li><img src="images/skills/dart.svg" alt="" width="48" height="48" loading="lazy"><span>Dart</span></li>
+            </ul>
+          </article>
+          <article class="skill-card card-shell">
+            <p class="kicker skill-group">Back end & languages</p>
+            <ul class="skill-grid">
+              <li><img src="images/skills/php.svg" alt="" width="48" height="48" loading="lazy"><span>PHP</span></li>
+              <li><img src="images/skills/python.svg" alt="" width="48" height="48" loading="lazy"><span>Python</span></li>
+              <li><img src="images/skills/java.svg" alt="" width="48" height="48" loading="lazy"><span>Java</span></li>
+              <li><img src="images/skills/cplusplus.svg" alt="" width="48" height="48" loading="lazy"><span>C++</span></li>
+            </ul>
+          </article>
+          <article class="skill-card card-shell">
+            <p class="kicker skill-group">Databases & cloud</p>
+            <ul class="skill-grid">
+              <li><img src="images/skills/mysql.svg" alt="" width="48" height="48" loading="lazy"><span>MySQL</span></li>
+              <li><img src="images/skills/supabase.svg" alt="" width="48" height="48" loading="lazy"><span>Supabase</span></li>
+              <li><img src="images/skills/firebase.svg" alt="" width="48" height="48" loading="lazy"><span>Firebase</span></li>
+              <li><img src="images/skills/azure.svg" alt="" width="48" height="48" loading="lazy"><span>Azure AI</span></li>
+            </ul>
+          </article>
+          <article class="skill-card card-shell">
+            <p class="kicker skill-group">Design & tools</p>
+            <ul class="skill-grid">
+              <li><img src="images/skills/figma.svg" alt="" width="48" height="48" loading="lazy"><span>Figma</span></li>
+              <li><img src="images/skills/blender.svg" alt="" width="48" height="48" loading="lazy"><span>Blender</span></li>
+              <li><img src="images/skills/git.svg" alt="" width="48" height="48" loading="lazy"><span>Git</span></li>
+              <li><img src="images/skills/github.svg" alt="" width="48" height="48" loading="lazy"><span>GitHub</span></li>
+              <li><img src="images/skills/vscode.svg" alt="" width="48" height="48" loading="lazy"><span>VS Code</span></li>
+              <li><img src="images/skills/visualstudio.svg" alt="" width="48" height="48" loading="lazy"><span>Visual Studio</span></li>
+              <li><img src="images/skills/androidstudio.svg" alt="" width="48" height="48" loading="lazy"><span>Android Studio</span></li>
+            </ul>
+          </article>
+        </div>
 
         <p class="kicker skill-also">Also</p>
         <ul class="skill-list">
@@ -347,6 +374,9 @@
           <li>Artificial Intelligence (AI)</li>
           <li>Generative AI</li>
           <li>AI Fundamentals</li>
+          <li>REST APIs</li>
+          <li>Database Design (ERD)</li>
+          <li>Accessibility</li>
           <li>Problem Solving</li>
           <li>Teamwork</li>
           <li>Communication</li>
@@ -359,38 +389,36 @@
 
     <!-- Experience -->
     <section id="experience" class="section">
-      <div class="section-inner">
-        <h2 class="section-title">Experience</h2>
+      <h2 class="section-title">Experience</h2>
 
-        <article class="experience-card card-shell">
-          <h3>Orange Digital Center</h3>
-          <p class="experience-role">Full-Stack Development Intern</p>
-          <p class="experience-dates">July 2026 – Present</p>
+      <article class="experience-card card-shell">
+        <h3>Orange Digital Center</h3>
+        <p class="experience-role">Full-Stack Web Development Intern</p>
+        <p class="experience-dates">July 2026 – Present</p>
 
-          <ul class="experience-list">
-            <li>Developing responsive web pages using HTML5 and CSS3.</li>
-            <li>Applying Flexbox, CSS Grid, and Bootstrap to build modern layouts.</li>
-            <li>Using Git and GitHub for version control and project management.</li>
-            <li>Building practical web development projects while strengthening problem-solving and teamwork skills.</li>
-          </ul>
-        </article>
-      </div>
+        <ul class="experience-list">
+          <li>Built responsive pages with HTML5, CSS3 (Flexbox, Grid) and Bootstrap, then moved to JavaScript: DOM manipulation, form handling, local storage, and the Fetch API with a Firebase Firestore backend.</li>
+          <li>Wrote server-side PHP: 45 exercises on the fundamentals, self-posting forms with validation, and a charity platform (HopeBridge) with accounts, sessions, an approval workflow and a MySQL database.</li>
+          <li>Took HopeBridge from research to delivery: empathy maps, user journeys, wireframes and mockups, an ER diagram, then 28 finished pages for donors, families and administrators.</li>
+          <li>Shipped every task as a public GitHub repository, most with a live GitHub Pages deployment, and co-built a single-page website to present the eight weeks with a teammate.</li>
+        </ul>
+
+        <p class="experience-links">
+          <a href="https://mayahelmi.github.io/field-training-presentation/" target="_blank" rel="noopener">View the training presentation website &rarr;</a>
+        </p>
+      </article>
     </section>
 
-    <!-- Recognition highlights -->
-    <section id="recognition" class="section section--sunken">
+    <!-- Certificates & awards highlights -->
+    <section id="certificates" class="section section--sunken">
       <div class="section-inner">
         <div class="section-head">
-          <h2 class="section-title">Recognition</h2>
-          <a class="btn secondary-btn" href="recognition.html">All my recognition →</a>
+          <h2 class="section-title">Certificates &amp; Awards</h2>
+          <a class="btn secondary-btn" href="certificates.html">All my certificates &amp; awards →</a>
         </div>
 
-        <p class="section-intro">
-          A few things I am proud of. The certificates, the full award list, and my
-          volunteer work all live on their own page.
-        </p>
 
-        <div class="grid grid--half">
+        <div class="grid gap-6 md:grid-cols-2">
 
           <article class="award-feature card-shell">
             <p class="kicker kicker--accent">Award · Graduation Projects Competition</p>
@@ -434,10 +462,6 @@
 
       <div>
         <h2 class="footer-title">Let's talk.</h2>
-        <p class="footer-note">
-          Open to junior frontend and mobile roles, and always happy to talk about
-          a project worth building.
-        </p>
       </div>
 
       <ul class="contact-list">

@@ -1,63 +1,70 @@
-/* ============ Design tokens ============ */
+/* ==========================================================================
+   COLOURS
+   --------------------------------------------------------------------------
+   These are the only variables in the file. They exist because the site has
+   a dark mode: every colour is written down once here, then written down
+   again lower in the dark block. Everything else in the stylesheet just says
+   var(--pink) and doesn't care which mode is on.
+
+   To change a colour site-wide, change it here (and its dark twin below).
+   ========================================================================== */
 :root {
   color-scheme: light dark;
 
-  --ink: #12151c;
-  --text: #1e2430;
-  --text-muted: #5c6675;
-  --text-faint: #838d9c;
-  --ink-surface: #12151c;
+  /* Text */
+  --text-strong: #12151c;   /* headings and bold text */
+  --text: #1e2430;          /* normal body text */
+  --text-soft: #5c6675;     /* less important text */
+  --text-fade: #838d9c;     /* dates, small labels */
 
-  --surface: #ffffff;
-  --surface-sunken: #f6f7f9;
-  --surface-raised: #ffffff;
+  /* Backgrounds */
+  --page-bg: #ffffff;       /* the page itself */
+  --soft-bg: #f6f7f9;       /* slightly tinted strips and chips */
+  --card-bg: #ffffff;       /* cards */
+  --dark-panel: #12151c;    /* the footer and the dark award card */
+
+  /* Lines */
   --border: #e3e6ec;
   --border-strong: #cfd5df;
 
-  --accent: #e46e9b;
-  --accent-strong: #ca5481;
-  --accent-soft: #ffedf4;
-  --accent-border: #f6bfcf;
+  /* Pink accent */
+  --pink: #e46e9b;
+  --pink-strong: #ca5481;   /* hover / emphasis */
+  --pink-bg: #ffedf4;       /* pale pink fill */
+  --pink-border: #f6bfcf;
 
-  --radius-sm: 6px;
-  --radius: 12px;
-  --radius-lg: 18px;
-
-  --shadow-sm: 0 1px 2px rgba(18, 21, 28, .06);
-  --shadow: 0 2px 4px rgba(18, 21, 28, .04), 0 8px 24px rgba(18, 21, 28, .06);
-  --shadow-lg: 0 4px 8px rgba(18, 21, 28, .05), 0 16px 40px rgba(18, 21, 28, .1);
-
-  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
-
-  --header-h: 68px;
-  --section-y: clamp(3.5rem, 8vw, 6.5rem);
-  --gutter: clamp(1rem, 4vw, 2rem);
+  /* Shadows are colours too, so they live here and change with the theme. */
+  --shadow-small: 0 1px 2px rgba(18, 21, 28, .06);
+  --shadow-medium: 0 2px 4px rgba(18, 21, 28, .04), 0 8px 24px rgba(18, 21, 28, .06);
+  --shadow-large: 0 4px 8px rgba(18, 21, 28, .05), 0 16px 40px rgba(18, 21, 28, .1);
 }
 
+/* Dark mode. The theme button in the navbar puts data-theme="dark" on the
+   <html> element, which swaps in this whole set of colours at once. */
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --ink: #f2f5f8;
+  --text-strong: #f2f5f8;
   --text: #dce2ea;
-  --text-muted: #9aa5b3;
-  --text-faint: #798492;
-  --ink-surface: #1b2129;
+  --text-soft: #9aa5b3;
+  --text-fade: #798492;
 
-  --surface: #0f1216;
-  --surface-sunken: #151920;
-  --surface-raised: #191e26;
+  --page-bg: #0f1216;
+  --soft-bg: #151920;
+  --card-bg: #191e26;
+  --dark-panel: #1b2129;
+
   --border: #272e38;
   --border-strong: #3a424e;
 
-  --accent: #f296b8;
-  --accent-strong: #f8bcd3;
-  --accent-soft: #2a1b23;
-  --accent-border: #462c38;
+  --pink: #f296b8;
+  --pink-strong: #f8bcd3;
+  --pink-bg: #2a1b23;
+  --pink-border: #462c38;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .5);
-  --shadow: 0 2px 4px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .45);
-  --shadow-lg: 0 4px 8px rgba(0, 0, 0, .45), 0 16px 40px rgba(0, 0, 0, .55);
+  --shadow-small: 0 1px 2px rgba(0, 0, 0, .5);
+  --shadow-medium: 0 2px 4px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .45);
+  --shadow-large: 0 4px 8px rgba(0, 0, 0, .45), 0 16px 40px rgba(0, 0, 0, .55);
 }
 
 /* ============ Base ============ */
@@ -65,24 +72,32 @@
 
 html {
   scroll-behavior: smooth;
-  /* Stop the sticky header from covering anchor targets. */
-  scroll-padding-top: calc(var(--header-h) + 1rem);
+  /* Stop the sticky header from covering anchor targets. 68px = header height. */
+  scroll-padding-top: calc(68px + 1rem);
 }
 
 body {
   margin: 0;
-  font-family: var(--font-sans);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 1rem;
   line-height: 1.65;
   color: var(--text);
-  background: var(--surface);
+  background: var(--page-bg);
   -webkit-font-smoothing: antialiased;
+}
+
+/* The serif font. Headings get it automatically; the three classes after
+   them are bits of text elsewhere that borrow the same look. */
+h1, h2, h3, h4,
+.hero-role-line,
+.hero-role,
+.award-feature-year {
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
 }
 
 h1, h2, h3, h4 {
   margin: 0 0 .5rem;
-  font-family: var(--font-display);
-  color: var(--ink);
+  color: var(--text-strong);
   line-height: 1.2;
   letter-spacing: -0.01em;
 }
@@ -92,51 +107,53 @@ p:last-child { margin-bottom: 0; }
 
 ul { margin: 0; padding: 0; list-style: none; }
 
-/* The hidden attribute must beat any author display value (pager relies on it) */
+/* The hidden attribute must beat any display value set below, because the
+   pager on certificates.html hides cards by setting hidden on them. */
 [hidden] { display: none !important; }
 
 img { max-width: 100%; height: auto; vertical-align: middle; }
 
 a {
-  color: var(--accent);
+  color: var(--pink);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   transition: color .15s ease;
 }
-a:hover { color: var(--accent-strong); }
+a:hover { color: var(--pink-strong); }
 
-strong { color: var(--ink); font-weight: 600; }
+strong { color: var(--text-strong); font-weight: 600; }
 
 code {
   font-size: .875em;
-  background: var(--surface-sunken);
+  background: var(--soft-bg);
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  border-radius: 6px;
   padding: .1em .35em;
-  color: var(--accent-strong);
+  color: var(--pink-strong);
 }
 
+/* Jump-to-content link. Sits off-screen until it is tabbed to. */
 .skip-link {
   position: absolute;
   top: -100px;
   left: 1rem;
   z-index: 200;
   padding: .75rem 1.25rem;
-  background: var(--ink-surface);
+  background: var(--dark-panel);
   color: #fff;
-  border-radius: 0 0 var(--radius) var(--radius);
+  border-radius: 0 0 12px 12px;
   text-decoration: none;
   font-weight: 600;
 }
 .skip-link:focus { top: 0; }
 
 a:focus-visible, button:focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 3px solid var(--pink);
   outline-offset: 3px;
-  border-radius: var(--radius-sm);
+  border-radius: 6px;
 }
 
-/* Visible to screen readers only — keeps icon-only labels readable */
+/* Visible to screen readers only - keeps icon-only labels readable */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -156,9 +173,9 @@ a:focus-visible, button:focus-visible {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .07em;
-  color: var(--text-faint);
+  color: var(--text-fade);
 }
-.kicker--accent { color: var(--accent); }
+.kicker--accent { color: var(--pink); }
 
 /* ============ Header / nav ============ */
 .header {
@@ -176,21 +193,20 @@ a:focus-visible, button:focus-visible {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  min-height: var(--header-h);
+  min-height: 68px;
   max-width: 1180px;
   margin-inline: auto;
-  padding-inline: var(--gutter);
+  padding-inline: clamp(1rem, 4vw, 2rem);
 }
 
 .logo {
   margin: 0;
-  font-family: var(--font-display);
   font-size: 1.125rem;
   font-weight: 700;
   white-space: nowrap;
 }
-.logo a { color: var(--ink); text-decoration: none; }
-.logo a:hover { color: var(--accent); }
+.logo a { color: var(--text-strong); text-decoration: none; }
+.logo a:hover { color: var(--pink); }
 
 .nav-links {
   display: flex;
@@ -205,50 +221,65 @@ a:focus-visible, button:focus-visible {
   display: block;
   padding: .45rem .7rem;
   border-radius: 999px;
-  color: var(--text-muted);
+  color: var(--text-soft);
   font-size: .9rem;
   font-weight: 500;
   text-decoration: none;
   white-space: nowrap;
   transition: background .15s ease, color .15s ease;
 }
-.nav-links a:hover { background: var(--surface-sunken); color: var(--ink); }
-.nav-links a.is-current { background: var(--accent-soft); color: var(--accent); }
+.nav-links a:hover { background: var(--soft-bg); color: var(--text-strong); }
+.nav-links a.is-current { background: var(--pink-bg); color: var(--pink); }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: .5rem;
+  min-height: 44px;      /* the comfortable size for a finger - see .theme-toggle */
   padding: .7rem 1.35rem;
   border: 1px solid transparent;
   border-radius: 999px;
-  font: 600 .95rem/1.2 var(--font-sans);
+  font-size: .95rem;
+  font-weight: 600;
+  line-height: 1.2;
   text-decoration: none;
   cursor: pointer;
   transition: transform .12s ease, background .15s ease, border-color .15s ease, color .15s ease;
 }
 .btn:active { transform: translateY(1px); }
 
-.secondary-btn { background: var(--surface); color: var(--ink); border-color: var(--border-strong); }
-.secondary-btn:hover { background: var(--surface-sunken); color: var(--ink); border-color: var(--text-faint); }
+.secondary-btn { background: var(--page-bg); color: var(--text-strong); border-color: var(--border-strong); }
+.secondary-btn:hover { background: var(--soft-bg); color: var(--text-strong); border-color: var(--text-fade); }
 
-.primary-btn { background: var(--accent); color: #fff; border-color: transparent; }
-.primary-btn:hover { background: var(--accent-strong); color: #fff; }
-/* Dark-mode accent is light; use dark ink for legible text (matches the accent showcase card) */
+.primary-btn { background: var(--pink); color: #fff; border-color: transparent; }
+.primary-btn:hover { background: var(--pink-strong); color: #fff; }
+/* The dark-mode pink is light, so the text on it has to go dark to stay readable */
 :root[data-theme="dark"] .primary-btn,
-:root[data-theme="dark"] .primary-btn:hover { color: var(--surface); }
+:root[data-theme="dark"] .primary-btn:hover { color: var(--page-bg); }
 
+/* The navbar copy of the CV button is deliberately compact, so it opts out
+   of the 44px minimum above and uses the invisible pad instead - it is only
+   shown from 768px up, which includes tablets, where it is still tapped
+   with a finger. It is 32px tall with a 1px border, so the pad stretches
+   out from 30px: 30 + 7 + 7 = 44. */
 .cv-btn {
+  position: relative;
+  min-height: 0;
   padding: .4rem .85rem;
   gap: .4rem;
   font-size: .875rem;
-  background: var(--accent-soft);
-  color: var(--ink);
-  border-color: var(--accent-border);
+  background: var(--pink-bg);
+  color: var(--text-strong);
+  border-color: var(--pink-border);
 }
-.cv-btn:hover { background: var(--accent-border); color: var(--ink); }
-.cv-btn svg { color: var(--accent-strong); }
+.cv-btn::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+}
+.cv-btn:hover { background: var(--pink-border); color: var(--text-strong); }
+.cv-btn svg { color: var(--pink-strong); }
 
 .nav-actions { display: flex; align-items: center; gap: .5rem; }
 
@@ -257,22 +288,41 @@ a:focus-visible, button:focus-visible {
   align-items: center;
   justify-content: center;
   flex: none;
+  position: relative;
   width: 34px;
   height: 34px;
   padding: 0;
   background: transparent;
   border: 1px solid var(--border-strong);
   border-radius: 999px;
-  color: var(--text-muted);
+  color: var(--text-soft);
   cursor: pointer;
   transition: background .15s ease, color .15s ease, border-color .15s ease;
 }
 .theme-toggle:hover, .nav-toggle:hover {
-  background: var(--surface-sunken);
-  color: var(--ink);
-  border-color: var(--text-faint);
+  background: var(--soft-bg);
+  color: var(--text-strong);
+  border-color: var(--text-fade);
 }
 
+/* A finger is a lot less precise than a mouse pointer, so phones expect
+   anything tappable to be at least 44px. These circles are drawn at 34px
+   because that is what suits the navbar - so instead of making them bigger,
+   an invisible pad is stretched around each one. The button looks identical;
+   there is just more of it to hit.
+
+   Why -6 and not -5: the pad is measured from the inside of the border, not
+   the outside. The button is 34px wide with a 1px border each side, so it
+   is stretching out from 32px, and 32 + 6 + 6 is the 44px we want. */
+.theme-toggle::after, .nav-toggle::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+}
+
+/* Each button holds two icons and shows one. In light mode you see the moon
+   (click it to go dark); in dark mode you see the sun. Same idea for the
+   burger / close icons on the menu button. */
 .theme-toggle .icon-sun { display: none; }
 :root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 :root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
@@ -296,10 +346,10 @@ a:focus-visible, button:focus-visible {
     left: 0;
     right: 0;
     overflow: visible;
-    padding: .5rem var(--gutter) 1rem;
-    background: var(--surface);
+    padding: .5rem clamp(1rem, 4vw, 2rem) 1rem;
+    background: var(--page-bg);
     border-bottom: 1px solid var(--border);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-large);
   }
   :root.nav-open .nav-links { display: block; animation: menu-in .18s ease; }
 
@@ -311,7 +361,7 @@ a:focus-visible, button:focus-visible {
     padding-top: .6rem;
     border-top: 1px solid var(--border);
   }
-  .nav-cv a { color: var(--accent); }
+  .nav-cv a { color: var(--pink); }
 }
 
 @keyframes menu-in {
@@ -322,7 +372,7 @@ a:focus-visible, button:focus-visible {
 .hero {
   max-width: 1180px;
   margin-inline: auto;
-  padding: clamp(3rem, 7vw, 5.5rem) var(--gutter) clamp(3.5rem, 7vw, 5.5rem);
+  padding: clamp(3rem, 7vw, 5.5rem) clamp(1rem, 4vw, 2rem) clamp(3.5rem, 7vw, 5.5rem);
   text-align: center;
   overflow-x: clip;
 }
@@ -348,10 +398,12 @@ a:focus-visible, button:focus-visible {
   width: clamp(58px, 11vw, 132px);
   aspect-ratio: 5 / 8;
   border-radius: 999px;
-  background: var(--surface);
+  background: var(--page-bg);
   border: 1px solid var(--border);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-medium);
 }
+/* Each pill is nudged to a slightly different angle and height, so the row
+   looks hand-placed instead of perfectly straight. */
 .capsule--rot-l { transform: rotate(-7deg) translateY(8px); }
 .capsule--lift  { transform: rotate(-3deg) translateY(-8px); }
 .capsule--drop  { transform: rotate(3deg) translateY(-8px); }
@@ -366,12 +418,12 @@ a:focus-visible, button:focus-visible {
   width: 100%;
   height: 100%;
   border-radius: inherit;
-  color: var(--ink);
+  color: var(--text-strong);
   font-size: clamp(1.25rem, 2.6vw, 1.9rem);
   text-decoration: none;
   transition: transform .15s ease, color .15s ease;
 }
-.capsule-link:hover { color: var(--accent); transform: translateY(-4px); }
+.capsule-link:hover { color: var(--pink); transform: translateY(-4px); }
 .capsule-link:focus-visible { border-radius: inherit; outline-offset: 4px; }
 
 .capsule-label {
@@ -379,24 +431,23 @@ a:focus-visible, button:focus-visible {
   font-weight: 600;
   letter-spacing: .06em;
   text-transform: uppercase;
-  color: var(--text-faint);
+  color: var(--text-fade);
 }
-.capsule-link:hover .capsule-label { color: var(--accent); }
+.capsule-link:hover .capsule-label { color: var(--pink); }
 
 .capsule-photo {
   width: clamp(128px, 16vw, 190px);
   border: none;
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-large);
 }
 .capsule-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
 
 .hero-role-line {
   margin: 0 0 clamp(1.75rem, 4vw, 2.5rem);
-  font-family: var(--font-display);
   font-size: clamp(1.5rem, 3.4vw, 2.15rem);
   font-weight: 700;
-  color: var(--ink);
+  color: var(--text-strong);
 }
 
 .hero-title {
@@ -405,68 +456,101 @@ a:focus-visible, button:focus-visible {
   font-weight: 700;
 }
 
-/* "Contact me": a static label by default (and for reduced motion);
-   with motion allowed it becomes text orbiting the capsules. */
+/* ============ The "Contact me" snake ============
+   Plain "Contact me" text by default (and for anyone who has asked their
+   device to reduce motion). If motion is allowed, it turns into the text
+   that loops around the pills instead. See index.html for how the loop
+   itself is built. */
 .hero-role {
   margin: 0 0 1rem;
-  font-family: var(--font-display);
   font-size: clamp(1.2rem, 3vw, 2rem);
   font-weight: 700;
-  color: var(--accent);
+  color: var(--pink);
   white-space: nowrap;
   pointer-events: none;
 }
 
-.hero-role-snake, .hero-role-snake--phone { display: none; }
-.snake-text { letter-spacing: .1em; fill: var(--accent); dominant-baseline: middle; }
+/* Both snake drawings start hidden. One of them is switched on further down,
+   depending on screen width. They sit on top of the pills, which is why they
+   are positioned absolutely. */
+.hero-role-snake,
+.hero-role-snake--phone {
+  display: none;
+  position: absolute;
+  overflow: visible;
+}
 
+.snake-text { letter-spacing: .1em; fill: var(--pink); dominant-baseline: middle; }
+
+/* Motion allowed: hide the plain label and lay the snake over the pills. */
 @media screen and (prefers-reduced-motion: no-preference) {
   .hero-role { position: absolute; inset: 0; margin: 0; z-index: 5; }
   .hero-role-label { display: none; }
 }
 
+/* Motion allowed, laptop: the wide snake that traces around all five pills. */
 @media screen and (prefers-reduced-motion: no-preference) and (min-width: 768px) {
   .hero-role-snake {
     display: block;
-    position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    overflow: visible;
   }
   .snake-text { font-size: 27px; }
 }
 
+/* Motion allowed, phone: a simple rounded rectangle around the 2x2 block.
+   These are worked out from --pill (set in the phone layout further down)
+   for the same reason the grid is: the loop has to shrink in step with the
+   pills it is drawn around, or it drifts off them on a narrow screen. */
 @media screen and (prefers-reduced-motion: no-preference) and (max-width: 767px) {
   .hero-role-snake--phone {
     display: block;
-    position: absolute;
-    left: calc(var(--pill-w) * -0.16);
+    left: calc(var(--pill) * -0.16);
     top: 50%;
     transform: translateY(-50%);
-    width: calc(var(--pill-w) * 2.52);
+    width: calc(var(--pill) * 2.52);
     aspect-ratio: 252 / 372;
-    overflow: visible;
   }
-  .snake-text { font-size: 22px; }
+  .snake-text { font-size: calc(var(--pill) * 0.344); }
 }
 
-/* Phone: capsules become a 2x2 grid with the photo spanning both rows */
+/* Phone: capsules become a 2x2 grid with the photo spanning both rows.
+   Every size in here is worked out from one number, --pill, so the whole
+   block scales as a unit. */
 @media (max-width: 767px) {
   .hero {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: calc(100svh - var(--header-h));
+    min-height: calc(100svh - 68px);
   }
 
-  .hero-stage { --pill-w: 64px; --photo-w: 150px; margin-bottom: 2.25rem; }
+  /* The width of one contact pill, and the only number to change if you
+     want the hero bigger or smaller.
+
+     It used to be a flat 64px. That was fine on most phones but too wide on
+     a 320px screen, where the whole block came to 330px and the right edge
+     of the photo was cut off. clamp() keeps 64px wherever there is room and
+     shrinks it on narrow screens, so nothing is ever chopped:
+
+       64px         - the size this was designed at, used from ~390px up
+       17vw         - shrinks with the screen below that
+       46px         - a floor, so it never gets too small to tap
+
+     Everything downstream is a multiple of it: the photo is 2.344 pills
+     wide, the rows 1.6 (that's the 5:8 pill shape), the gaps 0.2, and so
+     on. Those ratios are what the flat pixel values used to work out to. */
+  .hero-stage {
+    --pill: clamp(46px, 17vw, 64px);
+    margin-bottom: 2.25rem;
+  }
 
   .hero-capsules {
     display: grid;
-    grid-template-columns: repeat(2, var(--pill-w)) var(--photo-w);
-    grid-auto-rows: calc(var(--pill-w) * 8 / 5);
-    gap: calc(var(--pill-w) * .2);
+    grid-template-columns: var(--pill) var(--pill) calc(var(--pill) * 2.344);
+    grid-auto-rows: calc(var(--pill) * 1.6);
+    gap: calc(var(--pill) * 0.2);
     align-items: center;
     justify-items: center;
     padding: 0;
@@ -479,7 +563,12 @@ a:focus-visible, button:focus-visible {
 
   /* The photo spans both pill rows; the left margin clears a lane
      for the snake's right-side run. */
-  .capsule-photo { grid-row: 1 / 3; grid-column: 3; width: 100%; margin-left: 26px; }
+  .capsule-photo {
+    grid-row: 1 / 3;
+    grid-column: 3;
+    width: 100%;
+    margin-left: calc(var(--pill) * 0.406);
+  }
 }
 
 @media (max-width: 575px) {
@@ -493,19 +582,21 @@ a:focus-visible, button:focus-visible {
 .section {
   max-width: 1180px;
   margin-inline: auto;
-  padding: var(--section-y) var(--gutter);
+  padding: clamp(3.5rem, 8vw, 6.5rem) clamp(1rem, 4vw, 2rem);
 }
 
+/* A full-width tinted strip. The colour has to run edge to edge, so the
+   width limit moves onto the .section-inner div inside it instead. */
 .section--sunken {
   max-width: none;
   padding-inline: 0;
-  background: var(--surface-sunken);
+  background: var(--soft-bg);
   border-block: 1px solid var(--border);
 }
 .section--sunken > .section-inner {
   max-width: 1180px;
   margin-inline: auto;
-  padding-inline: var(--gutter);
+  padding-inline: clamp(1rem, 4vw, 2rem);
 }
 
 .section-title {
@@ -530,7 +621,7 @@ a:focus-visible, button:focus-visible {
   margin-top: -2rem;
   margin-bottom: 2.5rem;
   max-width: 62ch;
-  color: var(--text-muted);
+  color: var(--text-soft);
 }
 .section-head + .section-intro { margin-top: 0; }
 
@@ -540,40 +631,43 @@ a:focus-visible, button:focus-visible {
   font-size: 1.4rem;
   font-weight: 600;
 }
+.section-title + .subsection-title { margin-top: 1.5rem; }   /* first group title sits close to the page title */
 .subsection-note {
   margin-bottom: 2rem;
   max-width: 62ch;
-  color: var(--text-muted);
+  color: var(--text-soft);
 }
 
 .section-cta { margin-top: 2.5rem; }
 
-/* Responsive column layouts (replaces the Bootstrap grid) */
-.grid { display: grid; gap: 1.5rem; }
-@media (min-width: 576px) {
-  .grid--4 { grid-template-columns: repeat(2, 1fr); }
-}
-@media (min-width: 768px) {
-  .grid--3 { grid-template-columns: repeat(2, 1fr); }
-}
-@media (min-width: 992px) {
-  .grid--about { grid-template-columns: 7fr 5fr; gap: 3rem; }
-  .grid--3 { grid-template-columns: repeat(3, 1fr); }
-  .grid--4 { grid-template-columns: repeat(4, 1fr); }
-  .grid--half { grid-template-columns: 1fr 1fr; }
-}
+/* Column layouts used to live here as .grid--3, .grid--4 and so on. They are
+   now written straight onto the elements in the HTML with Tailwind classes,
+   for example:
 
+     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+   which reads as: one column by default, two from 576px, three from 992px.
+   The breakpoint names (sm, md, lg) are set to this site's own widths in
+   src/tailwind.css, so they mean the same thing as the @media lines here.
+
+   Keeping the columns in one place - the HTML - is deliberate. A rule in
+   this file would quietly win over a Tailwind class no matter which came
+   first, because Tailwind's utilities sit in a CSS layer and this file does
+   not. So each layout has exactly one owner. */
+
+/* The shared look for every card on the site: white box, thin border,
+   lifts slightly when hovered. */
 .card-shell {
   height: 100%;
-  background: var(--surface-raised);
+  background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
+  border-radius: 12px;
+  box-shadow: var(--shadow-small);
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
 .card-shell:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-medium);
   border-color: var(--border-strong);
 }
 
@@ -581,21 +675,31 @@ a:focus-visible, button:focus-visible {
 .about-content p {
   margin-bottom: 1.25rem;
   font-size: 1.075rem;
-  color: var(--text-muted);
+  color: var(--text-soft);
   max-width: 68ch;
 }
 
 .about-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
 
 .education-card { display: flex; flex-direction: column; gap: 1.25rem; padding: 1.75rem; }
+/* A narrow card on every screen (the photo inside is a small portrait);
+   centred on phones, pinned to the right edge of its column from tablet up. */
+.education-card { width: 100%; max-width: 336px; margin-inline: auto; }
+@media (min-width: 768px) {
+  .education-card { margin-inline: 0; justify-self: end; }
+}
 
 .education-photo {
   position: relative;
-  flex: 1 1 auto;
-  min-height: 220px;
-  background: var(--surface-sunken);
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 260px;       /* keeps the portrait photo small on every screen */
+  margin-inline: auto;
+  aspect-ratio: 4 / 5;
+  min-height: 0;
+  background: var(--soft-bg);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: 12px;
   overflow: hidden;
 }
 .education-photo > img:first-child {
@@ -613,8 +717,8 @@ a:focus-visible, button:focus-visible {
   width: 80px;
   height: 80px;
   padding: 5px;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-sm);
+  border-radius: 6px;
+  box-shadow: var(--shadow-small);
   object-fit: contain;
 }
 
@@ -634,29 +738,33 @@ a:focus-visible, button:focus-visible {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .06em;
-  color: var(--text-faint);
+  color: var(--text-fade);
 }
 
 /* ============ Showcase strip ============ */
-.showcase { padding-block: var(--section-y); }
-.showcase-head { max-width: 1180px; margin-inline: auto; padding-inline: var(--gutter); }
+.showcase { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
+.showcase-head { max-width: 1180px; margin-inline: auto; padding-inline: clamp(1rem, 4vw, 2rem); }
 
+/* Scrolls sideways instead of wrapping. scroll-snap makes it settle neatly
+   on a card rather than stopping halfway between two. */
 .showcase-strip {
   display: flex;
   gap: clamp(1rem, 2.5vw, 1.75rem);
   overflow-x: auto;
-  padding: .75rem var(--gutter) 1.5rem;
+  padding: .75rem clamp(1rem, 4vw, 2rem) 1.5rem;
   scroll-snap-type: x proximity;
-  scroll-padding-inline: var(--gutter);
+  scroll-padding-inline: clamp(1rem, 4vw, 2rem);
   scrollbar-width: none;
 }
 .showcase-strip::-webkit-scrollbar { display: none; }
 .showcase-strip:focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 3px solid var(--pink);
   outline-offset: -3px;
-  border-radius: var(--radius);
+  border-radius: 12px;
 }
 
+/* Each card is tilted by its own --tilt value, set inline in the HTML,
+   and straightens out on hover. */
 .showcase-card {
   flex: none;
   width: clamp(280px, 72vw, 520px);
@@ -667,36 +775,53 @@ a:focus-visible, button:focus-visible {
   justify-content: flex-end;
   gap: .35rem;
   padding: clamp(1.25rem, 3vw, 2rem);
-  background: var(--surface);
+  background: var(--page-bg);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
-  color: var(--text-muted);
+  border-radius: 18px;
+  box-shadow: var(--shadow-medium);
+  color: var(--text-soft);
   text-decoration: none;
   transform: rotate(var(--tilt, 0deg));
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
 .showcase-card:hover {
   transform: rotate(0deg) translateY(-6px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-large);
   border-color: var(--border-strong);
-  color: var(--text-muted);
+  color: var(--text-soft);
 }
-.showcase-card:focus-visible { border-radius: var(--radius-lg); }
+.showcase-card:focus-visible { border-radius: 18px; }
 
+/* A showcase card with a screenshot: the picture bleeds to the card's top
+   edges (negative margins cancel the padding) and the text stays at the
+   bottom. The card grows to fit instead of keeping the 16:10 shape. */
+.showcase-card--shot { aspect-ratio: auto; padding-top: 0; }
+.showcase-shot {
+  display: block;
+  width: calc(100% + 2 * clamp(1.25rem, 3vw, 2rem));
+  max-width: none;                 /* the global img rule caps at 100% */
+  margin: 0 calc(-1 * clamp(1.25rem, 3vw, 2rem)) auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-bottom: 1px solid var(--border);
+  border-radius: 17px 17px 0 0;
+  background: var(--soft-bg);
+}
+.showcase-shot + .kicker { margin-top: 1rem; }
 .showcase-card h3 { margin: 0; font-size: clamp(1.5rem, 3vw, 2rem); }
 .showcase-line { margin: 0; font-size: .95rem; }
-.showcase-cta { margin-top: .5rem; font-size: .875rem; font-weight: 600; color: var(--accent); }
+.showcase-cta { margin-top: .5rem; font-size: .875rem; font-weight: 600; color: var(--pink); }
 .showcase-card:hover .showcase-cta { text-decoration: underline; text-underline-offset: 3px; }
 
-.showcase-card--ink { background: var(--ink-surface); border-color: transparent; color: rgba(255, 255, 255, .72); }
+/* Four colour variants of the same card */
+.showcase-card--ink { background: var(--dark-panel); border-color: transparent; color: rgba(255, 255, 255, .72); }
 .showcase-card--ink:hover { color: rgba(255, 255, 255, .72); }
 .showcase-card--ink h3 { color: #fff; }
 .showcase-card--ink .kicker, .showcase-card--ink .showcase-cta { color: rgba(255, 255, 255, .85); }
 
-.showcase-card--warm { background: var(--accent-soft); border-color: var(--accent-border); }
+.showcase-card--warm { background: var(--pink-bg); border-color: var(--pink-border); }
 
-.showcase-card--accent { background: var(--accent); border-color: transparent; color: rgba(255, 255, 255, .88); }
+.showcase-card--accent { background: var(--pink); border-color: transparent; color: rgba(255, 255, 255, .88); }
 .showcase-card--accent:hover { color: rgba(255, 255, 255, .88); }
 .showcase-card--accent h3, .showcase-card--accent .kicker, .showcase-card--accent .showcase-cta { color: #fff; }
 
@@ -705,11 +830,12 @@ a:focus-visible, button:focus-visible {
 :root[data-theme="dark"] .showcase-card--accent:hover { color: rgba(15, 18, 22, .82); }
 :root[data-theme="dark"] .showcase-card--accent h3,
 :root[data-theme="dark"] .showcase-card--accent .kicker,
-:root[data-theme="dark"] .showcase-card--accent .showcase-cta { color: var(--surface); }
+:root[data-theme="dark"] .showcase-card--accent .showcase-cta { color: var(--page-bg); }
 
 /* ============ Skills ============ */
 
-/* Logo grid: one tile per tool, logo above its name */
+/* Logo grid: one tile per tool, logo above its name. auto-fill means the
+   browser decides how many fit per row, so no media queries are needed. */
 .skill-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
@@ -732,31 +858,40 @@ a:focus-visible, button:focus-visible {
   transition: transform .18s ease;
 }
 .skill-grid li:hover img { transform: translateY(-4px) scale(1.06); }
-/* GitHub's mark is near-black; lift it out of the dark background */
+/* GitHub's mark is near-black; flip it to white on the dark background */
 :root[data-theme="dark"] .skill-grid img[src*="github"] { filter: invert(1); }
 
 /* Skills that have no logo (concepts, soft skills) stay as chips */
+/* The four skill groups sit side by side as cards; inside a card the logo
+   grid packs tighter than the old full-width grid did. */
+.skill-card { display: flex; flex-direction: column; padding: 1.5rem; }
+.skill-group { margin: 0 0 1.1rem; }
+.skill-card .skill-grid {
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 1.5rem .5rem;
+}
 .skill-also { margin: 2.75rem 0 .9rem; }
 .skill-list { display: flex; flex-wrap: wrap; gap: .4rem; }
 .skill-list li {
   padding: .3rem .7rem;
-  background: var(--surface-raised);
+  background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 999px;
   font-size: .825rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--text-soft);
 }
 
 /* ============ Experience ============ */
 .experience-card { padding: 2rem; }
 .experience-card h3 { margin-bottom: .25rem; font-size: 1.3rem; }
-.experience-role { margin-bottom: .1rem; color: var(--accent); font-weight: 600; }
-.experience-dates { margin-bottom: 1.25rem; font-size: .875rem; color: var(--text-faint); }
-.experience-list { list-style: disc; padding-left: 1.1rem; color: var(--text-muted); }
+.experience-role { margin-bottom: .1rem; color: var(--pink); font-weight: 600; }
+.experience-dates { margin-bottom: 1.25rem; font-size: .875rem; color: var(--text-fade); }
+.experience-list { list-style: disc; padding-left: 1.1rem; color: var(--text-soft); }
 .experience-list li { font-size: .95rem; margin-bottom: .4rem; }
+.experience-links { margin-top: 1.25rem; font-size: .9rem; font-weight: 600; }
 
-/* ============ Recognition (home highlights) ============ */
+/* ============ Certificates (home highlights) ============ */
 .award-feature {
   position: relative;
   overflow: hidden;
@@ -765,19 +900,19 @@ a:focus-visible, button:focus-visible {
   justify-content: flex-end;
   gap: .5rem;
   padding: 2rem;
-  background: var(--ink-surface);
+  background: var(--dark-panel);
   border-color: transparent;
 }
 :root[data-theme="dark"] .award-feature { border-color: var(--border-strong); }
 
 .award-feature h3 { margin: 0; color: #fff; font-size: clamp(1.6rem, 3vw, 2.1rem); max-width: 14ch; }
 .award-feature-line { margin: 0; color: rgba(255, 255, 255, .72); font-size: .95rem; max-width: 38ch; }
+/* The huge faint year in the corner. overflow:hidden on the card crops it. */
 .award-feature-year {
   position: absolute;
   top: -1.25rem;
   right: .5rem;
   margin: 0;
-  font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(6rem, 12vw, 9rem);
   line-height: 1;
@@ -789,38 +924,38 @@ a:focus-visible, button:focus-visible {
 .highlight-stack { display: grid; gap: 1rem; height: 100%; }
 .highlight-card { display: flex; flex-direction: column; gap: .35rem; padding: 1.5rem; }
 .highlight-card h3 { margin: 0; font-size: 1.1rem; font-weight: 600; }
-.highlight-card p { margin: 0; font-size: .875rem; color: var(--text-muted); }
+.highlight-card p { margin: 0; font-size: .875rem; color: var(--text-soft); }
 
-/* ============ Subpages: projects, recognition, case pages ============ */
+/* ============ Subpages: projects, certificates, case pages ============ */
 
-/* Case-page header spacing (replaces Bootstrap's mb-3 / mb-4) */
+/* Case-page header spacing */
 .case-title { margin-bottom: 1rem; }
 .case-badges { margin-bottom: 1.5rem; }
 
-/* Cards with a media area (awards, certificates, volunteer) */
+/* Cards with a picture on top (awards, certificates, volunteer) */
 .achievement-card, .certificate-card, .volunteer-card {
   display: flex;
   flex-direction: column;
 }
 .card-media {
   display: block;
-  background: var(--surface-sunken);
+  background: var(--soft-bg);
   border-bottom: 1px solid var(--border);
-  border-radius: var(--radius) var(--radius) 0 0;
+  border-radius: 12px 12px 0 0;
   padding: 1rem;
 }
 .card-media img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: contain;
-  border-radius: var(--radius-sm);
+  border-radius: 6px;
 }
-a.card-media:hover { background: var(--accent-soft); }
+a.card-media:hover { background: var(--pink-bg); }
 
 .card-body { padding: 1.5rem; }
 .card-body h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: .25rem; }
-.card-subtitle { font-size: .9rem; color: var(--text-muted); margin-bottom: 1rem; }
-.card-body p { font-size: .925rem; color: var(--text-muted); margin-bottom: .4rem; }
+.card-subtitle { font-size: .9rem; color: var(--text-soft); margin-bottom: 1rem; }
+.card-body p { font-size: .925rem; color: var(--text-soft); margin-bottom: .4rem; }
 
 .certificate-link {
   display: inline-block;
@@ -831,6 +966,113 @@ a.card-media:hover { background: var(--accent-soft); }
 
 /* Project cards */
 .project-card { display: flex; flex-direction: column; padding: 1.75rem; }
+
+/* The screenshot at the top of a project card. The card has padding, so the
+   picture pulls out to the card's edges with negative margins and keeps the
+   card's rounded top corners. Every picture is 16:10, so rows line up. */
+.project-shot {
+  display: block;
+  margin: -1.75rem -1.75rem 1.25rem;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px 12px 0 0;
+  background: var(--soft-bg);
+}
+.training-card .project-shot { margin: -1.5rem -1.5rem 1rem; }
+.project-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .3s ease;
+}
+.card-shell:hover .project-shot img { transform: scale(1.03); }
+@media (prefers-reduced-motion: reduce) {
+  .project-shot img { transition: none; }
+  .card-shell:hover .project-shot img { transform: none; }
+}
+
+/* ============ Flip cards (projects page) ============
+   Front: the screenshot and the title. Back: the description, tags and links.
+   The card turns over on hover, on keyboard focus, or on tap (script.js-free:
+   a few lines at the bottom of projects.html add .is-flipped). */
+.flip-card {
+  aspect-ratio: 2 / 3;          /* never taller than 1.5 × its width */
+  perspective: 1200px;
+  padding: 0;
+  outline: none;
+}
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .8s cubic-bezier(.4, 0, .2, 1);
+}
+.flip-card:hover .flip-inner,
+.flip-card:focus-visible .flip-inner,
+.flip-card:has(a:focus-visible) .flip-inner,
+.flip-card.is-flipped .flip-inner { transform: rotateY(180deg); }
+.flip-inner { will-change: transform; }
+.flip-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  /* The generic card hover (lift + transition) must not touch the faces:
+     each face owns a fixed rotation, and animating it fights the flip. */
+  transition: none;
+}
+.flip-front,
+.flip-front:hover { transform: rotateY(0deg); }
+.flip-back,
+.flip-back:hover {
+  transform: rotateY(180deg);
+  padding: 1.5rem;
+  overflow-y: auto;
+  background: var(--dark-panel);
+  border-color: transparent;
+  color: rgba(255, 255, 255, .78);
+}
+.flip-back .kicker { color: var(--pink); margin-bottom: .75rem; }
+.flip-back .project-description { color: #fff; font-size: .95rem; }
+.flip-back .project-note { background: rgba(255, 255, 255, .06); border-left-color: rgba(255, 255, 255, .25); color: rgba(255, 255, 255, .7); }
+.flip-back .tech-tag { background: rgba(255, 255, 255, .08); border-color: rgba(255, 255, 255, .18); color: rgba(255, 255, 255, .8); }
+.flip-back .project-links { border-top-color: rgba(255, 255, 255, .15); }
+.flip-back .project-links a { color: var(--pink); }
+.flip-back .project-private { color: rgba(255, 255, 255, .55); }
+.flip-front .project-shot { aspect-ratio: 9 / 10; }   /* the picture takes most of the front */
+/* Keep the top of the picture (a site's nav bar) whatever the box shape, and
+   don't zoom it on hover: a zoom would trim the edges. */
+.flip-front .project-shot img { object-position: center top; transform: none !important; }
+.flip-hint { margin-top: auto; padding-top: .4rem; font-size: .8rem; color: var(--text-fade); }
+.flip-front { padding-bottom: 1.1rem; }
+.flip-front .project-head {
+  flex-direction: column;      /* the name sits on its own row, the badges below it */
+  align-items: flex-start;
+  gap: .45rem;
+  margin-bottom: 0;
+}
+.flip-front .project-title { font-size: 1.3rem; line-height: 1.2; }
+.flip-front .project-shot { margin-bottom: .9rem; }
+@media (prefers-reduced-motion: reduce) {
+  .flip-inner { transition: none; }
+}
+
+/* Certificate / award / volunteer cards on certificates.html use the same flip,
+   with a landscape picture (the documents are 4:3) shown whole, never cropped. */
+.flip-card--cert { aspect-ratio: 4 / 5; }
+.flip-card--cert .project-shot { aspect-ratio: 4 / 3; padding: .75rem; }
+.flip-card--cert .project-shot img { object-fit: contain; border-radius: 6px; }
+.flip-card--cert .project-title { font-size: 1.15rem; line-height: 1.3; }
+.flip-back .cert-meta, .flip-back .cert-desc { font-size: .9rem; color: rgba(255, 255, 255, .78); margin-bottom: .35rem; }
+.flip-back .cert-meta strong { color: #fff; font-weight: 600; }
+.flip-back .cert-desc { margin-top: .5rem; }
 .project-head {
   display: flex;
   flex-wrap: wrap;
@@ -843,44 +1085,46 @@ a.card-media:hover { background: var(--accent-soft); }
 .project-badges { display: flex; flex-wrap: wrap; gap: .4rem; }
 .project-badge {
   padding: .25rem .65rem;
-  background: var(--accent-soft);
-  border: 1px solid var(--accent-border);
+  background: var(--pink-bg);
+  border: 1px solid var(--pink-border);
   border-radius: 999px;
   font-size: .75rem;
   font-weight: 600;
-  color: var(--accent-strong);
+  color: var(--pink-strong);
   white-space: nowrap;
 }
 .badge-muted {
-  background: var(--surface-sunken);
+  background: var(--soft-bg);
   border-color: var(--border-strong);
-  color: var(--text-muted);
+  color: var(--text-soft);
 }
 
 .project-description { font-size: 1.05rem; color: var(--text); margin-bottom: 1rem; }
-.project-card > p { font-size: .95rem; color: var(--text-muted); }
+.project-card > p { font-size: .95rem; color: var(--text-soft); }
 
 .project-tech { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1.25rem 0 0; }
 .tech-tag {
   padding: .25rem .6rem;
-  background: var(--surface-sunken);
+  background: var(--soft-bg);
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  border-radius: 6px;
   font-size: .78rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--text-soft);
 }
 
 .project-note {
   margin-top: 1.25rem;
   padding: .75rem 1rem;
-  background: var(--surface-sunken);
+  background: var(--soft-bg);
   border-left: 3px solid var(--border-strong);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  border-radius: 0 6px 6px 0;
   font-size: .875rem;
-  color: var(--text-muted);
+  color: var(--text-soft);
 }
 
+/* margin-top:auto pushes this row to the bottom, so the links line up
+   across cards of different heights. */
 .project-links {
   display: flex;
   flex-wrap: wrap;
@@ -891,37 +1135,49 @@ a.card-media:hover { background: var(--accent-soft); }
   border-top: 1px solid var(--border);
 }
 .project-links a { font-size: .9rem; font-weight: 600; }
-.project-private { font-size: .875rem; color: var(--text-faint); font-style: italic; }
+.project-private { font-size: .875rem; color: var(--text-fade); font-style: italic; }
 
 .training-card { display: flex; flex-direction: column; padding: 1.5rem; }
 .training-card h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: .5rem; }
-.training-card p { font-size: .9rem; color: var(--text-muted); }
+.training-card p { font-size: .9rem; color: var(--text-soft); }
 
-/* Numbered pager under long card grids (built by the script on recognition.html) */
+/* Numbered pager under long card grids (built by the script on certificates.html) */
 .pager { display: flex; gap: .5rem; margin-top: 1.5rem; }
 .pager button {
+  position: relative;
   width: 38px;
   height: 38px;
   border: 1px solid var(--border-strong);
   border-radius: 999px;
   background: transparent;
-  color: var(--text-muted);
-  font: 600 .9rem/1 var(--font-sans);
+  color: var(--text-soft);
+  /* Buttons don't inherit the page font, so it is named again here. */
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: .9rem;
+  font-weight: 600;
+  line-height: 1;
   cursor: pointer;
   transition: background .15s ease, color .15s ease, border-color .15s ease;
 }
-.pager button:hover { background: var(--surface-sunken); color: var(--ink); border-color: var(--text-faint); }
+/* Same 44px tap area as the navbar buttons. These are 38px with a 1px
+   border, so the pad stretches out from 36px: 36 + 4 + 4 = 44. */
+.pager button::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+}
+.pager button:hover { background: var(--soft-bg); color: var(--text-strong); border-color: var(--text-fade); }
 .pager button[aria-current="page"] {
-  background: var(--accent-soft);
-  border-color: var(--accent-border);
-  color: var(--accent);
+  background: var(--pink-bg);
+  border-color: var(--pink-border);
+  color: var(--pink);
 }
 
 /* ============ Footer ============ */
 .footer {
-  background: var(--ink-surface);
+  background: var(--dark-panel);
   color: rgba(255, 255, 255, .72);
-  padding: clamp(3rem, 6vw, 4.5rem) var(--gutter) 1.75rem;
+  padding: clamp(3rem, 6vw, 4.5rem) clamp(1rem, 4vw, 2rem) 1.75rem;
 }
 
 .footer-grid { max-width: 1180px; margin-inline: auto; display: grid; gap: 2.5rem; }
@@ -958,13 +1214,19 @@ a.card-media:hover { background: var(--accent-soft); }
 .footer a:focus-visible { outline-color: #fff; }
 
 /* ============ Motion ============ */
+
+/* Crossfades between pages when you click a link (Chrome and Edge only;
+   other browsers just navigate normally). */
 @view-transition { navigation: auto; }
 
+/* Every page fades up slightly as it arrives. */
 main { animation: page-in .45s ease both; }
 @keyframes page-in {
   from { opacity: 0; transform: translateY(14px); }
 }
 
+/* If someone has asked their device to reduce motion, switch the animations
+   off site-wide. The snake is handled separately, up in the hero section. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {

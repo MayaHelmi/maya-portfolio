@@ -1,0 +1,22 @@
+{
+  "name": "maya-portfolio",
+  "version": "1.0.0",
+  "description": "Maya Helmi - portfolio site. Static HTML/CSS/JS; Tailwind is compiled to tailwind.css.",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/tailwind.css -o ./tailwind.css",
+    "watch:css": "tailwindcss -i ./src/tailwind.css -o ./tailwind.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MayaHelmi/maya-portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MayaHelmi/maya-portfolio/issues"
+  },
+  "homepage": "https://github.com/MayaHelmi/maya-portfolio#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  },
+  "private": true
+}

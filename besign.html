@@ -8,42 +8,21 @@
     content="Besign — an AI-powered custom tailoring platform by Maya Helmi. 2nd place at NTP13 2026 and Best Entrepreneurial Project.">
   <title>Maya Helmi | Besign</title>
 
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
 
-  <link rel="stylesheet" href="style.css">
+  <!-- Tailwind first, so the hand-written rules in style.css stay in charge. -->
+  <link rel="stylesheet" href="tailwind.css?v=20260906e">
+  <link rel="stylesheet" href="style.css?v=20260906e">
   
-  <script>
-    // Runs before first paint so the saved theme doesn't flash.
-    const root = document.documentElement;
-    let saved; try { saved = localStorage.getItem("theme"); } catch (e) { }
-    root.dataset.theme = saved || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-
-    function closeMenu() {
-      if (!root.classList.contains("nav-open")) return;
-      // Blur a focused menu link BEFORE hiding the panel, or the browser's
-      // focus fixup cancels the smooth scroll to the link's anchor.
-      if (document.activeElement?.closest(".nav-links")) document.activeElement.blur();
-      root.classList.remove("nav-open");
-      document.querySelector(".nav-toggle")?.setAttribute("aria-expanded", "false");
-    }
-
-    document.addEventListener("click", (e) => {
-      if (e.target.closest(".theme-toggle")) {
-        const next = root.dataset.theme === "dark" ? "light" : "dark";
-        root.dataset.theme = next;
-        try { localStorage.setItem("theme", next); } catch (err) { }
-      } else if (e.target.closest(".nav-toggle")) {
-        const open = root.classList.toggle("nav-open");
-        e.target.closest(".nav-toggle").setAttribute("aria-expanded", String(open));
-      } else if (e.target.closest(".nav-links a, .logo a") || !e.target.closest(".navbar")) {
-        closeMenu();
-      }
-    });
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
-  </script>
+  <!-- Theme switch + phone menu. Deliberately has no "defer": it needs to run
+       before the page is painted, so dark mode never flashes white first. -->
+  <script src="script.js"></script>
 </head>
 
 <body>
@@ -57,7 +36,7 @@
       <ul class="nav-links" id="site-menu">
         <li><a href="index.html">Home</a></li>
         <li><a href="projects.html">Projects</a></li>
-        <li><a href="recognition.html">Recognition</a></li>
+        <li><a href="certificates.html">Certificates</a></li>
         <li><a href="#contact">Contact</a></li>
         <li class="nav-cv"><a href="Maya-Helmi-CV.pdf" download>Download My CV</a></li>
       </ul>
@@ -164,10 +143,6 @@
 
       <div>
         <h2 class="footer-title">Let's talk.</h2>
-        <p class="footer-note">
-          Open to junior frontend and mobile roles, and always happy to talk about
-          a project worth building.
-        </p>
       </div>
 
       <ul class="contact-list">

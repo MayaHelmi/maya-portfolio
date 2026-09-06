@@ -5,45 +5,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="All projects by Maya Helmi — Besign, VocalEyes, Glamé AI, and hand-coded training work from Orange Digital Center.">
+    content="Every project by Maya Helmi with screenshots — Besign, Glamé AI, Invite Sites, HopeBridge, Feelings Weddings and more.">
   <title>Maya Helmi | Projects</title>
 
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
 
-  <link rel="stylesheet" href="style.css">
+  <!-- Tailwind first, so the hand-written rules in style.css stay in charge. -->
+  <link rel="stylesheet" href="tailwind.css?v=20260906e">
+  <link rel="stylesheet" href="style.css?v=20260906e">
   
-  <script>
-    // Runs before first paint so the saved theme doesn't flash.
-    const root = document.documentElement;
-    let saved; try { saved = localStorage.getItem("theme"); } catch (e) { }
-    root.dataset.theme = saved || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-
-    function closeMenu() {
-      if (!root.classList.contains("nav-open")) return;
-      // Blur a focused menu link BEFORE hiding the panel, or the browser's
-      // focus fixup cancels the smooth scroll to the link's anchor.
-      if (document.activeElement?.closest(".nav-links")) document.activeElement.blur();
-      root.classList.remove("nav-open");
-      document.querySelector(".nav-toggle")?.setAttribute("aria-expanded", "false");
-    }
-
-    document.addEventListener("click", (e) => {
-      if (e.target.closest(".theme-toggle")) {
-        const next = root.dataset.theme === "dark" ? "light" : "dark";
-        root.dataset.theme = next;
-        try { localStorage.setItem("theme", next); } catch (err) { }
-      } else if (e.target.closest(".nav-toggle")) {
-        const open = root.classList.toggle("nav-open");
-        e.target.closest(".nav-toggle").setAttribute("aria-expanded", String(open));
-      } else if (e.target.closest(".nav-links a, .logo a") || !e.target.closest(".navbar")) {
-        closeMenu();
-      }
-    });
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
-  </script>
+  <!-- Theme switch + phone menu. Deliberately has no "defer": it needs to run
+       before the page is painted, so dark mode never flashes white first. -->
+  <script src="script.js"></script>
 </head>
 
 <body>
@@ -57,7 +36,7 @@
       <ul class="nav-links" id="site-menu">
         <li><a href="index.html">Home</a></li>
         <li><a href="projects.html" class="is-current" aria-current="page">Projects</a></li>
-        <li><a href="recognition.html">Recognition</a></li>
+        <li><a href="certificates.html">Certificates</a></li>
         <li><a href="#contact">Contact</a></li>
         <li class="nav-cv"><a href="Maya-Helmi-CV.pdf" download>Download My CV</a></li>
       </ul>
@@ -105,231 +84,222 @@
     <!-- ================= PROJECTS ================= -->
     <section id="projects" class="section">
       <h2 class="section-title">Projects</h2>
-      <p class="section-intro">
-        Everything in one place: the products I have designed and built, the
-        specification work behind them, and the hand-coded exercises from my
-        Orange Digital Center training.
-      </p>
 
-      <div class="grid grid--half">
+      <h3 class="subsection-title" id="apps">Mobile App Projects</h3>
 
-        <!-- ---------- Besign ---------- -->
-          <article class="project-card card-shell">
-            <div class="project-head">
-              <h3 class="project-title">Besign</h3>
-              <div class="project-badges">
-                <span class="project-badge">2nd Place &middot; NTP13 2026</span>
-                <span class="project-badge">Best Entrepreneurial Project</span>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+          <article class="project-card flip-card" tabindex="0">
+            <div class="flip-inner">
+            <div class="flip-face flip-front card-shell">
+              <div class="project-shot"><img src="images/projects/besign-front.jpg?v=20260906e" width="960" height="1067" alt="Besign app screens" loading="lazy"></div>
+              <div class="project-head">
+                <h3 class="project-title">Besign</h3>
+                <div class="project-badges">
+                  <span class="project-badge">2nd Place · NTP13 2026</span>
+                  <span class="project-badge">Best Entrepreneurial Project</span>
+                </div>
+              </div>
+            <p class="flip-hint">Hover or tap for details</p>
+            </div>
+            <div class="flip-face flip-back card-shell">
+              <p class="kicker">About Besign</p>
+              <p class="project-description">AI-powered custom tailoring platform, my graduation project: a Flutter marketplace with on-device body measurement and AI garment design.</p>
+              <p class="project-tech">
+                <span class="tech-tag">Flutter</span>
+                <span class="tech-tag">Dart</span>
+                <span class="tech-tag">Riverpod</span>
+                <span class="tech-tag">Supabase</span>
+                <span class="tech-tag">TensorFlow Lite</span>
+              </p>
+              <div class="project-links">
+                <a href="besign.html">Read the story</a>
+                <span class="project-private">Private project — source available on request</span>
               </div>
             </div>
-
-            <p class="project-description">
-              An AI-powered custom tailoring platform connecting customers with tailors
-              and fabric stores in Amman. My graduation project &mdash; awarded Best
-              Entrepreneurial Project against a field of more than 100, and second place
-              at NTP13 2026.
-            </p>
-
-            <p>
-              <strong>Problem:</strong>
-              Getting clothes made runs on guesswork. Customers cannot picture the result before
-              committing, measurements are taken by hand and vary from tailor to tailor, and there
-              is no way to check what arrived against what was promised.
-            </p>
-
-            <p>
-              <strong>Solution:</strong>
-              A Flutter marketplace covering the whole loop: a customer app, a tailor studio, and a
-              shared design system. Its body-measurement feature runs a YOLOv8-pose model
-              <em>on the phone</em>, turning a single photo into 12 measurements with no server
-              round-trip. AI features sit behind a provider-neutral gateway, so the model can be
-              swapped without touching app code.
-            </p>
-
-            <p class="project-tech">
-              <span class="tech-tag">Flutter</span>
-              <span class="tech-tag">Dart</span>
-              <span class="tech-tag">Riverpod</span>
-              <span class="tech-tag">Supabase</span>
-              <span class="tech-tag">TensorFlow Lite</span>
-              <span class="tech-tag">Arabic / English RTL</span>
-            </p>
-
-            <div class="project-links">
-              <!-- TODO: replace with the repo URL once Besign is pushed to GitHub -->
-              <a href="besign.html">Read the story</a>
-              <span class="project-private">Private project &mdash; source available on request</span>
             </div>
           </article>
-
-        <!-- ---------- VocalEyes ---------- -->
-          <article class="project-card card-shell">
-            <div class="project-head">
-              <h3 class="project-title">VocalEyes</h3>
-              <div class="project-badges">
-                <span class="project-badge badge-muted">Prototype</span>
+          <article class="project-card flip-card" tabindex="0">
+            <div class="flip-inner">
+            <div class="flip-face flip-front card-shell">
+              <div class="project-shot"><img src="images/projects/glame-ai-front.jpg?v=20260906e" width="960" height="1067" alt="Glamé AI screen designs" loading="lazy"></div>
+              <div class="project-head">
+                <h3 class="project-title">Glamé AI</h3>
+                <div class="project-badges">
+                  <span class="project-badge badge-muted">Design &amp; Specification</span>
+                </div>
+              </div>
+            <p class="flip-hint">Hover or tap for details</p>
+            </div>
+            <div class="flip-face flip-back card-shell">
+              <p class="kicker">About Glamé AI</p>
+              <p class="project-description">AI makeup companion: the full product specification, system architecture and screen designs. The app itself is not built.</p>
+              <p class="project-tech">
+                <span class="tech-tag">Software Specification</span>
+                <span class="tech-tag">UML</span>
+                <span class="tech-tag">System Architecture</span>
+                <span class="tech-tag">UI Design</span>
+              </p>
+              <div class="project-links">
+                <a href="glame-ai.html">Read the story</a>
+                <span class="project-private">Private project — specification available on request</span>
               </div>
             </div>
-
-            <p class="project-description">
-              An assistive companion app for smart glasses, built for people with visual
-              impairments and the caregivers who support them.
-            </p>
-
-            <p>
-              <strong>Problem:</strong>
-              People with visual impairments depend on someone else for everyday visual decisions,
-              such as what they are wearing or what is in front of them. Their caregivers, meanwhile,
-              have no straightforward way to stay in the loop.
-            </p>
-
-            <p>
-              <strong>Solution:</strong>
-              A Flutter app built around two distinct roles. The user side handles pairing with the
-              glasses, outfit assistance, and scan history; the caregiver side connects to a user and
-              reviews their scans and location. I designed the role-based navigation and an
-              accessibility-first interface.
-            </p>
-
-            <p class="project-tech">
-              <span class="tech-tag">Flutter</span>
-              <span class="tech-tag">Dart</span>
-              <span class="tech-tag">Supabase</span>
-              <span class="tech-tag">Accessibility</span>
-            </p>
-
-            <p class="project-note">
-              Honest status: a working prototype. The device and caregiver services run on mocked
-              data while the glasses hardware integration is still pending.
-            </p>
-
-            <div class="project-links">
-              <!-- TODO: replace with the repo URL once VocalEyes is pushed to GitHub -->
-              <a href="vocaleyes.html">Read the story</a>
-              <span class="project-private">Private project &mdash; source available on request</span>
             </div>
           </article>
-
-        <!-- ---------- Glamé AI ---------- -->
-          <article class="project-card card-shell">
-            <div class="project-head">
-              <h3 class="project-title">Glam&eacute; AI</h3>
-              <div class="project-badges">
-                <span class="project-badge badge-muted">Design &amp; Specification</span>
-              </div>
-            </div>
-
-            <p class="project-description">
-              An AI makeup companion app. This one is not code &mdash; it is the full product
-              specification and system design behind it.
-            </p>
-
-            <p>
-              <strong>Problem:</strong>
-              Beauty apps recommend what they want to sell you. They ignore the products already
-              sitting in your makeup bag, and they ignore what your face actually needs.
-            </p>
-
-            <p>
-              <strong>Solution:</strong>
-              As the software engineer on a two-person team, I authored the complete specification
-              for an owned-first product: an AI architecture where facial-feature analysis,
-              adaptation, and recommendation engines sit behind a provider-neutral inference
-              gateway; a phased roadmap from MVP to Pro; a requirements traceability matrix; and the
-              full UML set &mdash; class, architecture, ER, sequence, use case, activity, and
-              deployment diagrams.
-            </p>
-
-            <p class="project-tech">
-              <span class="tech-tag">Software Specification</span>
-              <span class="tech-tag">UML / PlantUML</span>
-              <span class="tech-tag">System Architecture</span>
-              <span class="tech-tag">Flutter</span>
-              <span class="tech-tag">Supabase</span>
-            </p>
-
-            <p class="project-note">
-              Honest status: design and specification work. The app itself is not built; an early
-              Flutter prototype is archived.
-            </p>
-
-            <div class="project-links">
-              <a href="glame-ai.html">Read the story</a>
-              <span class="project-private">Private project &mdash; specification available on request</span>
-            </div>
-          </article>
-
       </div>
 
-      <!-- ---------- Training projects (Orange Digital Center) ---------- -->
-      <h3 class="subsection-title" id="training">Training Projects</h3>
-      <p class="subsection-note">
-        Hand-coded exercises from my Orange Digital Center track. Small on purpose &mdash;
-        but every one is live and open source.
-      </p>
+      <!-- ---------- Web projects ---------- -->
+      <h3 class="subsection-title" id="web">Web Projects</h3>
 
-      <div class="grid grid--4">
-          <article class="training-card card-shell">
-            <h4>HTML Foundations</h4>
-            <p>
-              Forms, lists, and tables written from scratch. Each page stands on its own and ships
-              with a screenshot of the output it was built to match.
-            </p>
-            <p class="project-tech">
-              <span class="tech-tag">HTML5</span>
-            </p>
-            <div class="project-links">
-              <a href="https://github.com/MayaHelmi/HTML-Task" target="_blank" rel="noopener">GitHub</a>
-              <a href="https://mayahelmi.github.io/HTML-Task/" target="_blank" rel="noopener">Live Demo</a>
-            </div>
-          </article>
-          <article class="training-card card-shell">
-            <h4>CSS Image Recreation</h4>
-            <p>
-              Four target images rebuilt in HTML and CSS to land as close to the original as I could
-              get &mdash; table styling, floating layouts, text styling, and flexbox.
-            </p>
-            <p class="project-tech">
-              <span class="tech-tag">CSS3</span>
-              <span class="tech-tag">Flexbox</span>
-            </p>
-            <div class="project-links">
-              <a href="https://github.com/MayaHelmi/CSS-Task" target="_blank" rel="noopener">GitHub</a>
-              <a href="https://mayahelmi.github.io/CSS-Task/" target="_blank" rel="noopener">Live Demo</a>
-            </div>
-          </article>
-          <article class="training-card card-shell">
-            <h4>Flexbox &amp; Grid</h4>
-            <p>
-              Three standalone pages that rebuild layout mockups using Flexbox and CSS Grid, one
-              layout problem at a time.
-            </p>
-            <p class="project-tech">
-              <span class="tech-tag">Flexbox</span>
-              <span class="tech-tag">CSS Grid</span>
-            </p>
-            <div class="project-links">
-              <a href="https://github.com/MayaHelmi/Flex-and-Grid" target="_blank" rel="noopener">GitHub</a>
-              <a href="https://mayahelmi.github.io/Flex-and-Grid/" target="_blank" rel="noopener">Live Demo</a>
-            </div>
-          </article>
-          <article class="training-card card-shell">
-            <h4>nth-child Selectors</h4>
-            <p>
-              Zig-zag boxes, hidden even items, and repeating groups of three &mdash; built with
-              <code>:nth-child()</code> formulas and no JavaScript at all.
-            </p>
-            <p class="project-tech">
-              <span class="tech-tag">CSS3</span>
-              <span class="tech-tag">Selectors</span>
-            </p>
-            <div class="project-links">
-              <a href="https://github.com/MayaHelmi/nth-child" target="_blank" rel="noopener">GitHub</a>
-              <a href="https://mayahelmi.github.io/nth-child/" target="_blank" rel="noopener">Live Demo</a>
-            </div>
-          </article>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 
+          <article class="project-card flip-card" tabindex="0">
+            <div class="flip-inner">
+            <div class="flip-face flip-front card-shell">
+              <div class="project-shot"><img src="images/projects/invite-sites-front.jpg?v=20260906e" width="960" height="1067" alt="Invite Sites landing page" loading="lazy"></div>
+              <div class="project-head">
+                <h3 class="project-title">Invite Sites</h3>
+                <div class="project-badges">
+                  <span class="project-badge">Live</span>
+                  <span class="project-badge badge-muted">Own product</span>
+                </div>
+              </div>
+            <p class="flip-hint">Hover or tap for details</p>
+            </div>
+            <div class="flip-face flip-back card-shell">
+              <p class="kicker">About Invite Sites</p>
+              <p class="project-description">My invitation-website service: personalised sites with RSVP, maps and photos, in Arabic, English or both, on one shareable link.</p>
+              <p class="project-tech">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">SVG Animation</span>
+                <span class="tech-tag">Arabic / English RTL</span>
+              </p>
+              <div class="project-links">
+                <a href="https://mayahelmi.github.io/invite-sites/" target="_blank" rel="noopener">Live Site</a>
+                <a href="https://github.com/MayaHelmi/invite-sites" target="_blank" rel="noopener">GitHub</a>
+              </div>
+            </div>
+            </div>
+          </article>
+          <article class="project-card flip-card" tabindex="0">
+            <div class="flip-inner">
+            <div class="flip-face flip-front card-shell">
+              <div class="project-shot"><img src="images/projects/hopebridge-front.jpg?v=20260906e" width="960" height="1067" alt="HopeBridge charity platform home page" loading="lazy"></div>
+              <div class="project-head">
+                <h3 class="project-title">HopeBridge</h3>
+                <div class="project-badges">
+                  <span class="project-badge badge-muted">Orange Digital Center project</span>
+                  <span class="project-badge badge-muted">Static version</span>
+                </div>
+              </div>
+            <p class="flip-hint">Hover or tap for details</p>
+            </div>
+            <div class="flip-face flip-back card-shell">
+              <p class="kicker">About HopeBridge</p>
+              <p class="project-description">Charity platform for donors, families and administrators: 28 pages in plain HTML and CSS. The earlier PHP and MySQL build is kept in the repository history.</p>
+              <p class="project-tech">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">PHP &amp; MySQL (earlier version)</span>
+              </p>
+              <div class="project-links">
+                <a href="https://mayahelmi.github.io/hopebridge-charity-platform/" target="_blank" rel="noopener">Live Demo</a>
+                <a href="https://github.com/MayaHelmi/hopebridge-charity-platform" target="_blank" rel="noopener">GitHub</a>
+              </div>
+            </div>
+            </div>
+          </article>
+          <article class="project-card flip-card" tabindex="0">
+            <div class="flip-inner">
+            <div class="flip-face flip-front card-shell">
+              <div class="project-shot"><img src="images/projects/feelings-weddings-front.jpg?v=20260906e" width="960" height="1067" alt="Feelings Weddings redesign home page" loading="lazy"></div>
+              <div class="project-head">
+                <h3 class="project-title">Feelings Weddings</h3>
+                <div class="project-badges">
+                  <span class="project-badge badge-muted">Client redesign</span>
+                  <span class="project-badge badge-muted">Proposal</span>
+                </div>
+              </div>
+            <p class="flip-hint">Hover or tap for details</p>
+            </div>
+            <div class="flip-face flip-back card-shell">
+              <p class="kicker">About Feelings Weddings</p>
+              <p class="project-description">Redesign build for an Amman wedding atelier: 38 pages generated from one content source, checked by a dead-link and SEO crawler.</p>
+              <p class="project-note">A redesign proposal on my GitHub Pages, not the client’s live website.</p>
+              <p class="project-tech">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Python build pipeline</span>
+                <span class="tech-tag">SEO</span>
+              </p>
+              <div class="project-links">
+                <a href="https://mayahelmi.github.io/feelings-weddings/" target="_blank" rel="noopener">Live Preview</a>
+                <a href="https://github.com/MayaHelmi/feelings-weddings" target="_blank" rel="noopener">GitHub</a>
+              </div>
+            </div>
+            </div>
+          </article>
+          <article class="project-card flip-card" tabindex="0">
+            <div class="flip-inner">
+            <div class="flip-face flip-front card-shell">
+              <div class="project-shot"><img src="images/projects/eight-weeks-at-orange-front.jpg?v=20260906e" width="960" height="1067" alt="Eight Weeks at Orange presentation site" loading="lazy"></div>
+              <div class="project-head">
+                <h3 class="project-title">Eight Weeks at Orange</h3>
+                <div class="project-badges">
+                  <span class="project-badge badge-muted">With NourEddin Abu Salhieh</span>
+                </div>
+              </div>
+            <p class="flip-hint">Hover or tap for details</p>
+            </div>
+            <div class="flip-face flip-back card-shell">
+              <p class="kicker">About Eight Weeks at Orange</p>
+              <p class="project-description">Our field-training presentation as a single-file website: week-by-week results and a link to every repository.</p>
+              <p class="project-tech">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+              </p>
+              <div class="project-links">
+                <a href="https://mayahelmi.github.io/field-training-presentation/" target="_blank" rel="noopener">Live Site</a>
+                <a href="https://github.com/MayaHelmi/field-training-presentation" target="_blank" rel="noopener">GitHub</a>
+              </div>
+            </div>
+            </div>
+          </article>
+          <article class="project-card flip-card" tabindex="0">
+            <div class="flip-inner">
+            <div class="flip-face flip-front card-shell">
+              <div class="project-shot"><img src="images/projects/creative-inkers-front.jpg?v=20260906e" width="960" height="1067" alt="Creative Inkers redesign prototype" loading="lazy"></div>
+              <div class="project-head">
+                <h3 class="project-title">Creative Inkers</h3>
+                <div class="project-badges">
+                  <span class="project-badge badge-muted">Client redesign</span>
+                  <span class="project-badge badge-muted">Prototype</span>
+                </div>
+              </div>
+            <p class="flip-hint">Hover or tap for details</p>
+            </div>
+            <div class="flip-face flip-back card-shell">
+              <p class="kicker">About Creative Inkers</p>
+              <p class="project-description">Static prototype for a print-artwork marketplace redesign: catalogue, bundles, licensing and membership pages.</p>
+              <p class="project-tech">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+              </p>
+              <div class="project-links">
+                <span class="project-private">Client project — not public</span>
+              </div>
+            </div>
+            </div>
+          </article>
       </div>
+
     </section>
 
   </main>
@@ -341,10 +311,6 @@
 
       <div>
         <h2 class="footer-title">Let's talk.</h2>
-        <p class="footer-note">
-          Open to junior frontend and mobile roles, and always happy to talk about
-          a project worth building.
-        </p>
       </div>
 
       <ul class="contact-list">
@@ -386,6 +352,24 @@
     <p class="footer-base">Maya Helmi &middot; Software Engineer</p>
   </footer>
 
+
+  <script>
+    // Flip a project card on tap, but only on screens without a real hover
+    // (phones and tablets). With a mouse, hovering does the flipping, and a
+    // click toggle would leave cards stuck. Taps on links are left alone.
+    var touchOnly = window.matchMedia('(hover: none)').matches;
+    document.querySelectorAll('.flip-card').forEach(function (card) {
+      if (touchOnly) {
+        card.addEventListener('click', function (e) {
+          if (e.target.closest('a')) return;
+          card.classList.toggle('is-flipped');
+        });
+      }
+      card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.classList.toggle('is-flipped'); }
+      });
+    });
+  </script>
 </body>
 
 </html>

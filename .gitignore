@@ -1,0 +1,6 @@
+# Tailwind's tooling. The BUILT tailwind.css is committed on purpose - the
+# live site loads it - but the packages used to build it are not.
+node_modules/
+
+# macOS folder metadata
+.DS_Store
