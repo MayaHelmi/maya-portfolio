@@ -16,8 +16,8 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
   <!-- Tailwind first, so the hand-written rules in style.css stay in charge. -->
-  <link rel="stylesheet" href="tailwind.css?v=20260906e">
-  <link rel="stylesheet" href="style.css?v=20260906e">
+  <link rel="stylesheet" href="tailwind.css?v=20260907e">
+  <link rel="stylesheet" href="style.css?v=20260907e">
 
   <!-- Theme switch + phone menu. Deliberately has no "defer": it needs to run
        before the page is painted, so dark mode never flashes white first. -->
@@ -225,16 +225,21 @@
             <h2 class="section-title">The Mind Behind the Work</h2>
 
             <div class="about-content">
+              <p class="about-lead">I design it, then I build it.</p>
               <p>
-                I design it, then I build it — a Software Engineering graduate and UX designer who ships her own
-                ideas. That mix produced Besign, an AI tailoring platform that won Best Entrepreneurial Project
-                and took 2nd at NTP13 2026. These days I'm a full-stack development intern at Orange Digital Center, and my inbox is always
-                open — right at the bottom of the page.
+                That means one person for both halves of your project: the interface your customers see, and the
+                code underneath it. Mobile apps in Flutter, websites in HTML, CSS, JavaScript and PHP, in Arabic,
+                English, or both.
+              </p>
+              <p>
+                You get something finished and running, not a mockup — every project on this page is live — and a
+                straight answer about what is built and what is not. My graduation project won Best Entrepreneurial
+                Project and placed second nationally at NTP13 2026.
               </p>
             </div>
 
             <div class="about-actions">
-              <a class="btn primary-btn" href="#contact">Hire me</a>
+              <a class="btn primary-btn btn--hop" href="#contact">Hire me</a>
               <a class="btn secondary-btn" href="Maya-Helmi-CV.pdf" download>
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -274,42 +279,96 @@
         <a class="btn secondary-btn" href="projects.html">All my projects →</a>
       </div>
 
-      <div class="showcase-strip" role="region" aria-label="Some of my work, scrolls sideways" tabindex="0">
+      <div class="showcase-grid grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 
-        <a class="showcase-card showcase-card--shot showcase-card--ink" href="besign.html" target="_blank" rel="noopener"
-          style="--tilt: -1.2deg">
-          <img class="showcase-shot" src="images/projects/besign.jpg" width="960" height="600" alt="Besign app screens" loading="lazy">
-          <p class="kicker">Flutter · AI · Graduation Project</p>
-          <h3>Besign</h3>
-          <p class="showcase-line">AI custom tailoring platform — 2nd place at NTP13 2026.</p>
-          <span class="showcase-cta">Read the story</span>
-        </a>
-
-        <a class="showcase-card showcase-card--shot showcase-card--warm" href="https://mayahelmi.github.io/invite-sites/" target="_blank" rel="noopener"
-          style="--tilt: 0.8deg">
-          <img class="showcase-shot" src="images/projects/invite-sites.jpg?v=20260906e" width="960" height="600" alt="Invite Sites landing page" loading="lazy">
-          <p class="kicker kicker--accent">Own product · Live</p>
-          <h3>Invite Sites</h3>
-          <p class="showcase-line">Personalised invitation websites with RSVP, maps and photos — Arabic, English or both.</p>
-          <span class="showcase-cta">Visit the site</span>
-        </a>
-
-        <a class="showcase-card showcase-card--shot showcase-card--warm" href="glame-ai.html" target="_blank" rel="noopener"
-          style="--tilt: -0.8deg">
-          <img class="showcase-shot" src="images/projects/glame-ai.jpg" width="960" height="600" alt="Glamé AI screen designs" loading="lazy">
-          <p class="kicker kicker--accent">Product Spec · System Design</p>
-          <h3>Glamé AI</h3>
-          <p class="showcase-line">The full specification behind an AI makeup companion.</p>
-          <span class="showcase-cta">Read the story</span>
-        </a>
-
-        <a class="showcase-card showcase-card--shot showcase-card--ink" href="projects.html#web" style="--tilt: 0.9deg">
-          <img class="showcase-shot" src="images/projects/hopebridge.jpg" width="960" height="600" alt="HopeBridge charity platform" loading="lazy">
-          <p class="kicker">Live on GitHub Pages</p>
-          <h3>Web Projects</h3>
-          <p class="showcase-line">Invite Sites, HopeBridge and more — full sites built during my training.</p>
-          <span class="showcase-cta">Browse the sites</span>
-        </a>
+          <article class="project-card flip-card" tabindex="0">
+            <div class="flip-inner">
+            <div class="flip-face flip-front card-shell">
+              <div class="project-shot"><img src="images/projects/besign-front.jpg?v=20260907e" width="960" height="1067" alt="Besign app screens" loading="lazy"></div>
+              <div class="project-head">
+                <h3 class="project-title">Besign</h3>
+                <div class="project-badges">
+                  <span class="project-badge">2nd Place · NTP13 2026</span>
+                  <span class="project-badge">Best Entrepreneurial Project</span>
+                </div>
+              </div>
+            <p class="flip-hint">Hover or tap for details</p>
+            </div>
+            <div class="flip-face flip-back card-shell">
+              <p class="kicker">About Besign</p>
+              <p class="project-description">AI-powered custom tailoring platform, my graduation project: a Flutter marketplace with on-device body measurement and AI garment design.</p>
+              <p class="project-tech">
+                <span class="tech-tag">Flutter</span>
+                <span class="tech-tag">Dart</span>
+                <span class="tech-tag">Riverpod</span>
+                <span class="tech-tag">Supabase</span>
+                <span class="tech-tag">TensorFlow Lite</span>
+              </p>
+              <div class="project-links">
+                <a href="besign.html">Read the story</a>
+                <span class="project-private">Private project — source available on request</span>
+              </div>
+            </div>
+            </div>
+          </article>
+          <article class="project-card flip-card" tabindex="0">
+            <div class="flip-inner">
+            <div class="flip-face flip-front card-shell">
+              <div class="project-shot"><img src="images/projects/invite-sites-front.jpg?v=20260907e" width="960" height="1067" alt="Invite Sites landing page" loading="lazy"></div>
+              <div class="project-head">
+                <h3 class="project-title">Invite Sites</h3>
+                <div class="project-badges">
+                  <span class="project-badge">Live</span>
+                  <span class="project-badge badge-muted">Own product</span>
+                </div>
+              </div>
+            <p class="flip-hint">Hover or tap for details</p>
+            </div>
+            <div class="flip-face flip-back card-shell">
+              <p class="kicker">About Invite Sites</p>
+              <p class="project-description">My invitation-website service: personalised sites with RSVP, maps and photos, in Arabic, English or both, on one shareable link.</p>
+              <p class="project-tech">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">SVG Animation</span>
+                <span class="tech-tag">Arabic / English RTL</span>
+              </p>
+              <div class="project-links">
+                <a href="https://mayahelmi.github.io/invite-sites/" target="_blank" rel="noopener">Live Site</a>
+                <a href="https://github.com/MayaHelmi/invite-sites" target="_blank" rel="noopener">GitHub</a>
+              </div>
+            </div>
+            </div>
+          </article>
+          <article class="project-card flip-card" tabindex="0">
+            <div class="flip-inner">
+            <div class="flip-face flip-front card-shell">
+              <div class="project-shot"><img src="images/projects/glame-ai-front.jpg?v=20260907e" width="960" height="1067" alt="Glamé AI screen designs" loading="lazy"></div>
+              <div class="project-head">
+                <h3 class="project-title">Glamé AI</h3>
+                <div class="project-badges">
+                  <span class="project-badge badge-muted">Design &amp; Specification</span>
+                </div>
+              </div>
+            <p class="flip-hint">Hover or tap for details</p>
+            </div>
+            <div class="flip-face flip-back card-shell">
+              <p class="kicker">About Glamé AI</p>
+              <p class="project-description">AI makeup companion: the full product specification, system architecture and screen designs. The app itself is not built.</p>
+              <p class="project-tech">
+                <span class="tech-tag">Software Specification</span>
+                <span class="tech-tag">UML</span>
+                <span class="tech-tag">System Architecture</span>
+                <span class="tech-tag">UI Design</span>
+              </p>
+              <div class="project-links">
+                <a href="glame-ai.html">Read the story</a>
+                <span class="project-private">Private project — specification available on request</span>
+              </div>
+            </div>
+            </div>
+          </article>
 
       </div>
     </section>
@@ -366,24 +425,56 @@
         </div>
 
         <p class="kicker skill-also">Also</p>
-        <ul class="skill-list">
-          <li>Responsive Web Design</li>
-          <li>UI/UX Design</li>
-          <li>Cross-Platform Development</li>
-          <li>Mobile UI Development</li>
-          <li>Artificial Intelligence (AI)</li>
-          <li>Generative AI</li>
-          <li>AI Fundamentals</li>
-          <li>REST APIs</li>
-          <li>Database Design (ERD)</li>
-          <li>Accessibility</li>
-          <li>Problem Solving</li>
-          <li>Teamwork</li>
-          <li>Communication</li>
-          <li>Public Speaking</li>
-          <li>Entrepreneurship</li>
-          <li>Business Innovation</li>
-        </ul>
+        <div class="belt">
+          <div class="belt-row">
+            <div class="belt-track">
+              <ul class="skill-list">
+                <li>Responsive Web Design</li>
+                <li>UI/UX Design</li>
+                <li>Cross-Platform Development</li>
+                <li>Mobile UI Development</li>
+                <li>Artificial Intelligence (AI)</li>
+                <li>Generative AI</li>
+                <li>AI Fundamentals</li>
+                <li>REST APIs</li>
+              </ul>
+              <ul class="skill-list" aria-hidden="true">
+                <li>Responsive Web Design</li>
+                <li>UI/UX Design</li>
+                <li>Cross-Platform Development</li>
+                <li>Mobile UI Development</li>
+                <li>Artificial Intelligence (AI)</li>
+                <li>Generative AI</li>
+                <li>AI Fundamentals</li>
+                <li>REST APIs</li>
+              </ul>
+            </div>
+          </div>
+          <div class="belt-row belt-row--reverse">
+            <div class="belt-track">
+              <ul class="skill-list">
+                <li>Database Design (ERD)</li>
+                <li>Accessibility</li>
+                <li>Problem Solving</li>
+                <li>Teamwork</li>
+                <li>Communication</li>
+                <li>Public Speaking</li>
+                <li>Entrepreneurship</li>
+                <li>Business Innovation</li>
+              </ul>
+              <ul class="skill-list" aria-hidden="true">
+                <li>Database Design (ERD)</li>
+                <li>Accessibility</li>
+                <li>Problem Solving</li>
+                <li>Teamwork</li>
+                <li>Communication</li>
+                <li>Public Speaking</li>
+                <li>Entrepreneurship</li>
+                <li>Business Innovation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -418,37 +509,80 @@
         </div>
 
 
-        <div class="grid gap-6 md:grid-cols-2">
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 
-          <article class="award-feature card-shell">
-            <p class="kicker kicker--accent">Award · Graduation Projects Competition</p>
-            <h3>Best Entrepreneurial Project</h3>
-            <p class="award-feature-line">
-              Besign — chosen from a field of more than 100 graduation
-              projects at Applied Science Private University.
-            </p>
-            <p class="award-feature-year" aria-hidden="true">2026</p>
+          <article class="achievement-card flip-card flip-card--cert" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-face flip-front card-shell">
+                <div class="project-shot shot-type" aria-hidden="true">
+                  <p class="shot-type-kicker">Award</p>
+                  <p class="shot-type-year">2026</p>
+                </div>
+                <div class="project-head">
+                  <h3 class="project-title">Best Entrepreneurial Project</h3>
+                  <div class="project-badges"><span class="project-badge badge-muted">Issued May 2026</span></div>
+                </div>
+                <p class="flip-hint">Hover or tap for details</p>
+              </div>
+              <div class="flip-face flip-back card-shell">
+                <p class="kicker">Award</p>
+                <p class="project-description">Besign, chosen from a field of more than 100 graduation projects at Applied Science Private University.</p>
+                <p class="cert-meta"><strong>Event:</strong> Graduation Projects Competition</p>
+                <p class="cert-meta"><strong>Issuer:</strong> Applied Science Private University</p>
+                <p class="cert-meta"><strong>Issued:</strong> May 2026</p>
+                <div class="project-links">
+                  <a href="certificates.html">All my certificates &amp; awards</a>
+                </div>
+              </div>
+            </div>
           </article>
 
-          <div class="highlight-stack">
-            <article class="highlight-card card-shell">
-              <p class="kicker kicker--accent">Award · July 2026</p>
-              <h3>2nd Place, NTP13 2026</h3>
-              <p>Business &amp; Social Technologies, National Technology Parade, Al Ahliyya Amman University.</p>
-            </article>
-
-            <article class="highlight-card card-shell">
-              <p class="kicker kicker--accent">Certification · May 2026</p>
-              <h3>Azure AI Fundamentals</h3>
-              <p>Microsoft Certified (AI-900).</p>
-            </article>
-
-            <article class="highlight-card card-shell">
-              <p class="kicker kicker--accent">Certification · June 2024</p>
-              <h3>Google UX Design</h3>
-              <p>Foundations of User Experience Design, Google via Coursera.</p>
-            </article>
-          </div>
+          <article class="achievement-card flip-card flip-card--cert" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-face flip-front card-shell">
+                <div class="project-shot"><img src="images/awards/ntp13-2nd-place-2026.jpg" alt="Second place award certificate from the National Technology Parade 2026" loading="lazy"></div>
+                <div class="project-head">
+                  <h3 class="project-title">2nd Place &mdash; NTP13 2026</h3>
+                <div class="project-badges"><span class="project-badge badge-muted">Issued July 2026</span></div>
+                </div>
+              <p class="flip-hint">Hover or tap for details</p>
+              </div>
+              <div class="flip-face flip-back card-shell">
+                <p class="kicker">Award</p>
+                <p class="project-description">Business &amp; Social Technologies</p>
+              <p class="cert-meta"><strong>Event:</strong> National Technology Parade (NTP13)</p>
+              <p class="cert-meta"><strong>Issuer:</strong> Al Ahliyya Amman University</p>
+              <p class="cert-meta"><strong>Issued:</strong> July 2026</p>
+              <p class="cert-desc">Achieved second place by presenting an innovative technology solution in the Business &amp; Social Technologies category.</p>
+                <div class="project-links">
+                <a href="images/awards/ntp13-2nd-place-2026.jpg" target="_blank" rel="noopener">Open certificate</a>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="certificate-card flip-card flip-card--cert" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-face flip-front card-shell">
+                <div class="project-shot"><img src="images/certificates/azure-ai-900.jpg" alt="Microsoft Certified Azure AI Fundamentals certificate" loading="lazy"></div>
+                <div class="project-head">
+                  <h3 class="project-title">Azure AI Fundamentals</h3>
+              <div class="project-badges"><span class="project-badge badge-muted">Issued May 2026</span></div>
+                </div>
+              <p class="flip-hint">Hover or tap for details</p>
+              </div>
+              <div class="flip-face flip-back card-shell">
+                <p class="kicker">Certificate</p>
+                <p class="project-description">Microsoft Certified: Azure AI Fundamentals (AI-900)</p>
+            <p class="cert-meta"><strong>Issuer:</strong> Microsoft</p>
+            <p class="cert-meta"><strong>Issued:</strong> May 2026</p>
+            <p class="cert-meta"><strong>Credential ID:</strong> F1740BF56188E9C3</p>
+                <div class="project-links">
+              <a href="images/certificates/azure-ai-900.jpg" target="_blank" rel="noopener">Open certificate</a>
+              <a href="https://learn.microsoft.com/en-gb/users/mayahelmi-3760/credentials/f1740bf56188e9c3" target="_blank" rel="noopener">View credential</a>
+                </div>
+              </div>
+            </div>
+          </article>
 
         </div>
       </div>
@@ -503,6 +637,24 @@
     <p class="footer-base">Maya Helmi · Software Engineer</p>
   </footer>
 
+
+  <script>
+    // Flip a card on tap only where there is no real hover (phones, tablets);
+    // with a mouse, hovering flips it. Taps on links inside are left alone.
+    if (window.matchMedia('(hover: none)').matches) {
+      document.querySelectorAll('.flip-card').forEach(function (card) {
+        card.addEventListener('click', function (e) {
+          if (e.target.closest('a')) return;
+          card.classList.toggle('is-flipped');
+        });
+      });
+    }
+    document.querySelectorAll('.flip-card').forEach(function (card) {
+      card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.classList.toggle('is-flipped'); }
+      });
+    });
+  </script>
 </body>
 
 </html>

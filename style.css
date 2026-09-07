@@ -254,6 +254,28 @@ a:focus-visible, button:focus-visible {
 
 .primary-btn { background: var(--pink); color: #fff; border-color: transparent; }
 .primary-btn:hover { background: var(--pink-strong); color: #fff; }
+
+/* The "Hire me" button hops every few seconds, like it cannot sit still.
+   Most of the 4.4s cycle is stillness; the hop is a crouch, a jump and a
+   small second bounce on landing. transform-origin at the bottom keeps the
+   squash and stretch believable, as if it is pushing off the page.
+   Hovering cancels the animation so the button's own lift can take over. */
+@keyframes btn-hop {
+  0%, 58%, 100% { transform: translateY(0) scale(1, 1); }
+  63%           { transform: translateY(1px) scale(1.08, .92); }
+  71%           { transform: translateY(-11px) scale(.96, 1.06); }
+  79%           { transform: translateY(0) scale(1.06, .94); }
+  86%           { transform: translateY(-4px) scale(1, 1); }
+  93%           { transform: translateY(0) scale(1, 1); }
+}
+.btn--hop {
+  transform-origin: 50% 100%;
+  animation: btn-hop 2.2s cubic-bezier(.3, .7, .4, 1) infinite;
+}
+.btn--hop:hover, .btn--hop:focus-visible { animation: none; transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) {
+  .btn--hop { animation: none; }
+}
 /* The dark-mode pink is light, so the text on it has to go dark to stay readable */
 :root[data-theme="dark"] .primary-btn,
 :root[data-theme="dark"] .primary-btn:hover { color: var(--page-bg); }
@@ -673,11 +695,23 @@ a:focus-visible, button:focus-visible {
 
 /* ============ About + education ============ */
 .about-content p {
-  margin-bottom: 1.25rem;
-  font-size: 1.075rem;
+  margin-bottom: 1.1rem;
+  font-size: 1.0rem;
   color: var(--text-soft);
   max-width: 68ch;
 }
+/* The opening line carries the section: display face, full-strength text.
+   Written as .about-content p.about-lead so it outranks the .about-content p
+   rule above, which sets the body size. */
+.about-content p.about-lead {
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
+  font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text-strong);
+  margin-bottom: 1rem !important;
+}
+.about-content strong { color: var(--text-strong); font-weight: 600; }
 
 .about-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
 
@@ -686,7 +720,9 @@ a:focus-visible, button:focus-visible {
    centred on phones, pinned to the right edge of its column from tablet up. */
 .education-card { width: 100%; max-width: 336px; margin-inline: auto; }
 @media (min-width: 768px) {
-  .education-card { margin-inline: 0; justify-self: end; }
+  /* height:auto undoes .card-shell's height:100%, which was stretching the
+     card to the row and leaving a gap above the facts. */
+  .education-card { margin-inline: 0; justify-self: end; align-self: start; height: auto; }
 }
 
 .education-photo {
@@ -872,6 +908,42 @@ a:focus-visible, button:focus-visible {
 }
 .skill-also { margin: 2.75rem 0 .9rem; }
 .skill-list { display: flex; flex-wrap: wrap; gap: .4rem; }
+
+/* ---- The two "Also" belts ----
+   Each row holds the same chips twice, side by side, and slides by exactly
+   half its width — so the moment the first copy leaves, the second is in the
+   same place and the loop never shows a seam. The rows run opposite ways,
+   like two baggage belts. Hovering (or focusing a chip) stops them. */
+.belt { display: grid; gap: .5rem; overflow: hidden; }
+.belt-row { overflow: hidden; }
+.belt-track {
+  display: flex;
+  width: max-content;
+  animation: belt-slide 46s linear infinite;
+}
+/* No gap between the two copies: each copy carries its own trailing space, so
+   one copy is exactly half the track and -50% lands seamlessly on the next. */
+.belt-track > .skill-list { padding-right: .4rem; }
+.belt-row--reverse .belt-track { animation-direction: reverse; }
+.belt-track .skill-list { flex-wrap: nowrap; }
+.belt:hover .belt-track,
+.belt:focus-within .belt-track { animation-play-state: paused; }
+@keyframes belt-slide {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+/* Fade the ends so chips arrive and leave instead of being chopped off. */
+@supports (mask-image: linear-gradient(90deg, #000, #000)) {
+  .belt {
+    mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .belt-track { animation: none; }
+  .belt-row { overflow-x: auto; }
+  .belt-track > .skill-list[aria-hidden="true"] { display: none; }
+}
 .skill-list li {
   padding: .3rem .7rem;
   background: var(--card-bg);
@@ -1073,6 +1145,21 @@ a.card-media:hover { background: var(--pink-bg); }
 .flip-back .cert-meta, .flip-back .cert-desc { font-size: .9rem; color: rgba(255, 255, 255, .78); margin-bottom: .35rem; }
 .flip-back .cert-meta strong { color: #fff; font-weight: 600; }
 .flip-back .cert-desc { margin-top: .5rem; }
+
+/* The home showcase grid shares the side padding of its heading row. */
+.showcase-grid { max-width: 1180px; margin-inline: auto; padding: 0 clamp(1rem, 4vw, 2rem); }
+
+/* Front tile for an award that has no certificate image: the year, set big. */
+.shot-type {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem !important;
+  background: var(--dark-panel);
+  color: #fff;
+}
+.shot-type-kicker { margin: 0; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--pink); }
+.shot-type-year { margin: 0; font-family: "Fraunces", Georgia, "Times New Roman", serif; font-size: clamp(3.5rem, 9vw, 5.5rem); font-weight: 700; line-height: .9; color: #fff; }
 .project-head {
   display: flex;
   flex-wrap: wrap;
