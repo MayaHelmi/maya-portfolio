@@ -3,7 +3,8 @@ live url:  https://mayahelmi.github.io/maya-portfolio/
 # Maya Helmi — portfolio
 
 Five hand-written pages: `index`, `projects`, `certificates`, and a case-study
-page for each of Besign and Glamé AI.
+page for each of Besign and Glamé AI. The Glamé case study covers both the
+mobile product concept and the interactive web prototype.
 
 ## Opening it
 
@@ -19,7 +20,7 @@ in the folder. Deploying is still just uploading these files.
 | `src/tailwind.css` | The Tailwind **source**. Design tokens and settings only — edit this one. |
 | `tailwind.css` | The **built** file the pages load. Generated from the file above — don't edit it by hand, your changes get overwritten on the next build. |
 | `script.js` | The theme toggle and the phone menu. |
-| `images/projects/` | One 960×600 screenshot per project card on `projects.html`. Web projects are real browser captures; Besign is a simulator capture; Glamé AI shows its screen designs. |
+| `images/projects/` | One 960×1067 image per project card on `projects.html`. Web projects use browser captures; Besign and the Glamé mobile concept use screen-design composites. |
 
 Tailwind is used for the responsive column layouts, written straight onto the
 elements in the HTML:
