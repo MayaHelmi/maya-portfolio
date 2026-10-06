@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mayahelmi.github.io/maya-portfolio/sitemap.xml
