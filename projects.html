@@ -23,7 +23,7 @@
 
   <!-- Tailwind first, so the hand-written rules in style.css stay in charge. -->
   <link rel="stylesheet" href="tailwind.css?v=20260907e">
-  <link rel="stylesheet" href="style.css?v=20260907e">
+  <link rel="stylesheet" href="style.css?v=20261008overlay">
   
   <!-- Theme switch + phone menu. Deliberately has no "defer": it needs to run
        before the page is painted, so dark mode never flashes white first. -->
@@ -94,7 +94,7 @@
 
       <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 
-          <article class="project-card flip-card" tabindex="0">
+          <article class="project-card flip-card project-overlay-card" tabindex="0">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <div class="project-shot"><img src="images/projects/besign-front.jpg?v=20260907e" width="960" height="1067" alt="Besign app screens" loading="lazy"></div>
@@ -106,7 +106,7 @@
                   <span class="project-badge badge-muted">May–June 2026</span>
                 </div>
               </div>
-            <p class="flip-hint">Hover or tap for details</p>
+            <p class="flip-hint"><span class="desktop-project-hint">Hover for details</span><span class="touch-project-hint">Tap for details</span> <span aria-hidden="true">↑</span></p>
             </div>
             <div class="flip-face flip-back card-shell">
               <p class="kicker">About Besign</p>
@@ -132,7 +132,7 @@
 
       <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 
-          <article class="project-card flip-card" tabindex="0">
+          <article class="project-card flip-card project-overlay-card" tabindex="0">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <div class="project-shot"><img src="images/projects/noi-beauty-lounge-front.jpg?v=20261008continuous" width="960" height="1067" alt="NOI Beauty Lounge salon website concept hero and services" loading="lazy"></div>
@@ -144,7 +144,7 @@
                   <span class="project-badge badge-muted">2026</span>
                 </div>
               </div>
-            <p class="flip-hint">Hover or tap for details</p>
+            <p class="flip-hint"><span class="desktop-project-hint">Hover for details</span><span class="touch-project-hint">Tap for details</span> <span aria-hidden="true">↑</span></p>
             </div>
             <div class="flip-face flip-back card-shell">
               <p class="kicker">Salon Website Concept</p>
@@ -165,7 +165,7 @@
             </div>
             </div>
           </article>
-          <article class="project-card flip-card" tabindex="0">
+          <article class="project-card flip-card project-overlay-card" tabindex="0">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <div class="project-shot"><img src="images/projects/glame-ai-web-front.jpg?v=20261004" width="960" height="1067" alt="Glamé AI beauty-tech website concept hero" loading="lazy"></div>
@@ -177,7 +177,7 @@
                   <span class="project-badge badge-muted">2026</span>
                 </div>
               </div>
-            <p class="flip-hint">Hover or tap for details</p>
+            <p class="flip-hint"><span class="desktop-project-hint">Hover for details</span><span class="touch-project-hint">Tap for details</span> <span aria-hidden="true">↑</span></p>
             </div>
             <div class="flip-face flip-back card-shell">
               <p class="kicker">Beauty-Tech Website Concept</p>
@@ -197,7 +197,7 @@
             </div>
             </div>
           </article>
-          <article class="project-card flip-card" tabindex="0">
+          <article class="project-card flip-card project-overlay-card" tabindex="0">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <div class="project-shot"><img src="images/projects/invite-sites-front.jpg?v=20260907e" width="960" height="1067" alt="Invite Sites landing page" loading="lazy"></div>
@@ -209,7 +209,7 @@
                   <span class="project-badge badge-muted">August–September 2026</span>
                 </div>
               </div>
-            <p class="flip-hint">Hover or tap for details</p>
+            <p class="flip-hint"><span class="desktop-project-hint">Hover for details</span><span class="touch-project-hint">Tap for details</span> <span aria-hidden="true">↑</span></p>
             </div>
             <div class="flip-face flip-back card-shell">
               <p class="kicker">About Invite Sites</p>
@@ -229,7 +229,7 @@
             </div>
             </div>
           </article>
-          <article class="project-card flip-card" tabindex="0">
+          <article class="project-card flip-card project-overlay-card" tabindex="0">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <div class="project-shot"><img src="images/projects/hopebridge-front.jpg?v=20260907e" width="960" height="1067" alt="HopeBridge charity platform home page" loading="lazy"></div>
@@ -241,7 +241,7 @@
                   <span class="project-badge badge-muted">August–September 2026</span>
                 </div>
               </div>
-            <p class="flip-hint">Hover or tap for details</p>
+            <p class="flip-hint"><span class="desktop-project-hint">Hover for details</span><span class="touch-project-hint">Tap for details</span> <span aria-hidden="true">↑</span></p>
             </div>
             <div class="flip-face flip-back card-shell">
               <p class="kicker">About HopeBridge</p>
@@ -260,7 +260,7 @@
             </div>
             </div>
           </article>
-          <article class="project-card flip-card" tabindex="0">
+          <article class="project-card flip-card project-overlay-card" tabindex="0">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <div class="project-shot"><img src="images/projects/wedding-atelier-concept-front.jpg?v=20261004" width="960" height="1067" alt="Wedding atelier concept home page" loading="lazy"></div>
@@ -271,7 +271,7 @@
                   <span class="project-badge badge-muted">Uncommissioned</span>
                 </div>
               </div>
-            <p class="flip-hint">Hover or tap for details</p>
+            <p class="flip-hint"><span class="desktop-project-hint">Hover for details</span><span class="touch-project-hint">Tap for details</span> <span aria-hidden="true">↑</span></p>
             </div>
             <div class="flip-face flip-back card-shell">
               <p class="kicker">About the concept</p>
@@ -290,7 +290,7 @@
             </div>
             </div>
           </article>
-          <article class="project-card flip-card" tabindex="0">
+          <article class="project-card flip-card project-overlay-card" tabindex="0">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <div class="project-shot"><img src="images/projects/eight-weeks-at-orange-front.jpg?v=20261008current" width="960" height="1067" alt="Eight Weeks at Orange presentation site hero and How We Worked section" loading="lazy"></div>
@@ -300,7 +300,7 @@
                   <span class="project-badge badge-muted">With NourEddin Abu Salhieh</span>
                 </div>
               </div>
-            <p class="flip-hint">Hover or tap for details</p>
+            <p class="flip-hint"><span class="desktop-project-hint">Hover for details</span><span class="touch-project-hint">Tap for details</span> <span aria-hidden="true">↑</span></p>
             </div>
             <div class="flip-face flip-back card-shell">
               <p class="kicker">About Eight Weeks at Orange</p>
@@ -317,7 +317,7 @@
             </div>
             </div>
           </article>
-          <article class="project-card flip-card" tabindex="0">
+          <article class="project-card flip-card project-overlay-card" tabindex="0">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <div class="project-shot"><img src="images/projects/print-artwork-marketplace-concept-front.jpg?v=20261004" width="960" height="1067" alt="Print artwork marketplace concept home page" loading="lazy"></div>
@@ -328,7 +328,7 @@
                   <span class="project-badge badge-muted">Uncommissioned</span>
                 </div>
               </div>
-            <p class="flip-hint">Hover or tap for details</p>
+            <p class="flip-hint"><span class="desktop-project-hint">Hover for details</span><span class="touch-project-hint">Tap for details</span> <span aria-hidden="true">↑</span></p>
             </div>
             <div class="flip-face flip-back card-shell">
               <p class="kicker">About the concept</p>
@@ -401,20 +401,67 @@
 
 
   <script>
-    // Flip a project card on tap, but only on screens without a real hover
-    // (phones and tablets). With a mouse, hovering does the flipping, and a
-    // click toggle would leave cards stuck. Taps on links are left alone.
-    var touchOnly = window.matchMedia('(hover: none)').matches;
-    document.querySelectorAll('.flip-card').forEach(function (card) {
-      if (touchOnly) {
-        card.addEventListener('click', function (e) {
-          if (e.target.closest('a')) return;
-          card.classList.toggle('is-flipped');
+    // Desktop uses hover/focus. Touch devices use an explicit tap state so
+    // project information never depends on a hover interaction that phones do
+    // not have. Links inside an open overlay remain directly usable.
+    var projectCards = Array.from(document.querySelectorAll('.project-overlay-card'));
+    var touchCards = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+    function setProjectCardOpen(card, open) {
+      card.classList.toggle('is-flipped', open);
+      card.setAttribute('aria-expanded', String(open));
+      var closeButton = card.querySelector('.project-overlay-close');
+      if (closeButton) closeButton.tabIndex = open ? 0 : -1;
+    }
+
+    projectCards.forEach(function (card) {
+      card.setAttribute('aria-expanded', 'false');
+      var back = card.querySelector('.flip-back');
+      var overlayTitle = document.createElement('h3');
+      overlayTitle.className = 'project-overlay-title';
+      overlayTitle.textContent = card.querySelector('.flip-front .project-title').textContent;
+      back.insertBefore(overlayTitle, back.querySelector('.project-description'));
+      var closeButton = document.createElement('button');
+      closeButton.type = 'button';
+      closeButton.className = 'project-overlay-close';
+      closeButton.setAttribute('aria-label', 'Close project details');
+      closeButton.innerHTML = '&times;';
+      closeButton.tabIndex = -1;
+      back.appendChild(closeButton);
+
+      closeButton.addEventListener('click', function (event) {
+        event.stopPropagation();
+        setProjectCardOpen(card, false);
+        card.focus();
+      });
+
+      if (touchCards) {
+        card.addEventListener('click', function (event) {
+          if (event.target.closest('a, .project-overlay-close')) return;
+          var willOpen = !card.classList.contains('is-flipped');
+          projectCards.forEach(function (otherCard) {
+            if (otherCard !== card) setProjectCardOpen(otherCard, false);
+          });
+          setProjectCardOpen(card, willOpen);
         });
       }
-      card.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.classList.toggle('is-flipped'); }
+
+      card.addEventListener('keydown', function (event) {
+        if ((event.key === 'Enter' || event.key === ' ') && event.target === card) {
+          event.preventDefault();
+          setProjectCardOpen(card, !card.classList.contains('is-flipped'));
+        }
       });
+    });
+
+    document.addEventListener('click', function (event) {
+      if (!touchCards || event.target.closest('.project-overlay-card')) return;
+      projectCards.forEach(function (card) { setProjectCardOpen(card, false); });
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape') return;
+      projectCards.forEach(function (card) { setProjectCardOpen(card, false); });
     });
   </script>
 </body>
