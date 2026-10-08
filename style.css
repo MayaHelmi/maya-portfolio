@@ -12,32 +12,32 @@
   color-scheme: light dark;
 
   /* Text */
-  --text-strong: #12151c;   /* headings and bold text */
-  --text: #1e2430;          /* normal body text */
-  --text-soft: #5c6675;     /* less important text */
-  --text-fade: #838d9c;     /* dates, small labels */
+  --text-strong: #241e20;   /* headings and bold text */
+  --text: #403538;          /* normal body text */
+  --text-soft: #75666b;     /* less important text */
+  --text-fade: #97868b;     /* dates, small labels */
 
   /* Backgrounds */
-  --page-bg: #ffffff;       /* the page itself */
-  --soft-bg: #f6f7f9;       /* slightly tinted strips and chips */
-  --card-bg: #ffffff;       /* cards */
-  --dark-panel: #12151c;    /* the footer and the dark award card */
+  --page-bg: #fbf7f4;       /* the page itself */
+  --soft-bg: #f2eae7;       /* slightly tinted strips and chips */
+  --card-bg: #fffaf8;       /* cards */
+  --dark-panel: #211a1d;    /* the footer and the dark award card */
 
   /* Lines */
-  --border: #e3e6ec;
-  --border-strong: #cfd5df;
+  --border: #eadeda;
+  --border-strong: #d8c7c2;
 
   /* Pink accent */
-  --pink: #e46e9b;
-  --pink-strong: #ca5481;   /* hover / emphasis */
-  --pink-bg: #ffedf4;       /* pale pink fill */
-  --pink-border: #f6bfcf;
+  --pink: #b66f83;
+  --pink-strong: #945267;   /* hover / emphasis */
+  --pink-bg: #f4e4e8;       /* pale pink fill */
+  --pink-border: #dfbdc7;
   --hero-display: #e8d8d3;
 
   /* Shadows are colours too, so they live here and change with the theme. */
-  --shadow-small: 0 1px 2px rgba(18, 21, 28, .06);
-  --shadow-medium: 0 2px 4px rgba(18, 21, 28, .04), 0 8px 24px rgba(18, 21, 28, .06);
-  --shadow-large: 0 4px 8px rgba(18, 21, 28, .05), 0 16px 40px rgba(18, 21, 28, .1);
+  --shadow-small: 0 1px 2px rgba(36, 30, 32, .06);
+  --shadow-medium: 0 2px 4px rgba(36, 30, 32, .04), 0 8px 24px rgba(36, 30, 32, .07);
+  --shadow-large: 0 4px 8px rgba(36, 30, 32, .06), 0 16px 40px rgba(36, 30, 32, .12);
 }
 
 /* Dark mode. The theme button in the navbar puts data-theme="dark" on the
@@ -45,23 +45,23 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --text-strong: #f2f5f8;
-  --text: #dce2ea;
-  --text-soft: #9aa5b3;
-  --text-fade: #798492;
+  --text-strong: #fbf5f1;
+  --text: #e8ddda;
+  --text-soft: #b9aaae;
+  --text-fade: #8f7f84;
 
-  --page-bg: #0f1216;
-  --soft-bg: #151920;
-  --card-bg: #191e26;
-  --dark-panel: #1b2129;
+  --page-bg: #101012;
+  --soft-bg: #181517;
+  --card-bg: #211d1f;
+  --dark-panel: #272124;
 
-  --border: #272e38;
-  --border-strong: #3a424e;
+  --border: #30282b;
+  --border-strong: #4b3c41;
 
-  --pink: #f296b8;
-  --pink-strong: #f8bcd3;
+  --pink: #d19aaa;
+  --pink-strong: #e8bdc8;
   --pink-bg: #2a1b23;
-  --pink-border: #462c38;
+  --pink-border: #5c4049;
   --hero-display: #e8d8d3;
 
   --shadow-small: 0 1px 2px rgba(0, 0, 0, .5);
@@ -398,6 +398,7 @@ a:focus-visible, button:focus-visible {
   margin-inline: auto;
   padding: 0 clamp(1rem, 4vw, 2rem);
   text-align: center;
+  background: #101012;
   overflow-x: clip;
 }
 
@@ -422,7 +423,7 @@ a:focus-visible, button:focus-visible {
   margin: 0;
   color: var(--hero-display);
   font-family: "Anton", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  font-size: clamp(7rem, 25vw, 30rem);
+  font-size: clamp(7rem, 27.5vw, 30rem);
   font-weight: 400;
   letter-spacing: -.035em;
   line-height: .82;
@@ -433,11 +434,6 @@ a:focus-visible, button:focus-visible {
 
 .hero-display span {
   display: block;
-}
-
-.hero-display span:nth-child(2) {
-  transform: scaleX(1.0304);
-  transform-origin: center;
 }
 
 .hero-display--front {
@@ -699,7 +695,7 @@ a:focus-visible, button:focus-visible {
   gap: .4rem;
   padding: .55rem .35rem;
   border-radius: 0;
-  color: var(--text-soft);
+  color: #b9aaae;
   font-size: .9rem;
 }
 
@@ -710,6 +706,19 @@ a:focus-visible, button:focus-visible {
 .hero .capsule-label {
   color: inherit;
   font-size: .64rem;
+}
+
+.hero .hero-role-item {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  align-self: flex-end;
+  color: #e8bdc8;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .hero .capsule-photo {
@@ -742,7 +751,7 @@ a:focus-visible, button:focus-visible {
   }
 
   .hero-display {
-    font-size: clamp(4.5rem, 24vw, 8.5rem);
+    font-size: clamp(4.5rem, 26.5vw, 8.5rem);
     line-height: .84;
   }
 
@@ -757,6 +766,9 @@ a:focus-visible, button:focus-visible {
     grid-template: none;
     gap: clamp(.35rem, 2vw, .8rem);
     padding-bottom: .75rem;
+    flex-wrap: wrap;
+    row-gap: 0;
+    align-content: flex-end;
   }
 
   .hero .hero-capsules > .capsule:not(.capsule-photo) {
@@ -773,6 +785,12 @@ a:focus-visible, button:focus-visible {
 
   .hero .capsule-label {
     font-size: .54rem;
+  }
+
+  .hero .hero-capsules > .hero-role-item {
+    flex-basis: 100%;
+    margin-bottom: -.3rem;
+    font-size: .62rem;
   }
 
   .hero .capsule-photo {
