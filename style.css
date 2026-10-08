@@ -435,6 +435,11 @@ a:focus-visible, button:focus-visible {
   display: block;
 }
 
+.hero-display span:nth-child(2) {
+  transform: scaleX(1.0304);
+  transform-origin: center;
+}
+
 .hero-display--front {
   z-index: 4;
   color: transparent;
