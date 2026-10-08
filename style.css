@@ -32,7 +32,7 @@
   --pink-strong: #ca5481;   /* hover / emphasis */
   --pink-bg: #ffedf4;       /* pale pink fill */
   --pink-border: #f6bfcf;
-  --hero-display: #1a1a19;
+  --hero-display: #e8d8d3;
 
   /* Shadows are colours too, so they live here and change with the theme. */
   --shadow-small: 0 1px 2px rgba(18, 21, 28, .06);
@@ -62,7 +62,7 @@
   --pink-strong: #f8bcd3;
   --pink-bg: #2a1b23;
   --pink-border: #462c38;
-  --hero-display: #f0dfc4;
+  --hero-display: #e8d8d3;
 
   --shadow-small: 0 1px 2px rgba(0, 0, 0, .5);
   --shadow-medium: 0 2px 4px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .45);
