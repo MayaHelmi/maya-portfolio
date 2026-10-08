@@ -32,6 +32,7 @@
   --pink-strong: #ca5481;   /* hover / emphasis */
   --pink-bg: #ffedf4;       /* pale pink fill */
   --pink-border: #f6bfcf;
+  --hero-display: #1a1a19;
 
   /* Shadows are colours too, so they live here and change with the theme. */
   --shadow-small: 0 1px 2px rgba(18, 21, 28, .06);
@@ -61,6 +62,7 @@
   --pink-strong: #f8bcd3;
   --pink-bg: #2a1b23;
   --pink-border: #462c38;
+  --hero-display: #f0dfc4;
 
   --shadow-small: 0 1px 2px rgba(0, 0, 0, .5);
   --shadow-medium: 0 2px 4px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .45);
@@ -392,17 +394,64 @@ a:focus-visible, button:focus-visible {
 
 /* ============ Hero ============ */
 .hero {
-  max-width: 1180px;
+  max-width: none;
   margin-inline: auto;
-  padding: clamp(3rem, 7vw, 5.5rem) clamp(1rem, 4vw, 2rem) clamp(3.5rem, 7vw, 5.5rem);
+  padding: clamp(2.5rem, 6vw, 4.75rem) clamp(1rem, 4vw, 2rem) clamp(3.5rem, 7vw, 5.5rem);
   text-align: center;
   overflow-x: clip;
 }
 
+.hero-composition {
+  position: relative;
+  display: grid;
+  width: min(1180px, 100%);
+  min-height: clamp(360px, 43vw, 520px);
+  margin-inline: auto;
+  place-items: center;
+  isolation: isolate;
+}
+
+.hero-display {
+  grid-area: 1 / 1;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  color: var(--hero-display);
+  font-family: "Anton", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(4.5rem, 12.7vw, 10.5rem);
+  font-weight: 400;
+  letter-spacing: -.035em;
+  line-height: .82;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.hero-display span {
+  display: block;
+}
+
+.hero-display--front {
+  z-index: 4;
+  color: transparent;
+  -webkit-text-stroke: clamp(1px, .12vw, 2px) var(--hero-display);
+  text-stroke: clamp(1px, .12vw, 2px) var(--hero-display);
+}
+
 .hero-stage {
   position: relative;
+  z-index: 2;
+  grid-area: 1 / 1;
   width: fit-content;
-  margin: 0 auto clamp(1.25rem, 3vw, 1.75rem);
+  margin: 0 auto;
+}
+
+.hero-composition .hero-role {
+  display: none;
 }
 
 .hero-capsules {
@@ -464,13 +513,6 @@ a:focus-visible, button:focus-visible {
   box-shadow: var(--shadow-large);
 }
 .capsule-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
-
-.hero-role-line {
-  margin: 0 0 clamp(1.75rem, 4vw, 2.5rem);
-  font-size: clamp(1.5rem, 3.4vw, 2.15rem);
-  font-weight: 700;
-  color: var(--text-strong);
-}
 
 .hero-title {
   margin-bottom: .25rem;
@@ -548,6 +590,15 @@ a:focus-visible, button:focus-visible {
     min-height: calc(100svh - 68px);
   }
 
+  .hero-composition {
+    min-height: clamp(350px, 112vw, 470px);
+  }
+
+  .hero-display {
+    font-size: clamp(3.35rem, 18.2vw, 6.5rem);
+    line-height: .84;
+  }
+
   /* The width of one contact pill, and the only number to change if you
      want the hero bigger or smaller.
 
@@ -565,7 +616,7 @@ a:focus-visible, button:focus-visible {
      on. Those ratios are what the flat pixel values used to work out to. */
   .hero-stage {
     --pill: clamp(46px, 17vw, 64px);
-    margin-bottom: 2.25rem;
+    margin-bottom: 0;
   }
 
   .hero-capsules {

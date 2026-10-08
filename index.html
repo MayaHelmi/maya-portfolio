@@ -19,10 +19,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
   <!-- Tailwind first, so the hand-written rules in style.css stay in charge. -->
   <link rel="stylesheet" href="tailwind.css?v=20260907e">
-  <link rel="stylesheet" href="style.css?v=20260907e">
+  <link rel="stylesheet" href="style.css?v=20261008hero">
 
   <!-- Theme switch + phone menu. Deliberately has no "defer": it needs to run
        before the page is painted, so dark mode never flashes white first. -->
@@ -84,6 +84,12 @@
 
     <!-- Hero -->
     <section id="home" class="hero">
+
+      <div class="hero-composition">
+        <h1 class="hero-display hero-display--back" aria-label="Full Stack Developer">
+          <span>Full Stack</span>
+          <span>Developer</span>
+        </h1>
 
       <div class="hero-stage">
         <p class="hero-role" aria-hidden="true">
@@ -216,7 +222,11 @@
         </ul>
       </div>
 
-      <p class="hero-role-line">Full-Stack Developer</p>
+        <div class="hero-display hero-display--front" aria-hidden="true">
+          <span>Full Stack</span>
+          <span>Developer</span>
+        </div>
+      </div>
 
     </section>
 
