@@ -404,7 +404,7 @@ a:focus-visible, button:focus-visible {
 .hero-composition {
   position: relative;
   display: grid;
-  width: min(1180px, 100%);
+  width: 100%;
   min-height: calc(100svh - 68px);
   margin-inline: auto;
   place-items: center;
@@ -422,7 +422,7 @@ a:focus-visible, button:focus-visible {
   margin: 0;
   color: var(--hero-display);
   font-family: "Anton", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  font-size: clamp(7rem, 18vw, 16rem);
+  font-size: clamp(7rem, 25vw, 30rem);
   font-weight: 400;
   letter-spacing: -.035em;
   line-height: .82;
@@ -737,7 +737,7 @@ a:focus-visible, button:focus-visible {
   }
 
   .hero-display {
-    font-size: clamp(4.5rem, 23vw, 7.5rem);
+    font-size: clamp(4.5rem, 24vw, 8.5rem);
     line-height: .84;
   }
 
