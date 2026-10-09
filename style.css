@@ -88,10 +88,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* The serif font. Headings get it automatically; the three classes after
+/* The serif font. Headings get it automatically; the two classes after
    them are bits of text elsewhere that borrow the same look. */
 h1, h2, h3, h4,
-.hero-role-line,
 .hero-role,
 .award-feature-year {
   font-family: "Fraunces", Georgia, "Times New Roman", serif;
@@ -447,7 +446,7 @@ a:focus-visible, button:focus-visible {
   z-index: 2;
   grid-area: 1 / 1;
   width: fit-content;
-  margin: 0 auto clamp(1.25rem, 3vw, 1.75rem);
+  margin: 0 auto;
 }
 
 .hero-composition .hero-role {
@@ -517,13 +516,6 @@ a:focus-visible, button:focus-visible {
 .hero-title {
   margin-bottom: .25rem;
   font-size: clamp(1.75rem, 7vw, 4.5rem);
-  font-weight: 700;
-}
-
-.hero-role-line {
-  margin: 0 0 clamp(1.75rem, 4vw, 2.5rem);
-  color: var(--text-strong);
-  font-size: clamp(1.5rem, 3.4vw, 2.15rem);
   font-weight: 700;
 }
 
@@ -623,7 +615,6 @@ a:focus-visible, button:focus-visible {
      on. Those ratios are what the flat pixel values used to work out to. */
   .hero-stage {
     --pill: clamp(46px, 17vw, 64px);
-    margin-bottom: 2.25rem;
   }
 
   .hero-capsules {
