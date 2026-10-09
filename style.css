@@ -393,9 +393,12 @@ a:focus-visible, button:focus-visible {
 
 /* ============ Hero ============ */
 .hero {
+  display: grid;
   max-width: 1180px;
+  min-height: calc(100svh - 68px);
   margin-inline: auto;
-  padding: clamp(3rem, 7vw, 5.5rem) clamp(1rem, 4vw, 2rem) clamp(3.5rem, 7vw, 5.5rem);
+  padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 4vw, 2rem);
+  place-items: center;
   text-align: center;
   overflow-x: clip;
 }
@@ -459,13 +462,13 @@ a:focus-visible, button:focus-visible {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: clamp(.6rem, 2.5vw, 1.5rem);
-  padding: 12px 0;
+  gap: clamp(.675rem, 2.8vw, 1.6875rem);
+  padding: 13.5px 0;
 }
 
 .capsule {
   flex: none;
-  width: clamp(58px, 11vw, 132px);
+  width: clamp(65px, 12.4vw, 149px);
   aspect-ratio: 5 / 8;
   border-radius: 999px;
   background: var(--page-bg);
@@ -484,12 +487,12 @@ a:focus-visible, button:focus-visible {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: .3rem;
+  gap: .35rem;
   width: 100%;
   height: 100%;
   border-radius: inherit;
   color: var(--text-strong);
-  font-size: clamp(1.25rem, 2.6vw, 1.9rem);
+  font-size: clamp(1.375rem, 2.9vw, 2.1rem);
   text-decoration: none;
   transition: transform .15s ease, color .15s ease;
 }
@@ -497,7 +500,7 @@ a:focus-visible, button:focus-visible {
 .capsule-link:focus-visible { border-radius: inherit; outline-offset: 4px; }
 
 .capsule-label {
-  font-size: clamp(.6rem, 1.1vw, .7rem);
+  font-size: clamp(.66rem, 1.2vw, .78rem);
   font-weight: 600;
   letter-spacing: .06em;
   text-transform: uppercase;
@@ -506,7 +509,7 @@ a:focus-visible, button:focus-visible {
 .capsule-link:hover .capsule-label { color: var(--pink); }
 
 .capsule-photo {
-  width: clamp(128px, 16vw, 190px);
+  width: clamp(144px, 18vw, 214px);
   border: none;
   overflow: hidden;
   box-shadow: var(--shadow-large);
@@ -526,7 +529,7 @@ a:focus-visible, button:focus-visible {
    itself is built. */
 .hero-role {
   margin: 0 0 1rem;
-  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-size: clamp(1.35rem, 3.3vw, 2.25rem);
   font-weight: 700;
   color: var(--pink);
   white-space: nowrap;
@@ -559,7 +562,7 @@ a:focus-visible, button:focus-visible {
     width: 100%;
     height: 100%;
   }
-  .snake-text { font-size: 27px; }
+  .snake-text { font-size: 30px; }
 }
 
 /* Motion allowed, phone: a simple rounded rectangle around the 2x2 block.
@@ -575,7 +578,7 @@ a:focus-visible, button:focus-visible {
     width: calc(var(--pill) * 2.52);
     aspect-ratio: 252 / 372;
   }
-  .snake-text { font-size: calc(var(--pill) * 0.344); }
+  .snake-text { font-size: calc(var(--pill) * 0.36); }
 }
 
 /* Phone: capsules become a 2x2 grid with the photo spanning both rows.
@@ -587,6 +590,7 @@ a:focus-visible, button:focus-visible {
     flex-direction: column;
     justify-content: center;
     min-height: calc(100svh - 68px);
+    padding: 3.5rem 12px;
   }
 
   .hero-composition {
@@ -601,20 +605,19 @@ a:focus-visible, button:focus-visible {
   /* The width of one contact pill, and the only number to change if you
      want the hero bigger or smaller.
 
-     It used to be a flat 64px. That was fine on most phones but too wide on
-     a 320px screen, where the whole block came to 330px and the right edge
-     of the photo was cut off. clamp() keeps 64px wherever there is room and
-     shrinks it on narrow screens, so nothing is ever chopped:
+     It used to be a flat 64px. The slightly larger 68px target gives the
+     composition more presence, while still shrinking it on narrow phones
+     where a fixed size would push the photo past the viewport:
 
-       64px         - the size this was designed at, used from ~390px up
-       17vw         - shrinks with the screen below that
-       46px         - a floor, so it never gets too small to tap
+       68px         - the larger target size, used from ~378px up
+       18vw         - shrinks with the screen below that
+       49px         - a floor, so it never gets too small to tap
 
      Everything downstream is a multiple of it: the photo is 2.344 pills
      wide, the rows 1.6 (that's the 5:8 pill shape), the gaps 0.2, and so
      on. Those ratios are what the flat pixel values used to work out to. */
   .hero-stage {
-    --pill: clamp(46px, 17vw, 64px);
+    --pill: clamp(49px, 18vw, 68px);
   }
 
   .hero-capsules {
@@ -639,6 +642,14 @@ a:focus-visible, button:focus-visible {
     grid-column: 3;
     width: 100%;
     margin-left: calc(var(--pill) * 0.406);
+  }
+}
+
+/* Give the compact grid more presence on small tablets without changing its
+   proportions or crowding phone-sized screens. */
+@media (min-width: 576px) and (max-width: 767px) {
+  .hero-stage {
+    --pill: clamp(72px, 12.4vw, 95px);
   }
 }
 
