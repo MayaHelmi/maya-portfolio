@@ -1,0 +1,23 @@
+/* Shadows, blur and visual-effect tokens -------------------------------- */
+:root {
+  --shadow-small: 0 1px 2px var(--charcoal-07);
+  --shadow-medium: 0 2px 4px var(--charcoal-05), 0 8px 24px var(--charcoal-09);
+  --shadow-large: 0 4px 8px var(--charcoal-07), 0 16px 40px var(--charcoal-14);
+  --shadow-focus: 0 0 0 var(--size-px-3) color-mix(in srgb, var(--pink) var(--proportion-18), transparent);
+  --shadow-gallery-control: 0 var(--size-px-10) var(--size-px-30) var(--ink-35);
+  --shadow-floating: 0 var(--size-px-24) var(--size-px-55) var(--ink-24);
+  --shadow-gallery-card: 0 var(--size-px-35) var(--size-px-100) var(--ink-65);
+  --text-shadow-gallery: 0 var(--size-px-3) var(--size-px-24) var(--ink-65);
+  --blur-header: saturate(160%) blur(12px);
+  --blur-glass: blur(10px);
+  --filter-sparkle: drop-shadow(0 0 var(--size-px-4) var(--sparkle-glow));
+  --filter-invert: invert(1);
+  --filter-saturate: saturate(1.05);
+  --filter-gallery-depth: saturate(calc(.72 + (var(--gallery-scale) * .28)));
+}
+
+:root[data-theme="dark"] {
+  --shadow-small: 0 1px 2px var(--black-50);
+  --shadow-medium: 0 2px 4px var(--black-42), 0 8px 24px var(--black-48);
+  --shadow-large: 0 4px 8px var(--black-46), 0 16px 40px var(--black-58);
+}

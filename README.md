@@ -17,9 +17,11 @@ in the folder. Deploying is still just uploading these files.
 
 | File | What it holds |
 | --- | --- |
-| `style.css` | Everything hand-written: colours, dark mode, typography, and the components (navbar, hero, cards, footer). This is the main stylesheet. |
-| `src/tailwind.css` | The Tailwind **source**. Design tokens and settings only — edit this one. |
-| `tailwind.css` | The **built** file the pages load. Generated from the file above — don't edit it by hand, your changes get overwritten on the next build. |
+| `design-system/index.css` | The single stylesheet entry point loaded by every page. |
+| `design-system/tokens/` | Colors, typography, spacing, dimensions, shapes, motion, effects and layout tokens. |
+| `design-system/components/site.css` | Navbar, hero, galleries, cards, forms and page components. Components consume tokens instead of declaring visual values. |
+| `design-system/tailwind/source.css` | The Tailwind **source**. Edit this when utility configuration changes. |
+| `design-system/tailwind/utilities.css` | The generated utility file. Don't edit it by hand. |
 | `script.js` | The theme toggle and the phone menu. |
 | `images/projects/` | One 960×1067 image per project card on `projects.html`. Web projects use browser captures or representative hero imagery; Besign uses a screen-design composite. |
 
@@ -31,11 +33,11 @@ elements in the HTML:
 ```
 
 which reads as: one column on a phone, two from 768px, three from 992px.
-Everything else — all the colour and component styling — stays in `style.css`.
+Everything else is routed through `design-system/index.css`.
 
 ## Changing the Tailwind part
 
-Only needed if you edit `src/tailwind.css`, or add a Tailwind class to a page
+Only needed if you edit `design-system/tailwind/source.css`, or add a Tailwind class to a page
 that isn't used anywhere yet.
 
 ```bash
@@ -52,18 +54,17 @@ Or leave it running while you work, so it rebuilds on every save:
 npm run watch:css
 ```
 
-Then commit the updated `tailwind.css` along with your changes, because that
-is the file the live site actually loads.
+Then commit the updated `design-system/tailwind/utilities.css` with your changes.
 
 ## Two things worth knowing
 
 **The breakpoints are custom.** Tailwind normally uses 640 / 768 / 1024, but
-`src/tailwind.css` sets them to **576 / 768 / 992** to match the `@media`
-lines already in `style.css`. So `md:` in the HTML and
+`design-system/tailwind/source.css` sets them to **576 / 768 / 992** to match
+the `@media` lines in `design-system/components/site.css`. So `md:` in the HTML and
 `@media (min-width: 768px)` in the stylesheet always mean the same width.
 
 **Tailwind's reset is switched off.** Tailwind usually ships a "preflight"
-reset that strips heading sizes, list bullets and margins. `style.css` already
-handles all of that, so `src/tailwind.css` imports only the utility classes
+reset that strips heading sizes, list bullets and margins. The component layer
+already handles all of that, so the Tailwind source imports only utility classes
 and leaves the reset out. That is why adding Tailwind changed nothing about
 how the site already looked.

@@ -56,6 +56,15 @@
   --ink-20: rgba(13, 13, 12, .2);
   --ink-16: rgba(13, 13, 12, .16);
   --ink-05: rgba(13, 13, 12, .05);
+  --charcoal-14: rgba(36, 33, 33, .14);
+  --charcoal-09: rgba(36, 33, 33, .09);
+  --charcoal-07: rgba(36, 33, 33, .07);
+  --charcoal-05: rgba(36, 33, 33, .05);
+  --black-58: rgba(0, 0, 0, .58);
+  --black-50: rgba(0, 0, 0, .5);
+  --black-48: rgba(0, 0, 0, .48);
+  --black-46: rgba(0, 0, 0, .46);
+  --black-42: rgba(0, 0, 0, .42);
 
   /* Dark showcase surfaces shared by both themes */
   --gallery-bg: var(--portrait-ink);
@@ -94,9 +103,6 @@
   --hero-display: var(--portrait-hijab);
   --header-surface: var(--white-88);
 
-  --shadow-small: 0 1px 2px rgba(36, 33, 33, .07);
-  --shadow-medium: 0 2px 4px rgba(36, 33, 33, .05), 0 8px 24px rgba(36, 33, 33, .09);
-  --shadow-large: 0 4px 8px rgba(36, 33, 33, .07), 0 16px 40px rgba(36, 33, 33, .14);
 }
 
 :root[data-theme="dark"] {
@@ -125,7 +131,4 @@
   --hero-display: var(--portrait-hijab);
   --header-surface: rgba(13, 13, 12, .88);
 
-  --shadow-small: 0 1px 2px rgba(0, 0, 0, .5);
-  --shadow-medium: 0 2px 4px rgba(0, 0, 0, .42), 0 8px 24px rgba(0, 0, 0, .48);
-  --shadow-large: 0 4px 8px rgba(0, 0, 0, .46), 0 16px 40px rgba(0, 0, 0, .58);
 }

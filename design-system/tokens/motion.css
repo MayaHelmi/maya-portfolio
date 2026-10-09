@@ -1,0 +1,64 @@
+/* Motion tokens ---------------------------------------------------------- */
+:root {
+  --duration-instant: .001ms;
+  --duration-none: 0s;
+  --duration-stagger-short: .04s;
+  --duration-fast: .12s;
+  --duration-stagger-long: .16s;
+  --duration-quick: .15s;
+  --duration-base: .18s;
+  --duration-gentle: .2s;
+  --duration-slow: .22s;
+  --duration-slower: .62s;
+  --duration-medium: .3s;
+  --duration-page: .45s;
+  --duration-gallery: .7s;
+  --duration-flip: .8s;
+  --duration-entrance: 1.15s;
+  --duration-hop: 2.2s;
+  --duration-skills: 34s;
+  --duration-marquee: 38s;
+  --duration-marquee-reverse: 46s;
+
+  --ease-standard: ease;
+  --ease-out: ease-out;
+  --ease-spring: cubic-bezier(.3, .7, .4, 1);
+  --ease-gallery: cubic-bezier(.2, .7, .2, 1);
+  --ease-flip: cubic-bezier(.4, 0, .2, 1);
+  --ease-entrance: cubic-bezier(.22, 1, .36, 1);
+
+  --transition-color: color var(--duration-quick) var(--ease-standard);
+  --transition-nav: background var(--duration-quick) var(--ease-standard), color var(--duration-quick) var(--ease-standard);
+  --transition-control: background var(--duration-quick) var(--ease-standard), color var(--duration-quick) var(--ease-standard), border-color var(--duration-quick) var(--ease-standard);
+  --transition-button: transform var(--duration-fast) var(--ease-standard), background var(--duration-quick) var(--ease-standard), border-color var(--duration-quick) var(--ease-standard), color var(--duration-quick) var(--ease-standard);
+  --transition-accent: color var(--duration-base) var(--ease-standard), border-color var(--duration-base) var(--ease-standard), background var(--duration-base) var(--ease-standard), transform var(--duration-base) var(--ease-standard);
+  --transition-card: transform var(--duration-base) var(--ease-standard), box-shadow var(--duration-base) var(--ease-standard), border-color var(--duration-base) var(--ease-standard);
+  --transition-card-soft: transform var(--duration-gentle) var(--ease-standard), border-color var(--duration-gentle) var(--ease-standard), box-shadow var(--duration-gentle) var(--ease-standard);
+  --transition-field: border-color var(--duration-gentle) var(--ease-standard), box-shadow var(--duration-gentle) var(--ease-standard), background var(--duration-gentle) var(--ease-standard);
+  --transition-icon: color var(--duration-gentle) var(--ease-standard), border-color var(--duration-gentle) var(--ease-standard), transform var(--duration-gentle) var(--ease-standard);
+  --transition-gallery-card: transform var(--duration-base) var(--ease-out), opacity var(--duration-base) var(--ease-out), filter var(--duration-base) var(--ease-out);
+  --transition-gallery-image: transform var(--duration-gallery) var(--ease-gallery);
+  --transition-flip: transform var(--duration-flip) var(--ease-flip);
+  --transition-image: transform var(--duration-medium) var(--ease-standard);
+  --transition-reveal: transform var(--duration-slow) var(--ease-standard), filter var(--duration-slow) var(--ease-standard);
+  --transition-transform: transform var(--duration-base) var(--ease-standard);
+  --transition-transform-soft: transform var(--duration-gentle) var(--ease-standard), background var(--duration-gentle) var(--ease-standard);
+
+  --animation-hop: btn-hop var(--duration-hop) var(--ease-spring) infinite;
+  --animation-skills: skills-treadmill-run var(--duration-skills) linear infinite;
+  --animation-belt: belt-slide var(--duration-marquee-reverse) linear infinite;
+  --animation-menu: menu-in var(--duration-base) var(--ease-standard);
+  --animation-page: page-in var(--duration-page) var(--ease-standard) both;
+  --animation-sparkle: cursor-sparkle-fade var(--duration-slower) var(--ease-out) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: var(--duration-instant);
+    --duration-quick: var(--duration-instant);
+    --duration-base: var(--duration-instant);
+    --duration-gentle: var(--duration-instant);
+    --duration-slow: var(--duration-instant);
+    --duration-slower: var(--duration-instant);
+  }
+}

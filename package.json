@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Maya Helmi - portfolio site. Static HTML/CSS/JS; Tailwind is compiled to tailwind.css.",
   "scripts": {
-    "build:css": "tailwindcss -i ./src/tailwind.css -o ./tailwind.css",
-    "watch:css": "tailwindcss -i ./src/tailwind.css -o ./tailwind.css --watch"
+    "build:css": "tailwindcss -i ./design-system/tailwind/source.css -o ./design-system/tailwind/utilities.css",
+    "watch:css": "tailwindcss -i ./design-system/tailwind/source.css -o ./design-system/tailwind/utilities.css --watch",
+    "validate:design-system": "node ./scripts/validate-design-system.mjs"
   },
   "repository": {
     "type": "git",

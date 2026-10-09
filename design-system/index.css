@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap");
+@import url("tailwind/utilities.css");
+@import url("tokens/colors.css");
+@import url("tokens/typography.css");
+@import url("tokens/spacing.css");
+@import url("tokens/dimensions.css");
+@import url("tokens/shapes.css");
+@import url("tokens/motion.css");
+@import url("tokens/effects.css");
+@import url("tokens/layout.css");
+@import url("components/site.css");

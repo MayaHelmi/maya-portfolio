@@ -1,0 +1,18 @@
+/* Layout tokens ---------------------------------------------------------- */
+:root {
+  --content-wide: 1180px;
+  --content-reading: 68ch;
+  --header-height: 68px;
+  --touch-target: 44px;
+  --control-compact: 32px;
+  --icon-sm: 18px;
+  --icon-md: 24px;
+  --icon-lg: 34px;
+
+  /* CSS custom properties cannot be used in media-query conditions.
+     Components use these documented breakpoints as literal conditions. */
+  --breakpoint-phone: 599px;
+  --breakpoint-tablet: 767px;
+  --breakpoint-desktop: 768px;
+  --breakpoint-wide: 992px;
+}

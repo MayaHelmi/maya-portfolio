@@ -1,0 +1,30 @@
+/* Shape and border tokens ------------------------------------------------ */
+:root {
+  --border-thin: 1px;
+  --border-medium: 2px;
+  --border-focus: 3px;
+
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-md-plus: 17px;
+  --radius-lg: 18px;
+  --radius-compact: .75rem;
+  --radius-control: .9rem;
+  --radius-card: 1rem;
+  --radius-card-soft: 1.1rem;
+  --radius-xl: 1.4rem;
+  --radius-2xl: 2rem;
+  --radius-3xl: 2.25rem;
+  --radius-round: 50%;
+  --radius-pill: 999px;
+  --radius-skip-link: 0 0 var(--radius-md) var(--radius-md);
+  --radius-media: var(--radius-md) var(--radius-md) 0 0;
+  --radius-media-inner: var(--radius-md-plus) var(--radius-md-plus) 0 0;
+  --radius-note: 0 var(--radius-xs) var(--radius-xs) 0;
+  --radius-panel-fluid: clamp(var(--radius-xl), 3vw, var(--radius-3xl));
+  --radius-gallery-fluid: clamp(1.8rem, 4vw, 4.5rem);
+  --radius-showcase-fluid: clamp(var(--radius-xl), 2.5vw, var(--radius-2xl));
+  --radius-portrait-front: 47% 47% var(--space-10) var(--space-10);
+  --radius-portrait-back: 48% 48% var(--radius-3xl) var(--radius-3xl);
+}
