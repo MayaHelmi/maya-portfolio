@@ -307,6 +307,14 @@ a:focus-visible, button:focus-visible {
 
 .nav-actions { display: flex; align-items: center; gap: .5rem; }
 
+/* The site-wide header keeps only the portfolio name, CV download and theme
+   control. The legacy menu remains in the HTML for now but is intentionally
+   removed from the visual and accessibility layouts on every screen size. */
+.header .nav-links,
+.header .nav-toggle { display: none; }
+.header .cv-btn { order: 1; }
+.header .theme-toggle { order: 2; }
+
 .theme-toggle, .nav-toggle {
   display: inline-flex;
   align-items: center;
@@ -357,11 +365,21 @@ a:focus-visible, button:focus-visible {
 :root.nav-open .nav-toggle .icon-burger { display: none; }
 .nav-cv { display: none; }
 
-/* Phone: nav collapses into a dropdown under the burger button */
+/* Keep the compact two-action header usable on narrow phone screens. */
 @media (max-width: 767px) {
-  .navbar { position: relative; }
-  .nav-actions .cv-btn { display: none; }
-  .nav-toggle { display: inline-flex; }
+  .navbar {
+    position: relative;
+    min-height: 60px;
+    gap: .75rem;
+  }
+  .logo { font-size: 1rem; }
+  .nav-actions { gap: .4rem; }
+  .nav-actions .cv-btn {
+    display: inline-flex;
+    padding: .4rem .65rem;
+    font-size: .78rem;
+  }
+  .nav-toggle { display: none; }
 
   .nav-links {
     display: none;
@@ -386,6 +404,7 @@ a:focus-visible, button:focus-visible {
     border-top: 1px solid var(--border);
   }
   .nav-cv a { color: var(--pink); }
+
 }
 
 @keyframes menu-in {
@@ -393,7 +412,6 @@ a:focus-visible, button:focus-visible {
 }
 
 /* ============ Hero ============ */
-.landing-only .header,
 .landing-only main > :not(.hero),
 .landing-only > .footer {
   display: none;
@@ -401,7 +419,7 @@ a:focus-visible, button:focus-visible {
 
 .landing-only .hero {
   display: flex;
-  min-height: 100svh;
+  min-height: calc(100svh - 68px);
   align-items: center;
   justify-content: center;
   padding-block: clamp(2rem, 6vw, 4rem);
@@ -776,7 +794,6 @@ a:focus-visible, button:focus-visible {
   mask-image: linear-gradient(to bottom, transparent 0%, #000 32%, #000 100%);
 }
 
-.projects-gallery-page .header,
 .projects-gallery-page .footer {
   display: none;
 }
@@ -784,8 +801,10 @@ a:focus-visible, button:focus-visible {
 .projects-gallery-page main {
   position: relative;
   z-index: 1;
-  min-height: 100svh;
+  min-height: calc(100svh - 68px);
 }
+
+.projects-gallery-page .gallery-home { display: none; }
 
 .gallery-home,
 .gallery-eyebrow,
@@ -814,7 +833,7 @@ a:focus-visible, button:focus-visible {
 .gallery-home:hover { color: var(--pink); }
 
 .gallery-eyebrow {
-  top: clamp(1.45rem, 3vw, 2.2rem);
+  top: calc(68px + clamp(1.45rem, 3vw, 2.2rem));
   left: 50%;
   margin: 0;
   transform: translateX(-50%);
@@ -843,7 +862,7 @@ a:focus-visible, button:focus-visible {
   gap: clamp(1rem, 2.5vw, 2.25rem);
   width: 100vw;
   max-width: none;
-  height: 100svh;
+  height: calc(100svh - 68px);
   margin: 0;
   padding: clamp(4.5rem, 8vh, 6.5rem) calc((100vw - var(--gallery-card)) / 2);
   overflow-x: auto;
@@ -2108,6 +2127,19 @@ main { animation: page-in .45s ease both; }
 }
 
 @media (max-width: 767px) {
+  .landing-only .hero,
+  .projects-gallery-page main {
+    min-height: calc(100svh - 60px);
+  }
+
+  .projects-gallery-page #projects {
+    height: calc(100svh - 60px);
+  }
+
+  .projects-gallery-page .gallery-eyebrow {
+    top: calc(60px + 1rem);
+  }
+
   .projects-gallery-page .flip-front .project-title {
     font-size: clamp(1.45rem, 8vw, 2.4rem);
   }
