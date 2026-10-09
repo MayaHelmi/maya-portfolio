@@ -128,3 +128,41 @@ document.addEventListener("click", function (event) {
 document.addEventListener("keydown", function (event) {
   if (event.key === "Escape") closeMenu();
 });
+
+
+/* ============ 4. Magic-wand cursor sparkles ============ */
+
+function setUpMagicCursor() {
+  const hasFinePointer = matchMedia("(pointer: fine)").matches;
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!hasFinePointer || reducedMotion) return;
+
+  const sparkleCharacters = ["✦", "✧", "⋆"];
+  let lastSparkle = 0;
+
+  document.addEventListener("pointermove", function (event) {
+    const now = performance.now();
+    if (now - lastSparkle < 60) return;
+    lastSparkle = now;
+
+    const sparkle = document.createElement("span");
+    sparkle.className = "cursor-sparkle";
+    sparkle.setAttribute("aria-hidden", "true");
+    sparkle.textContent = sparkleCharacters[Math.floor(Math.random() * sparkleCharacters.length)];
+    sparkle.style.left = `${event.clientX - 8 + (Math.random() * 8 - 4)}px`;
+    sparkle.style.top = `${event.clientY - 8 + (Math.random() * 8 - 4)}px`;
+    sparkle.style.setProperty("--sparkle-x", `${Math.random() * 14 - 7}px`);
+    sparkle.style.setProperty("--sparkle-y", `${-10 - Math.random() * 10}px`);
+    document.body.appendChild(sparkle);
+
+    sparkle.addEventListener("animationend", function () {
+      sparkle.remove();
+    }, { once: true });
+  }, { passive: true });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", setUpMagicCursor, { once: true });
+} else {
+  setUpMagicCursor();
+}

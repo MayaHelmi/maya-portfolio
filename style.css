@@ -2439,3 +2439,60 @@ main { animation: page-in .45s ease both; }
   .certificates-showcase-page .flip-card--cert:hover,
   .certificates-showcase-page .flip-card--cert:focus-within { transform: none; }
 }
+
+/* ============ Magic-wand cursor ============ */
+
+@media (pointer: fine) {
+  html,
+  body {
+    cursor: url("images/magic-wand-cursor.svg") 7 7, auto;
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  label,
+  summary,
+  [role="button"] {
+    cursor: url("images/magic-wand-cursor.svg") 7 7, pointer;
+  }
+}
+
+.cursor-sparkle {
+  --sparkle-x: 8px;
+  --sparkle-y: -14px;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+  color: var(--pink-strong);
+  filter: drop-shadow(0 0 4px rgba(244, 175, 203, .72));
+  font-size: 11px;
+  line-height: 1;
+  transform: translate(-50%, -50%) scale(.25) rotate(0deg);
+  animation: cursor-sparkle-fade .62s ease-out forwards;
+}
+
+@keyframes cursor-sparkle-fade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.25) rotate(0deg);
+  }
+  18% {
+    opacity: .92;
+    transform: translate(-50%, -50%) scale(1) rotate(18deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--sparkle-x)), calc(-50% + var(--sparkle-y))) scale(.15) rotate(85deg);
+  }
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor-sparkle { display: none; }
+}
