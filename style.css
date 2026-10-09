@@ -526,7 +526,14 @@ a:focus-visible, button:focus-visible {
   font-size: clamp(1rem, 2vw, 1.2rem);
 }
 
-.contact-links { display: grid; gap: .75rem; }
+.contact-workspace {
+  display: grid;
+  min-width: 0;
+  gap: clamp(1rem, 3vw, 1.5rem);
+  align-items: start;
+}
+
+.contact-links { display: grid; min-width: 0; gap: .75rem; }
 
 .contact-row {
   display: grid;
@@ -606,10 +613,7 @@ a:focus-visible, button:focus-visible {
 }
 
 .contact-form-panel {
-  display: grid;
   min-width: 0;
-  gap: 0;
-  margin-top: clamp(1.25rem, 3vw, 2rem);
   overflow: hidden;
   background: var(--card-bg);
   border: 1px solid var(--border);
@@ -617,58 +621,19 @@ a:focus-visible, button:focus-visible {
   box-shadow: var(--shadow-medium);
 }
 
-.contact-form-intro {
-  position: relative;
-  display: flex;
-  min-height: 260px;
-  padding: clamp(1.5rem, 4vw, 2.5rem);
-  overflow: hidden;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow-wrap: anywhere;
-  color: rgba(255, 255, 255, .78);
-  background:
-    radial-gradient(circle at 90% 10%, rgba(209, 154, 170, .3), transparent 42%),
-    var(--dark-panel);
-}
-
-.contact-form-intro::after {
-  content: "";
-  position: absolute;
-  right: -7rem;
-  bottom: -7rem;
-  width: 17rem;
-  aspect-ratio: 1;
-  border: 1px solid rgba(255, 255, 255, .12);
-  border-radius: 50%;
-}
-
-.contact-form-icon {
-  display: grid;
-  width: 3.2rem;
-  aspect-ratio: 1;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, .45);
-  border-radius: 50%;
-  font-size: 1.3rem;
-}
-
-.contact-form-intro .kicker { color: var(--pink); }
-
-.contact-form-intro h2 {
-  margin-bottom: .75rem;
-  color: #fff;
-  font-size: clamp(2rem, 5vw, 3.4rem);
-  line-height: 1;
-}
-
-.contact-form-intro p { max-width: 37ch; margin-bottom: 0; }
-
 .contact-message-form {
   display: grid;
   min-width: 0;
   gap: 1rem;
   padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.contact-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 .contact-form-row {
@@ -718,17 +683,9 @@ a:focus-visible, button:focus-visible {
 
 .contact-form-submit {
   display: flex;
-  gap: .9rem;
   margin-top: .25rem;
   align-items: center;
-  flex-wrap: wrap;
-}
-
-.contact-form-status {
-  flex: 1 1 240px;
-  margin: 0;
-  color: var(--text-soft);
-  font-size: .85rem;
+  justify-content: flex-end;
 }
 
 @media (min-width: 700px) {
@@ -737,8 +694,13 @@ a:focus-visible, button:focus-visible {
     align-items: end;
   }
 
-  .contact-form-panel { grid-template-columns: minmax(260px, .75fr) minmax(0, 1.25fr); }
   .contact-form-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 900px) {
+  .contact-workspace {
+    grid-template-columns: minmax(300px, .9fr) minmax(0, 1.1fr);
+  }
 }
 
 @media (max-width: 699px) {
