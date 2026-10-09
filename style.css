@@ -475,6 +475,25 @@ a:focus-visible, button:focus-visible {
   border: 1px solid var(--border);
   box-shadow: var(--shadow-medium);
 }
+
+/* Lift the whole interactive pill so its outline, icon and label move as
+   one. Individual translate composes with the hand-placed rotations below. */
+.capsule:not(.capsule-photo) {
+  transition: translate .15s ease, border-color .15s ease;
+}
+
+@media (hover: hover) {
+  .capsule:not(.capsule-photo):hover {
+    translate: 0 -4px;
+    border-color: var(--pink);
+  }
+}
+
+.capsule:not(.capsule-photo):focus-within {
+  translate: 0 -4px;
+  border-color: var(--pink);
+}
+
 /* Each pill is nudged to a slightly different angle and height, so the row
    looks hand-placed instead of perfectly straight. */
 .capsule--rot-l { transform: rotate(-7deg) translateY(8px); }
@@ -494,9 +513,8 @@ a:focus-visible, button:focus-visible {
   color: var(--text-strong);
   font-size: clamp(1.375rem, 2.9vw, 2.1rem);
   text-decoration: none;
-  transition: transform .15s ease, color .15s ease;
+  transition: color .15s ease;
 }
-.capsule-link:hover { color: var(--pink); transform: translateY(-4px); }
 .capsule-link:focus-visible { border-radius: inherit; outline-offset: 4px; }
 
 .capsule-label {
@@ -505,8 +523,20 @@ a:focus-visible, button:focus-visible {
   letter-spacing: .06em;
   text-transform: uppercase;
   color: var(--text-fade);
+  transition: color .15s ease;
 }
-.capsule-link:hover .capsule-label { color: var(--pink); }
+
+@media (hover: hover) {
+  .capsule:not(.capsule-photo):hover .capsule-link,
+  .capsule:not(.capsule-photo):hover .capsule-label {
+    color: var(--pink);
+  }
+}
+
+.capsule:not(.capsule-photo):focus-within .capsule-link,
+.capsule:not(.capsule-photo):focus-within .capsule-label {
+  color: var(--pink);
+}
 
 .capsule-photo {
   width: clamp(144px, 18vw, 214px);
@@ -1461,5 +1491,7 @@ main { animation: page-in .45s ease both; }
     transition-duration: .001ms !important;
   }
   .card-shell:hover { transform: none; }
+  .capsule:not(.capsule-photo):hover,
+  .capsule:not(.capsule-photo):focus-within { translate: none; }
   @view-transition { navigation: none; }
 }
