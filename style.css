@@ -527,8 +527,8 @@ a:focus-visible, button:focus-visible {
   font-weight: 700;
 }
 
-/* ============ The "Contact me" snake ============
-   Plain "Contact me" text by default (and for anyone who has asked their
+/* ============ The "Full-Stack Developer" snake ============
+   Plain "Full-Stack Developer" text by default (and for anyone who has asked their
    device to reduce motion). If motion is allowed, it turns into the text
    that loops around the pills instead. See index.html for how the loop
    itself is built. */
