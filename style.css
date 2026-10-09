@@ -80,7 +80,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: 1rem;
   line-height: 1.65;
   color: var(--text);
@@ -88,12 +88,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* The serif font. Headings get it automatically; the three classes after
-   them are bits of text elsewhere that borrow the same look. */
-h1, h2, h3, h4,
+/* The animated homepage role keeps its original display face. */
 .hero-role-line,
-.hero-role,
-.award-feature-year {
+.hero-role {
   font-family: "Fraunces", Georgia, "Times New Roman", serif;
 }
 
@@ -203,6 +200,7 @@ a:focus-visible, button:focus-visible {
 
 .logo {
   margin: 0;
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
   font-size: 1.125rem;
   font-weight: 700;
   white-space: nowrap;
@@ -655,7 +653,7 @@ a:focus-visible, button:focus-visible {
 .contact-row strong {
   color: var(--text-strong);
   overflow-wrap: anywhere;
-  font-family: "Fraunces", Georgia, serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: clamp(1.05rem, 2.6vw, 1.55rem);
   line-height: 1.2;
 }
@@ -1047,7 +1045,7 @@ a:focus-visible, button:focus-visible {
   justify-content: center;
   margin: 0;
   color: var(--hero-display);
-  font-family: "Anton", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: clamp(7rem, 27.5vw, 30rem);
   font-weight: 400;
   letter-spacing: -.035em;
@@ -1468,7 +1466,7 @@ a:focus-visible, button:focus-visible {
    Written as .about-content p.about-lead so it outranks the .about-content p
    rule above, which sets the body size. */
 .about-content p.about-lead {
-  font-family: "Fraunces", Georgia, "Times New Roman", serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: clamp(1.35rem, 2.6vw, 1.75rem);
   font-weight: 600;
   line-height: 1.25;
@@ -1923,7 +1921,7 @@ a.card-media:hover { background: var(--pink-bg); }
   color: #fff;
 }
 .shot-type-kicker { margin: 0; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--pink); }
-.shot-type-year { margin: 0; font-family: "Fraunces", Georgia, "Times New Roman", serif; font-size: clamp(3.5rem, 9vw, 5.5rem); font-weight: 700; line-height: .9; color: #fff; }
+.shot-type-year { margin: 0; font-family: Helvetica, Arial, sans-serif; font-size: clamp(3.5rem, 9vw, 5.5rem); font-weight: 700; line-height: .9; color: #fff; }
 .project-head {
   display: flex;
   flex-wrap: wrap;
@@ -2003,7 +2001,7 @@ a.card-media:hover { background: var(--pink-bg); }
   background: transparent;
   color: var(--text-soft);
   /* Buttons don't inherit the page font, so it is named again here. */
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: .9rem;
   font-weight: 600;
   line-height: 1;
@@ -2295,7 +2293,7 @@ main { animation: page-in .45s ease both; }
   max-width: 22ch;
   margin: 0;
   color: #fff;
-  font-family: "Fraunces", Georgia, serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: clamp(1.2rem, 2.4vw, 1.65rem);
   line-height: 1.05;
   text-wrap: balance;
