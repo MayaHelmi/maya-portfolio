@@ -22,7 +22,7 @@
     href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
   <!-- Tailwind first, so the hand-written rules in style.css stay in charge. -->
   <link rel="stylesheet" href="tailwind.css?v=20260907e">
-  <link rel="stylesheet" href="style.css?v=20261009capsulenav4">
+  <link rel="stylesheet" href="style.css?v=20261009capsulenav5">
 
   <!-- Theme switch + phone menu. Deliberately has no "defer": it needs to run
        before the page is painted, so dark mode never flashes white first. -->
@@ -172,29 +172,15 @@
 
         <ul class="hero-capsules">
           <li class="capsule capsule--rot-l">
-            <a class="capsule-link" href="projects.html" aria-label="View projects" title="Projects">
+            <a class="capsule-link" href="about.html" aria-label="Open About Me page" title="About Me">
               <svg viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-                <path d="M1.5 2.5A1.5 1.5 0 0 1 3 1h3.25l1.5 1.75H13A1.5 1.5 0 0 1 14.5 4.25v7.25A1.5 1.5 0 0 1 13 13H3a1.5 1.5 0 0 1-1.5-1.5zM3 2a.5.5 0 0 0-.5.5v1h11v-.25a.5.5 0 0 0-.5-.5H7.29L5.79 2zm-.5 2.5v7a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5v-7z" />
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m0-1a2 2 0 1 1 0-4 2 2 0 0 1 0 4m5 6c0-2.21-2.24-4-5-4s-5 1.79-5 4v1h10zm-1 .02H4c.02-1.54 1.8-3.02 4-3.02s3.98 1.48 4 3.02" />
               </svg>
-              <span class="capsule-label">Projects</span>
+              <span class="capsule-label">About Me</span>
             </a>
           </li>
 
           <li class="capsule capsule--lift">
-            <a class="capsule-link" href="certificates.html" aria-label="View certificates and awards"
-              title="Certificates">
-              <svg viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-                <path d="M4 1.5A1.5 1.5 0 0 0 2.5 3v10A1.5 1.5 0 0 0 4 14.5h8a1.5 1.5 0 0 0 1.5-1.5V3A1.5 1.5 0 0 0 12 1.5zm0 1h8a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H4a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5m4 1.25 1.01 2.05 2.26.33-1.64 1.59.39 2.25L8 8.91 5.98 9.97l.39-2.25-1.64-1.59 2.26-.33z" />
-              </svg>
-              <span class="capsule-label">Certificates</span>
-            </a>
-          </li>
-
-          <li class="capsule capsule-photo">
-            <img src="images/profile.jpg" alt="Portrait of Maya Helmi, Full-Stack Developer" width="190" height="304">
-          </li>
-
-          <li class="capsule capsule--drop">
             <a class="capsule-link" href="contact.html" aria-label="Open contact page" title="Contact Me">
               <svg viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" aria-hidden="true">
                 <path d="M1.5 3A1.5 1.5 0 0 1 3 1.5h10A1.5 1.5 0 0 1 14.5 3v8A1.5 1.5 0 0 1 13 12.5H5.21L2.4 14.48a.55.55 0 0 1-.9-.45zm1.5-.5a.5.5 0 0 0-.5.5v10.06l2.39-1.68A.6.6 0 0 1 5.23 11.5H13a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM4.5 5h7v1h-7zm0 2.5h5v1h-5z" />
@@ -203,12 +189,26 @@
             </a>
           </li>
 
-          <li class="capsule capsule--rot-r">
-            <a class="capsule-link" href="about.html" aria-label="Open About Me page" title="About Me">
+          <li class="capsule capsule-photo">
+            <img src="images/profile.jpg" alt="Portrait of Maya Helmi, Full-Stack Developer" width="190" height="304">
+          </li>
+
+          <li class="capsule capsule--drop">
+            <a class="capsule-link" href="projects.html" aria-label="View projects" title="Projects">
               <svg viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m0-1a2 2 0 1 1 0-4 2 2 0 0 1 0 4m5 6c0-2.21-2.24-4-5-4s-5 1.79-5 4v1h10zm-1 .02H4c.02-1.54 1.8-3.02 4-3.02s3.98 1.48 4 3.02" />
+                <path d="M1.5 2.5A1.5 1.5 0 0 1 3 1h3.25l1.5 1.75H13A1.5 1.5 0 0 1 14.5 4.25v7.25A1.5 1.5 0 0 1 13 13H3a1.5 1.5 0 0 1-1.5-1.5zM3 2a.5.5 0 0 0-.5.5v1h11v-.25a.5.5 0 0 0-.5-.5H7.29L5.79 2zm-.5 2.5v7a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5v-7z" />
               </svg>
-              <span class="capsule-label">About Me</span>
+              <span class="capsule-label">Projects</span>
+            </a>
+          </li>
+
+          <li class="capsule capsule--rot-r">
+            <a class="capsule-link" href="certificates.html" aria-label="View certificates and awards"
+              title="Certificates">
+              <svg viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                <path d="M4 1.5A1.5 1.5 0 0 0 2.5 3v10A1.5 1.5 0 0 0 4 14.5h8a1.5 1.5 0 0 0 1.5-1.5V3A1.5 1.5 0 0 0 12 1.5zm0 1h8a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H4a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5m4 1.25 1.01 2.05 2.26.33-1.64 1.59.39 2.25L8 8.91 5.98 9.97l.39-2.25-1.64-1.59 2.26-.33z" />
+              </svg>
+              <span class="capsule-label">Certificates</span>
             </a>
           </li>
         </ul>
