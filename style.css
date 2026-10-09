@@ -519,39 +519,105 @@ a:focus-visible, button:focus-visible {
   margin-bottom: clamp(1.5rem, 4vw, 2.25rem);
 }
 
-.about-skills-grid {
+.skills-treadmill {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 1rem;
+  gap: .75rem;
+  overflow: hidden;
+  padding-block: .25rem;
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
 }
 
-.about-skills-grid .skill-card {
+.skills-treadmill-row {
   min-width: 0;
+  overflow: hidden;
 }
 
-.about-skill-tags {
+.skills-treadmill-track {
   display: flex;
-  margin-top: 1rem;
-  padding: 1.25rem;
-  flex-wrap: wrap;
-  gap: .55rem;
-  background: var(--soft-bg);
-  border: 1px solid var(--border);
-  border-radius: 1.25rem;
+  width: max-content;
+  animation: skills-treadmill-run 34s linear infinite;
+  will-change: transform;
 }
 
-.about-skill-tags span {
-  padding: .42rem .75rem;
-  color: var(--text-soft);
+.skills-treadmill-row--reverse .skills-treadmill-track {
+  animation-direction: reverse;
+  animation-duration: 38s;
+}
+
+.skills-treadmill-row--compact .skills-treadmill-track {
+  animation-duration: 46s;
+}
+
+.skills-treadmill-lane {
+  display: flex;
+  flex: none;
+  gap: .75rem;
+  padding-right: .75rem;
+}
+
+.skills-treadmill-lane li {
+  display: inline-flex;
+  min-width: 142px;
+  min-height: 82px;
+  padding: .8rem 1rem;
+  align-items: center;
+  justify-content: center;
+  gap: .7rem;
+  color: var(--text-strong);
   background: var(--card-bg);
   border: 1px solid var(--border-strong);
+  border-radius: 1.1rem;
+  box-shadow: var(--shadow-small);
+  font-size: .86rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.skills-treadmill-lane img {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  object-fit: contain;
+}
+
+:root[data-theme="dark"] .skills-treadmill-lane img[src*="github"] { filter: invert(1); }
+
+.skills-treadmill-lane--text li {
+  min-width: auto;
+  min-height: 48px;
+  padding: .55rem .9rem;
+  color: var(--text-soft);
   border-radius: 999px;
   font-size: .8rem;
   font-weight: 600;
 }
 
-@media (min-width: 700px) {
-  .about-skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.skills-treadmill:hover .skills-treadmill-track,
+.skills-treadmill:focus-within .skills-treadmill-track {
+  animation-play-state: paused;
+}
+
+@keyframes skills-treadmill-run {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+@media (max-width: 599px) {
+  .skills-treadmill-lane li {
+    min-width: 126px;
+    min-height: 72px;
+    padding: .7rem .85rem;
+  }
+
+  .skills-treadmill-lane img { width: 32px; height: 32px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-treadmill { mask-image: none; -webkit-mask-image: none; }
+  .skills-treadmill-row { overflow-x: auto; scrollbar-width: thin; }
+  .skills-treadmill-track { animation: none; }
+  .skills-treadmill-lane[aria-hidden="true"] { display: none; }
 }
 
 .education-page-copy p + p { margin-top: 1rem; }

@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
   <link rel="stylesheet" href="tailwind.css?v=20260907e">
-  <link rel="stylesheet" href="style.css?v=20261009helvetica1">
+  <link rel="stylesheet" href="style.css?v=20261009skillmill1">
   <script src="script.js"></script>
 </head>
 
@@ -82,59 +82,67 @@
       <section class="about-skills" aria-labelledby="skills-title">
         <h2 id="skills-title" class="section-title">Skills &amp; Tools</h2>
 
-        <div class="about-skills-grid">
-          <article class="skill-card card-shell">
-            <p class="kicker skill-group">Core web development</p>
-            <ul class="skill-grid">
-              <li><img src="images/skills/html5.svg" alt="" width="48" height="48" loading="lazy"><span>HTML5</span></li>
-              <li><img src="images/skills/css3.svg" alt="" width="48" height="48" loading="lazy"><span>CSS3</span></li>
-              <li><img src="images/skills/javascript.svg" alt="" width="48" height="48" loading="lazy"><span>JavaScript</span></li>
-              <li><img src="images/skills/tailwindcss.svg" alt="" width="48" height="48" loading="lazy"><span>Tailwind CSS</span></li>
-              <li><img src="images/skills/bootstrap.svg" alt="" width="48" height="48" loading="lazy"><span>Bootstrap</span></li>
-              <li><img src="images/skills/php.svg" alt="" width="48" height="48" loading="lazy"><span>PHP</span></li>
-            </ul>
-          </article>
+        <div class="skills-treadmill" aria-label="Technical skills">
+          <div class="skills-treadmill-row">
+            <div class="skills-treadmill-track">
+              <ul class="skills-treadmill-lane">
+                <li><img src="images/skills/html5.svg" alt=""><span>HTML5</span></li>
+                <li><img src="images/skills/css3.svg" alt=""><span>CSS3</span></li>
+                <li><img src="images/skills/javascript.svg" alt=""><span>JavaScript</span></li>
+                <li><img src="images/skills/tailwindcss.svg" alt=""><span>Tailwind CSS</span></li>
+                <li><img src="images/skills/bootstrap.svg" alt=""><span>Bootstrap</span></li>
+                <li><img src="images/skills/php.svg" alt=""><span>PHP</span></li>
+                <li><img src="images/skills/flutter.svg" alt=""><span>Flutter</span></li>
+                <li><img src="images/skills/dart.svg" alt=""><span>Dart</span></li>
+              </ul>
+              <ul class="skills-treadmill-lane" aria-hidden="true">
+                <li><img src="images/skills/html5.svg" alt=""><span>HTML5</span></li>
+                <li><img src="images/skills/css3.svg" alt=""><span>CSS3</span></li>
+                <li><img src="images/skills/javascript.svg" alt=""><span>JavaScript</span></li>
+                <li><img src="images/skills/tailwindcss.svg" alt=""><span>Tailwind CSS</span></li>
+                <li><img src="images/skills/bootstrap.svg" alt=""><span>Bootstrap</span></li>
+                <li><img src="images/skills/php.svg" alt=""><span>PHP</span></li>
+                <li><img src="images/skills/flutter.svg" alt=""><span>Flutter</span></li>
+                <li><img src="images/skills/dart.svg" alt=""><span>Dart</span></li>
+              </ul>
+            </div>
+          </div>
 
-          <article class="skill-card card-shell">
-            <p class="kicker skill-group">Mobile development</p>
-            <ul class="skill-grid">
-              <li><img src="images/skills/flutter.svg" alt="" width="48" height="48" loading="lazy"><span>Flutter</span></li>
-              <li><img src="images/skills/dart.svg" alt="" width="48" height="48" loading="lazy"><span>Dart</span></li>
-            </ul>
-          </article>
+          <div class="skills-treadmill-row skills-treadmill-row--reverse">
+            <div class="skills-treadmill-track">
+              <ul class="skills-treadmill-lane">
+                <li><img src="images/skills/supabase.svg" alt=""><span>Supabase</span></li>
+                <li><img src="images/skills/mysql.svg" alt=""><span>PostgreSQL / MySQL</span></li>
+                <li><img src="images/skills/firebase.svg" alt=""><span>Firebase</span></li>
+                <li><img src="images/skills/figma.svg" alt=""><span>Figma</span></li>
+                <li><img src="images/skills/git.svg" alt=""><span>Git</span></li>
+                <li><img src="images/skills/github.svg" alt=""><span>GitHub</span></li>
+                <li><img src="images/skills/vscode.svg" alt=""><span>VS Code</span></li>
+              </ul>
+              <ul class="skills-treadmill-lane" aria-hidden="true">
+                <li><img src="images/skills/supabase.svg" alt=""><span>Supabase</span></li>
+                <li><img src="images/skills/mysql.svg" alt=""><span>PostgreSQL / MySQL</span></li>
+                <li><img src="images/skills/firebase.svg" alt=""><span>Firebase</span></li>
+                <li><img src="images/skills/figma.svg" alt=""><span>Figma</span></li>
+                <li><img src="images/skills/git.svg" alt=""><span>Git</span></li>
+                <li><img src="images/skills/github.svg" alt=""><span>GitHub</span></li>
+                <li><img src="images/skills/vscode.svg" alt=""><span>VS Code</span></li>
+              </ul>
+            </div>
+          </div>
 
-          <article class="skill-card card-shell">
-            <p class="kicker skill-group">Back end &amp; data</p>
-            <ul class="skill-grid">
-              <li><img src="images/skills/supabase.svg" alt="" width="48" height="48" loading="lazy"><span>Supabase<br>(PostgreSQL)</span></li>
-              <li><img src="images/skills/mysql.svg" alt="" width="48" height="48" loading="lazy"><span>MySQL / SQL</span></li>
-              <li><img src="images/skills/firebase.svg" alt="" width="48" height="48" loading="lazy"><span>Firebase / Firestore</span></li>
-            </ul>
-          </article>
-
-          <article class="skill-card card-shell">
-            <p class="kicker skill-group">Design &amp; workflow</p>
-            <ul class="skill-grid">
-              <li><img src="images/skills/figma.svg" alt="" width="48" height="48" loading="lazy"><span>Figma</span></li>
-              <li><img src="images/skills/git.svg" alt="" width="48" height="48" loading="lazy"><span>Git</span></li>
-              <li><img src="images/skills/github.svg" alt="" width="48" height="48" loading="lazy"><span>GitHub</span></li>
-              <li><img src="images/skills/vscode.svg" alt="" width="48" height="48" loading="lazy"><span>VS Code</span></li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="about-skill-tags" aria-label="Additional technical skills">
-          <span>ASP.NET Core MVC</span>
-          <span>C# / Razor</span>
-          <span>PDO</span>
-          <span>Java</span>
-          <span>C++</span>
-          <span>JSON</span>
-          <span>REST APIs</span>
-          <span>Responsive Web Design</span>
-          <span>UI/UX Design</span>
-          <span>Gemini API Integration</span>
-          <span>Arabic / English RTL</span>
+          <div class="skills-treadmill-row skills-treadmill-row--compact">
+            <div class="skills-treadmill-track">
+              <ul class="skills-treadmill-lane skills-treadmill-lane--text">
+                <li>ASP.NET Core MVC</li><li>C# / Razor</li><li>PDO</li><li>Java</li><li>C++</li><li>JSON</li>
+                <li>REST APIs</li><li>Responsive Web Design</li><li>UI/UX Design</li><li>Gemini API Integration</li><li>Arabic / English RTL</li>
+              </ul>
+              <ul class="skills-treadmill-lane skills-treadmill-lane--text" aria-hidden="true">
+                <li>ASP.NET Core MVC</li><li>C# / Razor</li><li>PDO</li><li>Java</li><li>C++</li><li>JSON</li>
+                <li>REST APIs</li><li>Responsive Web Design</li><li>UI/UX Design</li><li>Gemini API Integration</li><li>Arabic / English RTL</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
     </div>
