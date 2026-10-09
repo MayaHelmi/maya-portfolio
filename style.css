@@ -1430,6 +1430,206 @@ a.card-media:hover { background: var(--pink-bg); }
   color: var(--pink);
 }
 
+/* ============ Selected-work 3D carousel ============
+   The screenshot frames turn toward the centre of the track while the
+   project names, summaries and links stay flat and easy to read. */
+.showcase-carousel-toolbar {
+  display: flex;
+  max-width: 1180px;
+  margin: 0 auto .75rem;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.showcase-carousel-toolbar .kicker { margin-bottom: .2rem; }
+.showcase-carousel-help { margin: 0; color: var(--text-soft); font-size: .9rem; }
+
+.showcase-carousel-controls {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: .65rem;
+}
+
+.showcase-carousel-button {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--card-bg);
+  color: var(--text-strong);
+  font: inherit;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform .15s ease, color .15s ease, border-color .15s ease, background .15s ease;
+}
+.showcase-carousel-button:hover {
+  transform: translateY(-2px);
+  border-color: var(--pink);
+  background: var(--pink-bg);
+  color: var(--pink);
+}
+.showcase-carousel-button:disabled { cursor: default; opacity: .35; transform: none; }
+
+.showcase-carousel-status {
+  min-width: 4.6rem;
+  margin: 0;
+  color: var(--text-fade);
+  font-size: .78rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .1em;
+  text-align: center;
+}
+
+.showcase-carousel {
+  --showcase-slide: min(72vw, 720px);
+  display: flex !important;
+  grid-template-columns: none !important;
+  align-items: flex-start;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 1.25rem max(1rem, calc((100vw - var(--showcase-slide)) / 2)) 2.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  perspective: 1500px;
+  scroll-behavior: smooth;
+  scroll-padding-inline: max(1rem, calc((100vw - var(--showcase-slide)) / 2));
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  cursor: grab;
+  overscroll-behavior-inline: contain;
+}
+.showcase-carousel::-webkit-scrollbar { display: none; }
+.showcase-carousel.is-dragging { cursor: grabbing; scroll-behavior: auto; scroll-snap-type: none; user-select: none; }
+.showcase-carousel:focus-visible { outline: 2px solid var(--pink); outline-offset: -2px; }
+
+.showcase-carousel .project-card {
+  flex: 0 0 var(--showcase-slide);
+  width: var(--showcase-slide);
+  min-height: 0;
+  padding: .25rem;
+  aspect-ratio: auto;
+  perspective: none;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+.showcase-carousel .flip-inner {
+  position: static;
+  display: flex;
+  height: auto;
+  flex-direction: column;
+  transform: none !important;
+  transform-style: flat;
+  transition: none;
+}
+
+.showcase-carousel .flip-face,
+.showcase-carousel .flip-face:hover {
+  position: static;
+  inset: auto;
+  display: block;
+  padding: 0;
+  overflow: visible;
+  transform: none !important;
+  backface-visibility: visible;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--text);
+}
+
+.showcase-carousel .flip-front .project-shot {
+  --showcase-angle: 0deg;
+  --showcase-scale: 1;
+  --showcase-opacity: 1;
+  --showcase-saturation: 1;
+  position: relative;
+  width: 100%;
+  margin: 0 0 1.15rem;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  opacity: var(--showcase-opacity);
+  border: 1px solid var(--border-strong);
+  border-radius: 20px;
+  background: var(--soft-bg);
+  box-shadow: var(--shadow-large);
+  filter: saturate(var(--showcase-saturation));
+  transform: rotateY(var(--showcase-angle)) scale(var(--showcase-scale));
+  transform-style: preserve-3d;
+  transition: transform .28s cubic-bezier(.2, .7, .2, 1), opacity .28s ease, filter .28s ease, border-color .2s ease;
+  will-change: transform;
+}
+
+.showcase-carousel .project-card[data-active="true"] .project-shot { border-color: var(--pink); }
+.showcase-carousel .flip-front .project-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform: none !important;
+}
+
+.showcase-carousel .flip-front .project-head {
+  align-items: flex-start;
+  gap: .65rem;
+  margin: 0;
+  padding-inline: .25rem;
+}
+.showcase-carousel .flip-front .project-title { font-size: clamp(1.5rem, 3vw, 2rem); }
+.showcase-carousel .flip-hint { display: none; }
+
+.showcase-carousel .flip-back {
+  padding: .9rem .25rem 0;
+  color: var(--text);
+}
+.showcase-carousel .flip-back .kicker { margin-bottom: .55rem; color: var(--pink); }
+.showcase-carousel .flip-back .project-description { margin-bottom: 1rem; color: var(--text); }
+.showcase-carousel .flip-back .project-note {
+  background: var(--soft-bg);
+  border-left-color: var(--border-strong);
+  color: var(--text-soft);
+}
+.showcase-carousel .flip-back .tech-tag {
+  background: var(--soft-bg);
+  border-color: var(--border);
+  color: var(--text-soft);
+}
+.showcase-carousel .flip-back .project-links {
+  margin-top: 1.25rem;
+  border-top-color: var(--border);
+}
+.showcase-carousel .flip-back .project-links a { color: var(--pink); }
+.showcase-carousel .flip-back .project-private { color: var(--text-fade); }
+
+@media (max-width: 767px) {
+  .showcase-carousel-toolbar { align-items: flex-start; flex-direction: column; }
+  .showcase-carousel { --showcase-slide: 82vw; gap: 1rem; padding-block: .75rem 2rem; }
+  .showcase-carousel .flip-front .project-shot { border-radius: 16px; }
+  .showcase-carousel .flip-front .project-title { font-size: 1.35rem; }
+  .showcase-carousel .flip-back .project-description { font-size: .95rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase-carousel { scroll-behavior: auto; }
+  .showcase-carousel .flip-front .project-shot {
+    opacity: 1;
+    filter: none;
+    transform: none !important;
+    transition: none;
+  }
+}
+
 /* ============ Footer ============ */
 .footer {
   background: var(--dark-panel);
