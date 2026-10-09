@@ -22,11 +22,11 @@
     href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
   <!-- Tailwind first, so the hand-written rules in style.css stay in charge. -->
   <link rel="stylesheet" href="tailwind.css?v=20260907e">
-  <link rel="stylesheet" href="style.css?v=20261009entrance1">
+  <link rel="stylesheet" href="style.css?v=20261009snakegate1">
 
   <!-- Theme switch + phone menu. Deliberately has no "defer": it needs to run
        before the page is painted, so dark mode never flashes white first. -->
-  <script src="script.js?v=20261009entrance1"></script>
+  <script src="script.js?v=20261009snakegate1"></script>
 </head>
 
 <body class="landing-only">
@@ -101,15 +101,15 @@
                     full length, which walks the text once all the way
                     around. repeatCount="indefinite" starts it over forever.
 
-               Why the text is written twice: a single copy would disappear
-               off the end of the track and leave a gap before coming back.
-               The second copy is exactly one lap behind (that's the minus
-               sign), so it arrives at the start just as the first one
-               leaves the end.
+               The track begins inside the About Me capsule, crosses its
+               left-centre border, loops around the group, then returns
+               through that same border. text-anchor="end" places the final
+               letter at the doorway, so "r" leaves first. At the end of the
+               lap, the full phrase is pulled back inside before repeating.
 
-               2246.34 is this track's length in pixels, measured once. If
+               2436.34 is this track's length in pixels, measured once. If
                you ever reshape the path, get the new number by running this
-               in the browser console and paste it into all four places:
+               in the browser console and update the animation below:
                  document.getElementById("snake-track").getTotalLength()
 
                There are two of these: this wide one for laptops, and a
@@ -117,7 +117,10 @@
                decides which one is shown. -->
           <svg class="hero-role-snake" viewBox="0 0 814 328" preserveAspectRatio="none" aria-hidden="true"
             focusable="false">
-            <path id="snake-track" fill="none" d="M -16 132.4
+            <path id="snake-track" fill="none" d="M 79 164
+              L 0 164
+              L -16 164
+              L -16 132.4
               A 82 82 0 0 1 120.7 71.3
               A 24 24 0 0 0 156 67.7
               A 82 82 0 0 1 276 54.7
@@ -136,14 +139,13 @@
               A 24 24 0 0 0 271.3 261.1
               A 82 82 0 0 1 167.3 256.7
               A 24 24 0 0 0 132 260.3
-              A 82 82 0 0 1 -16 211.6 Z" />
+              A 82 82 0 0 1 -16 211.6
+              L -16 164
+              L 0 164
+              L 79 164" />
             <text class="snake-text">
-              <textPath href="#snake-track" startOffset="0">Full Stack Developer
-                <animate attributeName="startOffset" from="0" to="2246.34" dur="23s" repeatCount="indefinite"
-                  begin="indefinite" />
-              </textPath>
-              <textPath href="#snake-track" startOffset="-2246.34">Full Stack Developer
-                <animate attributeName="startOffset" from="-2246.34" to="0" dur="23s" repeatCount="indefinite"
+              <textPath href="#snake-track" startOffset="79" text-anchor="end">Full Stack Developer
+                <animate attributeName="startOffset" from="79" to="2690" dur="27s" repeatCount="indefinite"
                   begin="indefinite" />
               </textPath>
             </text>
@@ -152,22 +154,23 @@
           <!-- The phone version: same idea as above, but the track is a
                rounded rectangle around the complete capsule group. -->
           <svg class="hero-role-snake--phone" viewBox="-16 -16 428 372" aria-hidden="true" focusable="false">
-            <path id="snake-track-phone" fill="none" d="M 50 -16
+            <path id="snake-track-phone" fill="none" d="M 50 86
+              L 0 86
+              L -16 86
+              L -16 50
+              A 66 66 0 0 1 50 -16
               L 346 -16
               A 66 66 0 0 1 412 50
               L 412 290
               A 66 66 0 0 1 346 356
               L 50 356
               A 66 66 0 0 1 -16 290
-              L -16 50
-              A 66 66 0 0 1 50 -16 Z" />
+              L -16 86
+              L 0 86
+              L 50 86" />
             <text class="snake-text">
-              <textPath href="#snake-track-phone" startOffset="0">Full Stack Developer
-                <animate attributeName="startOffset" from="0" to="1486.69" dur="16s" repeatCount="indefinite"
-                  begin="indefinite" />
-              </textPath>
-              <textPath href="#snake-track-phone" startOffset="-1486.69">Full Stack Developer
-                <animate attributeName="startOffset" from="-1486.69" to="0" dur="16s" repeatCount="indefinite"
+              <textPath href="#snake-track-phone" startOffset="50" text-anchor="end">Full Stack Developer
+                <animate attributeName="startOffset" from="50" to="1800" dur="19s" repeatCount="indefinite"
                   begin="indefinite" />
               </textPath>
             </text>

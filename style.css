@@ -946,8 +946,9 @@ a:focus-visible, button:focus-visible {
   overflow: visible;
 }
 
-/* The moving title waits until the capsules have finished opening. Its SVG
-   motion is started by script.js at the same moment this fade is released. */
+/* The moving title waits until the capsules have finished opening. The SVG
+   sits behind the solid capsules, turning the About Me pill into a mask: the
+   phrase can leave and return only through its left-centre edge. */
 .js .landing-only .hero-role-snake,
 .js .landing-only .hero-role-snake--phone {
   opacity: 0;
@@ -955,19 +956,14 @@ a:focus-visible, button:focus-visible {
 
 .js.snake-ready .landing-only .hero-role-snake,
 .js.snake-ready .landing-only .hero-role-snake--phone {
-  animation: snake-arrive .35s ease both;
-}
-
-@keyframes snake-arrive {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  opacity: 1;
 }
 
 .snake-text { letter-spacing: .1em; fill: var(--pink); dominant-baseline: middle; }
 
 /* Motion allowed: hide the plain label and lay the snake over the pills. */
 @media screen and (prefers-reduced-motion: no-preference) {
-  .hero-role { position: absolute; inset: 0; margin: 0; z-index: 5; }
+  .hero-role { position: absolute; inset: 0; margin: 0; z-index: 2; }
   .hero-role-label { display: none; }
 }
 
