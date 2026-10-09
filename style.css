@@ -2513,7 +2513,7 @@ main { animation: page-in .45s ease both; }
   max-width: 12ch;
   margin: 0;
   color: var(--text-strong);
-  font-size: clamp(2.6rem, 6vw, 5.6rem);
+  font-size: clamp(2.2rem, 4.8vw, 4.35rem);
   font-weight: 700;
   line-height: .96;
   letter-spacing: -.055em;
@@ -2528,10 +2528,11 @@ main { animation: page-in .45s ease both; }
 
 .about-section-number {
   margin: 0;
-  color: var(--pink-strong);
-  font-size: clamp(.78rem, 1.5vw, .95rem);
-  font-weight: 800;
-  letter-spacing: .12em;
+  color: var(--text-strong);
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -.01em;
 }
 
 .about-portrait-stage {
@@ -2606,7 +2607,6 @@ main { animation: page-in .45s ease both; }
 
 .about-section-heading .about-section-number::after { content: " ·"; }
 .about-section-heading .section-title { margin: 0; font-size: clamp(2rem, 4vw, 3.6rem); }
-.about-section-intro { max-width: 48ch; margin: -1rem 0 2rem; color: var(--text-soft); }
 
 .about-timeline-card {
   position: relative;
@@ -2803,7 +2803,7 @@ main { animation: page-in .45s ease both; }
 
 @media (max-width: 699px) {
   .about-introduction-copy { padding-right: 0; }
-  .about-introduction-copy h3 { font-size: clamp(2.7rem, 14vw, 4.5rem); }
+  .about-introduction-copy h3 { font-size: clamp(2.15rem, 10.5vw, 3.5rem); }
   .about-portrait-stage { width: min(76vw, 340px); }
 
   .about-education-card,
