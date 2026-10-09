@@ -423,10 +423,12 @@ a:focus-visible, button:focus-visible {
 .standalone-page {
   min-height: 100svh;
   padding: clamp(1.25rem, 4vw, 2.5rem) clamp(1rem, 4vw, 2rem) clamp(3rem, 8vw, 6rem);
+  overflow-x: hidden;
 }
 
 .standalone-shell {
-  width: min(100%, 900px);
+  width: 100%;
+  max-width: 900px;
   margin-inline: auto;
 }
 
@@ -453,6 +455,7 @@ a:focus-visible, button:focus-visible {
 .education-page-grid,
 .contact-page-grid {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(1.5rem, 4vw, 3rem);
 }
 
@@ -463,8 +466,12 @@ a:focus-visible, button:focus-visible {
 
 .education-page-copy,
 .contact-page-card {
+  min-width: 0;
+  width: 100%;
   padding: clamp(1.5rem, 4vw, 2.5rem);
 }
+
+.education-page-copy p { overflow-wrap: anywhere; }
 
 .education-page-copy p + p { margin-top: 1rem; }
 .education-page-copy .about-actions { margin-top: 1.75rem; }
@@ -841,44 +848,17 @@ a:focus-visible, button:focus-visible {
 .capsule-link:hover .capsule-label { color: var(--pink); }
 
 .capsule-photo {
-  --photo-cap: clamp(2.7rem, 4.5vw, 3.25rem);
   position: relative;
   width: clamp(154px, 19vw, 230px);
-  background: #171416;
-  border: 1px solid var(--border);
+  border: none;
   overflow: hidden;
   box-shadow: var(--shadow-large);
 }
 .capsule-photo img {
-  position: absolute;
-  inset: var(--photo-cap) 0 0;
   width: 100%;
-  height: calc(100% - var(--photo-cap));
+  height: 100%;
   object-fit: cover;
-  object-position: center top;
-  border-radius: 0 0 999px 999px;
-}
-
-.capsule-photo-label {
-  position: absolute;
-  z-index: 2;
-  inset: 0 0 auto;
-  display: flex;
-  height: var(--photo-cap);
-  align-items: center;
-  justify-content: center;
-  padding: .65rem .5rem .5rem;
-  color: #fff;
-  background: linear-gradient(180deg, rgba(209, 154, 170, .2), rgba(23, 20, 22, .94));
-  border-bottom: 1px solid rgba(255, 255, 255, .14);
-  border-radius: 999px 999px 0 0;
-  font-size: clamp(.58rem, 1.1vw, .72rem);
-  font-weight: 700;
-  letter-spacing: .08em;
-  line-height: 1;
-  text-transform: uppercase;
-  white-space: nowrap;
-  box-shadow: none;
+  border-radius: inherit;
 }
 
 .hero-title {
