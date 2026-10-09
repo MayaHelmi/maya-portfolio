@@ -17,6 +17,7 @@
   const modalImage = modal?.querySelector('[data-project-modal-image]');
   const modalImageScroll = modal?.querySelector('.project-modal-image-scroll');
   const modalPreviewLabel = modal?.querySelector('[data-project-modal-preview-label]');
+  const modalScrollHint = modal?.querySelector('[data-project-modal-scroll-hint]');
   const modalCopyScroll = modal?.querySelector('.project-modal-copy-scroll');
   const modalKicker = modal?.querySelector('[data-project-modal-kicker]');
   const modalTitle = modal?.querySelector('[data-project-modal-title]');
@@ -81,6 +82,8 @@
     const title = card.querySelector('.project-title')?.textContent.trim() || 'Project';
     const kicker = card.querySelector('.flip-back .kicker')?.textContent.trim() || 'Project details';
     const description = card.querySelector('.project-description')?.textContent.trim() || '';
+    const isApp = card.dataset.showcaseKind === 'app';
+    const fullImage = card.dataset.projectFullImage;
     const badges = card.querySelector('.project-badges');
     const tech = card.querySelector('.project-tech');
     const links = Array.from(card.querySelectorAll('.project-links a'));
@@ -95,9 +98,13 @@
       .filter(Boolean);
 
     lastModalTrigger = trigger;
-    modalImage.src = image.currentSrc || image.src;
-    modalImage.alt = image.alt;
-    modalPreviewLabel.textContent = card.dataset.showcaseKind === 'app' ? 'App preview' : 'Website preview';
+    modal.dataset.previewKind = isApp ? 'app' : 'website';
+    modalImageScroll.scrollTop = 0;
+    modalImageScroll.classList.add('is-loading');
+    modalImage.hidden = true;
+    modalImage.alt = isApp ? image.alt : 'Full-page screenshot of ' + title;
+    modalPreviewLabel.textContent = isApp ? 'App preview' : 'Website preview';
+    modalScrollHint.textContent = isApp ? 'Explore the app screens' : 'Scroll to view the full page ↓';
     modalImageScroll.setAttribute('aria-label', 'Scrollable ' + modalPreviewLabel.textContent.toLowerCase() + ' for ' + title);
     modalKicker.textContent = kicker;
     modalTitle.textContent = title;
@@ -128,11 +135,21 @@
       modalCta.removeAttribute('href');
     }
 
-    modalImageScroll.scrollTop = 0;
     modalCopyScroll.scrollTop = 0;
     modal.showModal();
     document.documentElement.classList.add('project-modal-open');
     modalTitle.focus();
+
+    function revealImage() {
+      modalImage.hidden = false;
+      modalImageScroll.classList.remove('is-loading');
+      modalImageScroll.scrollTop = 0;
+    }
+
+    modalImage.onload = revealImage;
+    modalImage.onerror = revealImage;
+    modalImage.src = fullImage || image.currentSrc || image.src;
+    if (modalImage.complete && modalImage.naturalWidth) requestAnimationFrame(revealImage);
   }
 
   modalClose.addEventListener('click', function () {

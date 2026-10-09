@@ -1697,8 +1697,23 @@ html.project-modal-open { overflow: hidden; }
   background: var(--soft-bg);
   border-right: 1px solid var(--border);
 }
-.project-modal-preview > .kicker { margin-bottom: .65rem; }
+.project-modal-preview-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: .65rem;
+}
+.project-modal-preview-head .kicker { margin: 0; }
+.project-modal-scroll-hint {
+  margin: 0;
+  color: var(--text-fade);
+  font-size: .75rem;
+  font-weight: 600;
+  text-align: right;
+}
 .project-modal-image-scroll {
+  position: relative;
   height: auto;
   max-height: min(calc(100vh - 7rem), 720px);
   max-height: min(calc(100dvh - 7rem), 720px);
@@ -1709,6 +1724,24 @@ html.project-modal-open { overflow: hidden; }
   background: var(--page-bg);
   box-shadow: var(--shadow-medium);
   scrollbar-color: var(--pink-border) transparent;
+}
+.project-modal-image-scroll.is-loading { min-height: 320px; }
+.project-modal-image-scroll.is-loading::before {
+  content: "Loading the full page…";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--text-fade);
+  font-size: .85rem;
+  font-weight: 600;
+}
+.project-modal-image-scroll::-webkit-scrollbar { width: 10px; }
+.project-modal-image-scroll::-webkit-scrollbar-track { background: var(--soft-bg); }
+.project-modal-image-scroll::-webkit-scrollbar-thumb {
+  background: var(--pink-border);
+  border: 2px solid var(--soft-bg);
+  border-radius: 999px;
 }
 .project-modal-image-scroll img {
   display: block;
@@ -1765,8 +1798,22 @@ html.project-modal-open { overflow: hidden; }
   }
   .project-modal-grid { display: block; height: auto; max-height: none; }
   .project-modal-preview { padding: .85rem; border-right: 0; border-bottom: 1px solid var(--border); }
-  .project-modal-preview > .kicker { padding-right: 3.5rem; }
-  .project-modal-image-scroll { height: auto; max-height: min(58vh, 540px); border-radius: 12px; }
+  .project-modal-preview-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .2rem;
+    padding-right: 3.5rem;
+  }
+  .project-modal-scroll-hint { text-align: left; }
+  .project-modal-image-scroll { border-radius: 12px; }
+  .project-modal[data-preview-kind="website"] .project-modal-image-scroll {
+    height: min(48vh, 420px);
+    max-height: none;
+  }
+  .project-modal[data-preview-kind="app"] .project-modal-image-scroll {
+    height: auto;
+    max-height: min(58vh, 540px);
+  }
   .project-modal-copy { display: block; overflow: visible; }
   .project-modal-copy-scroll { padding: 2rem 1.25rem 1rem; overflow: visible; }
   .project-modal-cta { margin: .5rem 1.25rem 2.25rem; }
