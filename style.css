@@ -815,10 +815,54 @@ a:focus-visible, button:focus-visible {
 }
 /* Each pill is nudged to a slightly different angle and height, so the row
    looks hand-placed instead of perfectly straight. */
-.capsule--rot-l { transform: rotate(-7deg) translateY(8px); }
-.capsule--lift  { transform: rotate(-3deg) translateY(-8px); }
-.capsule--drop  { transform: rotate(3deg) translateY(-8px); }
-.capsule--rot-r { transform: rotate(7deg) translateY(8px); }
+.capsule--rot-l {
+  --capsule-entry-x: 260%;
+  --capsule-rest: rotate(-7deg) translateY(8px);
+  --capsule-delay: .12s;
+  transform: var(--capsule-rest);
+}
+.capsule--lift {
+  --capsule-entry-x: 145%;
+  --capsule-rest: rotate(-3deg) translateY(-8px);
+  --capsule-delay: 0s;
+  transform: var(--capsule-rest);
+}
+.capsule--drop {
+  --capsule-entry-x: -145%;
+  --capsule-rest: rotate(3deg) translateY(-8px);
+  --capsule-delay: .04s;
+  transform: var(--capsule-rest);
+}
+.capsule--rot-r {
+  --capsule-entry-x: -260%;
+  --capsule-rest: rotate(7deg) translateY(8px);
+  --capsule-delay: .16s;
+  transform: var(--capsule-rest);
+}
+
+/* On the landing page, the portrait masks the four navigation capsules while
+   they begin in its centre. Once the image has loaded, script.js adds
+   .hero-ready and the capsules fan into their resting positions. */
+.js .landing-only .capsule:not(.capsule-photo) {
+  z-index: 1;
+  opacity: 0;
+}
+
+.js.hero-ready .landing-only .capsule:not(.capsule-photo) {
+  animation: capsule-spread 1.15s cubic-bezier(.22, 1, .36, 1) var(--capsule-delay) both;
+}
+
+@keyframes capsule-spread {
+  0% {
+    opacity: 0;
+    transform: translate(var(--capsule-entry-x), var(--capsule-entry-y, 0)) rotate(0deg) scale(.7);
+  }
+  14% { opacity: 1; }
+  100% {
+    opacity: 1;
+    transform: var(--capsule-rest);
+  }
+}
 
 .capsule-link {
   display: flex;
@@ -849,6 +893,7 @@ a:focus-visible, button:focus-visible {
 
 .capsule-photo {
   position: relative;
+  z-index: 4;
   width: clamp(154px, 19vw, 230px);
   border: none;
   overflow: hidden;
@@ -899,6 +944,23 @@ a:focus-visible, button:focus-visible {
   display: none;
   position: absolute;
   overflow: visible;
+}
+
+/* The moving title waits until the capsules have finished opening. Its SVG
+   motion is started by script.js at the same moment this fade is released. */
+.js .landing-only .hero-role-snake,
+.js .landing-only .hero-role-snake--phone {
+  opacity: 0;
+}
+
+.js.snake-ready .landing-only .hero-role-snake,
+.js.snake-ready .landing-only .hero-role-snake--phone {
+  animation: snake-arrive .35s ease both;
+}
+
+@keyframes snake-arrive {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .snake-text { letter-spacing: .1em; fill: var(--pink); dominant-baseline: middle; }
@@ -996,6 +1058,13 @@ a:focus-visible, button:focus-visible {
   .capsule--drop  { grid-area: 2 / 1; }
   .capsule--rot-r { grid-area: 2 / 2; }
 
+  /* On phones the portrait sits to the right of a 2x2 capsule grid, so each
+     pill also travels vertically from the photo's centre as it opens. */
+  .capsule--rot-l { --capsule-entry-x: 315%; --capsule-entry-y: 56%; }
+  .capsule--lift  { --capsule-entry-x: 195%; --capsule-entry-y: 56%; }
+  .capsule--drop  { --capsule-entry-x: 315%; --capsule-entry-y: -56%; }
+  .capsule--rot-r { --capsule-entry-x: 195%; --capsule-entry-y: -56%; }
+
   /* The photo spans both pill rows; the left margin clears a lane
      for the snake's right-side run. */
   .capsule-photo {
@@ -1007,10 +1076,10 @@ a:focus-visible, button:focus-visible {
 }
 
 @media (max-width: 575px) {
-  .capsule--rot-l { transform: rotate(-6deg) translateY(6px); }
-  .capsule--lift  { transform: translateY(-6px); }
-  .capsule--drop  { transform: translateY(7px); }
-  .capsule--rot-r { transform: rotate(6deg) translateY(-2px); }
+  .capsule--rot-l { --capsule-rest: rotate(-6deg) translateY(6px); }
+  .capsule--lift  { --capsule-rest: translateY(-6px); }
+  .capsule--drop  { --capsule-rest: translateY(7px); }
+  .capsule--rot-r { --capsule-rest: rotate(6deg) translateY(-2px); }
 }
 
 /* ============ Sections ============ */
@@ -1733,6 +1802,7 @@ main { animation: page-in .45s ease both; }
     animation-duration: .001ms !important;
     transition-duration: .001ms !important;
   }
+  .js .landing-only .capsule:not(.capsule-photo) { opacity: 1; }
   .card-shell:hover { transform: none; }
   @view-transition { navigation: none; }
 }

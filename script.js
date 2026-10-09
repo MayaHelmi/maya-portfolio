@@ -11,6 +11,7 @@
    - a data-theme="dark" attribute  -> the CSS switches to dark colours
    - a class of "nav-open"          -> the CSS shows the phone menu        */
 const page = document.documentElement;
+page.classList.add("js");
 
 
 /* ============ 1. Dark / light theme ============ */
@@ -27,6 +28,41 @@ try {
 
 const systemIsDark = matchMedia("(prefers-color-scheme: dark)").matches;
 page.dataset.theme = savedTheme || (systemIsDark ? "dark" : "light");
+
+
+/* ============ Landing hero entrance ============ */
+
+/* Wait for the portrait and the rest of the page assets before opening the
+   navigation capsules. The moving role title begins only after they settle,
+   so the first load reads as one deliberate sequence. */
+function startHeroEntrance() {
+  if (!document.body.classList.contains("landing-only")) return;
+
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reducedMotion) {
+    page.classList.add("hero-ready");
+    return;
+  }
+
+  requestAnimationFrame(function () {
+    page.classList.add("hero-ready");
+  });
+
+  window.setTimeout(function () {
+    page.classList.add("snake-ready");
+
+    document.querySelectorAll(".hero-role-snake animate, .hero-role-snake--phone animate")
+      .forEach(function (motion) {
+        if (typeof motion.beginElement === "function") motion.beginElement();
+      });
+  }, 1400);
+}
+
+if (document.readyState === "complete") {
+  startHeroEntrance();
+} else {
+  window.addEventListener("load", startHeroEntrance, { once: true });
+}
 
 /* Runs when the sun/moon button is clicked. */
 function switchTheme() {
