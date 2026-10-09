@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
   <link rel="stylesheet" href="tailwind.css?v=20260907e">
-  <link rel="stylesheet" href="style.css?v=20261009contactform2">
+  <link rel="stylesheet" href="style.css?v=20261009contactrows2">
   <script src="script.js?v=20261009contactform2"></script>
 </head>
 
@@ -25,74 +25,73 @@
       <a class="standalone-back" href="index.html" aria-label="Back to portfolio home">← Back home</a>
       <header class="contact-intro">
         <div>
-          <p class="kicker">Get in touch</p>
-          <h1 class="standalone-heading">Let’s talk.</h1>
+          <p class="kicker">Contact</p>
+          <h1 class="standalone-heading">Contact me.</h1>
         </div>
-        <p class="contact-intro-copy">For junior full-stack, front-end, and software-development opportunities.</p>
+        <p class="contact-intro-copy">Choose the easiest way to reach me.</p>
       </header>
 
-      <section class="contact-board" aria-label="Ways to contact Maya Helmi">
-        <a class="contact-tile contact-tile--email" href="mailto:maayahelmi@gmail.com">
-          <span class="contact-tile-number" aria-hidden="true">01</span>
-          <span class="contact-tile-icon" aria-hidden="true">
+      <section class="contact-links" aria-label="Ways to contact Maya Helmi">
+        <a class="contact-row" href="mailto:maayahelmi@gmail.com">
+          <span class="contact-row-icon contact-row-icon--email" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor"
               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
               <rect x="2.5" y="4.5" width="19" height="15" rx="3" />
               <path d="m4.5 7 7.5 6 7.5-6" />
             </svg>
           </span>
-          <span class="contact-tile-content">
-            <span class="contact-tile-label">Email</span>
+          <span class="contact-row-content">
+            <span class="contact-row-label">Email</span>
             <strong>maayahelmi@gmail.com</strong>
           </span>
-          <span class="contact-tile-action">Write to me <span aria-hidden="true">↗</span></span>
+          <span class="contact-row-arrow" aria-hidden="true">↗</span>
         </a>
 
-        <a class="contact-tile contact-tile--phone" href="tel:+962781016964">
-          <span class="contact-tile-number" aria-hidden="true">02</span>
-          <span class="contact-tile-icon" aria-hidden="true">
+        <a class="contact-row" href="tel:+962781016964">
+          <span class="contact-row-icon contact-row-icon--phone" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor"
               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
               <path d="M7.1 3.5 4.8 4.6a2 2 0 0 0-1.1 2.2c1 6.8 6.7 12.5 13.5 13.5a2 2 0 0 0 2.2-1.1l1.1-2.3-4.2-2-1.4 2.1a14 14 0 0 1-7.9-7.9l2.1-1.4z" />
             </svg>
           </span>
-          <span class="contact-tile-content">
-            <span class="contact-tile-label">Phone</span>
+          <span class="contact-row-content">
+            <span class="contact-row-label">Phone</span>
             <strong>+962 78 101 6964</strong>
           </span>
-          <span class="contact-tile-action">Call me <span aria-hidden="true">↗</span></span>
+          <span class="contact-row-arrow" aria-hidden="true">↗</span>
         </a>
 
-        <a class="contact-tile contact-tile--linkedin"
+        <a class="contact-row"
           href="https://www.linkedin.com/in/maya-helmi-934349292" target="_blank" rel="noopener">
-          <span class="contact-tile-number" aria-hidden="true">03</span>
-          <span class="contact-tile-icon contact-tile-icon--brand" aria-hidden="true">in</span>
-          <span class="contact-tile-content">
-            <span class="contact-tile-label">LinkedIn</span>
+          <span class="contact-row-icon contact-row-icon--linkedin" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor">
+              <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.27 2.37 4.27 5.46zM5.32 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13M7.1 20.45H3.54V9H7.1z" />
+            </svg>
+          </span>
+          <span class="contact-row-content">
+            <span class="contact-row-label">LinkedIn</span>
             <strong>maya-helmi-934349292</strong>
           </span>
-          <span class="contact-tile-action">Connect with me <span aria-hidden="true">↗</span></span>
+          <span class="contact-row-arrow" aria-hidden="true">↗</span>
         </a>
 
-        <a class="contact-tile contact-tile--github" href="https://github.com/MayaHelmi" target="_blank"
+        <a class="contact-row" href="https://github.com/MayaHelmi" target="_blank"
           rel="noopener">
-          <span class="contact-tile-number" aria-hidden="true">04</span>
-          <span class="contact-tile-icon" aria-hidden="true">
+          <span class="contact-row-icon contact-row-icon--github" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor">
               <path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.49v-1.9c-2.78.62-3.37-1.2-3.37-1.2-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .08 1.53 1.06 1.53 1.06.9 1.57 2.35 1.12 2.92.85.09-.66.35-1.12.64-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.94a9.3 9.3 0 0 1 2.5.34c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.79-4.58 5.04.36.32.68.94.68 1.9v2.81c0 .27.18.59.69.49A10.25 10.25 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z" />
             </svg>
           </span>
-          <span class="contact-tile-content">
-            <span class="contact-tile-label">GitHub</span>
+          <span class="contact-row-content">
+            <span class="contact-row-label">GitHub</span>
             <strong>@MayaHelmi</strong>
           </span>
-          <span class="contact-tile-action">See my code <span aria-hidden="true">↗</span></span>
+          <span class="contact-row-arrow" aria-hidden="true">↗</span>
         </a>
       </section>
 
       <section class="contact-form-panel" aria-labelledby="contact-form-title">
         <div class="contact-form-intro">
-          <span class="contact-form-number" aria-hidden="true">05</span>
           <span class="contact-form-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor"
               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -102,7 +101,7 @@
           <div>
             <p class="kicker">Direct message</p>
             <h2 id="contact-form-title">Send me a message.</h2>
-            <p>Fill in the form and your email app will open with everything ready. Review it, then press Send.</p>
+            <p>Your email app opens with the message ready to send.</p>
           </div>
         </div>
 
@@ -139,10 +138,7 @@
       </section>
 
       <aside class="contact-resume" aria-label="Resume download">
-        <div>
-          <p class="kicker">Need the complete overview?</p>
-          <p>Download my CV for my experience, education, projects, awards, and certificates.</p>
-        </div>
+        <p>Prefer the full overview?</p>
         <a class="btn primary-btn" href="Maya-Helmi-CV.pdf" download>Download My CV</a>
       </aside>
     </div>
