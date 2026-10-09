@@ -24,7 +24,7 @@
 
   <!-- Tailwind first, so the hand-written rules in style.css stay in charge. -->
   <link rel="stylesheet" href="tailwind.css?v=20260907e">
-  <link rel="stylesheet" href="style.css?v=20261009footer1">
+  <link rel="stylesheet" href="style.css?v=20261009backnav1">
   
   <!-- Theme switch + phone menu. Deliberately has no "defer": it needs to run
        before the page is painted, so dark mode never flashes white first. -->
@@ -86,6 +86,10 @@
   </header>
 
   <main id="main">
+
+    <div class="page-back-shell">
+      <a class="page-back" href="index.html"><span aria-hidden="true">←</span> Back home</a>
+    </div>
 
     <!-- ================= CASE ================= -->
     <section class="section">
