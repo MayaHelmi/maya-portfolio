@@ -1970,6 +1970,7 @@ a.card-media:hover { background: var(--pink-bg); }
 
 /* ============ Footer ============ */
 .footer {
+  display: none;
   background: var(--dark-panel);
   color: rgba(255, 255, 255, .72);
   padding: clamp(3rem, 6vw, 4.5rem) clamp(1rem, 4vw, 2rem) 1.75rem;
