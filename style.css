@@ -773,6 +773,26 @@ a:focus-visible, button:focus-visible {
 
 .about-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
 
+.about-portrait {
+  width: 100%;
+  max-width: 336px;
+  margin-inline: auto;
+  align-self: end;
+  justify-self: center;
+}
+.about-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .about-portrait {
+    margin-inline: 0;
+    justify-self: end;
+  }
+}
+
 .education-card { display: flex; flex-direction: column; gap: 1.25rem; padding: 1.75rem; }
 /* A narrow card on every screen (the photo inside is a small portrait);
    centred on phones, pinned to the right edge of its column from tablet up. */
@@ -781,6 +801,12 @@ a:focus-visible, button:focus-visible {
   /* height:auto undoes .card-shell's height:100%, which was stretching the
      card to the row and leaving a gap above the facts. */
   .education-card { margin-inline: 0; justify-self: end; align-self: start; height: auto; }
+}
+.education-card.education-card--standalone {
+  margin-inline: auto;
+  justify-self: auto;
+  align-self: auto;
+  height: auto;
 }
 
 .education-photo {
