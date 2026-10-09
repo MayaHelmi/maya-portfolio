@@ -501,6 +501,7 @@ a:focus-visible, button:focus-visible {
   font-size: clamp(.6rem, 1.1vw, .7rem);
   font-weight: 600;
   letter-spacing: .06em;
+  white-space: nowrap;
   text-transform: uppercase;
   color: var(--text-fade);
 }
@@ -527,8 +528,8 @@ a:focus-visible, button:focus-visible {
   font-weight: 700;
 }
 
-/* ============ The "Contact me" snake ============
-   Plain "Contact me" text by default (and for anyone who has asked their
+/* ============ The role-title snake ============
+   Plain role text by default (and for anyone who has asked their
    device to reduce motion). If motion is allowed, it turns into the text
    that loops around the pills instead. See index.html for how the loop
    itself is built. */
@@ -636,6 +637,10 @@ a:focus-visible, button:focus-visible {
     padding: 0;
   }
   .capsule { width: 100%; }
+  .capsule-label {
+    font-size: clamp(.48rem, 2.1vw, .58rem);
+    letter-spacing: .03em;
+  }
   .capsule--rot-l { grid-area: 1 / 1; }
   .capsule--lift  { grid-area: 1 / 2; }
   .capsule--drop  { grid-area: 2 / 1; }
