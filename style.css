@@ -778,14 +778,20 @@ a:focus-visible, button:focus-visible {
 .about-portrait {
   width: 100%;
   max-width: 336px;
+  /* The source has 176 transparent rows above the portrait. Crop only that
+     empty area so the visible image begins level with the heading. */
+  aspect-ratio: 1289 / 1575;
   margin-inline: auto;
-  align-self: end;
+  align-self: start;
   justify-self: center;
+  overflow: hidden;
 }
 .about-portrait img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
 }
 
 @media (min-width: 768px) {
