@@ -1439,12 +1439,9 @@ a.card-media:hover { background: var(--pink-bg); }
   margin: 0 auto .75rem;
   padding-inline: clamp(1rem, 4vw, 2rem);
   align-items: flex-end;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 1.25rem;
 }
-
-.showcase-carousel-toolbar .kicker { margin-bottom: .2rem; }
-.showcase-carousel-help { margin: 0; color: var(--text-soft); font-size: .9rem; }
 
 .showcase-carousel-controls {
   display: flex;
@@ -1805,7 +1802,7 @@ html.project-modal-open { overflow: hidden; }
 }
 
 @media (max-width: 767px) {
-  .showcase-carousel-toolbar { align-items: flex-start; flex-direction: column; }
+  .showcase-carousel-toolbar { align-items: flex-end; flex-direction: column; }
   .showcase-carousel { --showcase-slide: 82vw; gap: 1rem; padding-block: .75rem 2rem; }
   .showcase-carousel .flip-front .project-shot { border-radius: 16px; }
   .showcase-carousel .flip-front .project-title { font-size: 1.35rem; }
