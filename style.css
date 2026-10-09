@@ -473,6 +473,267 @@ a:focus-visible, button:focus-visible {
 .contact-page-card .contact-list li { align-items: flex-start; }
 .contact-page-card .contact-list a { overflow-wrap: anywhere; }
 
+/* ============ Spatial projects gallery ============ */
+.projects-gallery-page {
+  min-height: 100svh;
+  overflow: hidden;
+  color: #f8f2ef;
+  background:
+    radial-gradient(circle at 50% 22%, rgba(182, 111, 131, .13), transparent 36%),
+    #070708;
+}
+
+.projects-gallery-page::before {
+  content: "";
+  position: fixed;
+  z-index: 0;
+  left: -25vw;
+  right: -25vw;
+  bottom: -34vh;
+  height: 74vh;
+  opacity: .42;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(209, 154, 170, .24) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(209, 154, 170, .24) 1px, transparent 1px);
+  background-size: 72px 58px;
+  transform: perspective(470px) rotateX(64deg);
+  transform-origin: center bottom;
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 32%, #000 100%);
+}
+
+.projects-gallery-page .header,
+.projects-gallery-page .footer {
+  display: none;
+}
+
+.projects-gallery-page main {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+}
+
+.gallery-home,
+.gallery-eyebrow,
+.gallery-help,
+.gallery-status {
+  position: fixed;
+  z-index: 20;
+  color: rgba(255, 255, 255, .72);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.gallery-home {
+  top: clamp(1.25rem, 3vw, 2rem);
+  left: clamp(1.25rem, 3vw, 2.5rem);
+  color: #fff;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: .92rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.gallery-home::before { content: "← "; color: var(--pink); }
+.gallery-home:hover { color: var(--pink); }
+
+.gallery-eyebrow {
+  top: clamp(1.45rem, 3vw, 2.2rem);
+  left: 50%;
+  margin: 0;
+  transform: translateX(-50%);
+}
+
+.gallery-help {
+  bottom: clamp(1.1rem, 2.5vw, 1.8rem);
+  left: 50%;
+  margin: 0;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.gallery-status {
+  right: clamp(1.25rem, 3vw, 2.5rem);
+  bottom: clamp(1.1rem, 2.5vw, 1.8rem);
+  margin: 0;
+  color: var(--pink);
+  font-variant-numeric: tabular-nums;
+}
+
+.projects-gallery-page #projects {
+  --gallery-card: min(72vw, 980px);
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2.25rem);
+  width: 100vw;
+  max-width: none;
+  height: 100svh;
+  margin: 0;
+  padding: clamp(4.5rem, 8vh, 6.5rem) calc((100vw - var(--gallery-card)) / 2);
+  overflow-x: auto;
+  overflow-y: hidden;
+  perspective: 1500px;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  cursor: grab;
+  touch-action: pan-x;
+}
+
+.projects-gallery-page #projects::-webkit-scrollbar { display: none; }
+.projects-gallery-page #projects.is-dragging { cursor: grabbing; scroll-behavior: auto; }
+.projects-gallery-page #projects > .section-title,
+.projects-gallery-page #projects > .subsection-title { display: none; }
+.projects-gallery-page #projects > .grid { display: contents; }
+
+.projects-gallery-page .project-card {
+  --gallery-angle: 0deg;
+  --gallery-scale: 1;
+  --gallery-opacity: 1;
+  position: relative;
+  flex: 0 0 var(--gallery-card);
+  width: var(--gallery-card);
+  height: clamp(460px, 73svh, 720px);
+  min-height: 0;
+  margin: 0;
+  opacity: var(--gallery-opacity);
+  border-radius: clamp(1.8rem, 4vw, 4.5rem);
+  overflow: hidden;
+  scroll-snap-align: center;
+  transform: rotateY(var(--gallery-angle)) scale(var(--gallery-scale));
+  transform-style: preserve-3d;
+  transition: transform .18s ease-out, opacity .18s ease-out, filter .18s ease-out;
+  box-shadow: 0 35px 100px rgba(0, 0, 0, .65);
+  filter: saturate(calc(.72 + (var(--gallery-scale) * .28)));
+}
+
+.projects-gallery-page .flip-inner {
+  display: block;
+  height: 100%;
+  transform: none !important;
+}
+
+.projects-gallery-page .flip-front {
+  position: relative;
+  display: block;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  color: #fff;
+  background: #171416;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: inherit;
+  backface-visibility: visible;
+}
+
+.projects-gallery-page .flip-front::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(5, 5, 6, .05) 38%, rgba(5, 5, 6, .2) 58%, rgba(5, 5, 6, .92) 100%),
+    linear-gradient(90deg, rgba(5, 5, 6, .2), transparent 28%, transparent 72%, rgba(5, 5, 6, .16));
+}
+
+.projects-gallery-page .flip-back,
+.projects-gallery-page .flip-hint { display: none; }
+
+.projects-gallery-page .project-shot {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  aspect-ratio: auto;
+  background: #171416;
+}
+
+.projects-gallery-page .project-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform: scale(1.015);
+  transition: transform .7s cubic-bezier(.2, .7, .2, 1);
+}
+
+.projects-gallery-page .project-card:hover .project-shot img { transform: scale(1.055); }
+
+.projects-gallery-page .project-head {
+  position: absolute;
+  z-index: 3;
+  left: clamp(1.4rem, 4vw, 3.3rem);
+  right: clamp(4.8rem, 8vw, 7rem);
+  bottom: clamp(1.4rem, 4vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .85rem;
+}
+
+.projects-gallery-page .project-title {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.65rem, 4.2vw, 4rem);
+  line-height: .98;
+  text-shadow: 0 3px 24px rgba(0, 0, 0, .65);
+}
+
+.projects-gallery-page .project-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+
+.projects-gallery-page .project-badge {
+  color: rgba(255, 255, 255, .82);
+  background: rgba(11, 10, 11, .48);
+  border-color: rgba(255, 255, 255, .18);
+  backdrop-filter: blur(10px);
+}
+
+.gallery-open {
+  position: absolute;
+  z-index: 5;
+  right: clamp(1.4rem, 3.5vw, 3rem);
+  bottom: clamp(1.4rem, 3.5vw, 2.8rem);
+  display: grid;
+  width: clamp(2.8rem, 5vw, 4rem);
+  aspect-ratio: 1;
+  place-items: center;
+  color: #09090a;
+  background: #fff;
+  border-radius: 50%;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  transition: transform .2s ease, background .2s ease;
+}
+
+.gallery-open:hover { color: #09090a; background: var(--pink-strong); transform: translateX(4px); }
+
+@media (max-width: 767px) {
+  .projects-gallery-page #projects {
+    --gallery-card: 82vw;
+    gap: 1rem;
+    padding-block: 5.25rem 4.5rem;
+  }
+
+  .projects-gallery-page .project-card { height: min(66svh, 570px); border-radius: 2rem; }
+  .projects-gallery-page .project-head { right: 4.5rem; }
+  .projects-gallery-page .project-title { font-size: clamp(1.45rem, 8vw, 2.4rem); }
+  .projects-gallery-page .project-badges .project-badge:nth-child(n + 2) { display: none; }
+  .gallery-eyebrow { display: none; }
+  .gallery-help { left: 1.25rem; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-gallery-page #projects { scroll-behavior: auto; }
+  .projects-gallery-page .project-card { transform: none !important; transition: none; }
+  .projects-gallery-page .project-shot img { transition: none; }
+}
+
 .hero-composition {
   position: relative;
   display: grid;
@@ -1457,4 +1718,47 @@ main { animation: page-in .45s ease both; }
   }
   .card-shell:hover { transform: none; }
   @view-transition { navigation: none; }
+}
+
+/* These gallery rules intentionally sit last: the original project-card
+   styles remain available elsewhere, while this page gets a full-bleed card. */
+.projects-gallery-page .project-card {
+  padding: 0;
+  aspect-ratio: auto;
+}
+
+.projects-gallery-page .flip-front .project-shot {
+  inset: 0;
+  width: auto;
+  height: auto;
+  margin: 0;
+  aspect-ratio: auto;
+  border: 0;
+  border-radius: inherit;
+}
+
+.projects-gallery-page .flip-front .project-shot img {
+  transform: scale(1.015) !important;
+}
+
+.projects-gallery-page .project-card:hover .flip-front .project-shot img {
+  transform: scale(1.055) !important;
+}
+
+.projects-gallery-page .flip-front .project-head {
+  position: absolute;
+  align-items: flex-start;
+  gap: .85rem;
+  margin: 0;
+}
+
+.projects-gallery-page .flip-front .project-title {
+  font-size: clamp(1.65rem, 4.2vw, 4rem);
+  line-height: .98;
+}
+
+@media (max-width: 767px) {
+  .projects-gallery-page .flip-front .project-title {
+    font-size: clamp(1.45rem, 8vw, 2.4rem);
+  }
 }
