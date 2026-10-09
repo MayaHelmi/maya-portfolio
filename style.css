@@ -748,8 +748,6 @@ a:focus-visible, button:focus-visible {
   min-height: calc(100svh - 68px);
 }
 
-.projects-gallery-page .gallery-home { display: none; }
-
 .gallery-home,
 .gallery-eyebrow,
 .gallery-help,
@@ -764,7 +762,7 @@ a:focus-visible, button:focus-visible {
 }
 
 .gallery-home {
-  top: clamp(1.25rem, 3vw, 2rem);
+  top: calc(68px + clamp(1rem, 2.5vw, 1.5rem));
   left: clamp(1.25rem, 3vw, 2.5rem);
   color: #fff;
   font-family: "Fraunces", Georgia, serif;
@@ -2082,6 +2080,10 @@ main { animation: page-in .45s ease both; }
   }
 
   .projects-gallery-page .gallery-eyebrow {
+    top: calc(60px + 1rem);
+  }
+
+  .projects-gallery-page .gallery-home {
     top: calc(60px + 1rem);
   }
 
