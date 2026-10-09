@@ -22,11 +22,11 @@
     href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap">
   <!-- Tailwind first, so the hand-written rules in style.css stay in charge. -->
   <link rel="stylesheet" href="tailwind.css?v=20260907e">
-  <link rel="stylesheet" href="style.css?v=20261010achievements1">
+  <link rel="stylesheet" href="style.css?v=20261010treadmill1">
 
   <!-- Theme switch + phone menu. Deliberately has no "defer": it needs to run
        before the page is painted, so dark mode never flashes white first. -->
-  <script src="script.js"></script>
+  <script src="script.js?v=20261010treadmill1"></script>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
       <h2 class="logo"><a href="#home">Maya Helmi</a></h2>
 
       <ul class="nav-links" id="site-menu">
-        <li><a href="#home" class="is-current" aria-current="page">Home</a></li>
+        <li><a href="#home" class="is-current" aria-current="location">Home</a></li>
         <li><a href="#showcase">Projects</a></li>
         <li><a href="#achievements">Achievements</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -734,376 +734,142 @@
     <span id="certificates" class="legacy-anchor" aria-hidden="true"></span>
 
     <!-- ================= ACHIEVEMENTS ================= -->
-    <section id="achievements" class="section section--sunken">
+    <section id="achievements" class="section section--sunken achievements-section" aria-labelledby="achievements-title">
+      <span id="awards" class="legacy-anchor" aria-hidden="true"></span>
+      <span id="certifications" class="legacy-anchor" aria-hidden="true"></span>
+      <span id="volunteer" class="legacy-anchor" aria-hidden="true"></span>
+
       <div class="section-inner">
-        <h2 class="section-title">Achievements</h2>
+        <div class="section-head">
+          <h2 id="achievements-title" class="section-title">Achievements</h2>
+          <button class="btn secondary-btn achievement-treadmill-toggle" type="button"
+            data-achievement-treadmill-toggle aria-pressed="false">Pause motion</button>
+        </div>
+      </div>
 
-        <section id="awards" class="achievement-group" aria-labelledby="awards-title">
-          <h3 id="awards-title" class="subsection-title">Awards &amp; Competitions</h3>
+      <div class="achievement-treadmill" data-achievement-treadmill tabindex="0"
+        role="region" aria-label="Moving gallery of awards, certificates, courses and volunteer contributions">
+        <div class="achievement-treadmill-track" data-achievement-treadmill-track>
+          <ul class="achievement-treadmill-set" data-achievement-treadmill-set>
+          <li class="achievement-treadmill-card">
+            <a class="achievement-treadmill-frame" href="images/awards/best-entrepreneurial-project-2026.png?v=20261008" target="_blank" rel="noopener"
+              aria-label="Open Best Entrepreneurial Project certificate image (opens in a new tab)">
+              <img src="images/awards/best-entrepreneurial-project-2026.png?v=20261008" width="1148" height="1370" alt="" loading="lazy" decoding="async">
+              <span class="achievement-treadmill-label" aria-hidden="true">Best Entrepreneurial Project</span>
+            </a>
+          </li>
 
-          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <li class="achievement-treadmill-card">
+            <a class="achievement-treadmill-frame" href="images/awards/ntp13-2nd-place-2026.jpg" target="_blank" rel="noopener"
+              aria-label="Open 2nd Place — NTP13 2026 certificate image (opens in a new tab)">
+              <img src="images/awards/ntp13-2nd-place-2026.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
+              <span class="achievement-treadmill-label" aria-hidden="true">2nd Place &mdash; NTP13 2026</span>
+            </a>
+          </li>
 
-          <article class="achievement-card flip-card flip-card--cert" tabindex="0">
-            <div class="flip-inner">
-              <div class="flip-face flip-front card-shell">
-                <div class="project-shot"><img src="images/awards/best-entrepreneurial-project-2026.png?v=20261008" alt="Gold medal for Best Entrepreneurial Project at Expo FITers 26" loading="lazy"></div>
-                <div class="project-head">
-                  <h4 class="project-title">Best Entrepreneurial Project</h4>
-                  <div class="project-badges"><span class="project-badge badge-muted">Issued June 2026</span></div>
-                </div>
-                <p class="flip-hint">Hover or tap for details</p>
-              </div>
-              <div class="flip-face flip-back card-shell">
-                <p class="kicker">Award</p>
-                <p class="project-description">Besign</p>
-                <p class="cert-meta"><strong>Event:</strong> Graduation Projects Competition</p>
-                <p class="cert-meta"><strong>Issuer:</strong> Applied Science Private University</p>
-                <p class="cert-meta"><strong>Issued:</strong> June 2026</p>
-                <p class="cert-desc">Selected as the Best Entrepreneurial Project from more than 100 graduation projects.</p>
-                <div class="project-links">
-                  <a href="images/awards/best-entrepreneurial-project-2026.png?v=20261008" target="_blank" rel="noopener">Open award image</a>
-                </div>
-              </div>
+          <li class="achievement-treadmill-card">
+            <a class="achievement-treadmill-frame" href="images/awards/ntp13-appreciation-2026.jpg" target="_blank" rel="noopener"
+              aria-label="Open Certificate of Appreciation — NTP13 2026 image (opens in a new tab)">
+              <img src="images/awards/ntp13-appreciation-2026.jpg" width="1280" height="707" alt="" loading="lazy" decoding="async">
+              <span class="achievement-treadmill-label" aria-hidden="true">Certificate of Appreciation &mdash; NTP13 2026</span>
+            </a>
+          </li>
+
+          <li class="achievement-treadmill-card">
+            <a class="achievement-treadmill-frame" href="images/awards/gju-3030-competition-2026.jpg" target="_blank" rel="noopener"
+              aria-label="Open GJU 3030 Competition certificate image (opens in a new tab)">
+              <img src="images/awards/gju-3030-competition-2026.jpg" width="1046" height="818" alt="" loading="lazy" decoding="async">
+              <span class="achievement-treadmill-label" aria-hidden="true">GJU 3030 Competition</span>
+            </a>
+          </li>
+
+          <li class="achievement-treadmill-card">
+            <a class="achievement-treadmill-frame" href="images/certificates/azure-ai-900.jpg" target="_blank" rel="noopener"
+              aria-label="Open Azure AI Fundamentals certificate image (opens in a new tab)">
+              <img src="images/certificates/azure-ai-900.jpg" width="911" height="1280" alt="" loading="lazy" decoding="async">
+              <span class="achievement-treadmill-label" aria-hidden="true">Azure AI Fundamentals</span>
+            </a>
+          </li>
+
+          <li class="achievement-treadmill-card">
+            <div class="achievement-treadmill-frame achievement-treadmill-placeholder"
+              role="img" aria-label="Introduction to Networks course">
+              <span class="achievement-treadmill-label" aria-hidden="true">Introduction to Networks</span>
             </div>
-          </article>
+          </li>
 
-          <article class="achievement-card flip-card flip-card--cert" tabindex="0">
-            <div class="flip-inner">
-              <div class="flip-face flip-front card-shell">
-                <div class="project-shot"><img src="images/awards/ntp13-2nd-place-2026.jpg" alt="Second place award certificate from the National Technology Parade 2026" loading="lazy"></div>
-                <div class="project-head">
-                  <h4 class="project-title">2nd Place &mdash; NTP13 2026</h4>
-                <div class="project-badges"><span class="project-badge badge-muted">Issued July 2026</span></div>
-                </div>
-              <p class="flip-hint">Hover or tap for details</p>
-              </div>
-              <div class="flip-face flip-back card-shell">
-                <p class="kicker">Award</p>
-                <p class="project-description">Business and Society Technologies</p>
-              <p class="cert-meta"><strong>Event:</strong> National Technology Parade (NTP13)</p>
-              <p class="cert-meta"><strong>Issuer:</strong> 13th National Technology Parade (NTP13)</p>
-              <p class="cert-meta"><strong>Issued:</strong> July 2026</p>
-              <p class="cert-desc">Besign earned second place in the Business and Society Technologies track at NTP13.</p>
-                <div class="project-links">
-                <a href="images/awards/ntp13-2nd-place-2026.jpg" target="_blank" rel="noopener">Open certificate</a>
-                </div>
-              </div>
+          <li class="achievement-treadmill-card">
+            <div class="achievement-treadmill-frame achievement-treadmill-placeholder"
+              role="img" aria-label="AWS Educate: Getting Started with Storage training">
+              <span class="achievement-treadmill-label" aria-hidden="true">AWS Educate: Getting Started with Storage</span>
             </div>
-          </article>
+          </li>
 
-          <article class="achievement-card flip-card flip-card--cert" tabindex="0">
-            <div class="flip-inner">
-              <div class="flip-face flip-front card-shell">
-                <div class="project-shot"><img src="images/awards/ntp13-appreciation-2026.jpg" alt="Certificate of appreciation from the National Technology Parade 2026" loading="lazy"></div>
-                <div class="project-head">
-                  <h4 class="project-title">Certificate of Appreciation</h4>
-                  <div class="project-badges"><span class="project-badge badge-muted">Issued July 2026</span></div>
-                </div>
-                <p class="flip-hint">Hover or tap for details</p>
-              </div>
-              <div class="flip-face flip-back card-shell">
-                <p class="kicker">Award</p>
-                <p class="project-description">National Technology Parade</p>
-                <p class="cert-meta"><strong>Event:</strong> NTP13 2026</p>
-                <p class="cert-meta"><strong>Issuer:</strong> 13th National Technology Parade (NTP13)</p>
-                <p class="cert-meta"><strong>Issued:</strong> July 2026</p>
-                <p class="cert-desc">Recognized for participation and contribution to the National Technology Parade.</p>
-                <div class="project-links">
-                  <a href="images/awards/ntp13-appreciation-2026.jpg" target="_blank" rel="noopener">Open certificate</a>
-                </div>
-              </div>
-            </div>
-          </article>
+          <li class="achievement-treadmill-card">
+            <a class="achievement-treadmill-frame" href="images/certificates/google-ux-design.jpg" target="_blank" rel="noopener"
+              aria-label="Open Google UX Design certificate image (opens in a new tab)">
+              <img src="images/certificates/google-ux-design.jpg" width="1280" height="988" alt="" loading="lazy" decoding="async">
+              <span class="achievement-treadmill-label" aria-hidden="true">Google UX Design</span>
+            </a>
+          </li>
 
-          <article class="achievement-card flip-card flip-card--cert" tabindex="0">
-            <div class="flip-inner">
-              <div class="flip-face flip-front card-shell">
-                <div class="project-shot"><img src="images/awards/gju-3030-competition-2026.jpg" alt="Certificate of participation from the German Jordanian University 3030 competition" loading="lazy"></div>
-                <div class="project-head">
-                  <h4 class="project-title">GJU 3030 Competition</h4>
-                  <div class="project-badges"><span class="project-badge badge-muted">Issued May 2026</span></div>
-                </div>
-                <p class="flip-hint">Hover or tap for details</p>
-              </div>
-              <div class="flip-face flip-back card-shell">
-                <p class="kicker">Competition</p>
-                <p class="project-description">Certificate of Participation</p>
-                <p class="cert-meta"><strong>Organization:</strong> German Jordanian University</p>
-                <p class="cert-meta"><strong>Issued:</strong> May 2026</p>
-                <p class="cert-desc">Participated in a technology competition focused on innovation, creativity, and problem-solving.</p>
-                <div class="project-links">
-                  <a href="images/awards/gju-3030-competition-2026.jpg" target="_blank" rel="noopener">Open certificate</a>
-                </div>
-              </div>
-            </div>
-          </article>
+          <li class="achievement-treadmill-card">
+            <a class="achievement-treadmill-frame" href="images/certificates/ibm-ai.jpg" target="_blank" rel="noopener"
+              aria-label="Open Introduction to Artificial Intelligence (AI) certificate image (opens in a new tab)">
+              <img src="images/certificates/ibm-ai.jpg" width="1202" height="927" alt="" loading="lazy" decoding="async">
+              <span class="achievement-treadmill-label" aria-hidden="true">Introduction to Artificial Intelligence (AI)</span>
+            </a>
+          </li>
 
-          </div>
-        </section>
+          <li class="achievement-treadmill-card">
+            <a class="achievement-treadmill-frame" href="images/certificates/ibm-chatbots.jpg" target="_blank" rel="noopener"
+              aria-label="Open Building AI Powered Chatbots without Programming certificate image (opens in a new tab)">
+              <img src="images/certificates/ibm-chatbots.jpg" width="1206" height="928" alt="" loading="lazy" decoding="async">
+              <span class="achievement-treadmill-label" aria-hidden="true">Building AI Powered Chatbots without Programming</span>
+            </a>
+          </li>
 
-        <section id="certifications" class="achievement-group" aria-labelledby="certifications-title">
-          <h3 id="certifications-title" class="subsection-title">Certifications &amp; Courses</h3>
+          <li class="achievement-treadmill-card">
+            <a class="achievement-treadmill-frame" href="images/certificates/ibm-watson.jpg" target="_blank" rel="noopener"
+              aria-label="Open Getting Started with AI using IBM Watson certificate image (opens in a new tab)">
+              <img src="images/certificates/ibm-watson.jpg" width="1204" height="928" alt="" loading="lazy" decoding="async">
+              <span class="achievement-treadmill-label" aria-hidden="true">Getting Started with AI using IBM Watson</span>
+            </a>
+          </li>
 
-          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <li class="achievement-treadmill-card">
+            <a class="achievement-treadmill-frame" href="images/volunteer/visual-programming-support.jpg" target="_blank" rel="noopener"
+              aria-label="Open Visual Programming Academic Support certificate image (opens in a new tab)">
+              <img src="images/volunteer/visual-programming-support.jpg" width="1280" height="904" alt="" loading="lazy" decoding="async">
+              <span class="achievement-treadmill-label" aria-hidden="true">Visual Programming Academic Support</span>
+            </a>
+          </li>
 
-          <article class="certificate-card flip-card flip-card--cert" tabindex="0">
-            <div class="flip-inner">
-              <div class="flip-face flip-front card-shell">
-                <div class="project-shot"><img src="images/certificates/azure-ai-900.jpg" alt="Microsoft Certified Azure AI Fundamentals certificate" loading="lazy"></div>
-                <div class="project-head">
-                  <h4 class="project-title">Azure AI Fundamentals</h4>
-              <div class="project-badges"><span class="project-badge badge-muted">Issued May 2026</span></div>
-                </div>
-              <p class="flip-hint">Hover or tap for details</p>
-              </div>
-              <div class="flip-face flip-back card-shell">
-                <p class="kicker">Certificate</p>
-                <p class="project-description">Microsoft Certified: Azure AI Fundamentals (AI-900)</p>
-            <p class="cert-meta"><strong>Issuer:</strong> Microsoft</p>
-            <p class="cert-meta"><strong>Issued:</strong> May 2026</p>
-            <p class="cert-meta"><strong>Credential ID:</strong> F1740BF56188E9C3</p>
-                <div class="project-links">
-              <a href="images/certificates/azure-ai-900.jpg" target="_blank" rel="noopener">Open certificate</a>
-              <a href="https://learn.microsoft.com/en-gb/users/mayahelmi-3760/credentials/f1740bf56188e9c3" target="_blank" rel="noopener">View credential</a>
-                </div>
-              </div>
-            </div>
-          </article>
+          <li class="achievement-treadmill-card">
+            <a class="achievement-treadmill-frame" href="images/volunteer/ui-ux-contest-v5.jpg" target="_blank" rel="noopener"
+              aria-label="Open UI/UX Contest V5 certificate image (opens in a new tab)">
+              <img src="images/volunteer/ui-ux-contest-v5.jpg" width="1280" height="884" alt="" loading="lazy" decoding="async">
+              <span class="achievement-treadmill-label" aria-hidden="true">UI/UX Contest V5</span>
+            </a>
+          </li>
 
-          <article class="certificate-card flip-card flip-card--cert" tabindex="0">
-            <div class="flip-inner">
-              <div class="flip-face flip-front card-shell">
-                <div class="project-shot shot-type" aria-hidden="true">
-                  <p class="shot-type-kicker">Course</p>
-                  <p class="shot-type-year">2026</p>
-                </div>
-                <div class="project-head">
-                  <h4 class="project-title">Introduction to Networks</h4>
-                  <div class="project-badges"><span class="project-badge badge-muted">Issued May 2026</span></div>
-                </div>
-                <p class="flip-hint">Hover or tap for details</p>
-              </div>
-              <div class="flip-face flip-back card-shell">
-                <p class="kicker">Course</p>
-                <p class="project-description">Introduction to Networks</p>
-                <p class="cert-meta"><strong>Issuer:</strong> Cisco Networking Academy</p>
-                <p class="cert-meta"><strong>Issued:</strong> May 2026</p>
-              </div>
-            </div>
-          </article>
+          <li class="achievement-treadmill-card">
+            <a class="achievement-treadmill-frame" href="images/volunteer/elo-volunteer-2023.jpg" target="_blank" rel="noopener"
+              aria-label="Open English Language Olympia 2023 certificate image (opens in a new tab)">
+              <img src="images/volunteer/elo-volunteer-2023.jpg" width="1026" height="684" alt="" loading="lazy" decoding="async">
+              <span class="achievement-treadmill-label" aria-hidden="true">English Language Olympia 2023</span>
+            </a>
+          </li>
 
-          <article class="certificate-card flip-card flip-card--cert" tabindex="0">
-            <div class="flip-inner">
-              <div class="flip-face flip-front card-shell">
-                <div class="project-shot shot-type" aria-hidden="true">
-                  <p class="shot-type-kicker">Training</p>
-                  <p class="shot-type-year">2026</p>
-                </div>
-                <div class="project-head">
-                  <h4 class="project-title">AWS Educate: Getting Started with Storage</h4>
-                  <div class="project-badges"><span class="project-badge badge-muted">Issued February 2026</span></div>
-                </div>
-                <p class="flip-hint">Hover or tap for details</p>
-              </div>
-              <div class="flip-face flip-back card-shell">
-                <p class="kicker">Training</p>
-                <p class="project-description">Getting Started with Storage</p>
-                <p class="cert-meta"><strong>Issuer:</strong> AWS Educate</p>
-                <p class="cert-meta"><strong>Issued:</strong> February 2026</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="certificate-card flip-card flip-card--cert" tabindex="0">
-            <div class="flip-inner">
-              <div class="flip-face flip-front card-shell">
-                <div class="project-shot"><img src="images/certificates/google-ux-design.jpg" alt="Google Foundations of User Experience Design certificate" loading="lazy"></div>
-                <div class="project-head">
-                  <h4 class="project-title">Google UX Design</h4>
-                  <div class="project-badges"><span class="project-badge badge-muted">Issued June 2024</span></div>
-                </div>
-                <p class="flip-hint">Hover or tap for details</p>
-              </div>
-              <div class="flip-face flip-back card-shell">
-                <p class="kicker">Certificate</p>
-                <p class="project-description">Foundations of User Experience (UX) Design</p>
-                <p class="cert-meta"><strong>Issuer:</strong> Google (Coursera)</p>
-                <p class="cert-meta"><strong>Issued:</strong> June 2024</p>
-                <div class="project-links">
-                  <a href="images/certificates/google-ux-design.jpg" target="_blank" rel="noopener">Open certificate</a>
-                  <a href="https://www.coursera.org/account/accomplishments/verify/3EVYBC4LGXV8" target="_blank" rel="noopener">View credential</a>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="certificate-card flip-card flip-card--cert" tabindex="0">
-            <div class="flip-inner">
-              <div class="flip-face flip-front card-shell">
-                <div class="project-shot"><img src="images/certificates/ibm-ai.jpg" alt="IBM Introduction to Artificial Intelligence certificate" loading="lazy"></div>
-                <div class="project-head">
-                  <h4 class="project-title">Introduction to Artificial Intelligence (AI)</h4>
-                  <div class="project-badges"><span class="project-badge badge-muted">Issued September 2023</span></div>
-                </div>
-                <p class="flip-hint">Hover or tap for details</p>
-              </div>
-              <div class="flip-face flip-back card-shell">
-                <p class="kicker">Certificate</p>
-                <p class="project-description">IBM</p>
-                <p class="cert-meta"><strong>Issuer:</strong> IBM (Coursera)</p>
-                <p class="cert-meta"><strong>Issued:</strong> September 2023</p>
-                <div class="project-links">
-                  <a href="images/certificates/ibm-ai.jpg" target="_blank" rel="noopener">Open certificate</a>
-                  <a href="https://www.coursera.org/account/accomplishments/verify/HS2DGX32DBGJ" target="_blank" rel="noopener">View credential</a>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="certificate-card flip-card flip-card--cert" tabindex="0">
-            <div class="flip-inner">
-              <div class="flip-face flip-front card-shell">
-                <div class="project-shot"><img src="images/certificates/ibm-chatbots.jpg" alt="IBM Building AI Powered Chatbots without Programming certificate" loading="lazy"></div>
-                <div class="project-head">
-                  <h4 class="project-title">Building AI Powered Chatbots without Programming</h4>
-                  <div class="project-badges"><span class="project-badge badge-muted">Issued October 2023</span></div>
-                </div>
-                <p class="flip-hint">Hover or tap for details</p>
-              </div>
-              <div class="flip-face flip-back card-shell">
-                <p class="kicker">Certificate</p>
-                <p class="project-description">IBM</p>
-                <p class="cert-meta"><strong>Issuer:</strong> IBM (Coursera)</p>
-                <p class="cert-meta"><strong>Issued:</strong> October 2023</p>
-                <div class="project-links">
-                  <a href="images/certificates/ibm-chatbots.jpg" target="_blank" rel="noopener">Open certificate</a>
-                  <a href="https://www.coursera.org/account/accomplishments/verify/ZQLUWARJU7ME" target="_blank" rel="noopener">View credential</a>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="certificate-card flip-card flip-card--cert" tabindex="0">
-            <div class="flip-inner">
-              <div class="flip-face flip-front card-shell">
-                <div class="project-shot"><img src="images/certificates/ibm-watson.jpg" alt="IBM Getting Started with AI using IBM Watson certificate" loading="lazy"></div>
-                <div class="project-head">
-                  <h4 class="project-title">Getting Started with AI using IBM Watson</h4>
-                  <div class="project-badges"><span class="project-badge badge-muted">Issued September 2023</span></div>
-                </div>
-                <p class="flip-hint">Hover or tap for details</p>
-              </div>
-              <div class="flip-face flip-back card-shell">
-                <p class="kicker">Certificate</p>
-                <p class="project-description">IBM</p>
-                <p class="cert-meta"><strong>Issuer:</strong> IBM (Coursera)</p>
-                <p class="cert-meta"><strong>Issued:</strong> September 2023</p>
-                <div class="project-links">
-                  <a href="images/certificates/ibm-watson.jpg" target="_blank" rel="noopener">Open certificate</a>
-                  <a href="https://coursera.org/share/c78cda7ecfade8de7ade03a72db2c6c3" target="_blank" rel="noopener">View credential</a>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          </div>
-        </section>
-
-        <section id="volunteer" class="achievement-group" aria-labelledby="volunteer-title">
-          <h3 id="volunteer-title" class="subsection-title">Volunteer &amp; Contributions</h3>
-
-          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-
-          <article class="volunteer-card flip-card flip-card--cert" tabindex="0">
-            <div class="flip-inner">
-              <div class="flip-face flip-front card-shell">
-                <div class="project-shot"><img src="images/volunteer/visual-programming-support.jpg" alt="Certificate of contribution for Visual Programming academic support" loading="lazy"></div>
-                <div class="project-head">
-                  <h4 class="project-title">Tutor &amp; Volunteer</h4>
-                  <div class="project-badges"><span class="project-badge badge-muted">October 2025–February 2026</span></div>
-                </div>
-                <p class="flip-hint">Hover or tap for details</p>
-              </div>
-              <div class="flip-face flip-back card-shell">
-                <p class="kicker">Volunteer work</p>
-                <p class="project-description">Visual Programming Academic Support</p>
-                <p class="cert-meta"><strong>Organization:</strong> Academic Support Club, Applied Science Private University</p>
-                <p class="cert-desc">Delivered Flutter revision and group tutoring sessions and supported new students during semester orientation.</p>
-                <div class="project-links">
-                  <a href="images/volunteer/visual-programming-support.jpg" target="_blank" rel="noopener">Open certificate</a>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="volunteer-card flip-card flip-card--cert" tabindex="0">
-            <div class="flip-inner">
-              <div class="flip-face flip-front card-shell">
-                <div class="project-shot"><img src="images/volunteer/ui-ux-contest-v5.jpg" alt="Certificate of appreciation for organizing the UI/UX Contest V5" loading="lazy"></div>
-                <div class="project-head">
-                  <h4 class="project-title">Organiser</h4>
-                  <div class="project-badges"><span class="project-badge badge-muted">March–July 2025</span></div>
-                </div>
-                <p class="flip-hint">Hover or tap for details</p>
-              </div>
-              <div class="flip-face flip-back card-shell">
-                <p class="kicker">Volunteer work</p>
-                <p class="project-description">Software Engineering Club</p>
-                <p class="cert-meta"><strong>Organization:</strong> Applied Science Private University</p>
-                <p class="cert-desc">Supported student-led technical activities throughout the semester, coordinated UI/UX Contest V5 and served as its Master of Ceremonies.</p>
-                <div class="project-links">
-                  <a href="images/volunteer/ui-ux-contest-v5.jpg" target="_blank" rel="noopener">Open certificate</a>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="volunteer-card flip-card flip-card--cert" tabindex="0">
-            <div class="flip-inner">
-              <div class="flip-face flip-front card-shell">
-                <div class="project-shot"><img src="images/volunteer/elo-volunteer-2023.jpg" alt="Certificate of appreciation for volunteering at the English Language Olympia 2023" loading="lazy"></div>
-                <div class="project-head">
-                  <h4 class="project-title">Volunteer</h4>
-                  <div class="project-badges"><span class="project-badge badge-muted">May 2023</span></div>
-                </div>
-                <p class="flip-hint">Hover or tap for details</p>
-              </div>
-              <div class="flip-face flip-back card-shell">
-                <p class="kicker">Volunteer work</p>
-                <p class="project-description">English Language Olympia 2023</p>
-                <p class="cert-meta"><strong>Organization:</strong> ELO Organizing Committee</p>
-                <p class="cert-desc">Guided first-grade participants through competition activities and provided on-site support throughout the three-day event.</p>
-                <div class="project-links">
-                  <a href="images/volunteer/elo-volunteer-2023.jpg" target="_blank" rel="noopener">Open certificate</a>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="volunteer-card flip-card flip-card--cert" tabindex="0">
-            <div class="flip-inner">
-              <div class="flip-face flip-front card-shell">
-                <div class="project-shot"><img src="images/volunteer/translator-contest-2023.jpg" alt="Certificate from the Promising Translator Contest 2023" loading="lazy"></div>
-                <div class="project-head">
-                  <h4 class="project-title">Volunteer</h4>
-                  <div class="project-badges"><span class="project-badge badge-muted">March 2023</span></div>
-                </div>
-                <p class="flip-hint">Hover or tap for details</p>
-              </div>
-              <div class="flip-face flip-back card-shell">
-                <p class="kicker">Volunteer work</p>
-                <p class="project-description">Promising Translator Contest 2023</p>
-                <p class="cert-meta"><strong>Organization:</strong> Applied Science Private University</p>
-                <p class="cert-desc">Supported the Promising Translator Contest held at Applied Science Private University on 11 March 2023.</p>
-                <div class="project-links">
-                  <a href="images/volunteer/translator-contest-2023.jpg" target="_blank" rel="noopener">Open certificate</a>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          </div>
-        </section>
+          <li class="achievement-treadmill-card">
+            <a class="achievement-treadmill-frame" href="images/volunteer/translator-contest-2023.jpg" target="_blank" rel="noopener"
+              aria-label="Open Promising Translator Contest 2023 certificate image (opens in a new tab)">
+              <img src="images/volunteer/translator-contest-2023.jpg" width="1600" height="1133" alt="" loading="lazy" decoding="async">
+              <span class="achievement-treadmill-label" aria-hidden="true">Promising Translator Contest 2023</span>
+            </a>
+          </li>
+          </ul>
+        </div>
       </div>
     </section>
 

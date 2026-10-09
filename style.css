@@ -229,7 +229,7 @@ a:focus-visible, button:focus-visible {
   transition: background .15s ease, color .15s ease;
 }
 .nav-links a:hover { background: var(--soft-bg); color: var(--text-strong); }
-.nav-links a.is-current { background: var(--pink-bg); color: var(--pink); }
+.nav-links a.is-current { background: var(--pink-bg); color: var(--pink-strong); }
 
 .btn {
   display: inline-flex;
@@ -750,14 +750,8 @@ a:focus-visible, button:focus-visible {
 }
 
 .legacy-anchor,
-#achievements,
-.achievement-group { scroll-margin-top: 5rem; }
+#achievements { scroll-margin-top: 5rem; }
 .legacy-anchor { display: block; }
-.achievement-group .subsection-title {
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-}
-.achievement-group + .achievement-group { margin-top: 3.5rem; }
 
 .section-cta { margin-top: 2.5rem; }
 
@@ -1143,39 +1137,201 @@ a:focus-visible, button:focus-visible {
 .experience-links { margin-top: 1.25rem; font-size: .9rem; font-weight: 600; }
 
 /* ============ Achievements ============ */
-.award-feature {
-  position: relative;
-  overflow: hidden;
+.achievements-section .section-head { margin-bottom: 1.25rem; }
+
+.achievement-treadmill-toggle {
+  flex: none;
+  padding: .6rem 1rem;
+  font-size: .82rem;
+}
+
+.achievement-treadmill {
+  --achievement-gap: clamp(.8rem, 2vw, 1.25rem);
+  --achievement-tile: clamp(13rem, 22vw, 17.5rem);
+  overflow-x: auto;
+  padding-block: .65rem 1.4rem;
+  scrollbar-width: none;
+  overscroll-behavior-inline: contain;
+}
+.achievement-treadmill::-webkit-scrollbar { display: none; }
+.achievement-treadmill:focus-visible {
+  outline: 3px solid var(--pink);
+  outline-offset: -3px;
+}
+
+.achievement-treadmill-track {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: .5rem;
-  padding: 2rem;
-  background: var(--dark-panel);
-  border-color: transparent;
+  width: max-content;
 }
-:root[data-theme="dark"] .award-feature { border-color: var(--border-strong); }
-
-.award-feature h3 { margin: 0; color: #fff; font-size: clamp(1.6rem, 3vw, 2.1rem); max-width: 14ch; }
-.award-feature-line { margin: 0; color: rgba(255, 255, 255, .72); font-size: .95rem; max-width: 38ch; }
-/* The huge faint year in the corner. overflow:hidden on the card crops it. */
-.award-feature-year {
-  position: absolute;
-  top: -1.25rem;
-  right: .5rem;
+.achievement-treadmill.is-ready {
+  overflow: hidden;
+}
+.achievement-treadmill.is-ready .achievement-treadmill-track {
+  animation: achievement-treadmill-loop var(--achievement-duration, 70s) linear infinite;
+  will-change: transform;
+}
+.achievement-treadmill-set {
+  display: flex;
+  flex: none;
+  gap: var(--achievement-gap);
   margin: 0;
-  font-weight: 700;
-  font-size: clamp(6rem, 12vw, 9rem);
-  line-height: 1;
-  color: rgba(255, 255, 255, .07);
-  pointer-events: none;
-  user-select: none;
+  padding: 0 var(--achievement-gap) 0 0;
 }
 
-.highlight-stack { display: grid; gap: 1rem; height: 100%; }
-.highlight-card { display: flex; flex-direction: column; gap: .35rem; padding: 1.5rem; }
-.highlight-card h3 { margin: 0; font-size: 1.1rem; font-weight: 600; }
-.highlight-card p { margin: 0; font-size: .875rem; color: var(--text-soft); }
+.achievement-treadmill-card {
+  flex: 0 0 var(--achievement-tile);
+  width: var(--achievement-tile);
+  aspect-ratio: 4 / 3;
+}
+
+.achievement-treadmill-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: var(--shadow-medium);
+  color: inherit;
+  text-decoration: none;
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.achievement-treadmill-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: .55rem;
+  object-fit: contain;
+  transition: transform .25s ease;
+}
+.achievement-treadmill-frame:hover,
+.achievement-treadmill-frame:focus-visible {
+  border-color: var(--pink);
+  box-shadow: var(--shadow-large);
+  color: inherit;
+  transform: translateY(-4px);
+}
+.achievement-treadmill-frame:hover img,
+.achievement-treadmill-frame:focus-visible img { transform: scale(1.025); }
+.achievement-treadmill-frame:focus-visible {
+  outline: 3px solid var(--pink);
+  outline-offset: 3px;
+  border-radius: 16px;
+}
+
+.achievement-treadmill-label {
+  position: absolute;
+  left: .7rem;
+  bottom: .7rem;
+  z-index: 2;
+  width: fit-content;
+  max-width: calc(100% - 1.4rem);
+  padding: .48rem .72rem;
+  overflow-wrap: anywhere;
+  border: 1px solid rgba(255, 255, 255, .62);
+  border-radius: 14px;
+  background: rgba(32, 24, 29, .86);
+  box-shadow: 0 8px 24px rgba(32, 24, 29, .18);
+  color: #fff;
+  font-size: clamp(.7rem, 1.5vw, .78rem);
+  font-weight: 700;
+  letter-spacing: .01em;
+  line-height: 1.25;
+  white-space: normal;
+  pointer-events: none;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.achievement-treadmill-placeholder {
+  background:
+    radial-gradient(circle at 82% 18%, rgba(209, 154, 170, .34), transparent 31%),
+    linear-gradient(145deg, #292128, var(--dark-panel));
+}
+.achievement-treadmill-placeholder::before,
+.achievement-treadmill-placeholder::after {
+  content: "";
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, .09);
+  border-radius: 999px;
+}
+.achievement-treadmill-placeholder::before {
+  width: 9rem;
+  height: 9rem;
+  top: -3rem;
+  right: -2rem;
+}
+.achievement-treadmill-placeholder::after {
+  width: 5.5rem;
+  height: 5.5rem;
+  left: 1.2rem;
+  bottom: 1rem;
+}
+
+@keyframes achievement-treadmill-loop {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+.achievement-treadmill:hover .achievement-treadmill-track,
+.achievement-treadmill:focus-within .achievement-treadmill-track,
+.achievement-treadmill.is-paused .achievement-treadmill-track {
+  animation-play-state: paused;
+}
+
+@supports (mask-image: linear-gradient(90deg, #000, #000)) {
+  .achievement-treadmill.is-ready:not(.is-keyboard-browsing) {
+    mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  }
+}
+
+/* Keyboard focus turns the conveyor into a stable, manually scrollable row,
+   so the focused certificate can never pause outside the visible viewport. */
+.achievement-treadmill.is-keyboard-browsing {
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+}
+.achievement-treadmill.is-keyboard-browsing .achievement-treadmill-track {
+  animation: none;
+  transform: none;
+}
+.achievement-treadmill.is-keyboard-browsing [data-achievement-treadmill-clone] { display: none; }
+.achievement-treadmill.is-keyboard-browsing .achievement-treadmill-card { scroll-snap-align: start; }
+
+@media (max-width: 480px) {
+  .achievement-treadmill { --achievement-tile: clamp(12.75rem, 68vw, 15rem); }
+  .achievement-treadmill-frame { border-radius: 14px; }
+  .achievement-treadmill-label {
+    left: .6rem;
+    bottom: .6rem;
+    max-width: calc(100% - 1.2rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .achievement-treadmill-toggle { display: none; }
+  .achievement-treadmill.is-ready {
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+  .achievement-treadmill.is-ready .achievement-treadmill-track {
+    animation: none;
+    transform: none;
+  }
+  .achievement-treadmill [data-achievement-treadmill-clone] { display: none; }
+  .achievement-treadmill-card { scroll-snap-align: start; }
+  .achievement-treadmill-frame,
+  .achievement-treadmill-frame img { transition: none; }
+  .achievement-treadmill-frame:hover,
+  .achievement-treadmill-frame:focus-visible { transform: none; }
+  .achievement-treadmill-frame:hover img,
+  .achievement-treadmill-frame:focus-visible img { transform: none; }
+}
 
 /* ============ Project and case-page components ============ */
 
