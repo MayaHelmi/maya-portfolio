@@ -108,8 +108,7 @@ p:last-child { margin-bottom: 0; }
 
 ul { margin: 0; padding: 0; list-style: none; }
 
-/* The hidden attribute must beat any display value set below, because the
-   pager on certificates.html hides cards by setting hidden on them. */
+/* The hidden attribute must beat any display value set below. */
 [hidden] { display: none !important; }
 
 img { max-width: 100%; height: auto; vertical-align: middle; }
@@ -750,6 +749,16 @@ a:focus-visible, button:focus-visible {
   color: var(--text-soft);
 }
 
+.legacy-anchor,
+#achievements,
+.achievement-group { scroll-margin-top: 5rem; }
+.legacy-anchor { display: block; }
+.achievement-group .subsection-title {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+.achievement-group + .achievement-group { margin-top: 3.5rem; }
+
 .section-cta { margin-top: 2.5rem; }
 
 /* Column layouts used to live here as .grid--3, .grid--4 and so on. They are
@@ -1133,7 +1142,7 @@ a:focus-visible, button:focus-visible {
 .experience-list li { font-size: .95rem; margin-bottom: .4rem; }
 .experience-links { margin-top: 1.25rem; font-size: .9rem; font-weight: 600; }
 
-/* ============ Certificates (home highlights) ============ */
+/* ============ Achievements ============ */
 .award-feature {
   position: relative;
   overflow: hidden;
@@ -1168,7 +1177,7 @@ a:focus-visible, button:focus-visible {
 .highlight-card h3 { margin: 0; font-size: 1.1rem; font-weight: 600; }
 .highlight-card p { margin: 0; font-size: .875rem; color: var(--text-soft); }
 
-/* ============ Subpages: projects, certificates, case pages ============ */
+/* ============ Project and case-page components ============ */
 
 /* Case-page header spacing */
 .case-title { margin-bottom: 1rem; }
@@ -1306,8 +1315,8 @@ a.card-media:hover { background: var(--pink-bg); }
   .flip-inner { transition: none; }
 }
 
-/* Certificate / award / volunteer cards on certificates.html use the same flip,
-   with a landscape picture (the documents are 4:3) shown whole, never cropped. */
+/* Certificate, award and volunteer cards use the same flip, with a landscape
+   picture (the documents are 4:3) shown whole, never cropped. */
 .flip-card--cert { aspect-ratio: 4 / 5; }
 .flip-card--cert .project-shot { aspect-ratio: 4 / 3; padding: .75rem; }
 .flip-card--cert .project-shot img { object-fit: contain; border-radius: 6px; }
@@ -1397,38 +1406,6 @@ a.card-media:hover { background: var(--pink-bg); }
 .training-card { display: flex; flex-direction: column; padding: 1.5rem; }
 .training-card h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: .5rem; }
 .training-card p { font-size: .9rem; color: var(--text-soft); }
-
-/* Numbered pager under long card grids (built by the script on certificates.html) */
-.pager { display: flex; gap: .5rem; margin-top: 1.5rem; }
-.pager button {
-  position: relative;
-  width: 38px;
-  height: 38px;
-  border: 1px solid var(--border-strong);
-  border-radius: 999px;
-  background: transparent;
-  color: var(--text-soft);
-  /* Buttons don't inherit the page font, so it is named again here. */
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-size: .9rem;
-  font-weight: 600;
-  line-height: 1;
-  cursor: pointer;
-  transition: background .15s ease, color .15s ease, border-color .15s ease;
-}
-/* Same 44px tap area as the navbar buttons. These are 38px with a 1px
-   border, so the pad stretches out from 36px: 36 + 4 + 4 = 44. */
-.pager button::after {
-  content: "";
-  position: absolute;
-  inset: -4px;
-}
-.pager button:hover { background: var(--soft-bg); color: var(--text-strong); border-color: var(--text-fade); }
-.pager button[aria-current="page"] {
-  background: var(--pink-bg);
-  border-color: var(--pink-border);
-  color: var(--pink);
-}
 
 /* ============ Selected-work 3D carousel ============
    The screenshot frames turn toward the centre of the track. Selecting a

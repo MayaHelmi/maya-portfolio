@@ -2,11 +2,12 @@ live url:  https://mayahelmi.github.io/maya-portfolio/
 
 # Maya Helmi — portfolio
 
-The homepage contains the complete project collection, followed by dedicated
-certificates and case-study pages for Besign, Glamé AI and NOI Beauty Lounge.
-Glamé is presented as an in-progress beauty-tech website concept; NOI is
-clearly identified as an independent salon website concept. The old
-`projects.html` URL redirects to the homepage project section.
+The homepage contains the complete project and achievements collections,
+followed by dedicated case-study pages for Besign, Glamé AI and NOI Beauty
+Lounge. Glamé is presented as an in-progress beauty-tech website concept; NOI
+is clearly identified as an independent salon website concept. The old
+`projects.html`, `certificates.html` and `recognition.html` URLs redirect to
+their relevant homepage sections.
 
 ## Opening it
 
