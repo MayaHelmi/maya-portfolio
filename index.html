@@ -22,7 +22,7 @@
     href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap">
   <!-- Tailwind first, so the hand-written rules in style.css stay in charge. -->
   <link rel="stylesheet" href="tailwind.css?v=20260907e">
-  <link rel="stylesheet" href="style.css?v=20261009showcase-3d2">
+  <link rel="stylesheet" href="style.css?v=20261009showcase-modal4">
 
   <!-- Theme switch + phone menu. Deliberately has no "defer": it needs to run
        before the page is painted, so dark mode never flashes white first. -->
@@ -255,7 +255,7 @@
       <div class="showcase-carousel-toolbar">
         <div>
           <p class="kicker">Selected work</p>
-          <p class="showcase-carousel-help" id="showcase-carousel-help">Drag, swipe, or use the arrows to explore.</p>
+          <p class="showcase-carousel-help" id="showcase-carousel-help">Drag or swipe to explore. Select an image for the project details.</p>
         </div>
 
         <div class="showcase-carousel-controls" aria-label="Project carousel controls">
@@ -281,7 +281,7 @@
           <article class="project-card flip-card" tabindex="0" data-showcase-kind="app">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
-              <div class="project-shot"><img src="images/projects/besign-front.jpg?v=20260907e" width="960" height="1067" alt="Besign app screens" loading="lazy"></div>
+              <button class="project-shot" type="button" data-project-trigger><img src="images/projects/besign-front.jpg?v=20260907e" width="960" height="1067" alt="Besign app screens" loading="lazy"></button>
               <div class="project-head">
                 <h3 class="project-title">Besign</h3>
                 <div class="project-badges">
@@ -312,7 +312,7 @@
           <article class="project-card flip-card" tabindex="0">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
-              <div class="project-shot"><img src="images/projects/noi-beauty-lounge-front.jpg?v=20261008continuous" width="960" height="1067" alt="NOI Beauty Lounge salon website concept hero and services" loading="lazy"></div>
+              <button class="project-shot" type="button" data-project-trigger><img src="images/projects/noi-beauty-lounge-front.jpg?v=20261008continuous" width="960" height="1067" alt="NOI Beauty Lounge salon website concept hero and services" loading="lazy"></button>
               <div class="project-head">
                 <h3 class="project-title">NOI Beauty Lounge</h3>
                 <div class="project-badges">
@@ -345,7 +345,7 @@
           <article class="project-card flip-card" tabindex="0">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
-              <div class="project-shot"><img src="images/projects/hopebridge-front.jpg?v=20260907e" width="960" height="1067" alt="HopeBridge charity platform home page" loading="lazy"></div>
+              <button class="project-shot" type="button" data-project-trigger><img src="images/projects/hopebridge-front.jpg?v=20260907e" width="960" height="1067" alt="HopeBridge charity platform home page" loading="lazy"></button>
               <div class="project-head">
                 <h3 class="project-title">HopeBridge</h3>
                 <div class="project-badges">
@@ -376,7 +376,7 @@
           <article class="project-card flip-card" tabindex="0">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
-              <div class="project-shot"><img src="images/projects/invite-sites-front.jpg?v=20260907e" width="960" height="1067" alt="Invite Sites landing page" loading="lazy"></div>
+              <button class="project-shot" type="button" data-project-trigger><img src="images/projects/invite-sites-front.jpg?v=20260907e" width="960" height="1067" alt="Invite Sites landing page" loading="lazy"></button>
               <div class="project-head">
                 <h3 class="project-title">Invite Sites</h3>
                 <div class="project-badges">
@@ -408,7 +408,7 @@
           <article class="project-card flip-card" tabindex="0">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
-              <div class="project-shot"><img src="images/projects/glame-ai-web-front.jpg?v=20261004" width="960" height="1067" alt="Glamé AI beauty-tech website concept hero" loading="lazy"></div>
+              <button class="project-shot" type="button" data-project-trigger><img src="images/projects/glame-ai-web-front.jpg?v=20261004" width="960" height="1067" alt="Glamé AI beauty-tech website concept hero" loading="lazy"></button>
               <div class="project-head">
                 <h3 class="project-title">Glamé AI &mdash; Beauty-Tech Website Concept</h3>
                 <div class="project-badges">
@@ -440,6 +440,35 @@
 
       </div>
     </section>
+
+    <dialog class="project-modal" id="project-modal" data-project-modal
+      aria-labelledby="project-modal-title" aria-describedby="project-modal-description">
+      <div class="project-modal-shell">
+        <button class="project-modal-close" type="button" data-project-modal-close
+          aria-label="Close project details">&times;</button>
+
+        <div class="project-modal-grid">
+          <div class="project-modal-preview">
+            <p class="kicker" data-project-modal-preview-label>Website preview</p>
+            <div class="project-modal-image-scroll" role="region" aria-label="Scrollable website screenshot" tabindex="0">
+              <img data-project-modal-image width="960" height="1067" alt="">
+            </div>
+          </div>
+
+          <div class="project-modal-copy">
+            <div class="project-modal-copy-scroll">
+              <p class="kicker" data-project-modal-kicker></p>
+              <h2 class="project-modal-title" id="project-modal-title" data-project-modal-title tabindex="-1"></h2>
+              <div class="project-modal-badges" data-project-modal-badges></div>
+              <p class="project-modal-description" id="project-modal-description" data-project-modal-description></p>
+              <p class="project-note project-modal-note" data-project-modal-note hidden></p>
+              <p class="project-tech project-modal-tech" data-project-modal-tech></p>
+            </div>
+            <a class="btn primary-btn project-modal-cta" data-project-modal-cta></a>
+          </div>
+        </div>
+      </div>
+    </dialog>
 
     <!-- Skills -->
     <section id="skills" class="section section--sunken">
@@ -734,7 +763,7 @@
     if (window.matchMedia('(hover: none)').matches) {
       document.querySelectorAll('.flip-card').forEach(function (card) {
         card.addEventListener('click', function (e) {
-          if (e.target.closest('a')) return;
+          if (e.target.closest('a, button, [role="button"]')) return;
           card.classList.toggle('is-flipped');
         });
       });
@@ -746,7 +775,7 @@
       });
     });
   </script>
-  <script src="showcase-carousel.js?v=20261009showcase-3d2"></script>
+  <script src="showcase-carousel.js?v=20261009showcase-modal4"></script>
 </body>
 
 </html>

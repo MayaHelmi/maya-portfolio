@@ -12,15 +12,33 @@
   const totalText = section.querySelector('[data-showcase-total]');
   const liveText = section.querySelector('[data-showcase-live]');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const modal = document.querySelector('[data-project-modal]');
+  const modalClose = modal?.querySelector('[data-project-modal-close]');
+  const modalImage = modal?.querySelector('[data-project-modal-image]');
+  const modalImageScroll = modal?.querySelector('.project-modal-image-scroll');
+  const modalPreviewLabel = modal?.querySelector('[data-project-modal-preview-label]');
+  const modalCopyScroll = modal?.querySelector('.project-modal-copy-scroll');
+  const modalKicker = modal?.querySelector('[data-project-modal-kicker]');
+  const modalTitle = modal?.querySelector('[data-project-modal-title]');
+  const modalBadges = modal?.querySelector('[data-project-modal-badges]');
+  const modalDescription = modal?.querySelector('[data-project-modal-description]');
+  const modalNote = modal?.querySelector('[data-project-modal-note]');
+  const modalTech = modal?.querySelector('[data-project-modal-tech]');
+  const modalCta = modal?.querySelector('[data-project-modal-cta]');
+
+  if (!modal) return;
 
   let activeIndex = 0;
   let animationFrame = 0;
   let dragStartX = 0;
   let dragStartScroll = 0;
   let dragging = false;
+  let dragMoved = false;
+  let suppressOpen = false;
   let scrollEndTimer = 0;
   let lastAnnouncedIndex = 0;
   let targetIndex = null;
+  let lastModalTrigger = null;
 
   /* Website screenshots lead the carousel; the featured mobile app remains
      part of the selected work, but follows the website slides. */
@@ -30,6 +48,7 @@
 
   cards.forEach(function (card, index) {
     const title = card.querySelector('.project-title')?.textContent.trim() || 'Project';
+    const trigger = card.querySelector('[data-project-trigger]');
     card.removeAttribute('tabindex');
     card.setAttribute('role', 'group');
     card.setAttribute('aria-roledescription', 'slide');
@@ -37,11 +56,118 @@
     card.querySelectorAll('img').forEach(function (image) {
       image.draggable = false;
     });
+
+    trigger.setAttribute('aria-label', 'Open details for ' + title);
+    trigger.setAttribute('aria-haspopup', 'dialog');
+    trigger.setAttribute('aria-controls', modal.id);
+    trigger.addEventListener('click', function () {
+      if (!suppressOpen) openProject(card, trigger);
+    });
   });
 
   function projectTitle(index) {
     return cards[index]?.querySelector('.project-title')?.textContent.trim() || 'Project';
   }
+
+  function cloneChildren(target, source) {
+    const children = source ? Array.from(source.children).map(function (child) {
+      return child.cloneNode(true);
+    }) : [];
+    target.replaceChildren(...children);
+  }
+
+  function openProject(card, trigger) {
+    const image = card.querySelector('.project-shot img');
+    const title = card.querySelector('.project-title')?.textContent.trim() || 'Project';
+    const kicker = card.querySelector('.flip-back .kicker')?.textContent.trim() || 'Project details';
+    const description = card.querySelector('.project-description')?.textContent.trim() || '';
+    const badges = card.querySelector('.project-badges');
+    const tech = card.querySelector('.project-tech');
+    const links = Array.from(card.querySelectorAll('.project-links a'));
+    const liveLink = links.find(function (link) {
+      return /live demo|live site/i.test(link.textContent);
+    });
+    const primaryLink = liveLink || links.find(function (link) {
+      return !/github/i.test(link.textContent);
+    });
+    const notes = Array.from(card.querySelectorAll('.project-note, .project-private'))
+      .map(function (note) { return note.textContent.trim(); })
+      .filter(Boolean);
+
+    lastModalTrigger = trigger;
+    modalImage.src = image.currentSrc || image.src;
+    modalImage.alt = image.alt;
+    modalPreviewLabel.textContent = card.dataset.showcaseKind === 'app' ? 'App preview' : 'Website preview';
+    modalImageScroll.setAttribute('aria-label', 'Scrollable ' + modalPreviewLabel.textContent.toLowerCase() + ' for ' + title);
+    modalKicker.textContent = kicker;
+    modalTitle.textContent = title;
+    modalDescription.textContent = description;
+    cloneChildren(modalBadges, badges);
+    cloneChildren(modalTech, tech);
+
+    modalNote.textContent = notes.join(' ');
+    modalNote.hidden = notes.length === 0;
+
+    if (primaryLink) {
+      modalCta.href = primaryLink.href;
+      if (primaryLink.hasAttribute('target')) modalCta.target = primaryLink.target;
+      else modalCta.removeAttribute('target');
+      if (primaryLink.hasAttribute('rel')) modalCta.rel = primaryLink.rel;
+      else modalCta.removeAttribute('rel');
+      modalCta.textContent = liveLink
+        ? (/demo/i.test(liveLink.textContent) ? 'View live demo ↗' : 'Visit website ↗')
+        : 'Read project story →';
+      if (modalCta.target === '_blank') {
+        modalCta.setAttribute('aria-label', modalCta.textContent.replace(' ↗', '') + ' (opens in a new tab)');
+      } else {
+        modalCta.removeAttribute('aria-label');
+      }
+      modalCta.hidden = false;
+    } else {
+      modalCta.hidden = true;
+      modalCta.removeAttribute('href');
+    }
+
+    modalImageScroll.scrollTop = 0;
+    modalCopyScroll.scrollTop = 0;
+    modal.showModal();
+    document.documentElement.classList.add('project-modal-open');
+    modalTitle.focus();
+  }
+
+  modalClose.addEventListener('click', function () {
+    modal.close();
+  });
+
+  modal.addEventListener('click', function (event) {
+    if (event.target === modal) modal.close();
+  });
+
+  modal.addEventListener('close', function () {
+    document.documentElement.classList.remove('project-modal-open');
+    lastModalTrigger?.focus();
+  });
+
+  modal.addEventListener('keydown', function (event) {
+    if (event.key !== 'Tab') return;
+
+    const focusable = Array.from(modal.querySelectorAll('button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'))
+      .filter(function (element) { return !element.hidden; });
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+
+  modalCta.addEventListener('click', function () {
+    modal.close();
+  });
 
   function updateControls() {
     currentText.textContent = String(activeIndex + 1).padStart(2, '0');
@@ -143,20 +269,28 @@
   });
 
   carousel.addEventListener('pointerdown', function (event) {
-    if (event.pointerType !== 'mouse' || event.button !== 0 || event.target.closest('a, button')) return;
+    if (event.pointerType !== 'mouse' || event.button !== 0 || event.target.closest('a, button:not([data-project-trigger])')) return;
 
     dragging = true;
+    dragMoved = false;
     targetIndex = null;
     dragStartX = event.clientX;
     dragStartScroll = carousel.scrollLeft;
-    carousel.classList.add('is-dragging');
-    carousel.setPointerCapture(event.pointerId);
   });
 
   carousel.addEventListener('pointermove', function (event) {
     if (!dragging) return;
+
+    const distance = event.clientX - dragStartX;
+    if (!dragMoved && Math.abs(distance) > 6) {
+      dragMoved = true;
+      carousel.classList.add('is-dragging');
+      carousel.setPointerCapture(event.pointerId);
+    }
+    if (!dragMoved) return;
+
     event.preventDefault();
-    carousel.scrollLeft = dragStartScroll - (event.clientX - dragStartX);
+    carousel.scrollLeft = dragStartScroll - distance;
   });
 
   function stopDragging(event) {
@@ -164,6 +298,10 @@
     dragging = false;
     carousel.classList.remove('is-dragging');
     if (carousel.hasPointerCapture(event.pointerId)) carousel.releasePointerCapture(event.pointerId);
+    if (dragMoved) {
+      suppressOpen = true;
+      window.setTimeout(function () { suppressOpen = false; }, 0);
+    }
     requestRender();
   }
 
