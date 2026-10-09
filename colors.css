@@ -21,6 +21,42 @@
   --portrait-blush: #e2cfca;
   --portrait-cream: #e7d6d1;
 
+  /* Utility colours. Components never declare colour literals themselves. */
+  --white: #fff;
+  --black: #000;
+  --white-88: rgba(255, 255, 255, .88);
+  --white-85: rgba(255, 255, 255, .85);
+  --white-82: rgba(255, 255, 255, .82);
+  --white-80: rgba(255, 255, 255, .8);
+  --white-78: rgba(255, 255, 255, .78);
+  --white-72: rgba(255, 255, 255, .72);
+  --white-70: rgba(255, 255, 255, .7);
+  --white-62: rgba(255, 255, 255, .62);
+  --white-60: rgba(255, 255, 255, .6);
+  --white-55: rgba(255, 255, 255, .55);
+  --white-25: rgba(255, 255, 255, .25);
+  --white-24: rgba(255, 255, 255, .24);
+  --white-20: rgba(255, 255, 255, .2);
+  --white-18: rgba(255, 255, 255, .18);
+  --white-16: rgba(255, 255, 255, .16);
+  --white-15: rgba(255, 255, 255, .15);
+  --white-14: rgba(255, 255, 255, .14);
+  --white-13: rgba(255, 255, 255, .13);
+  --white-08: rgba(255, 255, 255, .08);
+  --white-07: rgba(255, 255, 255, .07);
+  --white-06: rgba(255, 255, 255, .06);
+  --ink-92: rgba(13, 13, 12, .92);
+  --ink-82: rgba(13, 13, 12, .82);
+  --ink-68: rgba(13, 13, 12, .68);
+  --ink-65: rgba(13, 13, 12, .65);
+  --ink-58: rgba(13, 13, 12, .58);
+  --ink-48: rgba(13, 13, 12, .48);
+  --ink-35: rgba(13, 13, 12, .35);
+  --ink-24: rgba(13, 13, 12, .24);
+  --ink-20: rgba(13, 13, 12, .2);
+  --ink-16: rgba(13, 13, 12, .16);
+  --ink-05: rgba(13, 13, 12, .05);
+
   /* Dark showcase surfaces shared by both themes */
   --gallery-bg: var(--portrait-ink);
   --gallery-card-bg: var(--portrait-charcoal);
@@ -28,6 +64,11 @@
   --gallery-glow: rgba(179, 95, 90, .14);
   --gallery-grid: rgba(227, 175, 151, .24);
   --sparkle-glow: rgba(227, 175, 151, .72);
+  --mask-solid: var(--black);
+  --on-dark: var(--white);
+  --on-accent: var(--portrait-ink);
+  --contact-linkedin: var(--portrait-rose);
+  --contact-github: var(--portrait-charcoal);
 
   /* Light theme — warm, editorial and softly contrasted */
   --text-strong: #1f1d1c;
@@ -43,12 +84,15 @@
   --border: #eadbd6;
   --border-strong: var(--portrait-hijab);
 
-  /* Existing component aliases now use the portrait's rose family. */
-  --pink: #9e554f;
+  /* The exact lip colour is the visible accent; darker ink keeps links AA. */
+  --pink: var(--portrait-rose);
   --pink-strong: #7d3f3b;
+  --link: #914842;
+  --link-hover: #713733;
   --pink-bg: #f4e4df;
   --pink-border: #ddb8ad;
   --hero-display: var(--portrait-hijab);
+  --header-surface: var(--white-88);
 
   --shadow-small: 0 1px 2px rgba(36, 33, 33, .07);
   --shadow-medium: 0 2px 4px rgba(36, 33, 33, .05), 0 8px 24px rgba(36, 33, 33, .09);
@@ -72,11 +116,14 @@
   --border: #302b2a;
   --border-strong: #5f5654;
 
-  --pink: var(--portrait-peach);
+  --pink: var(--portrait-rose);
   --pink-strong: #e7bba8;
+  --link: var(--portrait-peach);
+  --link-hover: #f0c8b6;
   --pink-bg: #2f1d1c;
   --pink-border: #6e3e3c;
   --hero-display: var(--portrait-hijab);
+  --header-surface: rgba(13, 13, 12, .88);
 
   --shadow-small: 0 1px 2px rgba(0, 0, 0, .5);
   --shadow-medium: 0 2px 4px rgba(0, 0, 0, .42), 0 8px 24px rgba(0, 0, 0, .48);

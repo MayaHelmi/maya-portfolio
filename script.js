@@ -29,6 +29,35 @@ try {
 const systemIsDark = matchMedia("(prefers-color-scheme: dark)").matches;
 page.dataset.theme = savedTheme || (systemIsDark ? "dark" : "light");
 
+/* Build the custom cursor from the palette instead of storing a second,
+   independently coloured SVG. This keeps colors.css as the single source
+   of truth for every interface colour, including the wand. */
+function updateMagicWandCursor() {
+  if (!matchMedia("(pointer: fine)").matches) return;
+
+  const palette = getComputedStyle(page);
+  const charcoal = palette.getPropertyValue("--portrait-charcoal").trim();
+  const hijab = palette.getPropertyValue("--portrait-hijab").trim();
+  const rose = palette.getPropertyValue("--portrait-rose").trim();
+  const cream = palette.getPropertyValue("--portrait-cream").trim();
+  const peach = palette.getPropertyValue("--portrait-peach").trim();
+  const cursorSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+    <path d="M10 10L26.5 26.5" stroke="${charcoal}" stroke-width="5.5" stroke-linecap="round"/>
+    <path d="M10 10L26.5 26.5" stroke="${hijab}" stroke-width="3" stroke-linecap="round"/>
+    <path d="M22.5 22.5L26.5 26.5" stroke="${rose}" stroke-width="3" stroke-linecap="round"/>
+    <path d="M7 1.75L8.55 5.15L12.25 5.55L9.5 8.1L10.25 11.75L7 9.9L3.75 11.75L4.5 8.1L1.75 5.55L5.45 5.15L7 1.75Z" fill="${cream}" stroke="${charcoal}" stroke-width="1.35" stroke-linejoin="round"/>
+    <path d="M18 2.5L18.55 4.05L20 4.6L18.55 5.15L18 6.7L17.45 5.15L16 4.6L17.45 4.05L18 2.5Z" fill="${peach}" stroke="${charcoal}" stroke-width=".65" stroke-linejoin="round"/>
+    <path d="M3.2 15L3.75 16.55L5.2 17.1L3.75 17.65L3.2 19.2L2.65 17.65L1.2 17.1L2.65 16.55L3.2 15Z" fill="${hijab}" stroke="${charcoal}" stroke-width=".65" stroke-linejoin="round"/>
+  </svg>`;
+
+  page.style.setProperty(
+    "--magic-wand-cursor",
+    `url("data:image/svg+xml,${encodeURIComponent(cursorSvg)}") 7 7`
+  );
+}
+
+updateMagicWandCursor();
+
 
 /* ============ Landing hero entrance ============ */
 
@@ -69,6 +98,7 @@ if (document.readyState === "complete") {
 function switchTheme() {
   const newTheme = page.dataset.theme === "dark" ? "light" : "dark";
   page.dataset.theme = newTheme;
+  updateMagicWandCursor();
   try {
     localStorage.setItem("theme", newTheme);
   } catch (error) {

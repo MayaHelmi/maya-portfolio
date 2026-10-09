@@ -21,6 +21,9 @@
     white-space: nowrap;
     border-width: 0;
   }
+  .static {
+    position: static;
+  }
   .block {
     display: block;
   }
@@ -30,11 +33,17 @@
   .hidden {
     display: none;
   }
+  .inline {
+    display: inline;
+  }
   .table {
     display: table;
   }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
+  }
+  .resize {
+    resize: both;
   }
   .gap-6 {
     gap: calc(var(--spacing) * 6);

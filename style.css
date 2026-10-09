@@ -42,12 +42,12 @@ ul { margin: 0; padding: 0; list-style: none; }
 img { max-width: 100%; height: auto; vertical-align: middle; }
 
 a {
-  color: var(--pink);
+  color: var(--link);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   transition: color .15s ease;
 }
-a:hover { color: var(--pink-strong); }
+a:hover { color: var(--link-hover); }
 
 strong { color: var(--text-strong); font-weight: 600; }
 
@@ -68,7 +68,7 @@ code {
   z-index: 200;
   padding: .75rem 1.25rem;
   background: var(--dark-panel);
-  color: #fff;
+  color: var(--on-dark);
   border-radius: 0 0 12px 12px;
   text-decoration: none;
   font-weight: 600;
@@ -110,11 +110,10 @@ a:focus-visible, button:focus-visible {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, .88);
+  background: var(--header-surface);
   backdrop-filter: saturate(160%) blur(12px);
   border-bottom: 1px solid var(--border);
 }
-:root[data-theme="dark"] .header { background: rgba(15, 18, 22, .88); }
 
 .navbar {
   display: flex;
@@ -181,8 +180,8 @@ a:focus-visible, button:focus-visible {
 .secondary-btn { background: var(--page-bg); color: var(--text-strong); border-color: var(--border-strong); }
 .secondary-btn:hover { background: var(--soft-bg); color: var(--text-strong); border-color: var(--text-fade); }
 
-.primary-btn { background: var(--pink); color: #fff; border-color: transparent; }
-.primary-btn:hover { background: var(--pink-strong); color: #fff; }
+.primary-btn { background: var(--pink); color: var(--on-accent); border-color: transparent; }
+.primary-btn:hover { background: var(--pink-strong); color: var(--on-dark); }
 
 /* The "Hire me" button hops every few seconds, like it cannot sit still.
    Most of the 4.4s cycle is stillness; the hop is a crouch, a jump and a
@@ -476,8 +475,8 @@ a:focus-visible, button:focus-visible {
   gap: .75rem;
   overflow: hidden;
   padding-block: .25rem;
-  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  mask-image: linear-gradient(90deg, transparent, var(--mask-solid) 5%, var(--mask-solid) 95%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, var(--mask-solid) 5%, var(--mask-solid) 95%, transparent);
 }
 
 .skills-treadmill-row {
@@ -639,9 +638,9 @@ a:focus-visible, button:focus-visible {
 }
 
 .contact-row-icon--email { color: var(--pink-strong); background: var(--pink-bg); }
-.contact-row-icon--phone { color: #fff; background: var(--dark-panel); }
-.contact-row-icon--linkedin { color: #fff; background: #0a66c2; }
-.contact-row-icon--github { color: #fff; background: #181717; }
+.contact-row-icon--phone { color: var(--on-dark); background: var(--dark-panel); }
+.contact-row-icon--linkedin { color: var(--on-dark); background: var(--contact-linkedin); }
+.contact-row-icon--github { color: var(--on-dark); background: var(--contact-github); }
 
 .contact-row-content { display: grid; min-width: 0; gap: .1rem; }
 
@@ -795,7 +794,7 @@ a:focus-visible, button:focus-visible {
   background-size: 72px 58px;
   transform: perspective(470px) rotateX(64deg);
   transform-origin: center bottom;
-  mask-image: linear-gradient(to bottom, transparent 0%, #000 32%, #000 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, var(--mask-solid) 32%, var(--mask-solid) 100%);
 }
 
 .projects-gallery-page .footer {
@@ -813,7 +812,7 @@ a:focus-visible, button:focus-visible {
 .gallery-status {
   position: fixed;
   z-index: 20;
-  color: rgba(255, 255, 255, .72);
+  color: var(--white-72);
   font-size: .68rem;
   font-weight: 700;
   letter-spacing: .13em;
@@ -893,7 +892,7 @@ a:focus-visible, button:focus-visible {
   transform: rotateY(var(--gallery-angle)) scale(var(--gallery-scale));
   transform-style: preserve-3d;
   transition: transform .18s ease-out, opacity .18s ease-out, filter .18s ease-out;
-  box-shadow: 0 35px 100px rgba(0, 0, 0, .65);
+  box-shadow: 0 35px 100px var(--ink-65);
   filter: saturate(calc(.72 + (var(--gallery-scale) * .28)));
 }
 
@@ -909,9 +908,9 @@ a:focus-visible, button:focus-visible {
   height: 100%;
   padding: 0;
   overflow: hidden;
-  color: #fff;
+  color: var(--on-dark);
   background: var(--gallery-card-bg);
-  border: 1px solid rgba(255, 255, 255, .14);
+  border: 1px solid var(--white-14);
   border-radius: inherit;
   backface-visibility: visible;
 }
@@ -923,8 +922,8 @@ a:focus-visible, button:focus-visible {
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(5, 5, 6, .05) 38%, rgba(5, 5, 6, .2) 58%, rgba(5, 5, 6, .92) 100%),
-    linear-gradient(90deg, rgba(5, 5, 6, .2), transparent 28%, transparent 72%, rgba(5, 5, 6, .16));
+    linear-gradient(180deg, var(--ink-05) 38%, var(--ink-20) 58%, var(--ink-92) 100%),
+    linear-gradient(90deg, var(--ink-20), transparent 28%, transparent 72%, var(--ink-16));
 }
 
 .projects-gallery-page .flip-back,
@@ -963,10 +962,10 @@ a:focus-visible, button:focus-visible {
 
 .projects-gallery-page .project-title {
   margin: 0;
-  color: #fff;
+  color: var(--on-dark);
   font-size: clamp(1.65rem, 4.2vw, 4rem);
   line-height: .98;
-  text-shadow: 0 3px 24px rgba(0, 0, 0, .65);
+  text-shadow: 0 3px 24px var(--ink-65);
 }
 
 .projects-gallery-page .project-badges {
@@ -976,9 +975,9 @@ a:focus-visible, button:focus-visible {
 }
 
 .projects-gallery-page .project-badge {
-  color: rgba(255, 255, 255, .82);
-  background: rgba(11, 10, 11, .48);
-  border-color: rgba(255, 255, 255, .18);
+  color: var(--white-82);
+  background: var(--ink-48);
+  border-color: var(--white-18);
   backdrop-filter: blur(10px);
 }
 
@@ -992,10 +991,10 @@ a:focus-visible, button:focus-visible {
   aspect-ratio: 1;
   place-items: center;
   color: var(--gallery-bg);
-  background: #fff;
+  background: var(--on-dark);
   border-radius: 50%;
   font-size: clamp(1.1rem, 2vw, 1.5rem);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  box-shadow: 0 10px 30px var(--ink-35);
   transition: transform .2s ease, background .2s ease;
 }
 
@@ -1609,20 +1608,20 @@ a:focus-visible, button:focus-visible {
 .showcase-card:hover .showcase-cta { text-decoration: underline; text-underline-offset: 3px; }
 
 /* Four colour variants of the same card */
-.showcase-card--ink { background: var(--dark-panel); border-color: transparent; color: rgba(255, 255, 255, .72); }
-.showcase-card--ink:hover { color: rgba(255, 255, 255, .72); }
-.showcase-card--ink h3 { color: #fff; }
-.showcase-card--ink .kicker, .showcase-card--ink .showcase-cta { color: rgba(255, 255, 255, .85); }
+.showcase-card--ink { background: var(--dark-panel); border-color: transparent; color: var(--white-72); }
+.showcase-card--ink:hover { color: var(--white-72); }
+.showcase-card--ink h3 { color: var(--on-dark); }
+.showcase-card--ink .kicker, .showcase-card--ink .showcase-cta { color: var(--white-85); }
 
 .showcase-card--warm { background: var(--pink-bg); border-color: var(--pink-border); }
 
-.showcase-card--accent { background: var(--pink); border-color: transparent; color: rgba(255, 255, 255, .88); }
-.showcase-card--accent:hover { color: rgba(255, 255, 255, .88); }
-.showcase-card--accent h3, .showcase-card--accent .kicker, .showcase-card--accent .showcase-cta { color: #fff; }
+.showcase-card--accent { background: var(--pink); border-color: transparent; color: var(--on-accent); }
+.showcase-card--accent:hover { color: var(--on-accent); }
+.showcase-card--accent h3, .showcase-card--accent .kicker, .showcase-card--accent .showcase-cta { color: var(--on-accent); }
 
 :root[data-theme="dark"] .showcase-card--ink { border-color: var(--border-strong); }
 :root[data-theme="dark"] .showcase-card--accent,
-:root[data-theme="dark"] .showcase-card--accent:hover { color: rgba(15, 18, 22, .82); }
+:root[data-theme="dark"] .showcase-card--accent:hover { color: var(--on-accent); }
 :root[data-theme="dark"] .showcase-card--accent h3,
 :root[data-theme="dark"] .showcase-card--accent .kicker,
 :root[data-theme="dark"] .showcase-card--accent .showcase-cta { color: var(--page-bg); }
@@ -1692,10 +1691,10 @@ a:focus-visible, button:focus-visible {
   to   { transform: translate3d(-50%, 0, 0); }
 }
 /* Fade the ends so chips arrive and leave instead of being chopped off. */
-@supports (mask-image: linear-gradient(90deg, #000, #000)) {
+@supports (mask-image: linear-gradient(90deg, var(--mask-solid), var(--mask-solid))) {
   .belt {
-    mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+    mask-image: linear-gradient(90deg, transparent, var(--mask-solid) 5%, var(--mask-solid) 95%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, var(--mask-solid) 5%, var(--mask-solid) 95%, transparent);
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1736,8 +1735,8 @@ a:focus-visible, button:focus-visible {
 }
 :root[data-theme="dark"] .award-feature { border-color: var(--border-strong); }
 
-.award-feature h3 { margin: 0; color: #fff; font-size: clamp(1.6rem, 3vw, 2.1rem); max-width: 14ch; }
-.award-feature-line { margin: 0; color: rgba(255, 255, 255, .72); font-size: .95rem; max-width: 38ch; }
+.award-feature h3 { margin: 0; color: var(--on-dark); font-size: clamp(1.6rem, 3vw, 2.1rem); max-width: 14ch; }
+.award-feature-line { margin: 0; color: var(--white-72); font-size: .95rem; max-width: 38ch; }
 /* The huge faint year in the corner. overflow:hidden on the card crops it. */
 .award-feature-year {
   position: absolute;
@@ -1747,7 +1746,7 @@ a:focus-visible, button:focus-visible {
   font-weight: 700;
   font-size: clamp(6rem, 12vw, 9rem);
   line-height: 1;
-  color: rgba(255, 255, 255, .07);
+  color: var(--white-07);
   pointer-events: none;
   user-select: none;
 }
@@ -1868,15 +1867,15 @@ a.card-media:hover { background: var(--pink-bg); }
   overflow-y: auto;
   background: var(--dark-panel);
   border-color: transparent;
-  color: rgba(255, 255, 255, .78);
+  color: var(--white-78);
 }
 .flip-back .kicker { color: var(--pink); margin-bottom: .75rem; }
-.flip-back .project-description { color: #fff; font-size: .95rem; }
-.flip-back .project-note { background: rgba(255, 255, 255, .06); border-left-color: rgba(255, 255, 255, .25); color: rgba(255, 255, 255, .7); }
-.flip-back .tech-tag { background: rgba(255, 255, 255, .08); border-color: rgba(255, 255, 255, .18); color: rgba(255, 255, 255, .8); }
-.flip-back .project-links { border-top-color: rgba(255, 255, 255, .15); }
+.flip-back .project-description { color: var(--on-dark); font-size: .95rem; }
+.flip-back .project-note { background: var(--white-06); border-left-color: var(--white-25); color: var(--white-70); }
+.flip-back .tech-tag { background: var(--white-08); border-color: var(--white-18); color: var(--white-80); }
+.flip-back .project-links { border-top-color: var(--white-15); }
 .flip-back .project-links a { color: var(--pink); }
-.flip-back .project-private { color: rgba(255, 255, 255, .55); }
+.flip-back .project-private { color: var(--white-55); }
 .flip-front .project-shot { aspect-ratio: 9 / 10; }   /* the picture takes most of the front */
 /* Keep the top of the picture (a site's nav bar) whatever the box shape, and
    don't zoom it on hover: a zoom would trim the edges. */
@@ -1901,8 +1900,8 @@ a.card-media:hover { background: var(--pink-bg); }
 .flip-card--cert .project-shot { aspect-ratio: 4 / 3; padding: .75rem; }
 .flip-card--cert .project-shot img { object-fit: contain; border-radius: 6px; }
 .flip-card--cert .project-title { font-size: 1.15rem; line-height: 1.3; }
-.flip-back .cert-meta, .flip-back .cert-desc { font-size: .9rem; color: rgba(255, 255, 255, .78); margin-bottom: .35rem; }
-.flip-back .cert-meta strong { color: #fff; font-weight: 600; }
+.flip-back .cert-meta, .flip-back .cert-desc { font-size: .9rem; color: var(--white-78); margin-bottom: .35rem; }
+.flip-back .cert-meta strong { color: var(--on-dark); font-weight: 600; }
 .flip-back .cert-desc { margin-top: .5rem; }
 
 /* The home showcase grid shares the side padding of its heading row. */
@@ -1915,10 +1914,10 @@ a.card-media:hover { background: var(--pink-bg); }
   justify-content: flex-end;
   padding: 1.25rem !important;
   background: var(--dark-panel);
-  color: #fff;
+  color: var(--on-dark);
 }
 .shot-type-kicker { margin: 0; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--pink); }
-.shot-type-year { margin: 0; font-family: Helvetica, Arial, sans-serif; font-size: clamp(3.5rem, 9vw, 5.5rem); font-weight: 700; line-height: .9; color: #fff; }
+.shot-type-year { margin: 0; font-family: Helvetica, Arial, sans-serif; font-size: clamp(3.5rem, 9vw, 5.5rem); font-weight: 700; line-height: .9; color: var(--on-dark); }
 .project-head {
   display: flex;
   flex-wrap: wrap;
@@ -2023,15 +2022,15 @@ a.card-media:hover { background: var(--pink-bg); }
 .footer {
   display: none;
   background: var(--dark-panel);
-  color: rgba(255, 255, 255, .72);
+  color: var(--white-72);
   padding: clamp(3rem, 6vw, 4.5rem) clamp(1rem, 4vw, 2rem) 1.75rem;
 }
 
 .footer-grid { max-width: 1180px; margin-inline: auto; display: grid; gap: 2.5rem; }
 @media (min-width: 768px) { .footer-grid { grid-template-columns: 1.2fr 1fr; } }
 
-.footer-title { margin-bottom: .75rem; color: #fff; font-size: clamp(1.75rem, 3.5vw, 2.25rem); }
-.footer-note { margin: 0; color: rgba(255, 255, 255, .62); max-width: 48ch; }
+.footer-title { margin-bottom: .75rem; color: var(--on-dark); font-size: clamp(1.75rem, 3.5vw, 2.25rem); }
+.footer-note { margin: 0; color: var(--white-62); max-width: 48ch; }
 
 .contact-list { display: grid; gap: .85rem; align-content: start; }
 .contact-list li { display: flex; align-items: center; gap: .75rem; }
@@ -2045,20 +2044,20 @@ a.card-media:hover { background: var(--pink-bg); }
   justify-content: center;
   width: 34px;
   height: 34px;
-  border: 1px solid rgba(255, 255, 255, .16);
+  border: 1px solid var(--white-16);
   border-radius: 999px;
-  color: rgba(255, 255, 255, .6);
+  color: var(--white-60);
 }
 
 .footer-base {
   max-width: 1180px;
   margin: 3rem auto 0;
   padding-top: 1.25rem;
-  border-top: 1px solid rgba(255, 255, 255, .14);
+  border-top: 1px solid var(--white-14);
   font-size: .9rem;
-  color: rgba(255, 255, 255, .55);
+  color: var(--white-55);
 }
-.footer a:focus-visible { outline-color: #fff; }
+.footer a:focus-visible { outline-color: var(--on-dark); }
 
 /* ============ Motion ============ */
 
@@ -2227,11 +2226,11 @@ main { animation: page-in .45s ease both; }
   height: 100%;
   padding: 0;
   overflow: hidden;
-  color: #fff;
+  color: var(--on-dark);
   background: var(--gallery-card-bg);
-  border: 1px solid rgba(255, 255, 255, .14);
+  border: 1px solid var(--white-14);
   border-radius: clamp(1.4rem, 2.5vw, 2rem);
-  box-shadow: 0 24px 55px rgba(0, 0, 0, .24);
+  box-shadow: 0 24px 55px var(--ink-24);
   transform: none;
   backface-visibility: visible;
 }
@@ -2283,13 +2282,13 @@ main { animation: page-in .45s ease both; }
   justify-content: center;
   flex-direction: column;
   background: var(--gallery-card-bg);
-  border-top: 1px solid rgba(255, 255, 255, .13);
+  border-top: 1px solid var(--white-13);
 }
 
 .certificates-showcase-page .flip-front .project-title {
   max-width: 22ch;
   margin: 0;
-  color: #fff;
+  color: var(--on-dark);
   font-family: Helvetica, Arial, sans-serif;
   font-size: clamp(1.2rem, 2.4vw, 1.65rem);
   line-height: 1.05;
@@ -2297,9 +2296,9 @@ main { animation: page-in .45s ease both; }
 }
 
 .certificates-showcase-page .flip-front .project-badge {
-  color: rgba(255, 255, 255, .85);
-  background: rgba(15, 15, 16, .58);
-  border-color: rgba(255, 255, 255, .2);
+  color: var(--white-85);
+  background: var(--ink-58);
+  border-color: var(--white-20);
   backdrop-filter: blur(10px);
 }
 
@@ -2341,9 +2340,9 @@ main { animation: page-in .45s ease both; }
   min-height: 36px;
   padding: .48rem .7rem;
   align-items: center;
-  color: #fff;
-  background: rgba(10, 10, 11, .68);
-  border: 1px solid rgba(255, 255, 255, .24);
+  color: var(--on-dark);
+  background: var(--ink-68);
+  border: 1px solid var(--white-24);
   border-radius: 999px;
   backdrop-filter: blur(10px);
   font-size: .68rem;
@@ -2352,7 +2351,7 @@ main { animation: page-in .45s ease both; }
 }
 
 .certificates-showcase-page .flip-back .project-links a:hover {
-  color: #0a0a0b;
+  color: var(--gallery-bg);
   background: var(--pink-strong);
   border-color: var(--pink-strong);
 }
@@ -2376,7 +2375,7 @@ main { animation: page-in .45s ease both; }
 @media (pointer: fine) {
   html,
   body {
-    cursor: url("images/magic-wand-cursor.svg?v=20261009portraitpalette1") 7 7, auto;
+    cursor: var(--magic-wand-cursor), auto;
   }
 
   a,
@@ -2387,7 +2386,7 @@ main { animation: page-in .45s ease both; }
   label,
   summary,
   [role="button"] {
-    cursor: url("images/magic-wand-cursor.svg?v=20261009portraitpalette1") 7 7, pointer;
+    cursor: var(--magic-wand-cursor), pointer;
   }
 }
 
