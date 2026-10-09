@@ -752,6 +752,8 @@ a:focus-visible, button:focus-visible {
 }
 
 /* ============ About + education ============ */
+.about-section { padding-bottom: 0; }
+
 .about-content p {
   margin-bottom: 1.1rem;
   font-size: 1.0rem;
