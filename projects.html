@@ -4,419 +4,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="Selected projects by Maya Helmi, including Besign, NOI Beauty Lounge, Glamé AI, Invite Sites, HopeBridge and independent web concepts.">
+  <meta name="description" content="Complete project index for Maya Helmi, Full-Stack Developer.">
   <link rel="canonical" href="https://mayahelmi.github.io/maya-portfolio/projects.html">
-  <meta property="og:title" content="Maya Helmi | Projects">
-  <meta property="og:description" content="Selected full-stack, front-end and Flutter projects by Maya Helmi.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://mayahelmi.github.io/maya-portfolio/projects.html">
-  <title>Maya Helmi | Projects</title>
-
+  <title>Project Index | Maya Helmi</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
-
-  <!-- Tailwind first, so the hand-written rules in style.css stay in charge. -->
-  <link rel="stylesheet" href="tailwind.css?v=20260907e">
-  <link rel="stylesheet" href="style.css?v=20260907e">
-  
-  <!-- Theme switch + phone menu. Deliberately has no "defer": it needs to run
-       before the page is painted, so dark mode never flashes white first. -->
-  <script src="script.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="immersive.css?v=20261009a">
+  <script src="immersive.js?v=20261009a" defer></script>
 </head>
 
-<body>
+<body class="immersive-page">
+  <a class="skip-link" href="#work">Skip to project index</a>
 
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <!-- ================= NAVBAR ================= -->
-  <header class="header">
-    <nav class="navbar" aria-label="Main">
-      <h2 class="logo"><a href="index.html">Maya Helmi</a></h2>
-      <ul class="nav-links" id="site-menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="projects.html" class="is-current" aria-current="page">Projects</a></li>
-        <li><a href="certificates.html">Certificates</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li class="nav-cv"><a href="Maya-Helmi-CV.pdf" download>Download My CV</a></li>
-      </ul>
-      <div class="nav-actions">
-
-        <button class="theme-toggle" type="button" aria-label="Switch between light and dark theme">
-          <svg class="icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
-            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7Z" />
-          </svg>
-          <svg class="icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
-            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="8" cy="8" r="3.25" />
-            <path d="M8 1v1.5M8 13.5V15M15 8h-1.5M2.5 8H1M12.95 3.05l-1.06 1.06M4.11 11.89l-1.06 1.06M12.95 12.95l-1.06-1.06M4.11 4.11 3.05 3.05" />
-          </svg>
-        </button>
-
-        <a class="btn cv-btn" href="Maya-Helmi-CV.pdf" download>
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M8 2.5v7.5" />
-            <path d="M4.5 7 8 10.5 11.5 7" />
-            <path d="M2.5 13.5h11" />
-          </svg>
-          Download My CV
-        </a>
-
-        <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false"
-          aria-controls="site-menu">
-          <svg class="icon-burger" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
-            stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-            <path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" />
-          </svg>
-          <svg class="icon-close" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
-            stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-            <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" />
-          </svg>
-        </button>
-      </div>
-    </nav>
+  <header class="corner-nav">
+    <a class="wordmark" href="index.html" aria-label="Maya Helmi home">Maya Helmi</a>
+    <button class="profile-toggle" type="button" aria-expanded="false" aria-controls="profile-panel">Profile</button>
   </header>
 
-  <main id="main">
+  <main id="work" class="spatial-gallery" data-gallery aria-label="Complete project index">
+    <h1 class="sr-only">Complete project index</h1>
+    <div class="gallery-track" data-gallery-track>
+      <article class="spatial-card" data-project>
+        <a href="besign.html" aria-label="View the Besign case study">
+          <img src="images/projects/besign-front.jpg?v=20260907e" alt="Besign mobile application screens">
+          <span class="card-scrim" aria-hidden="true"></span>
+          <span class="card-copy"><span class="card-title">Besign</span><span class="card-meta">Flutter platform · Award-winning graduation project · 2026</span></span>
+          <span class="card-arrow" aria-hidden="true">↗</span>
+        </a>
+      </article>
 
-    <!-- ================= PROJECTS ================= -->
-    <section id="projects" class="section">
-      <h2 class="section-title">Projects</h2>
+      <article class="spatial-card" data-project>
+        <a href="noi-beauty-lounge.html" aria-label="View the NOI Beauty Lounge case study">
+          <img src="images/projects/noi-beauty-lounge-front.jpg?v=20261008continuous" alt="NOI Beauty Lounge website concept">
+          <span class="card-scrim" aria-hidden="true"></span>
+          <span class="card-copy"><span class="card-title">NOI Beauty Lounge</span><span class="card-meta">Full-stack salon website concept · 2026</span></span>
+          <span class="card-arrow" aria-hidden="true">↗</span>
+        </a>
+      </article>
 
-      <h3 class="subsection-title" id="apps">Mobile App Projects</h3>
+      <article class="spatial-card" data-project>
+        <a href="glame-ai.html" aria-label="View the Glamé AI website concept case study">
+          <img src="images/projects/glame-ai-web-front.jpg?v=20261004" alt="Glamé AI beauty-tech website concept">
+          <span class="card-scrim" aria-hidden="true"></span>
+          <span class="card-copy"><span class="card-title">Glamé AI</span><span class="card-meta">In-progress beauty-tech website concept · 2026</span></span>
+          <span class="card-arrow" aria-hidden="true">↗</span>
+        </a>
+      </article>
 
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <article class="spatial-card" data-project>
+        <a href="https://mayahelmi.github.io/invite-sites/" target="_blank" rel="noopener" aria-label="Open the live Invite Sites website">
+          <img src="images/projects/invite-sites-front.jpg?v=20260907e" alt="Invite Sites landing page">
+          <span class="card-scrim" aria-hidden="true"></span>
+          <span class="card-copy"><span class="card-title">Invite Sites</span><span class="card-meta">Live invitation website product · 2026</span></span>
+          <span class="card-arrow" aria-hidden="true">↗</span>
+        </a>
+      </article>
 
-          <article class="project-card flip-card" tabindex="0">
-            <div class="flip-inner">
-            <div class="flip-face flip-front card-shell">
-              <div class="project-shot"><img src="images/projects/besign-front.jpg?v=20260907e" width="960" height="1067" alt="Besign app screens" loading="lazy"></div>
-              <div class="project-head">
-                <h3 class="project-title">Besign</h3>
-                <div class="project-badges">
-                  <span class="project-badge">2nd Place · NTP13 2026</span>
-                  <span class="project-badge">Best Entrepreneurial Project</span>
-                  <span class="project-badge badge-muted">May–June 2026</span>
-                </div>
-              </div>
-            <p class="flip-hint">Hover or tap for details</p>
-            </div>
-            <div class="flip-face flip-back card-shell">
-              <p class="kicker">About Besign</p>
-              <p class="project-description">Award-winning Flutter tailoring platform. I co-developed the app and Supabase backend and integrated Gemini-powered garment features; my teammate owned the YOLOv8/TensorFlow Lite model.</p>
-              <p class="project-tech">
-                <span class="tech-tag">Flutter</span>
-                <span class="tech-tag">Dart</span>
-                <span class="tech-tag">Riverpod</span>
-                <span class="tech-tag">Supabase</span>
-                <span class="tech-tag">Gemini API</span>
-              </p>
-              <div class="project-links">
-                <a href="besign.html">Read the story</a>
-                <span class="project-private">Private project — source available on request</span>
-              </div>
-            </div>
-            </div>
-          </article>
-      </div>
+      <article class="spatial-card" data-project>
+        <a href="https://mayahelmi.github.io/hopebridge-charity-platform/" target="_blank" rel="noopener" aria-label="Open the HopeBridge live demo">
+          <img src="images/projects/hopebridge-front.jpg?v=20260907e" alt="HopeBridge charity platform home page">
+          <span class="card-scrim" aria-hidden="true"></span>
+          <span class="card-copy"><span class="card-title">HopeBridge</span><span class="card-meta">PHP and MySQL charity platform · 2026</span></span>
+          <span class="card-arrow" aria-hidden="true">↗</span>
+        </a>
+      </article>
 
-      <!-- ---------- Web projects ---------- -->
-      <h3 class="subsection-title" id="web">Web Projects</h3>
+      <article class="spatial-card" data-project>
+        <a href="https://mayahelmi.github.io/field-training-presentation/" target="_blank" rel="noopener" aria-label="Open Eight Weeks at Orange">
+          <img src="images/projects/eight-weeks-at-orange-front.jpg?v=20261008current" alt="Eight Weeks at Orange presentation website">
+          <span class="card-scrim" aria-hidden="true"></span>
+          <span class="card-copy"><span class="card-title">Eight Weeks at Orange</span><span class="card-meta">Field-training presentation website · 2026</span></span>
+          <span class="card-arrow" aria-hidden="true">↗</span>
+        </a>
+      </article>
 
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <article class="spatial-card" data-project>
+        <div class="card-static" aria-label="Wedding Atelier independent concept project">
+          <img src="images/projects/wedding-atelier-concept-front.jpg?v=20261004" alt="Wedding Atelier website concept">
+          <span class="card-scrim" aria-hidden="true"></span>
+          <span class="card-copy"><span class="card-title">Wedding Atelier</span><span class="card-meta">Independent, uncommissioned concept · Private source</span></span>
+        </div>
+      </article>
 
-          <article class="project-card flip-card" tabindex="0">
-            <div class="flip-inner">
-            <div class="flip-face flip-front card-shell">
-              <div class="project-shot"><img src="images/projects/noi-beauty-lounge-front.jpg?v=20261008continuous" width="960" height="1067" alt="NOI Beauty Lounge salon website concept hero and services" loading="lazy"></div>
-              <div class="project-head">
-                <h3 class="project-title">NOI Beauty Lounge</h3>
-                <div class="project-badges">
-                  <span class="project-badge">Concept Project</span>
-                  <span class="project-badge badge-muted">Full-stack website</span>
-                  <span class="project-badge badge-muted">2026</span>
-                </div>
-              </div>
-            <p class="flip-hint">Hover or tap for details</p>
-            </div>
-            <div class="flip-face flip-back card-shell">
-              <p class="kicker">Salon Website Concept</p>
-              <p class="project-description">Designed and developed a responsive salon concept with JSON-driven service content, reusable Razor components, customer reviews, theme controls and location details.</p>
-              <p class="project-note">Independent concept project &mdash; not an official or commissioned NOI Beauty Lounge website.</p>
-              <p class="project-tech">
-                <span class="tech-tag">ASP.NET Core MVC</span>
-                <span class="tech-tag">C#</span>
-                <span class="tech-tag">Razor</span>
-                <span class="tech-tag">Tailwind CSS</span>
-                <span class="tech-tag">JavaScript</span>
-                <span class="tech-tag">JSON</span>
-              </p>
-              <div class="project-links">
-                <a href="noi-beauty-lounge.html">Read the story</a>
-                <a href="https://github.com/MayaHelmi/noi-beauty-lounge-website" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-            </div>
-          </article>
-          <article class="project-card flip-card" tabindex="0">
-            <div class="flip-inner">
-            <div class="flip-face flip-front card-shell">
-              <div class="project-shot"><img src="images/projects/glame-ai-web-front.jpg?v=20261004" width="960" height="1067" alt="Glamé AI beauty-tech website concept hero" loading="lazy"></div>
-              <div class="project-head">
-                <h3 class="project-title">Glamé AI &mdash; Beauty-Tech Website Concept</h3>
-                <div class="project-badges">
-                  <span class="project-badge">In progress</span>
-                  <span class="project-badge badge-muted">Front-end concept</span>
-                  <span class="project-badge badge-muted">2026</span>
-                </div>
-              </div>
-            <p class="flip-hint">Hover or tap for details</p>
-            </div>
-            <div class="flip-face flip-back card-shell">
-              <p class="kicker">Beauty-Tech Website Concept</p>
-              <p class="project-description">An in-progress responsive website concept focused on the visual direction, hero experience, navigation, core layouts and front-end interaction design.</p>
-              <p class="project-note">The concept explores how users could adapt beauty inspiration using products they already own. The full application and AI system are not implemented.</p>
-              <p class="project-tech">
-                <span class="tech-tag">HTML5</span>
-                <span class="tech-tag">Tailwind CSS</span>
-                <span class="tech-tag">JavaScript</span>
-                <span class="tech-tag">Responsive Design</span>
-                <span class="tech-tag">UI/UX</span>
-              </p>
-              <div class="project-links">
-                <a href="glame-ai.html">Read the story</a>
-                <span class="project-private">Private source &mdash; available on request</span>
-              </div>
-            </div>
-            </div>
-          </article>
-          <article class="project-card flip-card" tabindex="0">
-            <div class="flip-inner">
-            <div class="flip-face flip-front card-shell">
-              <div class="project-shot"><img src="images/projects/invite-sites-front.jpg?v=20260907e" width="960" height="1067" alt="Invite Sites landing page" loading="lazy"></div>
-              <div class="project-head">
-                <h3 class="project-title">Invite Sites</h3>
-                <div class="project-badges">
-                  <span class="project-badge">Live</span>
-                  <span class="project-badge badge-muted">Own product</span>
-                  <span class="project-badge badge-muted">August–September 2026</span>
-                </div>
-              </div>
-            <p class="flip-hint">Hover or tap for details</p>
-            </div>
-            <div class="flip-face flip-back card-shell">
-              <p class="kicker">About Invite Sites</p>
-              <p class="project-description">Built and launched 13 responsive invitation designs with RSVP, maps, audio, animation and photos, in Arabic, English or both, on one shareable link.</p>
-              <p class="project-tech">
-                <span class="tech-tag">HTML5</span>
-                <span class="tech-tag">CSS3</span>
-                <span class="tech-tag">JavaScript</span>
-                <span class="tech-tag">SVG Animation</span>
-                <span class="tech-tag">Arabic / English RTL</span>
-              </p>
-              <div class="project-links">
-                <a href="https://mayahelmi.github.io/invite-sites/" target="_blank" rel="noopener">Live Site</a>
-                <a href="https://mayahelmi.github.io/invite-sites/designs/" target="_blank" rel="noopener">View Designs</a>
-                <a href="https://github.com/MayaHelmi/invite-sites" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-            </div>
-          </article>
-          <article class="project-card flip-card" tabindex="0">
-            <div class="flip-inner">
-            <div class="flip-face flip-front card-shell">
-              <div class="project-shot"><img src="images/projects/hopebridge-front.jpg?v=20260907e" width="960" height="1067" alt="HopeBridge charity platform home page" loading="lazy"></div>
-              <div class="project-head">
-                <h3 class="project-title">HopeBridge</h3>
-                <div class="project-badges">
-                  <span class="project-badge badge-muted">Orange Digital Center project</span>
-                  <span class="project-badge badge-muted">Static version</span>
-                  <span class="project-badge badge-muted">August–September 2026</span>
-                </div>
-              </div>
-            <p class="flip-hint">Hover or tap for details</p>
-            </div>
-            <div class="flip-face flip-back card-shell">
-              <p class="kicker">About HopeBridge</p>
-              <p class="project-description">Built donor, beneficiary and administrator workflows for requests, donations, approvals, messaging and reports using PHP, PDO and a 10-table MySQL schema. The public link is a responsive 28-page static demo.</p>
-              <p class="project-tech">
-                <span class="tech-tag">JavaScript</span>
-                <span class="tech-tag">PHP</span>
-                <span class="tech-tag">PDO</span>
-                <span class="tech-tag">MySQL</span>
-                <span class="tech-tag">Figma</span>
-              </p>
-              <div class="project-links">
-                <a href="https://mayahelmi.github.io/hopebridge-charity-platform/" target="_blank" rel="noopener">Live Demo</a>
-                <a href="https://github.com/MayaHelmi/hopebridge-charity-platform" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-            </div>
-          </article>
-          <article class="project-card flip-card" tabindex="0">
-            <div class="flip-inner">
-            <div class="flip-face flip-front card-shell">
-              <div class="project-shot"><img src="images/projects/wedding-atelier-concept-front.jpg?v=20261004" width="960" height="1067" alt="Wedding atelier concept home page" loading="lazy"></div>
-              <div class="project-head">
-                <h3 class="project-title">Wedding Atelier Concept</h3>
-                <div class="project-badges">
-                  <span class="project-badge badge-muted">Independent concept</span>
-                  <span class="project-badge badge-muted">Uncommissioned</span>
-                </div>
-              </div>
-            <p class="flip-hint">Hover or tap for details</p>
-            </div>
-            <div class="flip-face flip-back card-shell">
-              <p class="kicker">About the concept</p>
-              <p class="project-description">Self-initiated website concept for a luxury wedding atelier, with 38 pages generated from a shared content source and checked using automated link and SEO audits.</p>
-              <p class="project-note">Independent concept work &mdash; not commissioned, reviewed, or endorsed by a business.</p>
-              <p class="project-tech">
-                <span class="tech-tag">HTML5</span>
-                <span class="tech-tag">CSS3</span>
-                <span class="tech-tag">JavaScript</span>
-                <span class="tech-tag">Python build pipeline</span>
-                <span class="tech-tag">SEO</span>
-              </p>
-              <div class="project-links">
-                <span class="project-private">Concept study &mdash; source available on request</span>
-              </div>
-            </div>
-            </div>
-          </article>
-          <article class="project-card flip-card" tabindex="0">
-            <div class="flip-inner">
-            <div class="flip-face flip-front card-shell">
-              <div class="project-shot"><img src="images/projects/eight-weeks-at-orange-front.jpg?v=20261008current" width="960" height="1067" alt="Eight Weeks at Orange presentation site hero and How We Worked section" loading="lazy"></div>
-              <div class="project-head">
-                <h3 class="project-title">Eight Weeks at Orange</h3>
-                <div class="project-badges">
-                  <span class="project-badge badge-muted">With NourEddin Abu Salhieh</span>
-                </div>
-              </div>
-            <p class="flip-hint">Hover or tap for details</p>
-            </div>
-            <div class="flip-face flip-back card-shell">
-              <p class="kicker">About Eight Weeks at Orange</p>
-              <p class="project-description">Our field-training presentation as a single-file website: week-by-week results and a link to every repository.</p>
-              <p class="project-tech">
-                <span class="tech-tag">HTML5</span>
-                <span class="tech-tag">CSS3</span>
-                <span class="tech-tag">JavaScript</span>
-              </p>
-              <div class="project-links">
-                <a href="https://mayahelmi.github.io/field-training-presentation/" target="_blank" rel="noopener">Live Site</a>
-                <a href="https://github.com/MayaHelmi/field-training-presentation" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-            </div>
-          </article>
-          <article class="project-card flip-card" tabindex="0">
-            <div class="flip-inner">
-            <div class="flip-face flip-front card-shell">
-              <div class="project-shot"><img src="images/projects/print-artwork-marketplace-concept-front.jpg?v=20261004" width="960" height="1067" alt="Print artwork marketplace concept home page" loading="lazy"></div>
-              <div class="project-head">
-                <h3 class="project-title">Print Artwork Marketplace Concept</h3>
-                <div class="project-badges">
-                  <span class="project-badge badge-muted">Independent concept</span>
-                  <span class="project-badge badge-muted">Uncommissioned</span>
-                </div>
-              </div>
-            <p class="flip-hint">Hover or tap for details</p>
-            </div>
-            <div class="flip-face flip-back card-shell">
-              <p class="kicker">About the concept</p>
-              <p class="project-description">Self-initiated static storefront concept for browsing downloadable print artwork, bundles, licensing information, and memberships.</p>
-              <p class="project-note">Independent concept work &mdash; not commissioned, reviewed, or endorsed by a business.</p>
-              <p class="project-tech">
-                <span class="tech-tag">HTML5</span>
-                <span class="tech-tag">CSS3</span>
-                <span class="tech-tag">JavaScript</span>
-              </p>
-              <div class="project-links">
-                <span class="project-private">Independent concept study &mdash; private source</span>
-              </div>
-            </div>
-            </div>
-          </article>
-      </div>
-
-    </section>
-
-  </main>
-
-  <!-- ================= FOOTER / CONTACT ================= -->
-  <footer id="contact" class="footer">
-
-    <div class="footer-grid">
-
-      <div>
-        <h2 class="footer-title">Let's talk.</h2>
-      </div>
-
-      <ul class="contact-list">
-        <li>
-          <span class="contact-icon">
-            <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
-              <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" />
-            </svg>
-            <span class="sr-only">Email</span>
-          </span>
-          <a href="mailto:maayahelmi@gmail.com">maayahelmi@gmail.com</a>
-        </li>
-        <li>
-          <span class="contact-icon">
-            <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
-              <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z" />
-            </svg>
-            <span class="sr-only">LinkedIn</span>
-          </span>
-          <a href="https://www.linkedin.com/in/maya-helmi-934349292" target="_blank" rel="noopener">
-            linkedin.com/in/maya-helmi
-          </a>
-        </li>
-        <li>
-          <span class="contact-icon">
-            <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
-              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
-            </svg>
-            <span class="sr-only">GitHub</span>
-          </span>
-          <a href="https://github.com/MayaHelmi" target="_blank" rel="noopener">
-            github.com/MayaHelmi
-          </a>
-        </li>
-      </ul>
-
+      <article class="spatial-card" data-project>
+        <div class="card-static" aria-label="Print Artwork Marketplace independent concept project">
+          <img src="images/projects/print-artwork-marketplace-concept-front.jpg?v=20261004" alt="Print Artwork Marketplace website concept">
+          <span class="card-scrim" aria-hidden="true"></span>
+          <span class="card-copy"><span class="card-title">Print Artwork Marketplace</span><span class="card-meta">Independent, uncommissioned concept · Private source</span></span>
+        </div>
+      </article>
     </div>
 
-    <p class="footer-base">Maya Helmi &middot; Full-Stack Developer</p>
-  </footer>
+    <button class="gallery-control gallery-control--previous" type="button" data-gallery-previous aria-label="Previous project">←</button>
+    <button class="gallery-control gallery-control--next" type="button" data-gallery-next aria-label="Next project">→</button>
+    <p class="gallery-instruction">Drag, scroll, or use the arrow keys</p>
+  </main>
 
+  <nav class="view-nav" aria-label="Project views">
+    <a class="view-link" href="index.html">Featured</a><span aria-hidden="true">/</span>
+    <span class="view-link is-current" aria-current="page">Full</span>
+  </nav>
+  <div class="gallery-count" aria-live="polite"><span data-current>01</span> / <span data-total>08</span></div>
+  <nav class="utility-nav" aria-label="Contact and résumé"><a href="mailto:maayahelmi@gmail.com">Email</a><a href="Maya-Helmi-CV.pdf" download>CV</a></nav>
 
-  <script>
-    // Flip a project card on tap, but only on screens without a real hover
-    // (phones and tablets). With a mouse, hovering does the flipping, and a
-    // click toggle would leave cards stuck. Taps on links are left alone.
-    var touchOnly = window.matchMedia('(hover: none)').matches;
-    document.querySelectorAll('.flip-card').forEach(function (card) {
-      if (touchOnly) {
-        card.addEventListener('click', function (e) {
-          if (e.target.closest('a')) return;
-          card.classList.toggle('is-flipped');
-        });
-      }
-      card.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.classList.toggle('is-flipped'); }
-      });
-    });
-  </script>
+  <section class="profile-panel" id="profile-panel" aria-hidden="true" aria-labelledby="profile-title">
+    <div class="profile-orb" aria-hidden="true"><img src="images/profile.jpg" alt=""></div>
+    <div class="profile-content">
+      <p class="profile-kicker">Full-Stack Developer · Amman, Jordan</p>
+      <h2 id="profile-title">I design the interface, then build what makes it work.</h2>
+      <p>Software Engineering graduate creating responsive websites and Flutter applications. My work covers interface design, front-end development, application logic, and database-backed features, with every project labelled by its real status.</p>
+      <p class="profile-facts">B.Sc. Software Engineering · GPA 91.2/100 · Graduated second in cohort</p>
+      <nav class="profile-links" aria-label="Profile links">
+        <a href="certificates.html">Certificates</a><a href="recognition.html">Awards</a>
+        <a href="https://github.com/MayaHelmi" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/maya-helmi-934349292" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:maayahelmi@gmail.com">Email</a>
+      </nav>
+    </div>
+  </section>
 </body>
 
 </html>
