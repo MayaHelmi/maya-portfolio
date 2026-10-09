@@ -799,7 +799,7 @@ a:focus-visible, button:focus-visible {
 
 .capsule {
   flex: none;
-  width: clamp(58px, 11vw, 132px);
+  width: clamp(76px, 13.5vw, 158px);
   aspect-ratio: 5 / 8;
   border-radius: 999px;
   background: var(--page-bg);
@@ -823,7 +823,7 @@ a:focus-visible, button:focus-visible {
   height: 100%;
   border-radius: inherit;
   color: var(--text-strong);
-  font-size: clamp(1.25rem, 2.6vw, 1.9rem);
+  font-size: clamp(1.4rem, 3vw, 2.15rem);
   text-decoration: none;
   transition: transform .15s ease, color .15s ease;
 }
@@ -831,7 +831,7 @@ a:focus-visible, button:focus-visible {
 .capsule-link:focus-visible { border-radius: inherit; outline-offset: 4px; }
 
 .capsule-label {
-  font-size: clamp(.6rem, 1.1vw, .7rem);
+  font-size: clamp(.64rem, 1.15vw, .76rem);
   font-weight: 600;
   letter-spacing: .06em;
   white-space: nowrap;
@@ -841,34 +841,44 @@ a:focus-visible, button:focus-visible {
 .capsule-link:hover .capsule-label { color: var(--pink); }
 
 .capsule-photo {
+  --photo-cap: clamp(2.7rem, 4.5vw, 3.25rem);
   position: relative;
   width: clamp(154px, 19vw, 230px);
-  border: none;
+  background: #171416;
+  border: 1px solid var(--border);
   overflow: hidden;
   box-shadow: var(--shadow-large);
 }
-.capsule-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+.capsule-photo img {
+  position: absolute;
+  inset: var(--photo-cap) 0 0;
+  width: 100%;
+  height: calc(100% - var(--photo-cap));
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 0 0 999px 999px;
+}
 
 .capsule-photo-label {
   position: absolute;
   z-index: 2;
-  left: 50%;
-  top: clamp(.8rem, 2vw, 1.2rem);
-  bottom: auto;
-  transform: translateX(-50%);
-  padding: .38rem .7rem;
+  inset: 0 0 auto;
+  display: flex;
+  height: var(--photo-cap);
+  align-items: center;
+  justify-content: center;
+  padding: .65rem .5rem .5rem;
   color: #fff;
-  background: rgba(16, 16, 18, .62);
-  border: 1px solid rgba(255, 255, 255, .24);
-  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(209, 154, 170, .2), rgba(23, 20, 22, .94));
+  border-bottom: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 999px 999px 0 0;
   font-size: clamp(.58rem, 1.1vw, .72rem);
   font-weight: 700;
   letter-spacing: .08em;
   line-height: 1;
   text-transform: uppercase;
   white-space: nowrap;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, .28);
+  box-shadow: none;
 }
 
 .hero-title {
@@ -920,11 +930,13 @@ a:focus-visible, button:focus-visible {
 @media screen and (prefers-reduced-motion: no-preference) and (min-width: 768px) {
   .hero-role-snake {
     display: block;
-    inset: -17% -6%;
-    width: 112%;
-    height: 134%;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.18);
+    transform-origin: center;
   }
-  .snake-text { font-size: 27px; }
+  .snake-text { font-size: 22px; letter-spacing: .08em; }
 }
 
 /* Motion allowed, phone: a simple rounded rectangle around the 2x2 block.
@@ -940,7 +952,7 @@ a:focus-visible, button:focus-visible {
     width: calc(var(--pill) * 5.02);
     aspect-ratio: 428 / 372;
   }
-  .snake-text { font-size: calc(var(--pill) * 0.344); }
+  .snake-text { font-size: calc(var(--pill) * 0.25); letter-spacing: .07em; }
 }
 
 /* Phone: capsules become a 2x2 grid with the photo spanning both rows.
@@ -979,14 +991,15 @@ a:focus-visible, button:focus-visible {
      wide, the rows 1.6 (that's the 5:8 pill shape), the gaps 0.2, and so
      on. Those ratios are what the flat pixel values used to work out to. */
   .hero-stage {
-    --pill: clamp(46px, 17vw, 64px);
+    --pill: clamp(48px, 17vw, 68px);
     margin-bottom: 2.25rem;
+    transform: translateX(calc(var(--pill) * -0.45));
   }
 
   .hero-capsules {
     display: grid;
-    grid-template-columns: var(--pill) var(--pill) calc(var(--pill) * 2.58);
-    grid-auto-rows: calc(var(--pill) * 1.7);
+    grid-template-columns: var(--pill) var(--pill) calc(var(--pill) * 2.5);
+    grid-auto-rows: calc(var(--pill) * 1.72);
     gap: calc(var(--pill) * 0.2);
     align-items: center;
     justify-items: center;
