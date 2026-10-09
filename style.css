@@ -483,6 +483,7 @@ a:focus-visible, button:focus-visible {
 /* ============ Visual contact hub ============ */
 .contact-visual-page {
   min-height: 100svh;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at 12% 4%, color-mix(in srgb, var(--pink) 17%, transparent), transparent 30rem),
     radial-gradient(circle at 92% 90%, color-mix(in srgb, var(--pink) 10%, transparent), transparent 34rem),
@@ -490,7 +491,7 @@ a:focus-visible, button:focus-visible {
 }
 
 .contact-hub { display: flex; align-items: center; }
-.contact-shell { max-width: 1120px; }
+.contact-shell { min-width: 0; max-width: 1120px; }
 
 .contact-intro {
   display: grid;
@@ -638,8 +639,145 @@ a:focus-visible, button:focus-visible {
 .contact-tile-action span { transition: transform .2s ease; }
 .contact-tile:hover .contact-tile-action span { transform: translate(3px, -3px); }
 
+.contact-form-panel {
+  display: grid;
+  min-width: 0;
+  gap: 0;
+  margin-top: clamp(1.25rem, 3vw, 2rem);
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: clamp(1.4rem, 3vw, 2.25rem);
+  box-shadow: var(--shadow-medium);
+}
+
+.contact-form-intro {
+  position: relative;
+  display: flex;
+  min-height: 260px;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-wrap: anywhere;
+  color: rgba(255, 255, 255, .78);
+  background:
+    radial-gradient(circle at 90% 10%, rgba(209, 154, 170, .3), transparent 42%),
+    var(--dark-panel);
+}
+
+.contact-form-intro::after {
+  content: "";
+  position: absolute;
+  right: -7rem;
+  bottom: -7rem;
+  width: 17rem;
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 50%;
+}
+
+.contact-form-number {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.7rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  opacity: .55;
+}
+
+.contact-form-icon {
+  display: grid;
+  width: 3.2rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, .45);
+  border-radius: 50%;
+  font-size: 1.3rem;
+}
+
+.contact-form-intro .kicker { color: var(--pink); }
+
+.contact-form-intro h2 {
+  margin-bottom: .75rem;
+  color: #fff;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1;
+}
+
+.contact-form-intro p { max-width: 37ch; margin-bottom: 0; }
+
+.contact-message-form {
+  display: grid;
+  min-width: 0;
+  gap: 1rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.contact-form-row {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.contact-field {
+  display: grid;
+  gap: .45rem;
+  color: var(--text-soft);
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.contact-field input,
+.contact-field textarea {
+  width: 100%;
+  color: var(--text-strong);
+  background: var(--page-bg);
+  border: 1px solid var(--border-strong);
+  border-radius: 1rem;
+  outline: none;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.contact-field input { min-height: 52px; padding: .8rem 1rem; }
+.contact-field textarea { min-height: 150px; padding: .9rem 1rem; resize: vertical; }
+
+.contact-field input::placeholder,
+.contact-field textarea::placeholder { color: var(--text-fade); opacity: .8; }
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  background: var(--card-bg);
+  border-color: var(--pink);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--pink) 18%, transparent);
+}
+
+.contact-form-submit {
+  display: flex;
+  gap: .9rem;
+  margin-top: .25rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.contact-form-status {
+  flex: 1 1 240px;
+  margin: 0;
+  color: var(--text-soft);
+  font-size: .85rem;
+}
+
 .contact-resume {
   display: flex;
+  min-width: 0;
   gap: 1.25rem;
   margin-top: clamp(1.25rem, 3vw, 2rem);
   padding: clamp(1.25rem, 3vw, 1.75rem);
@@ -650,7 +788,7 @@ a:focus-visible, button:focus-visible {
   border-radius: 1.4rem;
 }
 
-.contact-resume p { margin: 0; }
+.contact-resume p { margin: 0; overflow-wrap: anywhere; }
 .contact-resume .kicker { margin-bottom: .2rem; }
 
 @media (min-width: 700px) {
@@ -665,6 +803,8 @@ a:focus-visible, button:focus-visible {
   .contact-tile--phone { grid-column: span 5; }
   .contact-tile--linkedin { grid-column: span 5; }
   .contact-tile--github { grid-column: span 7; }
+  .contact-form-panel { grid-template-columns: minmax(260px, .75fr) minmax(0, 1.25fr); }
+  .contact-form-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 699px) {
@@ -672,6 +812,7 @@ a:focus-visible, button:focus-visible {
   .contact-intro .standalone-heading { font-size: clamp(3.6rem, 18vw, 5.5rem); }
   .contact-resume { align-items: flex-start; flex-direction: column; }
   .contact-resume .btn { width: 100%; }
+  .contact-message-form .btn { width: 100%; }
 }
 
 /* ============ Spatial projects gallery ============ */

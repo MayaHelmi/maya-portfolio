@@ -14,8 +14,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
   <link rel="stylesheet" href="tailwind.css?v=20260907e">
-  <link rel="stylesheet" href="style.css?v=20261009contact2">
-  <script src="script.js"></script>
+  <link rel="stylesheet" href="style.css?v=20261009contactform2">
+  <script src="script.js?v=20261009contactform2"></script>
 </head>
 
 <body class="contact-visual-page">
@@ -88,6 +88,54 @@
           </span>
           <span class="contact-tile-action">See my code <span aria-hidden="true">↗</span></span>
         </a>
+      </section>
+
+      <section class="contact-form-panel" aria-labelledby="contact-form-title">
+        <div class="contact-form-intro">
+          <span class="contact-form-number" aria-hidden="true">05</span>
+          <span class="contact-form-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor"
+              stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 20 20 4M8 4h12v12" />
+            </svg>
+          </span>
+          <div>
+            <p class="kicker">Direct message</p>
+            <h2 id="contact-form-title">Send me a message.</h2>
+            <p>Fill in the form and your email app will open with everything ready. Review it, then press Send.</p>
+          </div>
+        </div>
+
+        <form class="contact-message-form" action="mailto:maayahelmi@gmail.com" method="get"
+          data-contact-form>
+          <div class="contact-form-row">
+            <label class="contact-field">
+              <span>Name</span>
+              <input type="text" name="name" autocomplete="name" placeholder="Your name" required>
+            </label>
+
+            <label class="contact-field">
+              <span>Email</span>
+              <input type="email" name="email" autocomplete="email" inputmode="email"
+                placeholder="you@example.com" required>
+            </label>
+          </div>
+
+          <label class="contact-field">
+            <span>Subject</span>
+            <input type="text" name="subject" placeholder="What would you like to discuss?" required>
+          </label>
+
+          <label class="contact-field">
+            <span>Message</span>
+            <textarea name="message" rows="6" placeholder="Write your message here…" required></textarea>
+          </label>
+
+          <div class="contact-form-submit">
+            <button class="btn primary-btn" type="submit">Prepare Email <span aria-hidden="true">↗</span></button>
+            <p class="contact-form-status" data-contact-form-status aria-live="polite"></p>
+          </div>
+        </form>
       </section>
 
       <aside class="contact-resume" aria-label="Resume download">

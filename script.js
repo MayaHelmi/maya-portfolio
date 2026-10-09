@@ -64,6 +64,48 @@ if (document.readyState === "complete") {
   window.addEventListener("load", startHeroEntrance, { once: true });
 }
 
+
+/* ============ Contact form ============ */
+
+/* This portfolio is hosted as a static site, so there is no server that can
+   send mail on a visitor's behalf. The form prepares a properly formatted
+   message and hands it to their email app instead. */
+function setUpContactForm() {
+  const form = document.querySelector("[data-contact-form]");
+  if (!form) return;
+
+  const status = form.querySelector("[data-contact-form-status]");
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const name = String(formData.get("name") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const subject = String(formData.get("subject") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+    const body = [
+      "Hello Maya,",
+      "",
+      message,
+      "",
+      "From: " + name,
+      "Reply to: " + email
+    ].join("\n");
+    const mailto = "mailto:maayahelmi@gmail.com?subject=" + encodeURIComponent(subject)
+      + "&body=" + encodeURIComponent(body);
+
+    if (status) status.textContent = "Your email app should open now. Review the message, then press Send.";
+    window.location.href = mailto;
+  });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", setUpContactForm, { once: true });
+} else {
+  setUpContactForm();
+}
+
 /* Runs when the sun/moon button is clicked. */
 function switchTheme() {
   const newTheme = page.dataset.theme === "dark" ? "light" : "dark";
