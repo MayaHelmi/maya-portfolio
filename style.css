@@ -513,6 +513,49 @@ a:focus-visible, button:focus-visible {
 
 .education-page-copy p { overflow-wrap: anywhere; }
 
+.about-skills {
+  margin-top: clamp(3rem, 7vw, 5rem);
+}
+
+.about-skills > .section-title {
+  margin-bottom: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.about-skills-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.about-skills-grid .skill-card {
+  min-width: 0;
+}
+
+.about-skill-tags {
+  display: flex;
+  margin-top: 1rem;
+  padding: 1.25rem;
+  flex-wrap: wrap;
+  gap: .55rem;
+  background: var(--soft-bg);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+}
+
+.about-skill-tags span {
+  padding: .42rem .75rem;
+  color: var(--text-soft);
+  background: var(--card-bg);
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  font-size: .8rem;
+  font-weight: 600;
+}
+
+@media (min-width: 700px) {
+  .about-skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 .education-page-copy p + p { margin-top: 1rem; }
 .education-page-copy .about-actions { margin-top: 1.75rem; }
 
