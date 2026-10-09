@@ -1,0 +1,84 @@
+/* ========================================================================== 
+   MAYA HELMI — PORTRAIT PALETTE
+   --------------------------------------------------------------------------
+   Source swatches were sampled from Maya's portfolio portrait:
+   blazer ink, warm charcoal, deep taupe, lip rose, skin peach, and hijab
+   blush. Semantic tokens below turn those photographed colours into an
+   accessible light and dark interface palette.
+   ========================================================================== */
+
+:root {
+  color-scheme: light dark;
+
+  /* Portrait source swatches */
+  --portrait-ink: #0d0d0c;
+  --portrait-charcoal: #242121;
+  --portrait-taupe: #724f45;
+  --portrait-rose: #b35f5a;
+  --portrait-terracotta: #c28671;
+  --portrait-peach: #e3af97;
+  --portrait-hijab: #d7c3bf;
+  --portrait-blush: #e2cfca;
+  --portrait-cream: #e7d6d1;
+
+  /* Dark showcase surfaces shared by both themes */
+  --gallery-bg: var(--portrait-ink);
+  --gallery-card-bg: var(--portrait-charcoal);
+  --gallery-text: #f7f0ed;
+  --gallery-glow: rgba(179, 95, 90, .14);
+  --gallery-grid: rgba(227, 175, 151, .24);
+  --sparkle-glow: rgba(227, 175, 151, .72);
+
+  /* Light theme — warm, editorial and softly contrasted */
+  --text-strong: #1f1d1c;
+  --text: #3d3431;
+  --text-soft: #725f59;
+  --text-fade: #806b65;
+
+  --page-bg: #f9f5f3;
+  --soft-bg: #f0e7e3;
+  --card-bg: #fffdfc;
+  --dark-panel: var(--portrait-charcoal);
+
+  --border: #eadbd6;
+  --border-strong: var(--portrait-hijab);
+
+  /* Existing component aliases now use the portrait's rose family. */
+  --pink: #9e554f;
+  --pink-strong: #7d3f3b;
+  --pink-bg: #f4e4df;
+  --pink-border: #ddb8ad;
+  --hero-display: var(--portrait-hijab);
+
+  --shadow-small: 0 1px 2px rgba(36, 33, 33, .07);
+  --shadow-medium: 0 2px 4px rgba(36, 33, 33, .05), 0 8px 24px rgba(36, 33, 33, .09);
+  --shadow-large: 0 4px 8px rgba(36, 33, 33, .07), 0 16px 40px rgba(36, 33, 33, .14);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Dark theme — blazer blacks with hijab and skin-tone highlights */
+  --text-strong: #f7f0ed;
+  --text: var(--portrait-cream);
+  --text-soft: #c9b5af;
+  --text-fade: #9d8983;
+
+  --page-bg: var(--portrait-ink);
+  --soft-bg: #161515;
+  --card-bg: #1f1d1c;
+  --dark-panel: var(--portrait-charcoal);
+
+  --border: #302b2a;
+  --border-strong: #5f5654;
+
+  --pink: var(--portrait-peach);
+  --pink-strong: #e7bba8;
+  --pink-bg: #2f1d1c;
+  --pink-border: #6e3e3c;
+  --hero-display: var(--portrait-hijab);
+
+  --shadow-small: 0 1px 2px rgba(0, 0, 0, .5);
+  --shadow-medium: 0 2px 4px rgba(0, 0, 0, .42), 0 8px 24px rgba(0, 0, 0, .48);
+  --shadow-large: 0 4px 8px rgba(0, 0, 0, .46), 0 16px 40px rgba(0, 0, 0, .58);
+}
