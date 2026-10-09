@@ -811,10 +811,34 @@ a:focus-visible, button:focus-visible {
   .education-card { margin-inline: 0; justify-self: end; align-self: start; height: auto; }
 }
 .education-card.education-card--standalone {
+  max-width: 920px;
   margin-inline: auto;
+  flex-direction: row;
+  align-items: stretch;
+  gap: clamp(1rem, 4vw, 3rem);
+  padding: clamp(1rem, 3vw, 2rem);
   justify-self: auto;
   align-self: auto;
   height: auto;
+}
+.education-card--standalone .education-photo {
+  width: clamp(108px, 28vw, 260px);
+  max-width: none;
+  margin-inline: 0;
+  align-self: center;
+}
+.education-card--standalone .education-facts {
+  flex: 1;
+  min-width: 0;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.education-card--standalone .education-photo-badge {
+  width: clamp(44px, 8vw, 64px);
+  height: clamp(44px, 8vw, 64px);
+  padding: 3px;
 }
 
 .education-photo {
@@ -873,6 +897,22 @@ a:focus-visible, button:focus-visible {
   font-size: .65em;
   line-height: 0;
   vertical-align: super;
+}
+
+@media (max-width: 520px) {
+  .education-card.education-card--standalone { gap: .875rem; }
+  .education-card--standalone .education-photo { width: clamp(100px, 30vw, 122px); }
+  .education-card--standalone .education-facts li {
+    display: block;
+    padding: .45rem 0;
+    font-size: .82rem;
+  }
+  .education-card--standalone .education-facts li span {
+    display: block;
+    width: auto;
+    margin-bottom: .15rem;
+    font-size: .66rem;
+  }
 }
 
 /* ============ Showcase strip ============ */
