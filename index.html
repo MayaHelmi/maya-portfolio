@@ -22,7 +22,7 @@
     href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap">
   <!-- Tailwind first, so the hand-written rules in style.css stay in charge. -->
   <link rel="stylesheet" href="tailwind.css?v=20260907e">
-  <link rel="stylesheet" href="style.css?v=20261009showcase-controls1">
+  <link rel="stylesheet" href="style.css?v=20261010projects-unified1">
 
   <!-- Theme switch + phone menu. Deliberately has no "defer": it needs to run
        before the page is painted, so dark mode never flashes white first. -->
@@ -39,7 +39,7 @@
 
       <ul class="nav-links" id="site-menu">
         <li><a href="#home" class="is-current" aria-current="page">Home</a></li>
-        <li><a href="projects.html">Projects</a></li>
+        <li><a href="#showcase">Projects</a></li>
         <li><a href="certificates.html">Certificates</a></li>
         <li><a href="#contact">Contact</a></li>
         <li class="nav-cv"><a href="Maya-Helmi-CV.pdf" download>Download My CV</a></li>
@@ -248,8 +248,7 @@
     <section id="showcase" class="showcase" aria-labelledby="showcase-title">
 
       <div class="showcase-head section-head">
-        <h2 class="section-title" id="showcase-title">Some of My Projects</h2>
-        <a class="btn secondary-btn" href="projects.html">All my projects →</a>
+        <h2 class="section-title" id="showcase-title">My Projects</h2>
       </div>
 
       <div class="showcase-carousel-toolbar">
@@ -259,7 +258,7 @@
             <span aria-hidden="true">←</span>
           </button>
           <p class="showcase-carousel-status" aria-hidden="true">
-            <span data-showcase-current>01</span> / <span data-showcase-total>05</span>
+            <span data-showcase-current>01</span> / <span data-showcase-total>08</span>
           </p>
           <button class="showcase-carousel-button" type="button" data-showcase-next
             aria-controls="showcase-carousel-track" aria-label="Next project">
@@ -446,6 +445,101 @@
               <div class="project-links">
                 <a href="glame-ai.html">Read the story</a>
                 <span class="project-private">Private source &mdash; available on request</span>
+              </div>
+            </div>
+            </div>
+          </article>
+          <article class="project-card flip-card" tabindex="0" data-showcase-kind="concept">
+            <div class="flip-inner">
+            <div class="flip-face flip-front card-shell">
+              <button class="project-shot" type="button" data-project-trigger>
+                <img src="images/projects/wedding-atelier-concept-front.jpg?v=20261004" width="960" height="1067" alt="Wedding atelier concept home page" loading="lazy">
+                <span class="project-shot-label" aria-hidden="true">Wedding Atelier</span>
+              </button>
+              <div class="project-head">
+                <h3 class="project-title">Wedding Atelier Concept</h3>
+                <div class="project-badges">
+                  <span class="project-badge badge-muted">Independent concept</span>
+                  <span class="project-badge badge-muted">Uncommissioned</span>
+                </div>
+              </div>
+            <p class="flip-hint">Hover or tap for details</p>
+            </div>
+            <div class="flip-face flip-back card-shell">
+              <p class="kicker">About the concept</p>
+              <p class="project-description">Self-initiated website concept for a luxury wedding atelier, with 38 pages generated from a shared content source and checked using automated link and SEO audits.</p>
+              <p class="project-note">Independent concept work &mdash; not commissioned, reviewed, or endorsed by a business.</p>
+              <p class="project-tech">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Python build pipeline</span>
+                <span class="tech-tag">SEO</span>
+              </p>
+              <div class="project-links">
+                <span class="project-private">Concept study &mdash; source available on request</span>
+              </div>
+            </div>
+            </div>
+          </article>
+          <article class="project-card flip-card" tabindex="0"
+            data-project-full-image="images/projects/eight-weeks-at-orange-full.jpg?v=20261010full1">
+            <div class="flip-inner">
+            <div class="flip-face flip-front card-shell">
+              <button class="project-shot" type="button" data-project-trigger>
+                <img src="images/projects/eight-weeks-at-orange-front.jpg?v=20261008current" width="960" height="1067" alt="Eight Weeks at Orange presentation site hero and How We Worked section" loading="lazy">
+                <span class="project-shot-label" aria-hidden="true">8 Weeks at Orange</span>
+              </button>
+              <div class="project-head">
+                <h3 class="project-title">Eight Weeks at Orange</h3>
+                <div class="project-badges">
+                  <span class="project-badge badge-muted">With NourEddin Abu Salhieh</span>
+                </div>
+              </div>
+            <p class="flip-hint">Hover or tap for details</p>
+            </div>
+            <div class="flip-face flip-back card-shell">
+              <p class="kicker">About Eight Weeks at Orange</p>
+              <p class="project-description">Our field-training presentation as a single-file website: week-by-week results and a link to every repository.</p>
+              <p class="project-tech">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+              </p>
+              <div class="project-links">
+                <a href="https://mayahelmi.github.io/field-training-presentation/" target="_blank" rel="noopener">Live Site</a>
+                <a href="https://github.com/MayaHelmi/field-training-presentation" target="_blank" rel="noopener">GitHub</a>
+              </div>
+            </div>
+            </div>
+          </article>
+          <article class="project-card flip-card" tabindex="0" data-showcase-kind="concept">
+            <div class="flip-inner">
+            <div class="flip-face flip-front card-shell">
+              <button class="project-shot" type="button" data-project-trigger>
+                <img src="images/projects/print-artwork-marketplace-concept-front.jpg?v=20261004" width="960" height="1067" alt="Print artwork marketplace concept home page" loading="lazy">
+                <span class="project-shot-label" aria-hidden="true">Print Marketplace</span>
+              </button>
+              <div class="project-head">
+                <h3 class="project-title">Print Artwork Marketplace Concept</h3>
+                <div class="project-badges">
+                  <span class="project-badge badge-muted">Independent concept</span>
+                  <span class="project-badge badge-muted">Uncommissioned</span>
+                </div>
+              </div>
+            <p class="flip-hint">Hover or tap for details</p>
+            </div>
+            <div class="flip-face flip-back card-shell">
+              <p class="kicker">About the concept</p>
+              <p class="project-description">Self-initiated static storefront concept for browsing downloadable print artwork, bundles, licensing information, and memberships.</p>
+              <p class="project-note">Independent concept work &mdash; not commissioned, reviewed, or endorsed by a business.</p>
+              <p class="project-tech">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+              </p>
+              <div class="project-links">
+                <span class="project-private">Independent concept study &mdash; private source</span>
               </div>
             </div>
             </div>
@@ -791,7 +885,7 @@
       });
     });
   </script>
-  <script src="showcase-carousel.js?v=20261009showcase-full2"></script>
+  <script src="showcase-carousel.js?v=20261010projects-unified2"></script>
 </body>
 
 </html>

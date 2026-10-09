@@ -1235,10 +1235,10 @@ a.card-media:hover { background: var(--pink-bg); }
   .card-shell:hover .project-shot img { transform: none; }
 }
 
-/* ============ Flip cards (projects page) ============
+/* ============ Flip cards ============
    Front: the screenshot and the title. Back: the description, tags and links.
-   The card turns over on hover, on keyboard focus, or on tap (script.js-free:
-   a few lines at the bottom of projects.html add .is-flipped). */
+   On pages that use the flip treatment, the card turns on hover, keyboard
+   focus, or tap. The homepage carousel replaces the flip with its 3D strip. */
 .flip-card {
   aspect-ratio: 2 / 3;          /* never taller than 1.5 × its width */
   perspective: 1200px;
@@ -1829,7 +1829,8 @@ html.project-modal-open { overflow: hidden; }
     height: min(48vh, 420px);
     max-height: none;
   }
-  .project-modal[data-preview-kind="app"] .project-modal-image-scroll {
+  .project-modal[data-preview-kind="app"] .project-modal-image-scroll,
+  .project-modal[data-preview-kind="concept"] .project-modal-image-scroll {
     height: auto;
     max-height: min(58vh, 540px);
   }

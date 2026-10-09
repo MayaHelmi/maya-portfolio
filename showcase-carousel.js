@@ -84,6 +84,8 @@
     const description = card.querySelector('.project-description')?.textContent.trim() || '';
     const isApp = card.dataset.showcaseKind === 'app';
     const fullImage = card.dataset.projectFullImage;
+    const hasFullPage = Boolean(fullImage);
+    const previewKind = isApp ? 'app' : (hasFullPage ? 'website' : 'concept');
     const badges = card.querySelector('.project-badges');
     const tech = card.querySelector('.project-tech');
     const links = Array.from(card.querySelectorAll('.project-links a'));
@@ -98,14 +100,23 @@
       .filter(Boolean);
 
     lastModalTrigger = trigger;
-    modal.dataset.previewKind = isApp ? 'app' : 'website';
+    modal.dataset.previewKind = previewKind;
     modalImageScroll.scrollTop = 0;
     modalImageScroll.classList.add('is-loading');
     modalImage.hidden = true;
-    modalImage.alt = isApp ? image.alt : 'Full-page screenshot of ' + title;
-    modalPreviewLabel.textContent = isApp ? 'App preview' : 'Website preview';
-    modalScrollHint.textContent = isApp ? 'Explore the app screens' : 'Scroll to view the full page ↓';
-    modalImageScroll.setAttribute('aria-label', 'Scrollable ' + modalPreviewLabel.textContent.toLowerCase() + ' for ' + title);
+    modalImage.alt = isApp
+      ? image.alt
+      : (hasFullPage ? 'Full-page screenshot of ' + title : 'Project preview of ' + title);
+    modalPreviewLabel.textContent = isApp
+      ? 'App preview'
+      : (hasFullPage ? 'Website preview' : 'Project preview');
+    modalScrollHint.textContent = isApp
+      ? 'Explore the app screens'
+      : (hasFullPage ? 'Scroll to view the full page ↓' : 'Preview image');
+    modalImageScroll.setAttribute(
+      'aria-label',
+      (hasFullPage ? 'Scrollable ' : '') + modalPreviewLabel.textContent.toLowerCase() + ' for ' + title
+    );
     modalKicker.textContent = kicker;
     modalTitle.textContent = title;
     modalDescription.textContent = description;
