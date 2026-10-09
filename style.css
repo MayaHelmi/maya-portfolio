@@ -2106,3 +2106,228 @@ main { animation: page-in .45s ease both; }
     font-size: clamp(1.45rem, 8vw, 2.4rem);
   }
 }
+
+/* ============ Certificates showcase ============
+   Three smaller horizontal galleries echo the Projects page while preserving
+   the user's Awards, Certifications and Volunteer groupings. */
+.certificates-showcase-page {
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 8% 10%, color-mix(in srgb, var(--pink) 11%, transparent), transparent 28rem),
+    var(--page-bg);
+}
+
+.certificates-showcase-page .section {
+  overflow: visible;
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.certificates-showcase-page .section--sunken {
+  overflow: visible;
+}
+
+.certificate-scroll-hint {
+  margin: -.85rem 0 1.25rem;
+  color: var(--text-fade);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.certificates-showcase-page .certificate-track {
+  display: flex !important;
+  grid-template-columns: none !important;
+  gap: clamp(1rem, 2vw, 1.4rem);
+  width: 100%;
+  padding: .5rem .2rem 1.25rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-padding-inline: .2rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.certificates-showcase-page .certificate-track::-webkit-scrollbar { display: none; }
+.certificates-showcase-page .certificate-track:active { cursor: grabbing; }
+
+.certificates-showcase-page .flip-card--cert {
+  position: relative;
+  flex: 0 0 clamp(250px, 29vw, 330px);
+  width: clamp(250px, 29vw, 330px);
+  height: clamp(330px, 38vw, 410px);
+  aspect-ratio: auto;
+  scroll-snap-align: start;
+  perspective: none;
+  transition: transform .22s ease, filter .22s ease;
+}
+
+.certificates-showcase-page .flip-card--cert:hover,
+.certificates-showcase-page .flip-card--cert:focus-within {
+  transform: translateY(-6px) rotate(-.35deg);
+  filter: saturate(1.05);
+}
+
+.certificates-showcase-page .flip-inner,
+.certificates-showcase-page .flip-card:hover .flip-inner,
+.certificates-showcase-page .flip-card:focus-visible .flip-inner,
+.certificates-showcase-page .flip-card:has(a:focus-visible) .flip-inner,
+.certificates-showcase-page .flip-card.is-flipped .flip-inner {
+  display: block;
+  height: 100%;
+  transform: none;
+  transform-style: flat;
+  transition: none;
+}
+
+.certificates-showcase-page .flip-front {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  color: #fff;
+  background: #171416;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: clamp(1.4rem, 2.5vw, 2rem);
+  box-shadow: 0 24px 55px rgba(0, 0, 0, .24);
+  transform: none;
+  backface-visibility: visible;
+}
+
+.certificates-showcase-page .flip-front::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(7, 7, 8, .03) 30%, rgba(7, 7, 8, .2) 55%, rgba(7, 7, 8, .94) 100%);
+}
+
+.certificates-showcase-page .flip-front .project-shot {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: clamp(.75rem, 2vw, 1.15rem);
+  aspect-ratio: auto;
+  background: #171416;
+  border: 0;
+  border-radius: inherit;
+}
+
+.certificates-showcase-page .flip-front .project-shot img {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  object-fit: contain;
+  object-position: center;
+  border-radius: .75rem;
+  transform: none !important;
+}
+
+.certificates-showcase-page .flip-front .shot-type {
+  align-items: flex-start;
+  padding: clamp(1.4rem, 3vw, 2rem) !important;
+}
+
+.certificates-showcase-page .flip-front .project-head {
+  position: absolute;
+  z-index: 2;
+  right: clamp(1rem, 2.5vw, 1.4rem);
+  bottom: clamp(1rem, 2.5vw, 1.4rem);
+  left: clamp(1rem, 2.5vw, 1.4rem);
+  display: flex;
+  gap: .65rem;
+  margin: 0;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.certificates-showcase-page .flip-front .project-title {
+  max-width: 22ch;
+  margin: 0;
+  color: #fff;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: clamp(1.2rem, 2.4vw, 1.65rem);
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.certificates-showcase-page .flip-front .project-badge {
+  color: rgba(255, 255, 255, .85);
+  background: rgba(15, 15, 16, .58);
+  border-color: rgba(255, 255, 255, .2);
+  backdrop-filter: blur(10px);
+}
+
+.certificates-showcase-page .flip-hint { display: none; }
+
+.certificates-showcase-page .flip-back {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: block;
+  padding: 0;
+  overflow: visible;
+  pointer-events: none;
+  background: transparent;
+  border: 0;
+  transform: none;
+  backface-visibility: visible;
+}
+
+.certificates-showcase-page .flip-back > :not(.project-links) { display: none; }
+
+.certificates-showcase-page .flip-back .project-links {
+  position: absolute;
+  z-index: 4;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  max-width: calc(100% - 2rem);
+  gap: .45rem;
+  margin: 0;
+  padding: 0;
+  justify-content: flex-end;
+  pointer-events: auto;
+  border: 0;
+}
+
+.certificates-showcase-page .flip-back .project-links a {
+  display: inline-flex;
+  min-height: 36px;
+  padding: .48rem .7rem;
+  align-items: center;
+  color: #fff;
+  background: rgba(10, 10, 11, .68);
+  border: 1px solid rgba(255, 255, 255, .24);
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+  font-size: .68rem;
+  line-height: 1.1;
+  text-decoration: none;
+}
+
+.certificates-showcase-page .flip-back .project-links a:hover {
+  color: #0a0a0b;
+  background: var(--pink-strong);
+  border-color: var(--pink-strong);
+}
+
+@media (max-width: 699px) {
+  .certificates-showcase-page .flip-card--cert {
+    flex-basis: min(78vw, 290px);
+    width: min(78vw, 290px);
+    height: min(102vw, 370px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .certificates-showcase-page .flip-card--cert { transition: none; }
+  .certificates-showcase-page .flip-card--cert:hover,
+  .certificates-showcase-page .flip-card--cert:focus-within { transform: none; }
+}

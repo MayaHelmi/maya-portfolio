@@ -23,14 +23,14 @@
 
   <!-- Tailwind first, so the hand-written rules in style.css stay in charge. -->
   <link rel="stylesheet" href="tailwind.css?v=20260907e">
-  <link rel="stylesheet" href="style.css?v=20261009backnav1">
+  <link rel="stylesheet" href="style.css?v=20261009certgallery1">
   
   <!-- Theme switch + phone menu. Deliberately has no "defer": it needs to run
        before the page is painted, so dark mode never flashes white first. -->
   <script src="script.js"></script>
 </head>
 
-<body>
+<body class="certificates-showcase-page">
 
   <a class="skip-link" href="#main">Skip to content</a>
 
@@ -93,8 +93,9 @@
     <!-- ================= AWARDS ================= -->
     <section id="awards" class="section">
       <h2 class="section-title">Awards &amp; Competitions</h2>
+      <p class="certificate-scroll-hint">Drag or scroll to explore</p>
 
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 certificate-track">
           <article class="achievement-card flip-card flip-card--cert" tabindex="0">
             <div class="flip-inner">
               <div class="flip-face flip-front card-shell">
@@ -194,8 +195,9 @@
     <section id="certifications" class="section section--sunken">
       <div class="section-inner">
         <h2 class="section-title">Certifications &amp; Courses</h2>
+        <p class="certificate-scroll-hint">Drag or scroll to explore</p>
 
-        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-paginate="3">
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 certificate-track">
             <article class="certificate-card flip-card flip-card--cert" tabindex="0">
               <div class="flip-inner">
                 <div class="flip-face flip-front card-shell">
@@ -357,8 +359,9 @@
     <!-- ================= VOLUNTEER ================= -->
     <section id="volunteer" class="section">
       <h2 class="section-title">Volunteer &amp; Contributions</h2>
+      <p class="certificate-scroll-hint">Drag or scroll to explore</p>
 
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-paginate="3">
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 certificate-track">
           <article class="volunteer-card flip-card flip-card--cert" tabindex="0">
             <div class="flip-inner">
               <div class="flip-face flip-front card-shell">
@@ -498,69 +501,8 @@
     <p class="footer-base">Maya Helmi &middot; Full-Stack Developer</p>
   </footer>
 
-  <!-- Only this page needs the pager, so the code lives here rather than in
-       script.js. It sits at the end of <body> so the cards already exist by
-       the time it runs. -->
-  <script>
-    /* Turns a long grid of cards into pages with numbered buttons under it.
-       A grid opts in by adding data-paginate="3" in the HTML above, where 3
-       is how many cards to show at a time. */
-    document.querySelectorAll("[data-paginate]").forEach(function (grid) {
-      const perPage = Number(grid.dataset.paginate);
-      const cards = Array.from(grid.children);
-      const pageCount = Math.ceil(cards.length / perPage);
+  <script src="certificates-gallery.js?v=20261009certgallery1"></script>
 
-      /* Everything already fits, so no buttons are needed. */
-      if (pageCount < 2) return;
-
-      /* Build the row of numbered buttons. */
-      const pager = document.createElement("nav");
-      pager.className = "pager";
-      pager.setAttribute("aria-label", "More cards");
-
-      /* Shows one page and hides the rest. Card 0,1,2 are page 0,
-         cards 3,4,5 are page 1, and so on. */
-      function showPage(wanted) {
-        cards.forEach(function (card, i) {
-          card.hidden = Math.floor(i / perPage) !== wanted;
-        });
-        /* Highlight the button for the page we are on. */
-        Array.from(pager.children).forEach(function (button, i) {
-          button.setAttribute("aria-current", i === wanted ? "page" : "false");
-        });
-      }
-
-      for (let i = 0; i < pageCount; i++) {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.textContent = i + 1;
-        button.setAttribute("aria-label", "Page " + (i + 1));
-        button.addEventListener("click", function () { showPage(i); });
-        pager.append(button);
-      }
-
-      grid.after(pager);
-      showPage(0);
-    });
-  </script>
-
-  <script>
-    // Flip a card on tap only where there is no real hover (phones, tablets);
-    // with a mouse, hovering flips it. Taps on links inside are left alone.
-    if (window.matchMedia('(hover: none)').matches) {
-      document.querySelectorAll('.flip-card').forEach(function (card) {
-        card.addEventListener('click', function (e) {
-          if (e.target.closest('a')) return;
-          card.classList.toggle('is-flipped');
-        });
-      });
-    }
-    document.querySelectorAll('.flip-card').forEach(function (card) {
-      card.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.classList.toggle('is-flipped'); }
-      });
-    });
-  </script>
 </body>
 
 </html>
