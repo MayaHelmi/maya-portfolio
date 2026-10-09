@@ -834,6 +834,12 @@ a:focus-visible, button:focus-visible {
   letter-spacing: .06em;
   color: var(--text-fade);
 }
+.education-fact-value { min-width: 0; }
+.ordinal-suffix {
+  font-size: .65em;
+  line-height: 0;
+  vertical-align: super;
+}
 
 /* ============ Showcase strip ============ */
 .showcase { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
