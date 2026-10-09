@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
   <link rel="stylesheet" href="tailwind.css?v=20260907e">
-  <link rel="stylesheet" href="style.css?v=20261009aboutjourney1">
+  <link rel="stylesheet" href="style.css?v=20261009aboutclean1">
   <script src="script.js?v=20261009magiccursor1"></script>
 </head>
 
@@ -50,37 +50,27 @@
       <a class="page-back" href="index.html"><span aria-hidden="true">←</span> Back home</a>
       <h1 class="standalone-heading">About Me</h1>
 
-      <nav class="about-section-nav" aria-label="About page sections">
-        <a href="#introduction">Introduction</a>
-        <a href="#skills">Skills</a>
-        <a href="#education">Education</a>
-        <a href="#journey">Professional Journey</a>
-      </nav>
-
       <section id="introduction" class="about-introduction" aria-labelledby="introduction-title">
         <div class="about-introduction-copy">
-          <p class="about-section-number" aria-hidden="true">01</p>
-          <h2 id="introduction-title">I turn ideas into useful digital products.</h2>
+          <div class="about-title-row about-title-row--introduction">
+            <p class="about-section-number" aria-hidden="true">01</p>
+            <h2 id="introduction-title">I turn ideas into useful digital products.</h2>
+          </div>
           <p>I combine development, design, and entrepreneurial thinking to find practical solutions that help businesses work better and connect with people.</p>
           <a class="btn secondary-btn" href="contact.html">Let’s work together <span aria-hidden="true">↗</span></a>
         </div>
 
-        <div class="about-portrait-stage" aria-label="What I bring to a project">
+        <div class="about-portrait-stage">
           <img src="images/profile.jpg" alt="Portrait of Maya Helmi">
-          <p class="about-trait about-trait--creative"><span aria-hidden="true">✦</span> Creative thinking</p>
-          <p class="about-trait about-trait--business"><span aria-hidden="true">↗</span> Business-aware solutions</p>
-          <p class="about-trait about-trait--builder"><span aria-hidden="true">⌁</span> Idea to product</p>
         </div>
       </section>
 
       <section id="skills" class="about-skills about-story-section" aria-labelledby="skills-title">
         <div class="about-section-heading">
           <p class="about-section-number" aria-hidden="true">02</p>
-          <div>
-            <h2 id="skills-title" class="section-title">Skills &amp; Technologies</h2>
-            <p>The tools I use to take an idea from interface to working product.</p>
-          </div>
+          <h2 id="skills-title" class="section-title">Skills &amp; Technologies</h2>
         </div>
+        <p class="about-section-intro">The tools I use to take an idea from interface to working product.</p>
 
         <div class="skills-treadmill" aria-label="Technical skills">
           <div class="skills-treadmill-row">
@@ -149,14 +139,10 @@
       <section id="education" class="about-story-section" aria-labelledby="education-title">
         <div class="about-section-heading">
           <p class="about-section-number" aria-hidden="true">03</p>
-          <div>
-            <h2 id="education-title" class="section-title">Education</h2>
-            <p>My academic foundation in software engineering.</p>
-          </div>
+          <h2 id="education-title" class="section-title">Education</h2>
         </div>
 
         <article class="about-timeline-card about-education-card card-shell">
-          <div class="about-timeline-marker" aria-hidden="true"><span></span></div>
           <div class="about-education-photo">
             <img src="images/maya-grad-photo.jpg" alt="Maya Helmi in graduation cap and gown, holding her diploma folder from Applied Science Private University">
             <img src="images/asu-logo.png" alt="" aria-hidden="true" class="about-education-logo" width="72" height="72">
@@ -175,36 +161,33 @@
         </article>
       </section>
 
-      <section id="journey" class="about-story-section about-journey" aria-labelledby="journey-title">
+      <section id="experience" class="about-story-section about-journey" aria-labelledby="experience-title">
         <div class="about-section-heading">
           <p class="about-section-number" aria-hidden="true">04</p>
-          <div>
-            <h2 id="journey-title" class="section-title">Professional Journey</h2>
-            <p>Where I applied what I learned to real development work.</p>
-          </div>
+          <h2 id="experience-title" class="section-title">Experience</h2>
         </div>
 
-        <div class="about-timeline">
-          <article class="about-timeline-card about-experience-card card-shell">
-            <div class="about-timeline-marker" aria-hidden="true"><span></span></div>
+        <article class="about-timeline-card about-experience-card card-shell">
+          <a class="about-training-preview" href="https://mayahelmi.github.io/field-training-presentation/" target="_blank" rel="noopener" aria-label="Open the Orange field-training presentation website">
+            <img src="images/projects/eight-weeks-at-orange-front.jpg" alt="Screenshot of the Eight Weeks at Orange field-training website">
+            <span>Open the website <span aria-hidden="true">↗</span></span>
+          </a>
+          <div class="about-timeline-content">
             <p class="about-date">July 2026 — September 2026</p>
-            <div class="about-timeline-content">
-              <p class="about-role">Full-Stack Web Development Trainee</p>
-              <h3>Orange Digital Center</h3>
-              <p class="about-organization">Coding Academy by Orange · Field Training</p>
-              <div class="about-experience-highlights" aria-label="Training highlights">
-                <span>8-week training</span>
-                <span>Front-end to back-end</span>
-                <span>Weekly public projects</span>
-              </div>
-              <ul class="about-compact-list">
-                <li>Built responsive interfaces, interactive JavaScript features, Firebase workflows, and PHP/MySQL applications.</li>
-                <li>Developed HopeBridge from UX research and database design through a responsive 28-page implementation.</li>
-              </ul>
-              <a class="about-inline-link" href="https://mayahelmi.github.io/field-training-presentation/" target="_blank" rel="noopener">Explore the eight weeks <span aria-hidden="true">↗</span></a>
+            <p class="about-role">Full-Stack Web Development Trainee</p>
+            <h3>Orange Digital Center</h3>
+            <p class="about-organization">Coding Academy by Orange · Field Training</p>
+            <div class="about-experience-highlights" aria-label="Training highlights">
+              <span>8-week training</span>
+              <span>Front-end to back-end</span>
+              <span>Weekly public projects</span>
             </div>
-          </article>
-        </div>
+            <ul class="about-compact-list">
+              <li>Built responsive interfaces, interactive JavaScript features, Firebase workflows, and PHP/MySQL applications.</li>
+              <li>Developed HopeBridge from UX research and database design through a responsive 28-page implementation.</li>
+            </ul>
+          </div>
+        </article>
       </section>
     </div>
   </main>
