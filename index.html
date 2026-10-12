@@ -19,14 +19,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap">
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;display=swap">
   <!-- Tailwind first, so the hand-written rules in style.css stay in charge. -->
   <link rel="stylesheet" href="tailwind.css?v=20260907e">
-  <link rel="stylesheet" href="style.css?v=20261012aa">
+  <link rel="stylesheet" href="style.css?v=20261012bg">
 
   <!-- Theme switch + phone menu. Deliberately has no "defer": it needs to run
        before the page is painted, so dark mode never flashes white first. -->
-  <script src="script.js?v=20261012j"></script>
+  <script src="script.js?v=20261012r"></script>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
       <h2 class="logo"><a href="#home">Maya Helmi</a></h2>
 
       <ul class="nav-links" id="site-menu">
-        <li><a href="#home" class="is-current" aria-current="location">Home</a></li>
+        <li><a href="#about" class="is-current" aria-current="location">About Me</a></li>
         <li><a href="#showcase">Projects</a></li>
         <li><a href="#achievements">Achievements</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -147,25 +147,16 @@
             </text>
           </svg>
 
-          <!-- The phone version: same idea as above, but the track is a
-               rounded rectangle around the photo and the four pills at its
-               corners, and one lap is 1805.49 units instead of 2246.34. -->
-          <svg class="hero-role-snake--phone" viewBox="-30 -30 520 460" aria-hidden="true" focusable="false">
-            <path id="snake-track-phone" fill="none" d="M 60 -30
-              L 400 -30
-              A 90 90 0 0 1 490 60
-              L 490 340
-              A 90 90 0 0 1 400 430
-              L 60 430
-              A 90 90 0 0 1 -30 340
-              L -30 60
-              A 90 90 0 0 1 60 -30 Z" />
+          <!-- On phones the animated title follows only the central portrait
+               border. JavaScript keeps this path aligned as the image scales. -->
+          <svg class="hero-role-snake--phone" aria-hidden="true" focusable="false">
+            <path id="snake-track-phone" fill="none" />
             <text class="snake-text">
               <textPath href="#snake-track-phone" startOffset="0">Full-Stack Developer
-                <animate attributeName="startOffset" from="0" to="1805.49" dur="19.3s" repeatCount="indefinite" />
+                <animate attributeName="startOffset" from="0%" to="100%" dur="8s" repeatCount="indefinite" />
               </textPath>
-              <textPath href="#snake-track-phone" startOffset="-1805.49">Full-Stack Developer
-                <animate attributeName="startOffset" from="-1805.49" to="0" dur="19.3s" repeatCount="indefinite" />
+              <textPath href="#snake-track-phone" startOffset="-100%">Full-Stack Developer
+                <animate attributeName="startOffset" from="-100%" to="0%" dur="8s" repeatCount="indefinite" />
               </textPath>
             </text>
           </svg>
@@ -173,21 +164,23 @@
 
         <ul class="hero-capsules">
           <li class="capsule capsule--rot-l">
-            <a class="capsule-link" href="mailto:maayahelmi@gmail.com" aria-label="Email me" title="Email">
-              <svg viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" />
+            <a class="capsule-link" href="#skills" aria-label="View my front-end development skills" title="Front end">
+              <svg class="capsule-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="16" rx="2" />
+                <path d="M3 8h18M8 12l-2 2 2 2M16 12l2 2-2 2M13.5 11l-3 6" />
               </svg>
-              <span class="capsule-label">Email</span>
+              <span class="capsule-label"><span>Front</span><span>End</span></span>
             </a>
           </li>
 
           <li class="capsule capsule--lift">
-            <a class="capsule-link" href="https://github.com/MayaHelmi" target="_blank" rel="noopener"
-              aria-label="GitHub profile" title="GitHub">
-              <svg viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+            <a class="capsule-link" href="#skills" aria-label="View my back-end development skills" title="Back end">
+              <svg class="capsule-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="7" rx="2" />
+                <rect x="3" y="14" width="18" height="7" rx="2" />
+                <path d="M7 6.5h.01M7 17.5h.01M11 6.5h7M11 17.5h7" />
               </svg>
-              <span class="capsule-label">GitHub</span>
+              <span class="capsule-label"><span>Back</span><span>End</span></span>
             </a>
           </li>
 
@@ -196,24 +189,29 @@
           </li>
 
           <li class="capsule capsule--drop">
-            <a class="capsule-link" href="https://www.linkedin.com/in/maya-helmi-934349292" target="_blank"
-              rel="noopener" aria-label="LinkedIn profile" title="LinkedIn">
-              <svg viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z" />
+            <a class="capsule-link" href="#skills" aria-label="View my database skills" title="Databases">
+              <svg class="capsule-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <ellipse cx="12" cy="5" rx="7" ry="3" />
+                <path d="M5 5v7c0 1.66 3.13 3 7 3s7-1.34 7-3V5M5 12v7c0 1.66 3.13 3 7 3s7-1.34 7-3v-7" />
               </svg>
-              <span class="capsule-label">LinkedIn</span>
+              <span class="capsule-label"><span>Data</span><span>Base</span></span>
             </a>
           </li>
 
           <li class="capsule capsule--rot-r">
-            <a class="capsule-link" href="tel:+962781016964" aria-label="Call me" title="Phone">
-              <svg viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-                <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
+            <a class="capsule-link" href="#skills" aria-label="View my API skills" title="APIs">
+              <svg class="capsule-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="5" cy="12" r="2.5" />
+                <circle cx="19" cy="6" r="2.5" />
+                <circle cx="19" cy="18" r="2.5" />
+                <path d="M7.3 11l9.4-4M7.3 13l9.4 4" />
               </svg>
-              <span class="capsule-label">Call</span>
+              <span class="capsule-label">APIs</span>
             </a>
           </li>
         </ul>
+
+        <a class="btn primary-btn btn--hop hero-cta" href="#contact">Hire Me</a>
       </div>
 
     </section>
@@ -221,25 +219,20 @@
     <!-- About -->
     <section id="about" class="section section--sunken about-section">
       <div class="section-inner">
-        <div class="grid gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-[7fr_5fr] lg:gap-12">
+        <div class="about-copy">
+          <h2 class="section-title">Get to Know Me</h2>
 
-          <div>
-            <h2 class="section-title">Get to Know Me</h2>
-
-            <div class="about-content">
-              <p class="about-lead">I combine full-stack development, thoughtful design, and entrepreneurial thinking to turn real-world problems into practical digital products that help businesses work better and connect with people.</p>
-            </div>
-
-            <div class="about-actions">
-              <a class="btn primary-btn btn--hop" href="#contact">Hire me</a>
-              <a class="btn secondary-btn" href="#showcase">See My Work</a>
-            </div>
+          <div class="about-content">
+            <p class="about-lead about-code-line"
+              aria-label="I combine full-stack development, thoughtful design, and entrepreneurial thinking to turn real-world problems into practical digital products that help businesses work better and connect with people.">
+              <span class="about-typewriter" aria-hidden="true"
+                data-typewriter="I combine full-stack development, thoughtful design, and entrepreneurial thinking to turn real-world problems into practical digital products that help businesses work better and connect with people.">I combine full-stack development, thoughtful design, and entrepreneurial thinking to turn real-world problems into practical digital products that help businesses work better and connect with people.</span><span class="about-cursor" aria-hidden="true"></span>
+            </p>
           </div>
 
-          <div class="about-portrait">
-            <img src="images/profile.jpg" alt="Portrait of Maya Helmi" width="1289" height="1751" loading="lazy">
+          <div class="about-actions">
+            <a class="btn secondary-btn" href="#showcase">See My Work</a>
           </div>
-
         </div>
       </div>
     </section>
@@ -759,53 +752,47 @@
     <section id="education" class="section education-section">
       <h2 class="section-title">Education</h2>
 
-      <!-- The certificates sit in a small stack under the photo and nudge
-           now and then. Pointing at the card (or tapping the photo) moves the
-           photo to the centre, fans the certificates out in an arch around
-           it, and moves the details underneath. Built by education.js. -->
+      <!-- The certificates stay fanned around the university logo. The
+           education details remain underneath, and each certificate grows
+           on hover or keyboard focus. Built by education.js. -->
       <div class="education-card education-card--standalone card-shell" data-edu>
         <div class="edu-figure" data-edu-figure>
           <ul class="edu-certs" id="edu-certs" aria-label="Degree certificates">
             <li class="edu-cert" style="--d: -2">
-              <a class="edu-cert-link" href="images/education/good-conduct-en.jpg" target="_blank" rel="noopener" tabindex="-1"
+              <a class="edu-cert-link" href="images/education/good-conduct-en.jpg" target="_blank" rel="noopener"
                 aria-label="View Good conduct letter (English)" title="Good conduct letter (English)">
                 <img src="images/education/good-conduct-en.jpg" width="1100" height="1497" alt="" loading="lazy" decoding="async">
               </a>
             </li>
             <li class="edu-cert" style="--d: -1">
-              <a class="edu-cert-link" href="images/education/degree-certificate-en.jpg" target="_blank" rel="noopener" tabindex="-1"
+              <a class="edu-cert-link" href="images/education/degree-certificate-en.jpg" target="_blank" rel="noopener"
                 aria-label="View Degree certificate (English)" title="Degree certificate (English)">
                 <img src="images/education/degree-certificate-en.jpg" width="1100" height="1536" alt="" loading="lazy" decoding="async">
               </a>
             </li>
             <li class="edu-cert" style="--d: 0">
-              <a class="edu-cert-link" href="images/education/bachelor-diploma-ar.jpg" target="_blank" rel="noopener" tabindex="-1"
+              <a class="edu-cert-link" href="images/education/bachelor-diploma-ar.jpg" target="_blank" rel="noopener"
                 aria-label="View Bachelor&rsquo;s degree diploma" title="Bachelor&rsquo;s degree diploma">
                 <img src="images/education/bachelor-diploma-ar.jpg" width="1100" height="1583" alt="" loading="lazy" decoding="async">
               </a>
             </li>
             <li class="edu-cert" style="--d: 1">
-              <a class="edu-cert-link" href="images/education/degree-certificate-ar.jpg" target="_blank" rel="noopener" tabindex="-1"
+              <a class="edu-cert-link" href="images/education/degree-certificate-ar.jpg" target="_blank" rel="noopener"
                 aria-label="View Degree certificate (Arabic)" title="Degree certificate (Arabic)">
                 <img src="images/education/degree-certificate-ar.jpg" width="1100" height="1522" alt="" loading="lazy" decoding="async">
               </a>
             </li>
             <li class="edu-cert" style="--d: 2">
-              <a class="edu-cert-link" href="images/education/good-conduct-ar.jpg" target="_blank" rel="noopener" tabindex="-1"
+              <a class="edu-cert-link" href="images/education/good-conduct-ar.jpg" target="_blank" rel="noopener"
                 aria-label="View Good conduct letter (Arabic)" title="Good conduct letter (Arabic)">
                 <img src="images/education/good-conduct-ar.jpg" width="1100" height="1512" alt="" loading="lazy" decoding="async">
               </a>
             </li>
           </ul>
-          <button class="education-photo edu-photo" type="button" data-edu-toggle
-            aria-expanded="false" aria-controls="edu-certs" aria-label="Show my degree certificates">
-            <img src="images/maya-grad-photo.jpg"
-              alt="Maya Helmi in graduation cap and gown, holding her diploma folder from Applied Science Private University"
-              loading="lazy">
-            <img src="images/asu-logo.png" alt="" aria-hidden="true" class="education-photo-badge" loading="lazy"
-              width="48" height="48">
-          </button>
-          <span class="edu-hint" aria-hidden="true">5 certificates</span>
+          <div class="education-photo education-logo edu-photo">
+            <img src="images/asu-logo.png" alt="Applied Science Private University logo" loading="lazy"
+              width="1523" height="1520">
+          </div>
         </div>
 
         <ul class="education-facts" data-edu-facts>
@@ -1069,7 +1056,7 @@
   </script>
   <script src="showcase-carousel.js?v=20261012j"></script>
   <script src="skills.js?v=20261012q"></script>
-  <script src="education.js?v=20261012u"></script>
+  <script src="education.js?v=20261012w"></script>
 </body>
 
 </html>

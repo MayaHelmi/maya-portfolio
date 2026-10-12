@@ -93,7 +93,101 @@ document.addEventListener("keydown", function (event) {
 });
 
 
-/* ============ 4. Highlight the section currently in view ============ */
+/* ============ 4. Keep the mobile hero snake aligned ============ */
+
+function setupMobileHeroSnake() {
+  const stage = document.querySelector(".hero-stage");
+  const svg = document.querySelector(".hero-role-snake--phone");
+  const track = document.getElementById("snake-track-phone");
+  const portrait = document.querySelector(".capsule-photo");
+  if (!stage || !svg || !track || !portrait) return;
+
+  function redraw() {
+    if (!matchMedia("(max-width: 767px)").matches) return;
+
+    const stageBox = stage.getBoundingClientRect();
+    const photoBox = portrait.getBoundingClientRect();
+    const box = {
+      left: photoBox.left - stageBox.left,
+      right: photoBox.right - stageBox.left,
+      top: photoBox.top - stageBox.top,
+      bottom: photoBox.bottom - stageBox.top
+    };
+    const photoX = (box.left + box.right) / 2;
+    const radius = (box.right - box.left) / 2;
+
+    svg.setAttribute("viewBox", "0 0 " + stageBox.width + " " + stageBox.height);
+    /* The mobile snake now belongs only to the central portrait. Its route
+       uses the portrait's rendered border, so it remains aligned as the
+       image scales on different phone widths. */
+    track.setAttribute("d", [
+      "M", photoX, box.top,
+      "C", box.right, box.top, box.right, box.top + radius, box.right, box.top + radius,
+      "L", box.right, box.bottom - radius,
+      "C", box.right, box.bottom, photoX, box.bottom, photoX, box.bottom,
+      "C", box.left, box.bottom, box.left, box.bottom - radius, box.left, box.bottom - radius,
+      "L", box.left, box.top + radius,
+      "C", box.left, box.top, photoX, box.top, photoX, box.top,
+      "Z"
+    ].join(" "));
+  }
+
+  redraw();
+  window.addEventListener("resize", redraw, { passive: true });
+}
+
+
+/* ============ 5. Type the About statement like code ============ */
+
+function setupAboutTypewriter() {
+  const target = document.querySelector(".about-typewriter");
+  const line = target && target.closest(".about-code-line");
+  if (!target || !line) return;
+
+  const text = target.dataset.typewriter || target.textContent.trim();
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    target.textContent = text;
+    return;
+  }
+
+  /* Reserve the paragraph's completed height before clearing it, so typing
+     never makes the sections below jump up and down. */
+  line.style.minHeight = line.getBoundingClientRect().height + "px";
+  target.textContent = "";
+
+  let started = false;
+  function startTyping() {
+    if (started) return;
+    started = true;
+
+    let index = 0;
+    function typeNextCharacter() {
+      index += 1;
+      target.textContent = text.slice(0, index);
+      if (index >= text.length) return;
+
+      const character = text.charAt(index - 1);
+      const pause = /[.,]/.test(character) ? 115 : character === " " ? 18 : 28;
+      window.setTimeout(typeNextCharacter, pause);
+    }
+    typeNextCharacter();
+  }
+
+  if (!("IntersectionObserver" in window)) {
+    startTyping();
+    return;
+  }
+
+  const observer = new IntersectionObserver(function (entries) {
+    if (!entries[0].isIntersecting) return;
+    observer.disconnect();
+    startTyping();
+  }, { threshold: .35 });
+  observer.observe(line);
+}
+
+
+/* ============ 6. Highlight the section currently in view ============ */
 
 function setupSectionNavigation() {
   const sectionLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
@@ -306,6 +400,7 @@ function setupAchievements() {
   let expanded = false;
   let resumeTimer = 0;
   let settleTimer = 0;
+  let pointerInteraction = false;
 
   /* Reasons to stop at once, without easing. */
   function mustHold() {
@@ -406,6 +501,7 @@ function setupAchievements() {
   let dragged = false;
 
   treadmill.addEventListener("pointerdown", function (event) {
+    pointerInteraction = true;
     if (event.pointerType !== "mouse" || event.button !== 0) return;
     pointerDown = true;
     dragged = false;
@@ -432,8 +528,18 @@ function setupAchievements() {
     position = treadmill.scrollLeft;
     recentre();
   }
-  treadmill.addEventListener("pointerup", endDrag);
-  treadmill.addEventListener("pointercancel", endDrag);
+  function endPointerInteraction(event) {
+    if (!pointerInteraction) return;
+    endDrag(event);
+    window.requestAnimationFrame(function () {
+      const active = document.activeElement;
+      if (active && treadmill.contains(active) && typeof active.blur === "function") active.blur();
+      pointerInteraction = false;
+      refresh();
+    });
+  }
+  window.addEventListener("pointerup", endPointerInteraction);
+  window.addEventListener("pointercancel", endPointerInteraction);
   treadmill.addEventListener("click", function (event) {
     if (!dragged) return;
     event.preventDefault();
@@ -444,6 +550,7 @@ function setupAchievements() {
   /* Keyboard: the strip holds still while anything in it has focus, and the
      focused card is brought clear of the faded edges. */
   treadmill.addEventListener("focusin", function (event) {
+    if (pointerInteraction) return;
     focused = true;
     refresh();
     const link = event.target.closest(".achievement-card-link");
@@ -818,10 +925,14 @@ function setupAchievements() {
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", function () {
+    setupMobileHeroSnake();
+    setupAboutTypewriter();
     setupSectionNavigation();
     setupAchievements();
   }, { once: true });
 } else {
+  setupMobileHeroSnake();
+  setupAboutTypewriter();
   setupSectionNavigation();
   setupAchievements();
 }

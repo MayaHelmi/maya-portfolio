@@ -1,15 +1,9 @@
 /* ==========================================================================
    Education: the certificate stack
 
-   Closed, the degree certificates sit in a small stack under the graduation
-   photo and nudge every few seconds (the CSS does that). Pointing at the
-   card, or tapping the photo, opens it:
-     1. the details fade out,
-     2. the photo glides to the centre while the certificates fan out from
-        under it into an arch above it, and
-     3. the details come back underneath, laid out in a row.
-   Closing plays the same steps in reverse. Each certificate opens full size
-   in a new tab once the arch is out.
+   The degree certificates stay fanned around the graduation portrait, with
+   the education details underneath. Hovering or focusing a certificate
+   enlarges it, and selecting one opens the full-size viewer.
    ========================================================================== */
 
 (function () {
@@ -17,20 +11,12 @@
   if (!card) return;
 
   const figure = card.querySelector("[data-edu-figure]");
-  const toggle = card.querySelector("[data-edu-toggle]");
-  const facts = card.querySelector("[data-edu-facts]");
   const certs = Array.from(card.querySelectorAll(".edu-cert"));
   const links = Array.from(card.querySelectorAll(".edu-cert-link"));
-  if (!figure || !toggle || !facts || !certs.length) return;
+  if (!figure || !certs.length || !links.length) return;
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
   const EASE = "cubic-bezier(.22, 1, .36, 1)";
-
-  let open = false;          /* the state on screen */
-  let wanted = false;        /* the state asked for */
-  let busy = false;
-  let leaveTimer = 0;
 
   certs.forEach(function (cert) {
     const d = Number(getComputedStyle(cert).getPropertyValue("--d")) || 0;
@@ -44,7 +30,7 @@
     const width = figure.offsetWidth;
     const style = getComputedStyle(card);
     const room = card.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
-    const radius = 1.1;                                   /* in photo widths */
+    const radius = .82;                                  /* nearly touches the logo */
     let step = 36;                                        /* degrees between certificates */
     const reach = function (angle) {
       const a = angle * Math.PI / 180;
@@ -62,133 +48,8 @@
     });
   }
 
-  function setLinks(enabled) {
-    links.forEach(function (link) {
-      if (enabled) link.removeAttribute("tabindex");
-      else link.setAttribute("tabindex", "-1");
-    });
-    toggle.setAttribute("aria-expanded", String(enabled));
-    toggle.setAttribute("aria-label", enabled ? "Hide my degree certificates" : "Show my degree certificates");
-  }
-
-  function finished(animation) {
-    return animation ? animation.finished.catch(function () {}) : Promise.resolve();
-  }
-
-  /* Move from one layout to the other without a jump: note where the photo
-     and the card are, switch the layout, then animate from the old place to
-     the new one. */
-  function switchLayout(toOpen) {
-    const before = figure.getBoundingClientRect();
-    const beforeHeight = card.offsetHeight;
-
-    card.classList.toggle("is-open", toOpen);
-    if (toOpen) placeArch();
-
-    const after = figure.getBoundingClientRect();
-    const afterHeight = card.offsetHeight;
-    const dx = before.left - after.left;
-    const dy = before.top - after.top;
-
-    const glide = figure.animate([
-      { transform: "translate(" + dx + "px, " + dy + "px)" },
-      { transform: "translate(0, 0)" }
-    ], { duration: 720, easing: EASE });
-
-    const grow = card.animate([
-      { height: beforeHeight + "px" },
-      { height: afterHeight + "px" }
-    ], { duration: 720, easing: EASE });
-
-    return Promise.all([finished(glide), finished(grow)]);
-  }
-
-  function fadeFacts(show, delay) {
-    return facts.animate(show ? [
-      { opacity: 0, transform: "translateY(14px)" },
-      { opacity: 1, transform: "none" }
-    ] : [
-      { opacity: 1, transform: "none" },
-      { opacity: 0, transform: "translateY(8px)" }
-    ], { duration: show ? 420 : 160, delay: delay || 0, easing: EASE, fill: "both" });
-  }
-
-  async function run() {
-    if (busy || wanted === open) return;
-    busy = true;
-    const toOpen = wanted;
-
-    if (reducedMotion.matches) {
-      card.classList.toggle("is-open", toOpen);
-      if (toOpen) placeArch();
-    } else {
-      card.classList.add("is-moving");
-      const out = fadeFacts(false);
-      await finished(out);
-      const layout = switchLayout(toOpen);
-      const back = fadeFacts(true, toOpen ? 380 : 260);
-      await Promise.all([layout, finished(back)]);
-      out.cancel();
-      back.cancel();
-      card.classList.remove("is-moving");
-    }
-
-    open = toOpen;
-    setLinks(open);
-    busy = false;
-    if (wanted !== open) run();      /* the visitor changed their mind meanwhile */
-  }
-
-  function request(state) {
-    if (!state && document.documentElement.classList.contains("cert-viewer-open")) return;
-    wanted = state;
-    run();
-  }
-
-  /* Pointer devices: open on hover, close shortly after leaving. */
-  /* A short pause before opening, so the card doesn't burst open when the
-     pointer merely passes over it while scrolling. */
-  let enterTimer = 0;
-  card.addEventListener("pointerenter", function (event) {
-    if (event.pointerType !== "mouse" || !canHover.matches) return;
-    window.clearTimeout(leaveTimer);
-    window.clearTimeout(enterTimer);
-    enterTimer = window.setTimeout(function () { request(true); }, 140);
-  });
-  card.addEventListener("pointerleave", function (event) {
-    if (event.pointerType !== "mouse" || !canHover.matches) return;
-    window.clearTimeout(enterTimer);
-    window.clearTimeout(leaveTimer);
-    leaveTimer = window.setTimeout(function () { request(false); }, 320);
-  });
-
-  /* Tap or keyboard: the photo toggles. */
-  toggle.addEventListener("click", function () {
-    if (canHover.matches && open) return;   /* with a mouse, leaving the card closes it */
-    request(!wanted);
-  });
-
-  document.addEventListener("click", function (event) {
-    if (!wanted || card.contains(event.target)) return;
-    request(false);
-  });
-
-  document.addEventListener("keydown", function (event) {
-    if (event.key !== "Escape" || !wanted) return;
-    if (document.documentElement.classList.contains("cert-viewer-open")) return;
-    request(false);
-    toggle.focus();
-  });
-
-  card.addEventListener("focusout", function (event) {
-    if (!wanted || (event.relatedTarget && card.contains(event.relatedTarget))) return;
-    if (canHover.matches && card.matches(":hover")) return;
-    request(false);
-  });
-
-  window.addEventListener("resize", function () {
-    if (open) placeArch();
-  });
+  placeArch();
+  window.addEventListener("resize", placeArch);
 
   /* ---- Full-size view ----
      Clicking a certificate grows it from its place in the arch into a
@@ -254,20 +115,11 @@
       document.documentElement.classList.remove("cert-viewer-open");
       viewerImage.getAnimations().forEach(function (animation) { animation.cancel(); });
       links[current].focus({ preventScroll: true });
-      /* If the pointer is no longer over the card once it moves again, fold
-         the arch away (hover isn't updated until the pointer moves). */
-      if (canHover.matches) {
-        document.addEventListener("pointermove", function check(event) {
-          document.removeEventListener("pointermove", check);
-          if (!card.contains(document.elementFromPoint(event.clientX, event.clientY))) request(false);
-        });
-      }
     });
 
     links.forEach(function (link, index) {
       link.addEventListener("click", function (event) {
         event.preventDefault();
-        if (!open) return;
         openViewer(index);
       });
     });
@@ -285,5 +137,4 @@
     });
   }
 
-  setLinks(false);
 }());
