@@ -334,10 +334,10 @@ function setupSectionNavigation() {
    shifted back by exactly one copy; the copies are identical, so that jump
    can't be seen and the strip never runs out.
 
-   Speed eases in and out instead of switching on and off. The strip glides
-   to a stop under the pointer, holds still while something inside has
-   keyboard focus or was just touched, and rests while off-screen or while
-   "View all" is open.
+   Speed eases back in after an interaction instead of switching on abruptly.
+   The strip keeps moving under a resting pointer, holds still only while it
+   is actively dragged, touched, or keyboard-focused, and rests while it is
+   off-screen or while "View all" is open.
 
    "View all" and "Collapse" move the cards themselves: each card the visitor
    can see glides from its place in the strip to its seat in the grid (and
@@ -393,7 +393,6 @@ function setupAchievements() {
   let speed = 0;                  /* 0 = still, 1 = full speed */
   let frame = 0;
   let lastTime = 0;
-  let hovering = false;
   let focused = false;
   let touching = false;
   let inView = true;
@@ -401,11 +400,18 @@ function setupAchievements() {
   let resumeTimer = 0;
   let settleTimer = 0;
   let pointerInteraction = false;
+  let pointerDown = false;
+  let dragged = false;
 
   /* Reasons to stop at once, without easing. */
   function mustHold() {
-    return reducedMotion.matches || expanded || !inView || focused || touching ||
+    return reducedMotion.matches || expanded || !inView || focused || touching || pointerDown ||
       document.hidden || loopWidth <= 0;
+  }
+
+  function updateInView() {
+    const box = treadmill.getBoundingClientRect();
+    inView = !treadmill.hidden && box.bottom > 0 && box.top < window.innerHeight;
   }
 
   function measure() {
@@ -428,11 +434,8 @@ function setupAchievements() {
     const seconds = lastTime ? Math.min(now - lastTime, 64) / 1000 : 0;
     lastTime = now;
 
-    /* Ease toward full speed, or toward a stop while the pointer is over it. */
-    const target = hovering ? 0 : 1;
-    const response = target ? 1.6 : 7;
-    speed += (target - speed) * (1 - Math.exp(-seconds * response));
-    if (!target && speed < 0.004) { speed = 0; lastTime = 0; return; }
+    /* Ease back to full speed after a drag, touch, or visibility pause. */
+    speed += (1 - speed) * (1 - Math.exp(-seconds * 1.6));
 
     /* Anything that scrolled the strip since the last frame wins. */
     if (Math.abs(treadmill.scrollLeft - position) > 2) position = treadmill.scrollLeft;
@@ -449,7 +452,7 @@ function setupAchievements() {
       frame = 0;
       speed = 0;
       lastTime = 0;
-    } else if (!frame && (!hovering || speed > 0)) {
+    } else if (!frame) {
       lastTime = 0;
       frame = window.requestAnimationFrame(step);
     }
@@ -469,13 +472,6 @@ function setupAchievements() {
     settleTimer = window.setTimeout(recentre, 140);
   }, { passive: true });
 
-  treadmill.addEventListener("pointerenter", function (event) {
-    if (event.pointerType === "mouse") { hovering = true; refresh(); }
-  });
-  treadmill.addEventListener("pointerleave", function (event) {
-    if (event.pointerType === "mouse") { hovering = false; refresh(); }
-  });
-
   function pauseForTouch() {
     touching = true;
     window.clearTimeout(resumeTimer);
@@ -488,7 +484,7 @@ function setupAchievements() {
       position = treadmill.scrollLeft;
       recentre();
       refresh();
-    }, 2200);
+    }, 650);
   }
   treadmill.addEventListener("touchstart", pauseForTouch, { passive: true });
   treadmill.addEventListener("touchend", resumeAfterTouch, { passive: true });
@@ -497,8 +493,6 @@ function setupAchievements() {
   /* Dragging with a mouse. A drag never counts as a click on a certificate. */
   let dragStartX = 0;
   let dragStartScroll = 0;
-  let pointerDown = false;
-  let dragged = false;
 
   treadmill.addEventListener("pointerdown", function (event) {
     pointerInteraction = true;
@@ -507,6 +501,7 @@ function setupAchievements() {
     dragged = false;
     dragStartX = event.clientX;
     dragStartScroll = treadmill.scrollLeft;
+    refresh();
   });
   treadmill.addEventListener("pointermove", function (event) {
     if (!pointerDown) return;
@@ -534,6 +529,7 @@ function setupAchievements() {
     window.requestAnimationFrame(function () {
       const active = document.activeElement;
       if (active && treadmill.contains(active) && typeof active.blur === "function") active.blur();
+      focused = treadmill.matches(":focus-within");
       pointerInteraction = false;
       refresh();
     });
@@ -574,7 +570,23 @@ function setupAchievements() {
       refresh();
     }).observe(treadmill);
   }
-  document.addEventListener("visibilitychange", refresh);
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) {
+      pointerDown = false;
+      pointerInteraction = false;
+      touching = false;
+      treadmill.classList.remove("is-dragging");
+      focused = treadmill.matches(":focus-within");
+      updateInView();
+      position = treadmill.scrollLeft;
+      recentre();
+    }
+    refresh();
+  });
+  window.addEventListener("pageshow", function () {
+    updateInView();
+    refresh();
+  });
 
   if ("ResizeObserver" in window) {
     let firstObservation = true;
@@ -810,6 +822,7 @@ function setupAchievements() {
       expanded = false;
       busy = false;
       speed = 0;
+      updateInView();
       refresh();
       if (fromBottom) toggle.focus({ preventScroll: true });
     }
