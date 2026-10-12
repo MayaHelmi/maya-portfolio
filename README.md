@@ -2,12 +2,12 @@ live url:  https://mayahelmi.github.io/maya-portfolio/
 
 # Maya Helmi — portfolio
 
-The homepage contains the complete project and achievements collections,
-followed by dedicated case-study pages for Besign, Glamé AI and NOI Beauty
-Lounge. Glamé is presented as an in-progress beauty-tech website concept; NOI
+The homepage contains the complete project and achievements collections.
+Each project's full details (problem, role, process, links) open in a pop-up
+on the homepage, so there are no separate project pages. Glamé is presented as an in-progress beauty-tech website concept; NOI
 is clearly identified as an independent salon website concept. The old
-`projects.html`, `certificates.html` and `recognition.html` URLs redirect to
-their relevant homepage sections.
+`projects.html`, `certificates.html`, `recognition.html`, `besign.html`,
+`glame-ai.html` and `noi-beauty-lounge.html` URLs redirect to the homepage.
 
 ## Opening it
 
@@ -22,7 +22,7 @@ in the folder. Deploying is still just uploading these files.
 | `style.css` | Everything hand-written: colours, dark mode, typography, and the components (navbar, hero, cards, footer). This is the main stylesheet. |
 | `src/tailwind.css` | The Tailwind **source**. Design tokens and settings only — edit this one. |
 | `tailwind.css` | The **built** file the pages load. Generated from the file above — don't edit it by hand, your changes get overwritten on the next build. |
-| `script.js` | The theme toggle and the phone menu. |
+| `script.js` | The theme toggle, the phone menu, and the achievements strip with its "View all" deck. |
 | `images/projects/` | Homepage project-card images plus on-demand full-page website captures for the project detail modal. Besign uses a screen-design composite. |
 
 Tailwind is used for the responsive column layouts, written straight onto the

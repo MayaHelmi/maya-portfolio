@@ -3,9 +3,8 @@
   if (!carousel) return;
 
   const section = carousel.closest('.showcase');
-  const cards = Array.from(carousel.querySelectorAll('.project-card')).sort(function (first, second) {
-    return Number(first.dataset.showcaseKind === 'app') - Number(second.dataset.showcaseKind === 'app');
-  });
+  /* Cards appear in the order they are written in index.html. */
+  const cards = Array.from(carousel.querySelectorAll('.project-card'));
   const previousButton = section.querySelector('[data-showcase-prev]');
   const nextButton = section.querySelector('[data-showcase-next]');
   const currentText = section.querySelector('[data-showcase-current]');
@@ -24,8 +23,11 @@
   const modalBadges = modal?.querySelector('[data-project-modal-badges]');
   const modalDescription = modal?.querySelector('[data-project-modal-description]');
   const modalNote = modal?.querySelector('[data-project-modal-note]');
+  const modalDetails = modal?.querySelector('[data-project-modal-details]');
+  const modalAwards = modal?.querySelector('[data-project-modal-awards]');
   const modalTech = modal?.querySelector('[data-project-modal-tech]');
   const modalCta = modal?.querySelector('[data-project-modal-cta]');
+  const modalMore = modal?.querySelector('[data-project-modal-more]');
 
   if (!modal) return;
 
@@ -40,12 +42,6 @@
   let lastAnnouncedIndex = 0;
   let targetIndex = null;
   let lastModalTrigger = null;
-
-  /* Website screenshots lead the carousel; the featured mobile app remains
-     part of the selected work, but follows the website slides. */
-  cards.forEach(function (card) {
-    carousel.appendChild(card);
-  });
 
   cards.forEach(function (card, index) {
     const title = card.querySelector('.project-title')?.textContent.trim() || 'Project';
@@ -123,6 +119,14 @@
     cloneChildren(modalBadges, badges);
     cloneChildren(modalTech, tech);
 
+    const awards = card.querySelector('.project-awards');
+    cloneChildren(modalAwards, awards);
+    modalAwards.hidden = !awards;
+
+    const details = card.querySelector('.project-details');
+    cloneChildren(modalDetails, details);
+    modalDetails.hidden = !details;
+
     modalNote.textContent = notes.join(' ');
     modalNote.hidden = notes.length === 0;
 
@@ -145,6 +149,25 @@
       modalCta.hidden = true;
       modalCta.removeAttribute('href');
     }
+
+    /* Every other link on the card (GitHub, extra pages) sits next to the
+       main button, so nothing on the card is out of reach. */
+    const moreLinks = links.filter(function (link) { return link !== primaryLink; }).map(function (link) {
+      const extra = document.createElement('a');
+      extra.className = 'btn secondary-btn project-modal-link';
+      extra.href = link.getAttribute('href');
+      extra.textContent = link.textContent.trim();
+      if (link.target === '_blank') {
+        extra.target = '_blank';
+        extra.rel = 'noopener';
+        extra.textContent += ' ↗';
+        extra.setAttribute('aria-label', link.textContent.trim() + ' (opens in a new tab)');
+      }
+      extra.addEventListener('click', function () { modal.close(); });
+      return extra;
+    });
+    modalMore.replaceChildren(...moreLinks);
+    modalMore.hidden = moreLinks.length === 0;
 
     modalCopyScroll.scrollTop = 0;
     modal.showModal();
@@ -337,4 +360,33 @@
   carousel.addEventListener('pointercancel', stopDragging);
 
   render();
+
+  /* Lets other parts of the page (the skills panel) list the projects and
+     open one. `returnTo` gets focus back when the pop-up closes. */
+  window.portfolioProjects = {
+    list: function () {
+      return cards.map(function (card) {
+        const image = card.querySelector('.project-shot img');
+        return {
+          title: card.querySelector('.project-title')?.textContent.trim() || 'Project',
+          image: image ? image.getAttribute('src') : '',
+          tags: Array.from(card.querySelectorAll('.tech-tag')).map(function (tag) {
+            return tag.textContent.trim();
+          }),
+          hasGitHub: Array.from(card.querySelectorAll('.project-links a')).some(function (link) {
+            return /github/i.test(link.textContent);
+          })
+        };
+      });
+    },
+    open: function (title, returnTo) {
+      const index = cards.findIndex(function (card) {
+        return card.querySelector('.project-title')?.textContent.trim() === title;
+      });
+      if (index < 0) return;
+      goTo(index, false);
+      const card = cards[index];
+      openProject(card, returnTo || card.querySelector('[data-project-trigger]'));
+    }
+  };
 }());

@@ -22,11 +22,11 @@
     href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap">
   <!-- Tailwind first, so the hand-written rules in style.css stay in charge. -->
   <link rel="stylesheet" href="tailwind.css?v=20260907e">
-  <link rel="stylesheet" href="style.css?v=20261010treadmill1">
+  <link rel="stylesheet" href="style.css?v=20261012x">
 
   <!-- Theme switch + phone menu. Deliberately has no "defer": it needs to run
        before the page is painted, so dark mode never flashes white first. -->
-  <script src="script.js?v=20261010treadmill1"></script>
+  <script src="script.js?v=20261012j"></script>
 </head>
 
 <body>
@@ -147,25 +147,25 @@
             </text>
           </svg>
 
-          <!-- The phone version: same idea as above, but the track is just a
-               rounded rectangle around the 2x2 block of pills, and one lap
-               is 1134.75px instead of 2246.34px. -->
-          <svg class="hero-role-snake--phone" viewBox="-16 -16 252 372" aria-hidden="true" focusable="false">
-            <path id="snake-track-phone" fill="none" d="M 50 -16
-              L 170 -16
-              A 66 66 0 0 1 236 50
-              L 236 290
-              A 66 66 0 0 1 170 356
-              L 50 356
-              A 66 66 0 0 1 -16 290
-              L -16 50
-              A 66 66 0 0 1 50 -16 Z" />
+          <!-- The phone version: same idea as above, but the track is a
+               rounded rectangle around the photo and the four pills at its
+               corners, and one lap is 1805.49 units instead of 2246.34. -->
+          <svg class="hero-role-snake--phone" viewBox="-30 -30 520 460" aria-hidden="true" focusable="false">
+            <path id="snake-track-phone" fill="none" d="M 60 -30
+              L 400 -30
+              A 90 90 0 0 1 490 60
+              L 490 340
+              A 90 90 0 0 1 400 430
+              L 60 430
+              A 90 90 0 0 1 -30 340
+              L -30 60
+              A 90 90 0 0 1 60 -30 Z" />
             <text class="snake-text">
               <textPath href="#snake-track-phone" startOffset="0">Full-Stack Developer
-                <animate attributeName="startOffset" from="0" to="1134.75" dur="12s" repeatCount="indefinite" />
+                <animate attributeName="startOffset" from="0" to="1805.49" dur="19.3s" repeatCount="indefinite" />
               </textPath>
-              <textPath href="#snake-track-phone" startOffset="-1134.75">Full-Stack Developer
-                <animate attributeName="startOffset" from="-1134.75" to="0" dur="12s" repeatCount="indefinite" />
+              <textPath href="#snake-track-phone" startOffset="-1805.49">Full-Stack Developer
+                <animate attributeName="startOffset" from="-1805.49" to="0" dur="19.3s" repeatCount="indefinite" />
               </textPath>
             </text>
           </svg>
@@ -271,112 +271,6 @@
       <div class="showcase-grid showcase-carousel" id="showcase-carousel-track" data-showcase-carousel
         role="region" aria-roledescription="carousel" aria-labelledby="showcase-title" tabindex="0">
 
-          <article class="project-card flip-card" tabindex="0" data-showcase-kind="app">
-            <div class="flip-inner">
-            <div class="flip-face flip-front card-shell">
-              <button class="project-shot" type="button" data-project-trigger>
-                <img src="images/projects/besign-front.jpg?v=20260907e" width="960" height="1067" alt="Besign app screens" loading="lazy">
-                <span class="project-shot-label" aria-hidden="true">Besign</span>
-              </button>
-              <div class="project-head">
-                <h3 class="project-title">Besign</h3>
-                <div class="project-badges">
-                  <span class="project-badge">2nd Place · NTP13 2026</span>
-                  <span class="project-badge">Best Entrepreneurial Project</span>
-                  <span class="project-badge badge-muted">May–June 2026</span>
-                </div>
-              </div>
-            <p class="flip-hint">Hover or tap for details</p>
-            </div>
-            <div class="flip-face flip-back card-shell">
-              <p class="kicker">About Besign</p>
-              <p class="project-description">Award-winning Flutter tailoring platform. I co-developed the app and Supabase backend and integrated Gemini-powered garment features.</p>
-              <p class="project-tech">
-                <span class="tech-tag">Flutter</span>
-                <span class="tech-tag">Dart</span>
-                <span class="tech-tag">Riverpod</span>
-                <span class="tech-tag">Supabase</span>
-                <span class="tech-tag">Gemini API</span>
-              </p>
-              <div class="project-links">
-                <a href="besign.html">Read the story</a>
-                <span class="project-private">Private project — source available on request</span>
-              </div>
-            </div>
-            </div>
-          </article>
-          <article class="project-card flip-card" tabindex="0"
-            data-project-full-image="images/projects/noi-beauty-lounge-full.jpg?v=20261009full1">
-            <div class="flip-inner">
-            <div class="flip-face flip-front card-shell">
-              <button class="project-shot" type="button" data-project-trigger>
-                <img src="images/projects/noi-beauty-lounge-front.jpg?v=20261008continuous" width="960" height="1067" alt="NOI Beauty Lounge salon website concept hero and services" loading="lazy">
-                <span class="project-shot-label" aria-hidden="true">NOI Beauty Lounge</span>
-              </button>
-              <div class="project-head">
-                <h3 class="project-title">NOI Beauty Lounge</h3>
-                <div class="project-badges">
-                  <span class="project-badge">Concept Project</span>
-                  <span class="project-badge badge-muted">Full-stack website</span>
-                  <span class="project-badge badge-muted">2026</span>
-                </div>
-              </div>
-            <p class="flip-hint">Hover or tap for details</p>
-            </div>
-            <div class="flip-face flip-back card-shell">
-              <p class="kicker">Salon Website Concept</p>
-              <p class="project-description">Designed and developed a responsive salon concept with JSON-driven service content, reusable Razor components, customer reviews, theme controls and location details.</p>
-              <p class="project-note">Independent concept project &mdash; not an official or commissioned NOI Beauty Lounge website.</p>
-              <p class="project-tech">
-                <span class="tech-tag">ASP.NET Core MVC</span>
-                <span class="tech-tag">C#</span>
-                <span class="tech-tag">Razor</span>
-                <span class="tech-tag">Tailwind CSS</span>
-                <span class="tech-tag">JavaScript</span>
-                <span class="tech-tag">JSON</span>
-              </p>
-              <div class="project-links">
-                <a href="noi-beauty-lounge.html">Read the story</a>
-                <a href="https://github.com/MayaHelmi/noi-beauty-lounge-website" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-            </div>
-          </article>
-          <article class="project-card flip-card" tabindex="0"
-            data-project-full-image="images/projects/hopebridge-full.jpg?v=20261009full1">
-            <div class="flip-inner">
-            <div class="flip-face flip-front card-shell">
-              <button class="project-shot" type="button" data-project-trigger>
-                <img src="images/projects/hopebridge-front.jpg?v=20260907e" width="960" height="1067" alt="HopeBridge charity platform home page" loading="lazy">
-                <span class="project-shot-label" aria-hidden="true">HopeBridge</span>
-              </button>
-              <div class="project-head">
-                <h3 class="project-title">HopeBridge</h3>
-                <div class="project-badges">
-                  <span class="project-badge badge-muted">Full-stack project</span>
-                  <span class="project-badge badge-muted">Static live demo</span>
-                  <span class="project-badge badge-muted">August–September 2026</span>
-                </div>
-              </div>
-            <p class="flip-hint">Hover or tap for details</p>
-            </div>
-            <div class="flip-face flip-back card-shell">
-              <p class="kicker">About HopeBridge</p>
-              <p class="project-description">Built donor, beneficiary and administrator workflows using PHP, PDO and a 10-table MySQL schema, then published a responsive 28-page static demo.</p>
-              <p class="project-tech">
-                <span class="tech-tag">PHP</span>
-                <span class="tech-tag">PDO</span>
-                <span class="tech-tag">MySQL</span>
-                <span class="tech-tag">JavaScript</span>
-                <span class="tech-tag">Figma</span>
-              </p>
-              <div class="project-links">
-                <a href="https://mayahelmi.github.io/hopebridge-charity-platform/" target="_blank" rel="noopener">Live Demo</a>
-                <a href="https://github.com/MayaHelmi/hopebridge-charity-platform" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-            </div>
-          </article>
           <article class="project-card flip-card" tabindex="0"
             data-project-full-image="images/projects/invite-sites-full.jpg?v=20261009full1">
             <div class="flip-inner">
@@ -413,6 +307,110 @@
             </div>
             </div>
           </article>
+          <article class="project-card flip-card" tabindex="0" data-showcase-kind="app">
+            <div class="flip-inner">
+            <div class="flip-face flip-front card-shell">
+              <button class="project-shot" type="button" data-project-trigger>
+                <img src="images/projects/besign-front.jpg?v=20260907e" width="960" height="1067" alt="Besign app screens" loading="lazy">
+                <img class="project-award-badge" src="images/awards/best-entrepreneurial-project-badge.svg?v=20261012" width="240" height="300"
+                  alt="" aria-hidden="true" loading="lazy" decoding="async">
+                <img class="project-award-badge project-award-badge--right" src="images/awards/ntp13-2nd-place-badge.svg?v=20261012b" width="240" height="300"
+                  alt="" aria-hidden="true" loading="lazy" decoding="async">
+                <span class="project-shot-label" aria-hidden="true">Besign</span>
+              </button>
+              <div class="project-head">
+                <h3 class="project-title">Besign</h3>
+                <div class="project-badges">
+                  <span class="project-badge">2nd Place · NTP13 2026</span>
+                  <span class="project-badge">Best Entrepreneurial Project</span>
+                  <span class="project-badge badge-muted">May–June 2026</span>
+                </div>
+              </div>
+            <p class="flip-hint">Hover or tap for details</p>
+            </div>
+            <div class="flip-face flip-back card-shell">
+              <p class="kicker">About Besign</p>
+              <p class="project-description">Award-winning Flutter tailoring platform. I co-developed the app and Supabase backend and integrated Gemini-powered garment features.</p>
+              <div class="project-awards">
+                <a class="project-award" href="images/awards/best-entrepreneurial-project-2026.png" target="_blank" rel="noopener"
+                  aria-label="Best Entrepreneurial Project medal, ASU Expo FITers 26 (opens in a new tab)">
+                  <span class="project-award-media project-award-media--medal">
+                    <img src="images/awards/best-entrepreneurial-project-badge.png?v=20261012" width="240" height="289" alt="" loading="lazy">
+                  </span>
+                  <span class="project-award-text"><strong>Best Entrepreneurial Project</strong> ASU Expo FITers 26</span>
+                </a>
+                <a class="project-award" href="images/awards/ntp13-2nd-place-2026.jpg" target="_blank" rel="noopener"
+                  aria-label="2nd Place certificate, NTP13 2026 (opens in a new tab)">
+                  <span class="project-award-media">
+                    <img src="images/awards/ntp13-2nd-place-2026.jpg" width="1280" height="720" alt="" loading="lazy">
+                  </span>
+                  <span class="project-award-text"><strong>2nd Place</strong> NTP13 2026</span>
+                </a>
+              </div>
+              <dl class="project-details">
+                <div><dt>Problem</dt><dd>Getting clothes made runs on guesswork. Customers cannot picture the result before committing, measurements are taken by hand and vary from tailor to tailor, and there is no way to check what arrived against what was promised.</dd></div>
+                <div><dt>My contribution</dt><dd>Co-developed the Flutter application and Supabase backend for customer, tailor, fabric-store and order workflows, and integrated Gemini-powered garment design and virtual try-on features.</dd></div>
+                <div><dt>Team</dt><dd>My teammate trained and integrated the on-device YOLOv8 / TensorFlow Lite body-measurement model, which produces 12 reviewable measurements from a customer photo and height.</dd></div>
+                <div><dt>Recognition</dt><dd>Best Entrepreneurial Project against a field of more than 100 projects, and 2nd place at NTP13 2026.</dd></div>
+              </dl>
+              <p class="project-tech">
+                <span class="tech-tag">Flutter</span>
+                <span class="tech-tag">Dart</span>
+                <span class="tech-tag">Riverpod</span>
+                <span class="tech-tag">Supabase</span>
+                <span class="tech-tag">Gemini API</span>
+                <span class="tech-tag">Team technology: YOLOv8 / TensorFlow Lite</span>
+                <span class="tech-tag">Arabic / English RTL</span>
+              </p>
+              <div class="project-links">
+                <span class="project-private">Private project — source available on request</span>
+              </div>
+            </div>
+            </div>
+          </article>
+          <article class="project-card flip-card" tabindex="0"
+            data-project-full-image="images/projects/eight-weeks-at-orange-full.jpg?v=20261010full1">
+            <div class="flip-inner">
+            <div class="flip-face flip-front card-shell">
+              <button class="project-shot" type="button" data-project-trigger>
+                <img src="images/projects/eight-weeks-at-orange-front.jpg?v=20261008current" width="960" height="1067" alt="Eight Weeks at Orange presentation site hero and How We Worked section" loading="lazy">
+                <span class="project-shot-label" aria-hidden="true">8 Weeks at Orange</span>
+              </button>
+              <div class="project-head">
+                <h3 class="project-title">Eight Weeks at Orange</h3>
+                <div class="project-badges">
+                  <span class="project-badge">Field training</span>
+                  <span class="project-badge badge-muted">July–September 2026</span>
+                  <span class="project-badge badge-muted">With NourEddin Abu Salhieh</span>
+                </div>
+              </div>
+            <p class="flip-hint">Hover or tap for details</p>
+            </div>
+            <div class="flip-face flip-back card-shell">
+              <p class="kicker">About Eight Weeks at Orange</p>
+              <p class="project-description">Eight weeks of full-stack web development training at Orange Digital Center, presented as a single-file website with week-by-week results and a link to every repository.</p>
+              <dl class="project-details">
+                <div><dt>Role</dt><dd>Full-Stack Web Development Trainee (Field Training) at Orange Digital Center &ndash; Coding Academy by Orange, July&ndash;September 2026.</dd></div>
+                <div><dt>Front end</dt><dd>Built responsive pages with HTML5, CSS3 (Flexbox, Grid) and Bootstrap, then moved to JavaScript: DOM manipulation, form handling, local storage, and the Fetch API with a Firebase Firestore backend.</dd></div>
+                <div><dt>Back end</dt><dd>Wrote server-side PHP: 45 exercises on the fundamentals, self-posting forms with validation, and the HopeBridge charity platform with accounts, sessions, an approval workflow and a MySQL database.</dd></div>
+                <div><dt>Delivery</dt><dd>Published weekly assignments in public GitHub repositories, and co-built this single-page website with a teammate to present the eight weeks.</dd></div>
+              </dl>
+              <p class="project-tech">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Bootstrap</span>
+                <span class="tech-tag">Firebase / Firestore</span>
+                <span class="tech-tag">PHP</span>
+                <span class="tech-tag">MySQL</span>
+              </p>
+              <div class="project-links">
+                <a href="https://mayahelmi.github.io/field-training-presentation/" target="_blank" rel="noopener">Live Site</a>
+                <a href="https://github.com/MayaHelmi/field-training-presentation" target="_blank" rel="noopener">GitHub</a>
+              </div>
+            </div>
+            </div>
+          </article>
           <article class="project-card flip-card" tabindex="0"
             data-project-full-image="images/projects/glame-ai-full.jpg?v=20261009full1">
             <div class="flip-inner">
@@ -434,7 +432,12 @@
             <div class="flip-face flip-back card-shell">
               <p class="kicker">Beauty-Tech Website Concept</p>
               <p class="project-description">An in-progress responsive website concept focused on the visual direction, hero experience, navigation, core layouts and front-end interaction design.</p>
-              <p class="project-note">The concept explores how users could adapt beauty inspiration using products they already own. The full application and AI system are not implemented.</p>
+              <dl class="project-details">
+                <div><dt>Problem</dt><dd>Beauty inspiration is often disconnected from the products a person already owns.</dd></div>
+                <div><dt>My contribution</dt><dd>Created the visual direction and designed and developed the hero experience, navigation, core responsive layouts and interactive interface elements.</dd></div>
+                <div><dt>Status</dt><dd>In progress. The current scope is the front-end and product experience, not a working AI system or complete application.</dd></div>
+              </dl>
+              <p class="project-note">The concept explores how users could adapt beauty inspiration using products they already own.</p>
               <p class="project-tech">
                 <span class="tech-tag">HTML5</span>
                 <span class="tech-tag">Tailwind CSS</span>
@@ -443,7 +446,48 @@
                 <span class="tech-tag">UI/UX</span>
               </p>
               <div class="project-links">
-                <a href="glame-ai.html">Read the story</a>
+                <span class="project-private">Private source &mdash; available on request</span>
+              </div>
+            </div>
+            </div>
+          </article>
+          <article class="project-card flip-card" tabindex="0"
+            data-project-full-image="images/projects/noi-beauty-lounge-full.jpg?v=20261009full1">
+            <div class="flip-inner">
+            <div class="flip-face flip-front card-shell">
+              <button class="project-shot" type="button" data-project-trigger>
+                <img src="images/projects/noi-beauty-lounge-front.jpg?v=20261008continuous" width="960" height="1067" alt="NOI Beauty Lounge salon website concept hero and services" loading="lazy">
+                <span class="project-shot-label" aria-hidden="true">NOI Beauty Lounge</span>
+              </button>
+              <div class="project-head">
+                <h3 class="project-title">NOI Beauty Lounge</h3>
+                <div class="project-badges">
+                  <span class="project-badge">Concept Project</span>
+                  <span class="project-badge badge-muted">Full-stack website</span>
+                  <span class="project-badge badge-muted">2026</span>
+                </div>
+              </div>
+            <p class="flip-hint">Hover or tap for details</p>
+            </div>
+            <div class="flip-face flip-back card-shell">
+              <p class="kicker">Salon Website Concept</p>
+              <p class="project-description">Designed and developed a responsive salon concept with JSON-driven service content, reusable Razor components, customer reviews, theme controls and location details.</p>
+              <dl class="project-details">
+                <div><dt>Role</dt><dd>Full-Stack Web Developer / UI Designer.</dd></div>
+                <div><dt>Goal</dt><dd>Show how a local salon&rsquo;s social-media presence could become a polished website where visitors explore services, read reviews, find the salon and get in touch.</dd></div>
+                <div><dt>Structure</dt><dd>Hair, nail, lash and beauty treatments are organized into responsive service accordions. Reusable Razor components render structured JSON content, with subtle motion, theme controls and layouts for desktop and mobile.</dd></div>
+                <div><dt>Brand</dt><dd>A consistent visual system built from the salon&rsquo;s existing logo and colors, plus customer reviews, contact details and a Google Maps location with a static-image fallback.</dd></div>
+              </dl>
+              <p class="project-note">Independent concept project &mdash; not an official or commissioned NOI Beauty Lounge website.</p>
+              <p class="project-tech">
+                <span class="tech-tag">ASP.NET Core MVC</span>
+                <span class="tech-tag">C#</span>
+                <span class="tech-tag">Razor</span>
+                <span class="tech-tag">Tailwind CSS</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">JSON</span>
+              </p>
+              <div class="project-links">
                 <span class="project-private">Private source &mdash; available on request</span>
               </div>
             </div>
@@ -482,37 +526,6 @@
             </div>
             </div>
           </article>
-          <article class="project-card flip-card" tabindex="0"
-            data-project-full-image="images/projects/eight-weeks-at-orange-full.jpg?v=20261010full1">
-            <div class="flip-inner">
-            <div class="flip-face flip-front card-shell">
-              <button class="project-shot" type="button" data-project-trigger>
-                <img src="images/projects/eight-weeks-at-orange-front.jpg?v=20261008current" width="960" height="1067" alt="Eight Weeks at Orange presentation site hero and How We Worked section" loading="lazy">
-                <span class="project-shot-label" aria-hidden="true">8 Weeks at Orange</span>
-              </button>
-              <div class="project-head">
-                <h3 class="project-title">Eight Weeks at Orange</h3>
-                <div class="project-badges">
-                  <span class="project-badge badge-muted">With NourEddin Abu Salhieh</span>
-                </div>
-              </div>
-            <p class="flip-hint">Hover or tap for details</p>
-            </div>
-            <div class="flip-face flip-back card-shell">
-              <p class="kicker">About Eight Weeks at Orange</p>
-              <p class="project-description">Our field-training presentation as a single-file website: week-by-week results and a link to every repository.</p>
-              <p class="project-tech">
-                <span class="tech-tag">HTML5</span>
-                <span class="tech-tag">CSS3</span>
-                <span class="tech-tag">JavaScript</span>
-              </p>
-              <div class="project-links">
-                <a href="https://mayahelmi.github.io/field-training-presentation/" target="_blank" rel="noopener">Live Site</a>
-                <a href="https://github.com/MayaHelmi/field-training-presentation" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-            </div>
-          </article>
           <article class="project-card flip-card" tabindex="0" data-showcase-kind="concept">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
@@ -544,6 +557,46 @@
             </div>
             </div>
           </article>
+          <article class="project-card flip-card" tabindex="0"
+            data-project-full-image="images/projects/hopebridge-full.jpg?v=20261009full1">
+            <div class="flip-inner">
+            <div class="flip-face flip-front card-shell">
+              <button class="project-shot" type="button" data-project-trigger>
+                <img src="images/projects/hopebridge-front.jpg?v=20260907e" width="960" height="1067" alt="HopeBridge charity platform home page" loading="lazy">
+                <span class="project-shot-label" aria-hidden="true">HopeBridge</span>
+              </button>
+              <div class="project-head">
+                <h3 class="project-title">HopeBridge</h3>
+                <div class="project-badges">
+                  <span class="project-badge badge-muted">Full-stack project</span>
+                  <span class="project-badge badge-muted">Static live demo</span>
+                  <span class="project-badge badge-muted">August–September 2026</span>
+                </div>
+              </div>
+            <p class="flip-hint">Hover or tap for details</p>
+            </div>
+            <div class="flip-face flip-back card-shell">
+              <p class="kicker">About HopeBridge</p>
+              <p class="project-description">Built donor, beneficiary and administrator workflows using PHP, PDO and a 10-table MySQL schema, then published a responsive 28-page static demo.</p>
+              <dl class="project-details">
+                <div><dt>Process</dt><dd>Took the project from research to delivery: empathy maps, user journeys, wireframes and mockups, and an ER diagram.</dd></div>
+                <div><dt>Back end</dt><dd>Accounts, sessions, an approval workflow and a 10-table MySQL database, written in PHP with PDO.</dd></div>
+                <div><dt>Result</dt><dd>28 finished pages for donors, families and administrators, published as a responsive static demo.</dd></div>
+              </dl>
+              <p class="project-tech">
+                <span class="tech-tag">PHP</span>
+                <span class="tech-tag">PDO</span>
+                <span class="tech-tag">MySQL</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Figma</span>
+              </p>
+              <div class="project-links">
+                <a href="https://mayahelmi.github.io/hopebridge-charity-platform/" target="_blank" rel="noopener">Live Demo</a>
+                <a href="https://github.com/MayaHelmi/hopebridge-charity-platform" target="_blank" rel="noopener">GitHub</a>
+              </div>
+            </div>
+            </div>
+          </article>
 
       </div>
     </section>
@@ -571,10 +624,15 @@
               <h2 class="project-modal-title" id="project-modal-title" data-project-modal-title tabindex="-1"></h2>
               <div class="project-modal-badges" data-project-modal-badges></div>
               <p class="project-modal-description" id="project-modal-description" data-project-modal-description></p>
+              <div class="project-awards project-modal-awards" data-project-modal-awards hidden></div>
+              <dl class="project-details project-modal-details" data-project-modal-details hidden></dl>
               <p class="project-note project-modal-note" data-project-modal-note hidden></p>
               <p class="project-tech project-modal-tech" data-project-modal-tech></p>
             </div>
-            <a class="btn primary-btn project-modal-cta" data-project-modal-cta></a>
+            <div class="project-modal-actions">
+              <a class="btn primary-btn project-modal-cta" data-project-modal-cta></a>
+              <div class="project-modal-more" data-project-modal-more></div>
+            </div>
           </div>
         </div>
       </div>
@@ -583,8 +641,15 @@
     <!-- Skills -->
     <section id="skills" class="section section--sunken">
       <div class="section-inner">
-        <h2 class="section-title">Skills and Tools</h2>
+        <div class="skills-head">
+          <h2 class="section-title">Skills and Tools</h2>
+          <p class="skills-hint" data-skills-hint hidden>
+            <span class="skills-hint-dot" aria-hidden="true"></span>
+            Select a skill to see where I&rsquo;ve used it
+          </p>
+        </div>
 
+        <div class="skills-board" data-skills-board>
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <article class="skill-card card-shell">
             <p class="kicker skill-group">Core development</p>
@@ -624,6 +689,10 @@
               <li><img src="images/skills/vscode.svg" alt="" width="48" height="48" loading="lazy"><span>VS Code</span></li>
             </ul>
           </article>
+        </div>
+
+        <div class="skill-panel" id="skill-panel" data-skill-panel role="dialog" aria-modal="false"
+          aria-labelledby="skill-panel-title" hidden></div>
         </div>
 
         <p class="kicker skill-also">Also</p>
@@ -686,190 +755,238 @@
       </div>
     </section>
 
-    <!-- Experience -->
-    <section id="experience" class="section">
-      <h2 class="section-title">Experience</h2>
-
-      <article class="experience-card card-shell">
-        <h3>Orange Digital Center - Coding Academy by Orange</h3>
-        <p class="experience-role">Full-Stack Web Development Trainee (Field Training)</p>
-        <p class="experience-dates">July 2026 – September 2026</p>
-
-        <ul class="experience-list">
-          <li>Built responsive pages with HTML5, CSS3 (Flexbox, Grid) and Bootstrap, then moved to JavaScript: DOM manipulation, form handling, local storage, and the Fetch API with a Firebase Firestore backend.</li>
-          <li>Wrote server-side PHP: 45 exercises on the fundamentals, self-posting forms with validation, and a charity platform (HopeBridge) with accounts, sessions, an approval workflow and a MySQL database.</li>
-          <li>Took HopeBridge from research to delivery: empathy maps, user journeys, wireframes and mockups, an ER diagram, then 28 finished pages for donors, families and administrators.</li>
-          <li>Published weekly assignments in public GitHub repositories and co-built a single-page website with a teammate to present the eight-week training.</li>
-        </ul>
-
-        <p class="experience-links">
-          <a href="https://mayahelmi.github.io/field-training-presentation/" target="_blank" rel="noopener">View the training presentation website &rarr;</a>
-        </p>
-      </article>
-    </section>
-
     <!-- Education -->
     <section id="education" class="section education-section">
       <h2 class="section-title">Education</h2>
 
-      <div class="education-card education-card--standalone card-shell">
-        <div class="education-photo">
-          <img src="images/maya-grad-photo.jpg"
-            alt="Maya Helmi in graduation cap and gown, holding her diploma folder from Applied Science Private University"
-            loading="lazy">
-          <img src="images/asu-logo.png" alt="" aria-hidden="true" class="education-photo-badge" loading="lazy"
-            width="48" height="48">
+      <!-- The certificates sit in a small stack under the photo and nudge
+           now and then. Pointing at the card (or tapping the photo) moves the
+           photo to the centre, fans the certificates out in an arch around
+           it, and moves the details underneath. Built by education.js. -->
+      <div class="education-card education-card--standalone card-shell" data-edu>
+        <div class="edu-figure" data-edu-figure>
+          <ul class="edu-certs" id="edu-certs" aria-label="Degree certificates">
+            <li class="edu-cert" style="--d: -2">
+              <a class="edu-cert-link" href="images/education/good-conduct-en.jpg" target="_blank" rel="noopener" tabindex="-1"
+                aria-label="View Good conduct letter (English)" title="Good conduct letter (English)">
+                <img src="images/education/good-conduct-en.jpg" width="1100" height="1497" alt="" loading="lazy" decoding="async">
+              </a>
+            </li>
+            <li class="edu-cert" style="--d: -1">
+              <a class="edu-cert-link" href="images/education/degree-certificate-en.jpg" target="_blank" rel="noopener" tabindex="-1"
+                aria-label="View Degree certificate (English)" title="Degree certificate (English)">
+                <img src="images/education/degree-certificate-en.jpg" width="1100" height="1536" alt="" loading="lazy" decoding="async">
+              </a>
+            </li>
+            <li class="edu-cert" style="--d: 0">
+              <a class="edu-cert-link" href="images/education/bachelor-diploma-ar.jpg" target="_blank" rel="noopener" tabindex="-1"
+                aria-label="View Bachelor&rsquo;s degree diploma" title="Bachelor&rsquo;s degree diploma">
+                <img src="images/education/bachelor-diploma-ar.jpg" width="1100" height="1583" alt="" loading="lazy" decoding="async">
+              </a>
+            </li>
+            <li class="edu-cert" style="--d: 1">
+              <a class="edu-cert-link" href="images/education/degree-certificate-ar.jpg" target="_blank" rel="noopener" tabindex="-1"
+                aria-label="View Degree certificate (Arabic)" title="Degree certificate (Arabic)">
+                <img src="images/education/degree-certificate-ar.jpg" width="1100" height="1522" alt="" loading="lazy" decoding="async">
+              </a>
+            </li>
+            <li class="edu-cert" style="--d: 2">
+              <a class="edu-cert-link" href="images/education/good-conduct-ar.jpg" target="_blank" rel="noopener" tabindex="-1"
+                aria-label="View Good conduct letter (Arabic)" title="Good conduct letter (Arabic)">
+                <img src="images/education/good-conduct-ar.jpg" width="1100" height="1512" alt="" loading="lazy" decoding="async">
+              </a>
+            </li>
+          </ul>
+          <button class="education-photo edu-photo" type="button" data-edu-toggle
+            aria-expanded="false" aria-controls="edu-certs" aria-label="Show my degree certificates">
+            <img src="images/maya-grad-photo.jpg"
+              alt="Maya Helmi in graduation cap and gown, holding her diploma folder from Applied Science Private University"
+              loading="lazy">
+            <img src="images/asu-logo.png" alt="" aria-hidden="true" class="education-photo-badge" loading="lazy"
+              width="48" height="48">
+          </button>
+          <span class="edu-hint" aria-hidden="true">5 certificates</span>
         </div>
 
-        <ul class="education-facts">
+        <ul class="education-facts" data-edu-facts>
           <li><span>Degree</span>B.Sc. in Software Engineering</li>
           <li><span>Duration</span>2022 – 2026</li>
           <li><span>GPA</span>91.2/100</li>
           <li><span>Rank</span><div class="education-fact-value">2<sup class="ordinal-suffix">nd</sup> in cohort</div></li>
-          <li><span>Languages</span><div class="education-fact-value">Arabic: Native<br>English: Fluent</div></li>
         </ul>
       </div>
     </section>
 
+    <!-- Full-size view of one certificate (education.js). -->
+    <dialog class="cert-viewer" data-cert-viewer aria-labelledby="cert-viewer-title">
+      <figure class="cert-viewer-figure">
+        <img class="cert-viewer-image" data-cert-viewer-image alt="">
+        <figcaption class="cert-viewer-caption">
+          <span class="cert-viewer-title" id="cert-viewer-title" data-cert-viewer-title></span>
+          <span class="cert-viewer-count" data-cert-viewer-count></span>
+        </figcaption>
+      </figure>
+      <button class="cert-viewer-close" type="button" data-cert-viewer-close aria-label="Close">&times;</button>
+      <button class="cert-viewer-nav cert-viewer-nav--prev" type="button" data-cert-viewer-prev aria-label="Previous certificate">&larr;</button>
+      <button class="cert-viewer-nav cert-viewer-nav--next" type="button" data-cert-viewer-next aria-label="Next certificate">&rarr;</button>
+    </dialog>
+
     <span id="certificates" class="legacy-anchor" aria-hidden="true"></span>
 
-    <!-- ================= ACHIEVEMENTS ================= -->
+    <!-- ================= ACHIEVEMENTS =================
+         One list of cards, used twice by script.js:
+           - the moving strip (the treadmill), which can also be scrolled
+             sideways by hand, and
+           - the "View all" grid, where the same cards are dealt out like
+             playing cards. -->
     <section id="achievements" class="section section--sunken achievements-section" aria-labelledby="achievements-title">
       <span id="awards" class="legacy-anchor" aria-hidden="true"></span>
       <span id="certifications" class="legacy-anchor" aria-hidden="true"></span>
       <span id="volunteer" class="legacy-anchor" aria-hidden="true"></span>
 
       <div class="section-inner">
-        <div class="section-head">
+        <div class="section-head" data-achievement-head>
           <h2 id="achievements-title" class="section-title">Achievements</h2>
-          <button class="btn secondary-btn achievement-treadmill-toggle" type="button"
-            data-achievement-treadmill-toggle aria-pressed="false">Pause motion</button>
+          <button class="btn secondary-btn achievement-toggle" type="button" data-achievement-toggle
+            aria-expanded="false" aria-controls="achievement-deck" hidden>View all</button>
         </div>
       </div>
 
-      <div class="achievement-treadmill" data-achievement-treadmill tabindex="0"
-        role="region" aria-label="Moving gallery of awards, certificates, courses and volunteer contributions">
+      <div class="achievement-stage" data-achievement-stage>
+      <div class="achievement-treadmill" data-achievement-treadmill tabindex="0" role="region"
+        aria-label="Awards, certificates and volunteer contributions. Scroll sideways to browse.">
         <div class="achievement-treadmill-track" data-achievement-treadmill-track>
           <ul class="achievement-treadmill-set" data-achievement-treadmill-set>
-          <li class="achievement-treadmill-card">
-            <a class="achievement-treadmill-frame" href="images/awards/best-entrepreneurial-project-2026.png?v=20261008" target="_blank" rel="noopener"
-              aria-label="Open Best Entrepreneurial Project certificate image (opens in a new tab)">
-              <img src="images/awards/best-entrepreneurial-project-2026.png?v=20261008" width="1148" height="1370" alt="" loading="lazy" decoding="async">
-              <span class="achievement-treadmill-label" aria-hidden="true">Best Entrepreneurial Project</span>
-            </a>
-          </li>
-
-          <li class="achievement-treadmill-card">
-            <a class="achievement-treadmill-frame" href="images/awards/ntp13-2nd-place-2026.jpg" target="_blank" rel="noopener"
-              aria-label="Open 2nd Place — NTP13 2026 certificate image (opens in a new tab)">
-              <img src="images/awards/ntp13-2nd-place-2026.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
-              <span class="achievement-treadmill-label" aria-hidden="true">2nd Place &mdash; NTP13 2026</span>
-            </a>
-          </li>
-
-          <li class="achievement-treadmill-card">
-            <a class="achievement-treadmill-frame" href="images/awards/ntp13-appreciation-2026.jpg" target="_blank" rel="noopener"
-              aria-label="Open Certificate of Appreciation — NTP13 2026 image (opens in a new tab)">
-              <img src="images/awards/ntp13-appreciation-2026.jpg" width="1280" height="707" alt="" loading="lazy" decoding="async">
-              <span class="achievement-treadmill-label" aria-hidden="true">Certificate of Appreciation &mdash; NTP13 2026</span>
-            </a>
-          </li>
-
-          <li class="achievement-treadmill-card">
-            <a class="achievement-treadmill-frame" href="images/awards/gju-3030-competition-2026.jpg" target="_blank" rel="noopener"
-              aria-label="Open GJU 3030 Competition certificate image (opens in a new tab)">
-              <img src="images/awards/gju-3030-competition-2026.jpg" width="1046" height="818" alt="" loading="lazy" decoding="async">
-              <span class="achievement-treadmill-label" aria-hidden="true">GJU 3030 Competition</span>
-            </a>
-          </li>
-
-          <li class="achievement-treadmill-card">
-            <a class="achievement-treadmill-frame" href="images/certificates/azure-ai-900.jpg" target="_blank" rel="noopener"
-              aria-label="Open Azure AI Fundamentals certificate image (opens in a new tab)">
-              <img src="images/certificates/azure-ai-900.jpg" width="911" height="1280" alt="" loading="lazy" decoding="async">
-              <span class="achievement-treadmill-label" aria-hidden="true">Azure AI Fundamentals</span>
-            </a>
-          </li>
-
-          <li class="achievement-treadmill-card">
-            <div class="achievement-treadmill-frame achievement-treadmill-placeholder"
-              role="img" aria-label="Introduction to Networks course">
-              <span class="achievement-treadmill-label" aria-hidden="true">Introduction to Networks</span>
-            </div>
-          </li>
-
-          <li class="achievement-treadmill-card">
-            <div class="achievement-treadmill-frame achievement-treadmill-placeholder"
-              role="img" aria-label="AWS Educate: Getting Started with Storage training">
-              <span class="achievement-treadmill-label" aria-hidden="true">AWS Educate: Getting Started with Storage</span>
-            </div>
-          </li>
-
-          <li class="achievement-treadmill-card">
-            <a class="achievement-treadmill-frame" href="images/certificates/google-ux-design.jpg" target="_blank" rel="noopener"
-              aria-label="Open Google UX Design certificate image (opens in a new tab)">
-              <img src="images/certificates/google-ux-design.jpg" width="1280" height="988" alt="" loading="lazy" decoding="async">
-              <span class="achievement-treadmill-label" aria-hidden="true">Google UX Design</span>
-            </a>
-          </li>
-
-          <li class="achievement-treadmill-card">
-            <a class="achievement-treadmill-frame" href="images/certificates/ibm-ai.jpg" target="_blank" rel="noopener"
-              aria-label="Open Introduction to Artificial Intelligence (AI) certificate image (opens in a new tab)">
-              <img src="images/certificates/ibm-ai.jpg" width="1202" height="927" alt="" loading="lazy" decoding="async">
-              <span class="achievement-treadmill-label" aria-hidden="true">Introduction to Artificial Intelligence (AI)</span>
-            </a>
-          </li>
-
-          <li class="achievement-treadmill-card">
-            <a class="achievement-treadmill-frame" href="images/certificates/ibm-chatbots.jpg" target="_blank" rel="noopener"
-              aria-label="Open Building AI Powered Chatbots without Programming certificate image (opens in a new tab)">
-              <img src="images/certificates/ibm-chatbots.jpg" width="1206" height="928" alt="" loading="lazy" decoding="async">
-              <span class="achievement-treadmill-label" aria-hidden="true">Building AI Powered Chatbots without Programming</span>
-            </a>
-          </li>
-
-          <li class="achievement-treadmill-card">
-            <a class="achievement-treadmill-frame" href="images/certificates/ibm-watson.jpg" target="_blank" rel="noopener"
-              aria-label="Open Getting Started with AI using IBM Watson certificate image (opens in a new tab)">
-              <img src="images/certificates/ibm-watson.jpg" width="1204" height="928" alt="" loading="lazy" decoding="async">
-              <span class="achievement-treadmill-label" aria-hidden="true">Getting Started with AI using IBM Watson</span>
-            </a>
-          </li>
-
-          <li class="achievement-treadmill-card">
-            <a class="achievement-treadmill-frame" href="images/volunteer/visual-programming-support.jpg" target="_blank" rel="noopener"
-              aria-label="Open Visual Programming Academic Support certificate image (opens in a new tab)">
-              <img src="images/volunteer/visual-programming-support.jpg" width="1280" height="904" alt="" loading="lazy" decoding="async">
-              <span class="achievement-treadmill-label" aria-hidden="true">Visual Programming Academic Support</span>
-            </a>
-          </li>
-
-          <li class="achievement-treadmill-card">
-            <a class="achievement-treadmill-frame" href="images/volunteer/ui-ux-contest-v5.jpg" target="_blank" rel="noopener"
-              aria-label="Open UI/UX Contest V5 certificate image (opens in a new tab)">
-              <img src="images/volunteer/ui-ux-contest-v5.jpg" width="1280" height="884" alt="" loading="lazy" decoding="async">
-              <span class="achievement-treadmill-label" aria-hidden="true">UI/UX Contest V5</span>
-            </a>
-          </li>
-
-          <li class="achievement-treadmill-card">
-            <a class="achievement-treadmill-frame" href="images/volunteer/elo-volunteer-2023.jpg" target="_blank" rel="noopener"
-              aria-label="Open English Language Olympia 2023 certificate image (opens in a new tab)">
-              <img src="images/volunteer/elo-volunteer-2023.jpg" width="1026" height="684" alt="" loading="lazy" decoding="async">
-              <span class="achievement-treadmill-label" aria-hidden="true">English Language Olympia 2023</span>
-            </a>
-          </li>
-
-          <li class="achievement-treadmill-card">
-            <a class="achievement-treadmill-frame" href="images/volunteer/translator-contest-2023.jpg" target="_blank" rel="noopener"
-              aria-label="Open Promising Translator Contest 2023 certificate image (opens in a new tab)">
-              <img src="images/volunteer/translator-contest-2023.jpg" width="1600" height="1133" alt="" loading="lazy" decoding="async">
-              <span class="achievement-treadmill-label" aria-hidden="true">Promising Translator Contest 2023</span>
-            </a>
-          </li>
+            <li class="achievement-card">
+              <a class="achievement-card-link" href="images/awards/best-entrepreneurial-project-2026.png?v=20261008" target="_blank" rel="noopener"
+                aria-label="Open Best Entrepreneurial Project medal image (opens in a new tab)">
+                <span class="achievement-card-frame">
+                  <img src="images/awards/best-entrepreneurial-project-2026.png?v=20261008" width="1148" height="1370" alt="" loading="lazy" decoding="async">
+                </span>
+                <span class="achievement-card-name">Best Entrepreneurial Project</span>
+              </a>
+            </li>
+            <li class="achievement-card">
+              <a class="achievement-card-link" href="images/awards/ntp13-2nd-place-2026.jpg" target="_blank" rel="noopener"
+                aria-label="Open 2nd Place — NTP13 2026 certificate image (opens in a new tab)">
+                <span class="achievement-card-frame">
+                  <img src="images/awards/ntp13-2nd-place-2026.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
+                </span>
+                <span class="achievement-card-name">2nd Place &mdash; NTP13 2026</span>
+              </a>
+            </li>
+            <li class="achievement-card">
+              <a class="achievement-card-link" href="images/awards/ntp13-appreciation-2026.jpg" target="_blank" rel="noopener"
+                aria-label="Open Certificate of Appreciation — NTP13 2026 image (opens in a new tab)">
+                <span class="achievement-card-frame">
+                  <img src="images/awards/ntp13-appreciation-2026.jpg" width="1280" height="707" alt="" loading="lazy" decoding="async">
+                </span>
+                <span class="achievement-card-name">Certificate of Appreciation &mdash; NTP13 2026</span>
+              </a>
+            </li>
+            <li class="achievement-card">
+              <a class="achievement-card-link" href="images/certificates/azure-ai-900.jpg" target="_blank" rel="noopener"
+                aria-label="Open Azure AI Fundamentals certificate image (opens in a new tab)">
+                <span class="achievement-card-frame">
+                  <img src="images/certificates/azure-ai-900.jpg" width="911" height="1280" alt="" loading="lazy" decoding="async">
+                </span>
+                <span class="achievement-card-name">Azure AI Fundamentals</span>
+              </a>
+            </li>
+            <li class="achievement-card">
+              <a class="achievement-card-link" href="images/awards/gju-3030-competition-2026.jpg" target="_blank" rel="noopener"
+                aria-label="Open GJU 3030 Competition certificate image (opens in a new tab)">
+                <span class="achievement-card-frame">
+                  <img src="images/awards/gju-3030-competition-2026.jpg" width="1046" height="818" alt="" loading="lazy" decoding="async">
+                </span>
+                <span class="achievement-card-name">GJU 3030 Competition</span>
+              </a>
+            </li>
+            <li class="achievement-card">
+              <a class="achievement-card-link" href="images/certificates/google-ux-design.jpg" target="_blank" rel="noopener"
+                aria-label="Open Google UX Design certificate image (opens in a new tab)">
+                <span class="achievement-card-frame">
+                  <img src="images/certificates/google-ux-design.jpg" width="1280" height="988" alt="" loading="lazy" decoding="async">
+                </span>
+                <span class="achievement-card-name">Google UX Design</span>
+              </a>
+            </li>
+            <li class="achievement-card">
+              <a class="achievement-card-link" href="images/certificates/ibm-ai.jpg" target="_blank" rel="noopener"
+                aria-label="Open Introduction to Artificial Intelligence (AI) certificate image (opens in a new tab)">
+                <span class="achievement-card-frame">
+                  <img src="images/certificates/ibm-ai.jpg" width="1202" height="927" alt="" loading="lazy" decoding="async">
+                </span>
+                <span class="achievement-card-name">Introduction to Artificial Intelligence (AI)</span>
+              </a>
+            </li>
+            <li class="achievement-card">
+              <a class="achievement-card-link" href="images/certificates/ibm-chatbots.jpg" target="_blank" rel="noopener"
+                aria-label="Open Building AI Powered Chatbots without Programming certificate image (opens in a new tab)">
+                <span class="achievement-card-frame">
+                  <img src="images/certificates/ibm-chatbots.jpg" width="1206" height="928" alt="" loading="lazy" decoding="async">
+                </span>
+                <span class="achievement-card-name">Building AI Powered Chatbots without Programming</span>
+              </a>
+            </li>
+            <li class="achievement-card">
+              <a class="achievement-card-link" href="images/certificates/ibm-watson.jpg" target="_blank" rel="noopener"
+                aria-label="Open Getting Started with AI using IBM Watson certificate image (opens in a new tab)">
+                <span class="achievement-card-frame">
+                  <img src="images/certificates/ibm-watson.jpg" width="1204" height="928" alt="" loading="lazy" decoding="async">
+                </span>
+                <span class="achievement-card-name">Getting Started with AI using IBM Watson</span>
+              </a>
+            </li>
+            <li class="achievement-card">
+              <a class="achievement-card-link" href="images/volunteer/ui-ux-contest-v5.jpg" target="_blank" rel="noopener"
+                aria-label="Open UI/UX Contest V5 certificate image (opens in a new tab)">
+                <span class="achievement-card-frame">
+                  <img src="images/volunteer/ui-ux-contest-v5.jpg" width="1280" height="884" alt="" loading="lazy" decoding="async">
+                </span>
+                <span class="achievement-card-name">UI/UX Contest V5</span>
+              </a>
+            </li>
+            <li class="achievement-card">
+              <a class="achievement-card-link" href="images/volunteer/visual-programming-support.jpg" target="_blank" rel="noopener"
+                aria-label="Open Visual Programming Academic Support certificate image (opens in a new tab)">
+                <span class="achievement-card-frame">
+                  <img src="images/volunteer/visual-programming-support.jpg" width="1280" height="904" alt="" loading="lazy" decoding="async">
+                </span>
+                <span class="achievement-card-name">Visual Programming Academic Support</span>
+              </a>
+            </li>
+            <li class="achievement-card">
+              <a class="achievement-card-link" href="images/volunteer/translator-contest-2023.jpg" target="_blank" rel="noopener"
+                aria-label="Open Promising Translator Contest 2023 certificate image (opens in a new tab)">
+                <span class="achievement-card-frame">
+                  <img src="images/volunteer/translator-contest-2023.jpg" width="1600" height="1133" alt="" loading="lazy" decoding="async">
+                </span>
+                <span class="achievement-card-name">Promising Translator Contest 2023</span>
+              </a>
+            </li>
+            <li class="achievement-card">
+              <a class="achievement-card-link" href="images/volunteer/elo-volunteer-2023.jpg" target="_blank" rel="noopener"
+                aria-label="Open English Language Olympia 2023 certificate image (opens in a new tab)">
+                <span class="achievement-card-frame">
+                  <img src="images/volunteer/elo-volunteer-2023.jpg" width="1026" height="684" alt="" loading="lazy" decoding="async">
+                </span>
+                <span class="achievement-card-name">English Language Olympia 2023</span>
+              </a>
+            </li>
           </ul>
         </div>
+      </div>
+
+      <div class="section-inner">
+        <div class="achievement-deck" id="achievement-deck" data-achievement-deck hidden>
+          <ul class="achievement-deck-grid" data-achievement-deck-grid aria-label="All achievements"></ul>
+          <div class="achievement-deck-foot">
+            <button class="btn secondary-btn" type="button" data-achievement-collapse
+              aria-controls="achievement-deck">Collapse</button>
+          </div>
+        </div>
+      </div>
       </div>
     </section>
 
@@ -892,6 +1009,15 @@
             <span class="sr-only">Email</span>
           </span>
           <a href="mailto:maayahelmi@gmail.com">maayahelmi@gmail.com</a>
+        </li>
+        <li>
+          <span class="contact-icon">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
+              <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
+            </svg>
+            <span class="sr-only">Phone</span>
+          </span>
+          <a href="tel:+962781016964">+962 78 101 6964</a>
         </li>
         <li>
           <span class="contact-icon">
@@ -941,7 +1067,9 @@
       });
     });
   </script>
-  <script src="showcase-carousel.js?v=20261010projects-unified2"></script>
+  <script src="showcase-carousel.js?v=20261012j"></script>
+  <script src="skills.js?v=20261012q"></script>
+  <script src="education.js?v=20261012u"></script>
 </body>
 
 </html>
