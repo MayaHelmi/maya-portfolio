@@ -30,8 +30,8 @@
     const width = figure.offsetWidth;
     const style = getComputedStyle(card);
     const room = card.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
-    const radius = .82;                                  /* nearly touches the logo */
-    let step = 36;                                        /* degrees between certificates */
+    const radius = .9;                                   /* a little air around the logo */
+    let step = 40;                                        /* wider spacing between certificates */
     const reach = function (angle) {
       const a = angle * Math.PI / 180;
       return radius * Math.sin(a) + .3 * Math.cos(a) + .425 * Math.sin(a);

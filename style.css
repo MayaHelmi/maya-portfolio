@@ -902,6 +902,29 @@ a:focus-visible, button:focus-visible {
 
 .about-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
 
+.education-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);
+  align-items: stretch;
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+.education-graduation {
+  order: 2;
+  position: relative;
+  min-height: 560px;
+  margin: 0;
+  overflow: hidden;
+}
+.education-graduation img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+}
+
 .education-card { display: flex; flex-direction: column; gap: 1.25rem; padding: 1.75rem; }
 /* A narrow card on every screen (the photo inside is a small portrait);
    centred on phones, pinned to the right edge of its column from tablet up. */
@@ -912,8 +935,9 @@ a:focus-visible, button:focus-visible {
   .education-card { margin-inline: 0; justify-self: end; align-self: start; height: auto; }
 }
 .education-card.education-card--standalone {
-  max-width: 920px;
-  margin-inline: auto;
+  order: 1;
+  max-width: none;
+  margin-inline: 0;
   flex-direction: row;
   align-items: stretch;
   gap: clamp(1rem, 4vw, 3rem);
@@ -980,6 +1004,13 @@ a:focus-visible, button:focus-visible {
   font-size: .65em;
   line-height: 0;
   vertical-align: super;
+}
+
+@media (max-width: 960px) {
+  .education-layout { grid-template-columns: 1fr; }
+  .education-graduation {
+    display: none;
+  }
 }
 
 @media (max-width: 520px) {
@@ -1090,8 +1121,8 @@ a:focus-visible, button:focus-visible {
   will-change: transform;
 }
 .edu-cert-link img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-/* The certificate under the pointer comes to the front, straightens up and
-   grows so it can actually be read. */
+/* The certificate under the pointer comes to the front and grows while
+   keeping the same angle it has in the fan. */
 .edu-cert:hover,
 .edu-cert:focus-within { z-index: 30; }
 /* …and in front of the photo too. */
@@ -1099,7 +1130,7 @@ a:focus-visible, button:focus-visible {
 .edu-certs:has(.edu-cert:focus-within) { z-index: 3; }
 .edu-cert-link:hover,
 .edu-cert-link:focus-visible {
-  transform: rotate(calc(-1 * var(--oa, 0deg))) scale(1.6);
+  transform: scale(1.6);
   box-shadow: 0 24px 60px rgba(var(--shadow-rgb), .32);
 }
 .edu-cert-link:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }

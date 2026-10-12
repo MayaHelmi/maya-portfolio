@@ -16,16 +16,10 @@
       <stop offset="0" stop-color="#2b3a67"/>
       <stop offset="1" stop-color="#1b2547"/>
     </linearGradient>
-    <linearGradient id="ribbonStripe" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#d9dde3"/>
-      <stop offset="1" stop-color="#aab1bb"/>
-    </linearGradient>
   </defs>
   <!-- ribbons -->
-  <path d="M78 170 L52 292 L80 272 L104 296 L118 186 Z" fill="url(#ribbon)"/>
-  <path d="M74 190 L64 240 L72 236 L84 196 Z" fill="url(#ribbonStripe)" opacity=".9"/>
-  <path d="M162 170 L188 292 L160 272 L136 296 L122 186 Z" fill="url(#ribbon)"/>
-  <path d="M166 190 L176 240 L168 236 L156 196 Z" fill="url(#ribbonStripe)" opacity=".9"/>
+  <path d="M82 164 L117 174 L102 286 L84 267 L63 280 Z" fill="url(#ribbon)"/>
+  <path d="M158 164 L123 174 L138 286 L156 267 L177 280 Z" fill="url(#ribbon)"/>
   <!-- rosette -->
   <polygon points="120.0,20.0 130.7,30.7 143.8,23.1 151.4,36.2 166.0,32.3 169.9,46.9 185.1,46.9 185.1,62.1 199.7,66.0 195.8,80.6 208.9,88.2 201.3,101.3 212.0,112.0 201.3,122.7 208.9,135.8 195.8,143.4 199.7,158.0 185.1,161.9 185.1,177.1 169.9,177.1 166.0,191.7 151.4,187.8 143.8,200.9 130.7,193.3 120.0,204.0 109.3,193.3 96.2,200.9 88.6,187.8 74.0,191.7 70.1,177.1 54.9,177.1 54.9,161.9 40.3,158.0 44.2,143.4 31.1,135.8 38.7,122.7 28.0,112.0 38.7,101.3 31.1,88.2 44.2,80.6 40.3,66.0 54.9,62.1 54.9,46.9 70.1,46.9 74.0,32.3 88.6,36.2 96.2,23.1 109.3,30.7" fill="url(#silverEdge)"/>
   <circle cx="120" cy="112" r="74" fill="url(#silver)" stroke="#9aa1ab" stroke-width="2"/>

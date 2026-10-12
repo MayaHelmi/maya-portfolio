@@ -22,7 +22,7 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;display=swap">
   <!-- Tailwind first, so the hand-written rules in style.css stay in charge. -->
   <link rel="stylesheet" href="tailwind.css?v=20260907e">
-  <link rel="stylesheet" href="style.css?v=20261012bh">
+  <link rel="stylesheet" href="style.css?v=20261012bl">
 
   <!-- Theme switch + phone menu. Deliberately has no "defer": it needs to run
        before the page is painted, so dark mode never flashes white first. -->
@@ -294,9 +294,9 @@
             <div class="flip-face flip-front card-shell">
               <button class="project-shot" type="button" data-project-trigger>
                 <img src="images/projects/besign-front.jpg?v=20260907e" width="960" height="1067" alt="Besign app screens" loading="lazy">
-                <img class="project-award-badge" src="images/awards/best-entrepreneurial-project-badge.svg?v=20261012" width="240" height="300"
+                <img class="project-award-badge" src="images/awards/best-entrepreneurial-project-badge.svg?v=20261012b" width="240" height="300"
                   alt="" aria-hidden="true" loading="lazy" decoding="async">
-                <img class="project-award-badge project-award-badge--right" src="images/awards/ntp13-2nd-place-badge.svg?v=20261012b" width="240" height="300"
+                <img class="project-award-badge project-award-badge--right" src="images/awards/ntp13-2nd-place-badge.svg?v=20261012c" width="240" height="300"
                   alt="" aria-hidden="true" loading="lazy" decoding="async">
                 <span class="project-shot-label" aria-hidden="true">Besign</span>
               </button>
@@ -739,10 +739,16 @@
     <section id="education" class="section education-section">
       <h2 class="section-title">Education</h2>
 
-      <!-- The certificates stay fanned around the university logo. The
-           education details remain underneath, and each certificate grows
-           on hover or keyboard focus. Built by education.js. -->
-      <div class="education-card education-card--standalone card-shell" data-edu>
+      <div class="education-layout">
+        <figure class="education-graduation card-shell">
+          <img src="images/maya-grad-photo.jpg" width="1748" height="2448"
+            alt="Maya Helmi in her graduation gown holding her diploma" loading="lazy" decoding="async">
+        </figure>
+
+        <!-- The certificates stay fanned around the university logo. The
+             education details remain underneath, and each certificate grows
+             on hover or keyboard focus. Built by education.js. -->
+        <div class="education-card education-card--standalone card-shell" data-edu>
         <div class="edu-figure" data-edu-figure>
           <ul class="edu-certs" id="edu-certs" aria-label="Degree certificates">
             <li class="edu-cert" style="--d: -2">
@@ -782,12 +788,13 @@
           </div>
         </div>
 
-        <ul class="education-facts" data-edu-facts>
-          <li><span>Degree</span>B.Sc. in Software Engineering</li>
-          <li><span>Duration</span>2022 – 2026</li>
-          <li><span>GPA</span>91.2/100</li>
-          <li><span>Rank</span><div class="education-fact-value">2<sup class="ordinal-suffix">nd</sup> in cohort</div></li>
-        </ul>
+          <ul class="education-facts" data-edu-facts>
+            <li><span>Degree</span>B.Sc. in Software Engineering</li>
+            <li><span>Duration</span>2022 – 2026</li>
+            <li><span>GPA</span>91.2/100</li>
+            <li><span>Rank</span><div class="education-fact-value">2<sup class="ordinal-suffix">nd</sup> in cohort</div></li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -1043,7 +1050,7 @@
   </script>
   <script src="showcase-carousel.js?v=20261012k"></script>
   <script src="skills.js?v=20261012q"></script>
-  <script src="education.js?v=20261012w"></script>
+  <script src="education.js?v=20261012x"></script>
 </body>
 
 </html>
