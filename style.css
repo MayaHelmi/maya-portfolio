@@ -2110,48 +2110,12 @@ a.card-media:hover { background: var(--pink-bg); }
 /* ============ Selected-work 3D carousel ============
    The screenshot frames turn toward the centre of the track. Selecting a
    frame opens its full details without making each carousel slide too tall. */
-.showcase-carousel-toolbar {
-  display: flex;
-  max-width: var(--page-max);
-  margin: 0 auto -1.5rem;          /* tucks into the carousel's medal room */
-  padding-inline: var(--page-gutter);
-  position: relative;
-  z-index: 1;
-  align-items: flex-end;
-  justify-content: flex-end;
-  gap: 1.25rem;
-}
-
 .showcase-carousel-controls {
   display: flex;
   flex: none;
   align-items: center;
   gap: .65rem;
 }
-
-.showcase-carousel-button {
-  display: grid;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  place-items: center;
-  border: 1px solid var(--border-strong);
-  border-radius: 999px;
-  background: var(--card-bg);
-  color: var(--text-strong);
-  font: inherit;
-  font-size: var(--text-lg);
-  line-height: 1;
-  cursor: pointer;
-  transition: transform .15s ease, color .15s ease, border-color .15s ease, background .15s ease;
-}
-.showcase-carousel-button:hover {
-  transform: translateY(-2px);
-  border-color: var(--pink);
-  background: var(--pink-bg);
-  color: var(--pink);
-}
-.showcase-carousel-button:disabled { cursor: default; opacity: .35; transform: none; }
 
 .showcase-carousel-status {
   min-width: 4.6rem;
@@ -2583,7 +2547,6 @@ html.project-modal-open { overflow: hidden; }
 .project-modal-link { min-height: 44px; }
 
 @media (max-width: 767px) {
-  .showcase-carousel-toolbar { align-items: flex-end; flex-direction: column; }
   .showcase-carousel { --showcase-slide: 82vw; gap: 1rem; padding-bottom: 2rem; }
   .showcase-carousel .flip-front .project-shot { border-radius: 16px; }
   .showcase-carousel .flip-front .project-shot img { border-radius: 15px; }
@@ -2621,6 +2584,29 @@ html.project-modal-open { overflow: hidden; }
   .project-modal-actions { margin: .5rem 1.25rem 2.25rem; }
   .project-modal-title { font-size: clamp(1.85rem, 10vw, 2.65rem); }
   .project-modal-close { top: .65rem; right: .65rem; }
+}
+
+@media (max-width: 520px) {
+  .showcase-head,
+  .achievements-section .section-head {
+    flex-wrap: nowrap;
+    gap: .5rem;
+  }
+  .showcase-head .section-title,
+  .achievements-section .section-title { white-space: nowrap; }
+
+  .showcase-carousel-controls { gap: .25rem; }
+  .showcase-carousel-status {
+    min-width: 2.75rem;
+    font-size: .6875rem;
+    letter-spacing: .06em;
+  }
+
+  .achievement-toggle {
+    min-width: 0;
+    padding: .5rem .75rem;
+    white-space: nowrap;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

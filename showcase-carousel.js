@@ -5,8 +5,6 @@
   const section = carousel.closest('.showcase');
   /* Cards appear in the order they are written in index.html. */
   const cards = Array.from(carousel.querySelectorAll('.project-card'));
-  const previousButton = section.querySelector('[data-showcase-prev]');
-  const nextButton = section.querySelector('[data-showcase-next]');
   const currentText = section.querySelector('[data-showcase-current]');
   const totalText = section.querySelector('[data-showcase-total]');
   const liveText = section.querySelector('[data-showcase-live]');
@@ -223,9 +221,6 @@
   function updateControls() {
     currentText.textContent = String(activeIndex + 1).padStart(2, '0');
     totalText.textContent = String(cards.length).padStart(2, '0');
-    previousButton.disabled = activeIndex === 0;
-    nextButton.disabled = activeIndex === cards.length - 1;
-
     cards.forEach(function (card, index) {
       if (index === activeIndex) card.dataset.active = 'true';
       else delete card.dataset.active;
@@ -302,14 +297,6 @@
   }, { passive: true });
   window.addEventListener('resize', requestRender);
   window.addEventListener('load', requestRender);
-
-  previousButton.addEventListener('click', function () {
-    goTo((targetIndex ?? activeIndex) - 1, true);
-  });
-
-  nextButton.addEventListener('click', function () {
-    goTo((targetIndex ?? activeIndex) + 1, true);
-  });
 
   carousel.addEventListener('keydown', function (event) {
     if (event.target !== carousel) return;
