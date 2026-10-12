@@ -71,8 +71,6 @@
     toggle.setAttribute("aria-label", enabled ? "Hide my degree certificates" : "Show my degree certificates");
   }
 
-  function wait(ms) { return new Promise(function (resolve) { window.setTimeout(resolve, ms); }); }
-
   function finished(animation) {
     return animation ? animation.finished.catch(function () {}) : Promise.resolve();
   }

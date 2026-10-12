@@ -268,7 +268,6 @@ function setupAchievements() {
   if (!treadmill || !track || !originalSet) return;
 
   const PIXELS_PER_SECOND = 42;
-  const EASE_OUT = "cubic-bezier(.22, 1, .36, 1)";      /* long, soft landing */
   const EASE_IN_OUT = "cubic-bezier(.65, 0, .35, 1)";
 
   /* ---- Build the hidden copies and the deck ---- */
@@ -614,8 +613,7 @@ function setupAchievements() {
   function canAnimate() {
     return !reducedMotion.matches && typeof stage.animate === "function";
   }
-  function later(ms, callback) { timers.push(window.setTimeout(callback, ms)); }
-  let timers = [];
+  function later(ms, callback) { window.setTimeout(callback, ms); }
 
   /* ---- View all: gather into a stack, then deal into the grid ---- */
   function expand() {
