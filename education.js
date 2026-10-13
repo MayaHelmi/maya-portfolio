@@ -66,6 +66,7 @@
       current = (index + links.length) % links.length;
       const link = links[current];
       viewerImage.src = link.getAttribute("href");
+      window.portfolioSkeletons?.watch(viewerImage.closest(".cert-viewer-figure"), viewerImage);
       viewerImage.alt = link.getAttribute("title") || "";
       viewerTitle.textContent = link.getAttribute("title") || "";
       viewerCount.textContent = (current + 1) + " / " + links.length;

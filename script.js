@@ -1,10 +1,9 @@
 /* ==========================================================================
    Shared script for every page: the dark/light theme, and the phone menu.
 
-   This file is loaded from the <head> of each page WITHOUT "defer", on
-   purpose. It has to run before the page is painted, otherwise a dark-mode
-   visitor would see a white flash for a split second before the theme
-   is applied.
+   The tiny theme bootstrap in <head> applies the saved colour scheme before
+   paint. This larger interaction file is deferred so it does not block HTML
+   parsing; the repeated theme assignment below keeps standalone pages safe.
    ========================================================================== */
 
 /* The <html> element. Everything below works by putting things on it:
@@ -65,7 +64,68 @@ function closeMenu() {
 }
 
 
-/* ============ 3. Listen for clicks ============ */
+/* ============ 3. Tailwind image skeletons ============ */
+
+/* Static text and controls are available immediately, so skeletons are only
+   used for content that genuinely has to download: portraits, project shots,
+   certificates and awards. The component is assembled from Tailwind utility
+   classes; no separate skeleton stylesheet is needed. */
+function setupSkeletonLoading() {
+  const skeletonTargets = [
+    [".capsule-photo", "img"],
+    [".project-shot", "img:not(.project-award-badge)"],
+    [".project-award-media", "img"],
+    [".education-graduation", "img"],
+    [".edu-cert-link", "img"],
+    [".education-logo", "img"],
+    [".achievement-card-frame", "img"],
+    [".project-modal-image-scroll", "[data-project-modal-image]"],
+    [".cert-viewer-figure", "[data-cert-viewer-image]"]
+  ];
+
+  function watch(host, image) {
+    if (!host || !image) return;
+
+    const token = String((Number(image.dataset.skeletonToken) || 0) + 1);
+    image.dataset.skeletonToken = token;
+    host.classList.add("relative");
+    if (host.matches(".project-modal-image-scroll")) host.classList.add("min-h-80");
+    image.classList.remove("opacity-100");
+    image.classList.add("opacity-0", "transition-opacity", "duration-300");
+
+    let skeleton = host.querySelector(":scope > [data-tailwind-skeleton]");
+    if (!skeleton) {
+      skeleton = document.createElement("span");
+      skeleton.dataset.tailwindSkeleton = "";
+      skeleton.setAttribute("aria-hidden", "true");
+      skeleton.className = "pointer-events-none absolute inset-0 z-10 block animate-pulse rounded-[inherit] bg-sunken motion-reduce:animate-none";
+      host.appendChild(skeleton);
+    }
+
+    function reveal() {
+      if (image.dataset.skeletonToken !== token) return;
+      image.classList.remove("opacity-0");
+      image.classList.add("opacity-100");
+      host.classList.remove("min-h-80");
+      skeleton.remove();
+    }
+
+    image.addEventListener("load", reveal, { once: true });
+    image.addEventListener("error", reveal, { once: true });
+    if (image.complete && image.naturalWidth) requestAnimationFrame(reveal);
+  }
+
+  skeletonTargets.forEach(function (target) {
+    document.querySelectorAll(target[0]).forEach(function (host) {
+      watch(host, host.querySelector(target[1]));
+    });
+  });
+
+  window.portfolioSkeletons = { watch: watch };
+}
+
+
+/* ============ 4. Listen for clicks ============ */
 
 /* One listener on the whole page, instead of one per button. When something
    is clicked, closest() looks at the clicked element and walks up its
@@ -93,7 +153,7 @@ document.addEventListener("keydown", function (event) {
 });
 
 
-/* ============ 4. Keep the mobile hero snake aligned ============ */
+/* ============ 5. Keep the mobile hero snake aligned ============ */
 
 function setupMobileHeroSnake() {
   const stage = document.querySelector(".hero-stage");
@@ -137,7 +197,7 @@ function setupMobileHeroSnake() {
 }
 
 
-/* ============ 5. Type the About statement like code ============ */
+/* ============ 6. Type the About statement like code ============ */
 
 function setupAboutTypewriter() {
   const target = document.querySelector(".about-typewriter");
@@ -390,6 +450,7 @@ function setupAchievements() {
 
   let loopWidth = 0;
   let position = 0;
+  let appliedPosition = 0;
   let speed = 0;                  /* 0 = still, 1 = full speed */
   let frame = 0;
   let lastTime = 0;
@@ -418,13 +479,25 @@ function setupAchievements() {
     loopWidth = reducedMotion.matches ? 0 : originalSet.offsetWidth;
   }
 
+  /* Safari rounds scrollLeft differently from Chromium, especially on
+     high-refresh-rate displays. Writing a new fractional value every frame
+     makes Safari alternate between two painted positions, which looks like
+     the belt is shivering. Keep the time-based position precise internally,
+     but only send stable whole-pixel positions to the scroll container. */
+  function applyPosition() {
+    const next = Math.round(position);
+    if (next === appliedPosition && Math.abs(treadmill.scrollLeft - next) < 0.5) return;
+    treadmill.scrollLeft = next;
+    appliedPosition = next;
+  }
+
   /* Bring the position back into the middle copy. */
   function recentre() {
     if (!loopWidth || focused) return;
     let moved = false;
     while (position < loopWidth * 0.5) { position += loopWidth; moved = true; }
     while (position >= loopWidth * 1.5) { position -= loopWidth; moved = true; }
-    if (moved) treadmill.scrollLeft = position;
+    if (moved) applyPosition();
   }
 
   function step(now) {
@@ -438,11 +511,14 @@ function setupAchievements() {
     speed += (1 - speed) * (1 - Math.exp(-seconds * 1.6));
 
     /* Anything that scrolled the strip since the last frame wins. */
-    if (Math.abs(treadmill.scrollLeft - position) > 2) position = treadmill.scrollLeft;
+    if (Math.abs(treadmill.scrollLeft - appliedPosition) > 2) {
+      position = treadmill.scrollLeft;
+      appliedPosition = treadmill.scrollLeft;
+    }
 
     position += PIXELS_PER_SECOND * speed * seconds;
     recentre();
-    treadmill.scrollLeft = position;
+    applyPosition();
     frame = window.requestAnimationFrame(step);
   }
 
@@ -461,13 +537,14 @@ function setupAchievements() {
   function placeAtStart() {
     measure();
     position = loopWidth;            /* the real cards, first one at the left */
-    treadmill.scrollLeft = position;
+    applyPosition();
   }
 
   /* A hand-made scroll: follow it, and quietly recentre once it settles. */
   treadmill.addEventListener("scroll", function () {
     if (frame) return;
     position = treadmill.scrollLeft;
+    appliedPosition = treadmill.scrollLeft;
     window.clearTimeout(settleTimer);
     settleTimer = window.setTimeout(recentre, 140);
   }, { passive: true });
@@ -482,6 +559,7 @@ function setupAchievements() {
     resumeTimer = window.setTimeout(function () {
       touching = false;
       position = treadmill.scrollLeft;
+      appliedPosition = treadmill.scrollLeft;
       recentre();
       refresh();
     }, 650);
@@ -521,6 +599,7 @@ function setupAchievements() {
     treadmill.classList.remove("is-dragging");
     if (treadmill.hasPointerCapture(event.pointerId)) treadmill.releasePointerCapture(event.pointerId);
     position = treadmill.scrollLeft;
+    appliedPosition = treadmill.scrollLeft;
     recentre();
   }
   function endPointerInteraction(event) {
@@ -560,6 +639,7 @@ function setupAchievements() {
     if (event.relatedTarget && treadmill.contains(event.relatedTarget)) return;
     focused = false;
     position = treadmill.scrollLeft;
+    appliedPosition = treadmill.scrollLeft;
     recentre();
     refresh();
   });
@@ -579,33 +659,67 @@ function setupAchievements() {
       focused = treadmill.matches(":focus-within");
       updateInView();
       position = treadmill.scrollLeft;
+      appliedPosition = treadmill.scrollLeft;
       recentre();
     }
     refresh();
   });
+
+  /* Desktop browsers can lose the final pointer event when a link opens a
+     new tab or the window loses focus. Clear those temporary hold states
+     when the visitor returns so the treadmill cannot remain paused. */
+  window.addEventListener("focus", function () {
+    pointerDown = false;
+    pointerInteraction = false;
+    touching = false;
+    treadmill.classList.remove("is-dragging");
+    focused = treadmill.matches(":focus-within");
+    updateInView();
+    measure();
+    position = treadmill.scrollLeft || loopWidth;
+    applyPosition();
+    recentre();
+    refresh();
+  });
+
   window.addEventListener("pageshow", function () {
     updateInView();
+    measure();
+    position = treadmill.scrollLeft || loopWidth;
+    applyPosition();
+    recentre();
     refresh();
   });
 
   if ("ResizeObserver" in window) {
-    let firstObservation = true;
     new ResizeObserver(function () {
-      if (firstObservation) { firstObservation = false; return; }
       if (expanded || treadmill.hidden) return;
       const oldWidth = loopWidth;
       measure();
       if (oldWidth && loopWidth) position = position / oldWidth * loopWidth;
       else position = loopWidth;
-      treadmill.scrollLeft = position;
+      applyPosition();
       recentre();
+      updateInView();
+      /* If a temporary zero-width layout stopped requestAnimationFrame,
+         recalculating the track must also restart it. */
+      refresh();
     }).observe(originalSet);
   }
 
-  reducedMotion.addEventListener("change", function () {
+  function handleReducedMotionChange() {
     placeAtStart();
     refresh();
-  });
+  }
+
+  /* Safari 13 and older expose MediaQueryList.addListener() rather than the
+     modern EventTarget method. Without this fallback the setup throws before
+     placeAtStart(), leaving the desktop treadmill motionless. */
+  if (typeof reducedMotion.addEventListener === "function") {
+    reducedMotion.addEventListener("change", handleReducedMotionChange);
+  } else if (typeof reducedMotion.addListener === "function") {
+    reducedMotion.addListener(handleReducedMotionChange);
+  }
 
   placeAtStart();
   refresh();
@@ -942,10 +1056,12 @@ if (document.readyState === "loading") {
     setupAboutTypewriter();
     setupSectionNavigation();
     setupAchievements();
+    setupSkeletonLoading();
   }, { once: true });
 } else {
   setupMobileHeroSnake();
   setupAboutTypewriter();
   setupSectionNavigation();
   setupAchievements();
+  setupSkeletonLoading();
 }

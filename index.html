@@ -11,22 +11,70 @@
   <meta property="og:description" content="Full-stack web and Flutter projects, case studies, and achievements by Maya Helmi.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mayahelmi.github.io/maya-portfolio/">
+  <meta property="og:site_name" content="Maya Helmi Portfolio">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Maya Helmi | Full-Stack Developer">
+  <meta name="twitter:description" content="Full-stack web and Flutter projects, case studies, and achievements by Maya Helmi.">
   <title>Maya Helmi | Full-Stack Developer</title>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Maya Helmi",
+      "url": "https://mayahelmi.github.io/maya-portfolio/",
+      "image": "https://mayahelmi.github.io/maya-portfolio/images/optimized/profile.webp",
+      "jobTitle": "Full-Stack Developer",
+      "email": "mailto:maayahelmi@gmail.com",
+      "sameAs": [
+        "https://github.com/MayaHelmi",
+        "https://www.linkedin.com/in/maya-helmi-934349292/"
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Applied Science Private University"
+      },
+      "knowsAbout": [
+        "Full-stack web development",
+        "Flutter application development",
+        "JavaScript",
+        "PHP",
+        "Supabase",
+        "Firebase",
+        "MySQL",
+        "Responsive web design",
+        "UI/UX design"
+      ]
+    }
+  </script>
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet"
+  <link rel="preload" as="style"
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;display=swap">
-  <!-- Tailwind first, so the hand-written rules in style.css stay in charge. -->
-  <link rel="stylesheet" href="tailwind.css?v=20260907e">
-  <link rel="stylesheet" href="style.css?v=20261012bl">
+  <link rel="stylesheet" media="print" onload="this.media='all'"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;display=swap">
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;display=swap">
+  </noscript>
+  <!-- Single compiled stylesheet: Tailwind utilities and portfolio components. -->
+  <link rel="stylesheet" href="tailwind.css?v=20261013d">
 
-  <!-- Theme switch + phone menu. Deliberately has no "defer": it needs to run
-       before the page is painted, so dark mode never flashes white first. -->
-  <script src="script.js?v=20261012s"></script>
+  <!-- Apply the saved theme before paint, then defer the interaction code so
+       it no longer blocks HTML parsing. -->
+  <script>
+    (function () {
+      var theme = null;
+      try { theme = localStorage.getItem("theme"); } catch (error) {}
+      document.documentElement.dataset.theme = theme ||
+        (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    }());
+  </script>
+  <script src="script.js?v=20261013c" defer></script>
 </head>
 
 <body>
@@ -35,7 +83,7 @@
 
   <header class="header">
     <nav class="navbar" aria-label="Main">
-      <h2 class="logo"><a href="#home">Maya Helmi</a></h2>
+      <div class="logo"><a href="#home">Maya Helmi</a></div>
 
       <ul class="nav-links" id="site-menu">
         <li><a href="#about" class="is-current" aria-current="location">About Me</a></li>
@@ -84,6 +132,7 @@
 
     <!-- Hero -->
     <section id="home" class="hero">
+      <h1 class="sr-only">Maya Helmi — Full-Stack Developer</h1>
 
       <div class="hero-stage">
         <p class="hero-role" aria-hidden="true">
@@ -185,7 +234,8 @@
           </li>
 
           <li class="capsule capsule-photo">
-            <img src="images/profile.jpg" alt="Portrait of Maya Helmi, Full-Stack Developer" width="190" height="304">
+            <img src="images/optimized/profile.webp" alt="Portrait of Maya Helmi, Full-Stack Developer"
+              width="380" height="517" decoding="async" fetchpriority="high">
           </li>
 
           <li class="capsule capsule--drop">
@@ -254,11 +304,11 @@
         role="region" aria-roledescription="carousel" aria-labelledby="showcase-title" tabindex="0">
 
           <article class="project-card flip-card" tabindex="0"
-            data-project-full-image="images/projects/invite-sites-full.jpg?v=20261009full1">
+            data-project-full-image="images/optimized/invite-sites-full.webp">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <button class="project-shot" type="button" data-project-trigger>
-                <img src="images/projects/invite-sites-front.jpg?v=20260907e" width="960" height="1067" alt="Invite Sites landing page" loading="lazy">
+                <img src="images/optimized/invite-sites-front.webp" width="960" height="1067" alt="Invite Sites landing page" loading="lazy" decoding="async">
                 <span class="project-shot-label" aria-hidden="true">Invite Sites</span>
               </button>
               <div class="project-head">
@@ -293,11 +343,11 @@
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <button class="project-shot" type="button" data-project-trigger>
-                <img src="images/projects/besign-front.jpg?v=20260907e" width="960" height="1067" alt="Besign app screens" loading="lazy">
+                <img src="images/optimized/besign-front.webp" width="960" height="1067" alt="Besign app screens" loading="lazy" decoding="async">
                 <img class="project-award-badge" src="images/awards/best-entrepreneurial-project-badge.svg?v=20261012b" width="240" height="300"
-                  alt="" aria-hidden="true" loading="lazy" decoding="async">
+                  alt="Best Entrepreneurial Project badge" aria-hidden="true" loading="lazy" decoding="async">
                 <img class="project-award-badge project-award-badge--right" src="images/awards/ntp13-2nd-place-badge.svg?v=20261012c" width="240" height="300"
-                  alt="" aria-hidden="true" loading="lazy" decoding="async">
+                  alt="Second place at NTP13 2026 badge" aria-hidden="true" loading="lazy" decoding="async">
                 <span class="project-shot-label" aria-hidden="true">Besign</span>
               </button>
               <div class="project-head">
@@ -317,14 +367,16 @@
                 <a class="project-award" href="images/awards/best-entrepreneurial-project-2026.png" target="_blank" rel="noopener"
                   aria-label="Best Entrepreneurial Project medal, ASU Expo FITers 26 (opens in a new tab)">
                   <span class="project-award-media project-award-media--medal">
-                    <img src="images/awards/best-entrepreneurial-project-badge.png?v=20261012" width="240" height="289" alt="" loading="lazy">
+                    <img src="images/optimized/best-entrepreneurial-project-badge.webp" width="240" height="289"
+                      alt="Best Entrepreneurial Project medal" loading="lazy" decoding="async">
                   </span>
                   <span class="project-award-text"><strong>Best Entrepreneurial Project</strong> ASU Expo FITers 26</span>
                 </a>
                 <a class="project-award" href="images/awards/ntp13-2nd-place-2026.jpg" target="_blank" rel="noopener"
                   aria-label="2nd Place certificate, NTP13 2026 (opens in a new tab)">
                   <span class="project-award-media">
-                    <img src="images/awards/ntp13-2nd-place-2026.jpg" width="1280" height="720" alt="" loading="lazy">
+                    <img src="images/optimized/ntp13-2nd-place-2026-thumb.webp" width="640" height="360"
+                      alt="Second place certificate from NTP13 2026" loading="lazy" decoding="async">
                   </span>
                   <span class="project-award-text"><strong>2nd Place</strong> NTP13 2026</span>
                 </a>
@@ -351,11 +403,11 @@
             </div>
           </article>
           <article class="project-card flip-card" tabindex="0"
-            data-project-full-image="images/projects/eight-weeks-at-orange-full.jpg?v=20261010full1">
+            data-project-full-image="images/optimized/eight-weeks-at-orange-full.webp">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <button class="project-shot" type="button" data-project-trigger>
-                <img src="images/projects/eight-weeks-at-orange-front.jpg?v=20261008current" width="960" height="1067" alt="Eight Weeks at Orange presentation site hero and How We Worked section" loading="lazy">
+                <img src="images/optimized/eight-weeks-at-orange-front.webp" width="960" height="1067" alt="Eight Weeks at Orange presentation site hero and How We Worked section" loading="lazy" decoding="async">
                 <span class="project-shot-label" aria-hidden="true">8 Weeks at Orange</span>
               </button>
               <div class="project-head">
@@ -394,11 +446,11 @@
             </div>
           </article>
           <article class="project-card flip-card" tabindex="0"
-            data-project-full-image="images/projects/glame-ai-full.jpg?v=20261009full1">
+            data-project-full-image="images/optimized/glame-ai-full.webp">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <button class="project-shot" type="button" data-project-trigger>
-                <img src="images/projects/glame-ai-web-front.jpg?v=20261004" width="960" height="1067" alt="Glamé AI beauty-tech website concept hero" loading="lazy">
+                <img src="images/optimized/glame-ai-web-front.webp" width="960" height="1067" alt="Glamé AI beauty-tech website concept hero" loading="lazy" decoding="async">
                 <span class="project-shot-label" aria-hidden="true">Glamé AI</span>
               </button>
               <div class="project-head">
@@ -434,11 +486,11 @@
             </div>
           </article>
           <article class="project-card flip-card" tabindex="0"
-            data-project-full-image="images/projects/noi-beauty-lounge-full.jpg?v=20261009full1">
+            data-project-full-image="images/optimized/noi-beauty-lounge-full.webp">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <button class="project-shot" type="button" data-project-trigger>
-                <img src="images/projects/noi-beauty-lounge-front.jpg?v=20261008continuous" width="960" height="1067" alt="NOI Beauty Lounge salon website concept hero and services" loading="lazy">
+                <img src="images/optimized/noi-beauty-lounge-front.webp" width="960" height="1067" alt="NOI Beauty Lounge salon website concept hero and services" loading="lazy" decoding="async">
                 <span class="project-shot-label" aria-hidden="true">NOI Beauty Lounge</span>
               </button>
               <div class="project-head">
@@ -479,7 +531,7 @@
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <button class="project-shot" type="button" data-project-trigger>
-                <img src="images/projects/wedding-atelier-concept-front.jpg?v=20261004" width="960" height="1067" alt="Wedding atelier concept home page" loading="lazy">
+                <img src="images/optimized/wedding-atelier-concept-front.webp" width="960" height="1067" alt="Wedding atelier concept home page" loading="lazy" decoding="async">
                 <span class="project-shot-label" aria-hidden="true">Wedding Atelier</span>
               </button>
               <div class="project-head">
@@ -512,7 +564,7 @@
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <button class="project-shot" type="button" data-project-trigger>
-                <img src="images/projects/print-artwork-marketplace-concept-front.jpg?v=20261004" width="960" height="1067" alt="Print artwork marketplace concept home page" loading="lazy">
+                <img src="images/optimized/print-artwork-marketplace-concept-front.webp" width="960" height="1067" alt="Print artwork marketplace concept home page" loading="lazy" decoding="async">
                 <span class="project-shot-label" aria-hidden="true">Print Marketplace</span>
               </button>
               <div class="project-head">
@@ -540,11 +592,11 @@
             </div>
           </article>
           <article class="project-card flip-card" tabindex="0"
-            data-project-full-image="images/projects/hopebridge-full.jpg?v=20261009full1">
+            data-project-full-image="images/optimized/hopebridge-full.webp">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <button class="project-shot" type="button" data-project-trigger>
-                <img src="images/projects/hopebridge-front.jpg?v=20260907e" width="960" height="1067" alt="HopeBridge charity platform home page" loading="lazy">
+                <img src="images/optimized/hopebridge-front.webp" width="960" height="1067" alt="HopeBridge charity platform home page" loading="lazy" decoding="async">
                 <span class="project-shot-label" aria-hidden="true">HopeBridge</span>
               </button>
               <div class="project-head">
@@ -596,7 +648,7 @@
               <p class="project-modal-scroll-hint" data-project-modal-scroll-hint>Scroll to view the full page ↓</p>
             </div>
             <div class="project-modal-image-scroll" role="region" aria-label="Scrollable website screenshot" tabindex="0">
-              <img data-project-modal-image alt="" decoding="async">
+              <img data-project-modal-image alt="Selected project preview" decoding="async">
             </div>
           </div>
 
@@ -636,31 +688,31 @@
           <article class="skill-card card-shell">
             <p class="kicker skill-group">Core development</p>
             <ul class="skill-grid">
-              <li><img src="images/skills/html5.svg" alt="" width="48" height="48" loading="lazy"><span>HTML5</span></li>
-              <li><img src="images/skills/css3.svg" alt="" width="48" height="48" loading="lazy"><span>CSS3</span></li>
-              <li><img src="images/skills/javascript.svg" alt="" width="48" height="48" loading="lazy"><span>JavaScript</span></li>
-              <li><img src="images/skills/bootstrap.svg" alt="" width="48" height="48" loading="lazy"><span>Bootstrap</span></li>
-              <li><img src="images/skills/tailwindcss.svg" alt="" width="48" height="48" loading="lazy"><span>Tailwind CSS</span></li>
-              <li><img src="images/skills/flutter.svg" alt="" width="48" height="48" loading="lazy"><span>Flutter</span></li>
-              <li><img src="images/skills/dart.svg" alt="" width="48" height="48" loading="lazy"><span>Dart</span></li>
-              <li><img src="images/skills/php.svg" alt="" width="48" height="48" loading="lazy"><span>PHP</span></li>
+              <li><img src="images/skills/html5.svg" alt="HTML5 logo" width="48" height="48" loading="lazy"><span>HTML5</span></li>
+              <li><img src="images/skills/css3.svg" alt="CSS3 logo" width="48" height="48" loading="lazy"><span>CSS3</span></li>
+              <li><img src="images/skills/javascript.svg" alt="JavaScript logo" width="48" height="48" loading="lazy"><span>JavaScript</span></li>
+              <li><img src="images/skills/bootstrap.svg" alt="Bootstrap logo" width="48" height="48" loading="lazy"><span>Bootstrap</span></li>
+              <li><img src="images/skills/tailwindcss.svg" alt="Tailwind CSS logo" width="48" height="48" loading="lazy"><span>Tailwind CSS</span></li>
+              <li><img src="images/skills/flutter.svg" alt="Flutter logo" width="48" height="48" loading="lazy"><span>Flutter</span></li>
+              <li><img src="images/skills/dart.svg" alt="Dart logo" width="48" height="48" loading="lazy"><span>Dart</span></li>
+              <li><img src="images/skills/php.svg" alt="PHP logo" width="48" height="48" loading="lazy"><span>PHP</span></li>
             </ul>
           </article>
           <article class="skill-card card-shell">
             <p class="kicker skill-group">Back end &amp; data</p>
             <ul class="skill-grid">
-              <li><img src="images/skills/supabase.svg" alt="" width="48" height="48" loading="lazy"><span>Supabase<br>(PostgreSQL)</span></li>
-              <li><img src="images/skills/mysql.svg" alt="" width="48" height="48" loading="lazy"><span>MySQL / SQL</span></li>
-              <li><img src="images/skills/firebase.svg" alt="" width="48" height="48" loading="lazy"><span>Firebase / Firestore</span></li>
-              <li><img src="images/skills/php.svg" alt="" width="48" height="48" loading="lazy"><span>PDO</span></li>
+              <li><img src="images/skills/supabase.svg" alt="Supabase logo" width="48" height="48" loading="lazy"><span>Supabase<br>(PostgreSQL)</span></li>
+              <li><img src="images/skills/mysql.svg" alt="MySQL logo" width="48" height="48" loading="lazy"><span>MySQL / SQL</span></li>
+              <li><img src="images/skills/firebase.svg" alt="Firebase logo" width="48" height="48" loading="lazy"><span>Firebase / Firestore</span></li>
+              <li><img src="images/skills/php.svg" alt="PHP logo representing PDO" width="48" height="48" loading="lazy"><span>PDO</span></li>
             </ul>
           </article>
           <article class="skill-card card-shell">
             <p class="kicker skill-group">Design & tools</p>
             <ul class="skill-grid">
-              <li><img src="images/skills/figma.svg" alt="" width="48" height="48" loading="lazy"><span>Figma</span></li>
-              <li><img src="images/skills/git.svg" alt="" width="48" height="48" loading="lazy"><span>Git</span></li>
-              <li><img src="images/skills/github.svg" alt="" width="48" height="48" loading="lazy"><span>GitHub</span></li>
+              <li><img src="images/skills/figma.svg" alt="Figma logo" width="48" height="48" loading="lazy"><span>Figma</span></li>
+              <li><img src="images/skills/git.svg" alt="Git logo" width="48" height="48" loading="lazy"><span>Git</span></li>
+              <li><img src="images/skills/github.svg" alt="GitHub logo" width="48" height="48" loading="lazy"><span>GitHub</span></li>
             </ul>
           </article>
         </div>
@@ -741,7 +793,7 @@
 
       <div class="education-layout">
         <figure class="education-graduation card-shell">
-          <img src="images/maya-grad-photo.jpg" width="1748" height="2448"
+          <img src="images/optimized/maya-grad-photo.webp" width="640" height="897"
             alt="Maya Helmi in her graduation gown holding her diploma" loading="lazy" decoding="async">
         </figure>
 
@@ -754,37 +806,42 @@
             <li class="edu-cert" style="--d: -2">
               <a class="edu-cert-link" href="images/education/good-conduct-en.jpg" target="_blank" rel="noopener"
                 aria-label="View Good conduct letter (English)" title="Good conduct letter (English)">
-                <img src="images/education/good-conduct-en.jpg" width="1100" height="1497" alt="" loading="lazy" decoding="async">
+                <img src="images/optimized/good-conduct-en-thumb.webp" width="520" height="708"
+                  alt="Good conduct letter in English" loading="lazy" decoding="async">
               </a>
             </li>
             <li class="edu-cert" style="--d: -1">
               <a class="edu-cert-link" href="images/education/degree-certificate-en.jpg" target="_blank" rel="noopener"
                 aria-label="View Degree certificate (English)" title="Degree certificate (English)">
-                <img src="images/education/degree-certificate-en.jpg" width="1100" height="1536" alt="" loading="lazy" decoding="async">
+                <img src="images/optimized/degree-certificate-en-thumb.webp" width="520" height="727"
+                  alt="Software Engineering degree certificate in English" loading="lazy" decoding="async">
               </a>
             </li>
             <li class="edu-cert" style="--d: 0">
               <a class="edu-cert-link" href="images/education/bachelor-diploma-ar.jpg" target="_blank" rel="noopener"
                 aria-label="View Bachelor&rsquo;s degree diploma" title="Bachelor&rsquo;s degree diploma">
-                <img src="images/education/bachelor-diploma-ar.jpg" width="1100" height="1583" alt="" loading="lazy" decoding="async">
+                <img src="images/optimized/bachelor-diploma-ar-thumb.webp" width="520" height="749"
+                  alt="Bachelor's degree diploma" loading="lazy" decoding="async">
               </a>
             </li>
             <li class="edu-cert" style="--d: 1">
               <a class="edu-cert-link" href="images/education/degree-certificate-ar.jpg" target="_blank" rel="noopener"
                 aria-label="View Degree certificate (Arabic)" title="Degree certificate (Arabic)">
-                <img src="images/education/degree-certificate-ar.jpg" width="1100" height="1522" alt="" loading="lazy" decoding="async">
+                <img src="images/optimized/degree-certificate-ar-thumb.webp" width="520" height="720"
+                  alt="Software Engineering degree certificate in Arabic" loading="lazy" decoding="async">
               </a>
             </li>
             <li class="edu-cert" style="--d: 2">
               <a class="edu-cert-link" href="images/education/good-conduct-ar.jpg" target="_blank" rel="noopener"
                 aria-label="View Good conduct letter (Arabic)" title="Good conduct letter (Arabic)">
-                <img src="images/education/good-conduct-ar.jpg" width="1100" height="1512" alt="" loading="lazy" decoding="async">
+                <img src="images/optimized/good-conduct-ar-thumb.webp" width="520" height="715"
+                  alt="Good conduct letter in Arabic" loading="lazy" decoding="async">
               </a>
             </li>
           </ul>
           <div class="education-photo education-logo edu-photo">
-            <img src="images/asu-logo.png" alt="Applied Science Private University logo" loading="lazy"
-              width="1523" height="1520">
+            <img src="images/optimized/asu-logo.webp" alt="Applied Science Private University logo" loading="lazy"
+              width="400" height="400" decoding="async">
           </div>
         </div>
 
@@ -801,7 +858,7 @@
     <!-- Full-size view of one certificate (education.js). -->
     <dialog class="cert-viewer" data-cert-viewer aria-labelledby="cert-viewer-title">
       <figure class="cert-viewer-figure">
-        <img class="cert-viewer-image" data-cert-viewer-image alt="">
+        <img class="cert-viewer-image" data-cert-viewer-image alt="Selected education certificate">
         <figcaption class="cert-viewer-caption">
           <span class="cert-viewer-title" id="cert-viewer-title" data-cert-viewer-title></span>
           <span class="cert-viewer-count" data-cert-viewer-count></span>
@@ -842,7 +899,8 @@
               <a class="achievement-card-link" href="images/awards/best-entrepreneurial-project-2026.png?v=20261008" target="_blank" rel="noopener"
                 aria-label="Open Best Entrepreneurial Project medal image (opens in a new tab)">
                 <span class="achievement-card-frame">
-                  <img src="images/awards/best-entrepreneurial-project-2026.png?v=20261008" width="1148" height="1370" alt="" loading="lazy" decoding="async">
+                  <img src="images/optimized/best-entrepreneurial-project-2026-thumb.webp" width="640" height="764"
+                    alt="Best Entrepreneurial Project medal" loading="lazy" decoding="async">
                 </span>
                 <span class="achievement-card-name">Best Entrepreneurial Project</span>
               </a>
@@ -851,7 +909,8 @@
               <a class="achievement-card-link" href="images/awards/ntp13-2nd-place-2026.jpg" target="_blank" rel="noopener"
                 aria-label="Open 2nd Place — NTP13 2026 certificate image (opens in a new tab)">
                 <span class="achievement-card-frame">
-                  <img src="images/awards/ntp13-2nd-place-2026.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
+                  <img src="images/optimized/ntp13-2nd-place-2026-thumb.webp" width="640" height="360"
+                    alt="Second place certificate from NTP13 2026" loading="lazy" decoding="async">
                 </span>
                 <span class="achievement-card-name">2nd Place &mdash; NTP13 2026</span>
               </a>
@@ -860,7 +919,8 @@
               <a class="achievement-card-link" href="images/awards/ntp13-appreciation-2026.jpg" target="_blank" rel="noopener"
                 aria-label="Open Certificate of Appreciation — NTP13 2026 image (opens in a new tab)">
                 <span class="achievement-card-frame">
-                  <img src="images/awards/ntp13-appreciation-2026.jpg" width="1280" height="707" alt="" loading="lazy" decoding="async">
+                  <img src="images/optimized/ntp13-appreciation-2026-thumb.webp" width="640" height="354"
+                    alt="Certificate of Appreciation from NTP13 2026" loading="lazy" decoding="async">
                 </span>
                 <span class="achievement-card-name">Certificate of Appreciation &mdash; NTP13 2026</span>
               </a>
@@ -869,7 +929,8 @@
               <a class="achievement-card-link" href="images/certificates/azure-ai-900.jpg" target="_blank" rel="noopener"
                 aria-label="Open Azure AI Fundamentals certificate image (opens in a new tab)">
                 <span class="achievement-card-frame">
-                  <img src="images/certificates/azure-ai-900.jpg" width="911" height="1280" alt="" loading="lazy" decoding="async">
+                  <img src="images/optimized/azure-ai-900-thumb.webp" width="640" height="900"
+                    alt="Microsoft Azure AI Fundamentals certificate" loading="lazy" decoding="async">
                 </span>
                 <span class="achievement-card-name">Azure AI Fundamentals</span>
               </a>
@@ -878,7 +939,8 @@
               <a class="achievement-card-link" href="images/awards/gju-3030-competition-2026.jpg" target="_blank" rel="noopener"
                 aria-label="Open GJU 3030 Competition certificate image (opens in a new tab)">
                 <span class="achievement-card-frame">
-                  <img src="images/awards/gju-3030-competition-2026.jpg" width="1046" height="818" alt="" loading="lazy" decoding="async">
+                  <img src="images/optimized/gju-3030-competition-2026-thumb.webp" width="640" height="501"
+                    alt="GJU 3030 Competition certificate" loading="lazy" decoding="async">
                 </span>
                 <span class="achievement-card-name">GJU 3030 Competition</span>
               </a>
@@ -887,7 +949,8 @@
               <a class="achievement-card-link" href="images/certificates/google-ux-design.jpg" target="_blank" rel="noopener"
                 aria-label="Open Google UX Design certificate image (opens in a new tab)">
                 <span class="achievement-card-frame">
-                  <img src="images/certificates/google-ux-design.jpg" width="1280" height="988" alt="" loading="lazy" decoding="async">
+                  <img src="images/optimized/google-ux-design-thumb.webp" width="640" height="494"
+                    alt="Google UX Design certificate" loading="lazy" decoding="async">
                 </span>
                 <span class="achievement-card-name">Google UX Design</span>
               </a>
@@ -896,7 +959,8 @@
               <a class="achievement-card-link" href="images/certificates/ibm-ai.jpg" target="_blank" rel="noopener"
                 aria-label="Open Introduction to Artificial Intelligence (AI) certificate image (opens in a new tab)">
                 <span class="achievement-card-frame">
-                  <img src="images/certificates/ibm-ai.jpg" width="1202" height="927" alt="" loading="lazy" decoding="async">
+                  <img src="images/optimized/ibm-ai-thumb.webp" width="640" height="494"
+                    alt="IBM Introduction to Artificial Intelligence certificate" loading="lazy" decoding="async">
                 </span>
                 <span class="achievement-card-name">Introduction to Artificial Intelligence (AI)</span>
               </a>
@@ -905,7 +969,8 @@
               <a class="achievement-card-link" href="images/certificates/ibm-chatbots.jpg" target="_blank" rel="noopener"
                 aria-label="Open Building AI Powered Chatbots without Programming certificate image (opens in a new tab)">
                 <span class="achievement-card-frame">
-                  <img src="images/certificates/ibm-chatbots.jpg" width="1206" height="928" alt="" loading="lazy" decoding="async">
+                  <img src="images/optimized/ibm-chatbots-thumb.webp" width="640" height="493"
+                    alt="IBM Building AI Powered Chatbots without Programming certificate" loading="lazy" decoding="async">
                 </span>
                 <span class="achievement-card-name">Building AI Powered Chatbots without Programming</span>
               </a>
@@ -914,7 +979,8 @@
               <a class="achievement-card-link" href="images/certificates/ibm-watson.jpg" target="_blank" rel="noopener"
                 aria-label="Open Getting Started with AI using IBM Watson certificate image (opens in a new tab)">
                 <span class="achievement-card-frame">
-                  <img src="images/certificates/ibm-watson.jpg" width="1204" height="928" alt="" loading="lazy" decoding="async">
+                  <img src="images/optimized/ibm-watson-thumb.webp" width="640" height="494"
+                    alt="IBM Getting Started with AI using Watson certificate" loading="lazy" decoding="async">
                 </span>
                 <span class="achievement-card-name">Getting Started with AI using IBM Watson</span>
               </a>
@@ -923,7 +989,8 @@
               <a class="achievement-card-link" href="images/volunteer/ui-ux-contest-v5.jpg" target="_blank" rel="noopener"
                 aria-label="Open UI/UX Contest V5 certificate image (opens in a new tab)">
                 <span class="achievement-card-frame">
-                  <img src="images/volunteer/ui-ux-contest-v5.jpg" width="1280" height="884" alt="" loading="lazy" decoding="async">
+                  <img src="images/optimized/ui-ux-contest-v5-thumb.webp" width="640" height="442"
+                    alt="UI/UX Contest V5 certificate" loading="lazy" decoding="async">
                 </span>
                 <span class="achievement-card-name">UI/UX Contest V5</span>
               </a>
@@ -932,7 +999,8 @@
               <a class="achievement-card-link" href="images/volunteer/visual-programming-support.jpg" target="_blank" rel="noopener"
                 aria-label="Open Visual Programming Academic Support certificate image (opens in a new tab)">
                 <span class="achievement-card-frame">
-                  <img src="images/volunteer/visual-programming-support.jpg" width="1280" height="904" alt="" loading="lazy" decoding="async">
+                  <img src="images/optimized/visual-programming-support-thumb.webp" width="640" height="452"
+                    alt="Visual Programming Academic Support certificate" loading="lazy" decoding="async">
                 </span>
                 <span class="achievement-card-name">Visual Programming Academic Support</span>
               </a>
@@ -941,7 +1009,8 @@
               <a class="achievement-card-link" href="images/volunteer/translator-contest-2023.jpg" target="_blank" rel="noopener"
                 aria-label="Open Promising Translator Contest 2023 certificate image (opens in a new tab)">
                 <span class="achievement-card-frame">
-                  <img src="images/volunteer/translator-contest-2023.jpg" width="1600" height="1133" alt="" loading="lazy" decoding="async">
+                  <img src="images/optimized/translator-contest-2023-thumb.webp" width="640" height="454"
+                    alt="Promising Translator Contest 2023 certificate" loading="lazy" decoding="async">
                 </span>
                 <span class="achievement-card-name">Promising Translator Contest 2023</span>
               </a>
@@ -950,7 +1019,8 @@
               <a class="achievement-card-link" href="images/volunteer/elo-volunteer-2023.jpg" target="_blank" rel="noopener"
                 aria-label="Open English Language Olympia 2023 certificate image (opens in a new tab)">
                 <span class="achievement-card-frame">
-                  <img src="images/volunteer/elo-volunteer-2023.jpg" width="1026" height="684" alt="" loading="lazy" decoding="async">
+                  <img src="images/optimized/elo-volunteer-2023-thumb.webp" width="640" height="427"
+                    alt="English Language Olympia 2023 volunteer certificate" loading="lazy" decoding="async">
                 </span>
                 <span class="achievement-card-name">English Language Olympia 2023</span>
               </a>
@@ -1048,9 +1118,9 @@
       });
     });
   </script>
-  <script src="showcase-carousel.js?v=20261012k"></script>
+  <script src="showcase-carousel.js?v=20261013a"></script>
   <script src="skills.js?v=20261012q"></script>
-  <script src="education.js?v=20261012x"></script>
+  <script src="education.js?v=20261013a"></script>
 </body>
 
 </html>

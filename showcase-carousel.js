@@ -96,7 +96,6 @@
     lastModalTrigger = trigger;
     modal.dataset.previewKind = previewKind;
     modalImageScroll.scrollTop = 0;
-    modalImageScroll.classList.add('is-loading');
     modalImage.hidden = true;
     modalImage.alt = isApp
       ? image.alt
@@ -174,13 +173,13 @@
 
     function revealImage() {
       modalImage.hidden = false;
-      modalImageScroll.classList.remove('is-loading');
       modalImageScroll.scrollTop = 0;
     }
 
     modalImage.onload = revealImage;
     modalImage.onerror = revealImage;
     modalImage.src = fullImage || image.currentSrc || image.src;
+    window.portfolioSkeletons?.watch(modalImageScroll, modalImage);
     if (modalImage.complete && modalImage.naturalWidth) requestAnimationFrame(revealImage);
   }
 
