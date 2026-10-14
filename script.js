@@ -202,7 +202,8 @@ function setupMobileHeroSnake() {
 function setupAboutTypewriter() {
   const target = document.querySelector(".about-typewriter");
   const line = target && target.closest(".about-code-line");
-  if (!target || !line) return;
+  const section = target && target.closest("#about");
+  if (!target || !line || !section) return;
 
   const text = target.dataset.typewriter || target.textContent.trim();
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -214,11 +215,13 @@ function setupAboutTypewriter() {
      never makes the sections below jump up and down. */
   line.style.minHeight = line.getBoundingClientRect().height + "px";
   target.textContent = "";
+  line.classList.add("is-waiting-to-type");
 
   let started = false;
   function startTyping() {
     if (started) return;
     started = true;
+    line.classList.remove("is-waiting-to-type");
 
     let index = 0;
     function typeNextCharacter() {
@@ -242,8 +245,11 @@ function setupAboutTypewriter() {
     if (!entries[0].isIntersecting) return;
     observer.disconnect();
     startTyping();
-  }, { threshold: .35 });
-  observer.observe(line);
+  }, {
+    threshold: .3,
+    rootMargin: "0px 0px -18% 0px"
+  });
+  observer.observe(section);
 }
 
 
@@ -1050,6 +1056,50 @@ function setupAchievements() {
   }
 }
 
+/* A small trail for the magic-wand cursor. The effect is intentionally
+   capped and skipped on touch screens or when reduced motion is requested. */
+function setupCursorSparkles() {
+  const finePointer = window.matchMedia("(pointer: fine)");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (!finePointer.matches || reducedMotion.matches) return;
+
+  const layer = document.createElement("div");
+  layer.className = "cursor-sparkle-layer";
+  layer.setAttribute("aria-hidden", "true");
+  document.body.appendChild(layer);
+
+  let lastTime = 0;
+  let lastX = -100;
+  let lastY = -100;
+
+  function addSparkle(x, y) {
+    const sparkle = document.createElement("span");
+    sparkle.className = "cursor-sparkle";
+    sparkle.textContent = "✦";
+    sparkle.style.left = x + "px";
+    sparkle.style.top = y + "px";
+    sparkle.style.setProperty("--sparkle-x", (Math.random() * 18 - 9).toFixed(1) + "px");
+    sparkle.style.setProperty("--sparkle-y", (-10 - Math.random() * 16).toFixed(1) + "px");
+    sparkle.style.setProperty("--sparkle-turn", (Math.random() * 90 - 45).toFixed(0) + "deg");
+    sparkle.style.setProperty("--sparkle-size", (7 + Math.random() * 6).toFixed(1) + "px");
+    layer.appendChild(sparkle);
+
+    while (layer.childElementCount > 16) layer.firstElementChild.remove();
+    sparkle.addEventListener("animationend", function () { sparkle.remove(); }, { once: true });
+    window.setTimeout(function () { sparkle.remove(); }, 900);
+  }
+
+  window.addEventListener("pointermove", function (event) {
+    const now = performance.now();
+    const distance = Math.hypot(event.clientX - lastX, event.clientY - lastY);
+    if (now - lastTime < 35 || distance < 9) return;
+    lastTime = now;
+    lastX = event.clientX;
+    lastY = event.clientY;
+    addSparkle(event.clientX + 2, event.clientY + 2);
+  }, { passive: true });
+}
+
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", function () {
     setupMobileHeroSnake();
@@ -1057,6 +1107,7 @@ if (document.readyState === "loading") {
     setupSectionNavigation();
     setupAchievements();
     setupSkeletonLoading();
+    setupCursorSparkles();
   }, { once: true });
 } else {
   setupMobileHeroSnake();
@@ -1064,4 +1115,5 @@ if (document.readyState === "loading") {
   setupSectionNavigation();
   setupAchievements();
   setupSkeletonLoading();
+  setupCursorSparkles();
 }

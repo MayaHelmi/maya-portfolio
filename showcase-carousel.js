@@ -3,11 +3,17 @@
   if (!carousel) return;
 
   const section = carousel.closest('.showcase');
-  /* Cards appear in the order they are written in index.html. */
-  const cards = Array.from(carousel.querySelectorAll('.project-card'));
+  /* Lead with the final project, then continue through the full collection.
+     The two sentinels added below make either end wrap without a visual gap. */
+  const sourceCards = Array.from(carousel.querySelectorAll('.project-card'));
+  const leadCard = sourceCards.pop();
+  const cards = leadCard ? [leadCard].concat(sourceCards) : sourceCards;
+  if (leadCard) carousel.prepend(leadCard);
   const currentText = section.querySelector('[data-showcase-current]');
   const totalText = section.querySelector('[data-showcase-total]');
   const liveText = section.querySelector('[data-showcase-live]');
+  const previousButton = section.querySelector('[data-showcase-previous]');
+  const nextButton = section.querySelector('[data-showcase-next]');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const modal = document.querySelector('[data-project-modal]');
   const modalClose = modal?.querySelector('[data-project-modal-close]');
@@ -59,6 +65,21 @@
       if (!suppressOpen) openProject(card, trigger);
     });
   });
+
+  function makeSentinel(card) {
+    const clone = card.cloneNode(true);
+    clone.classList.add('project-card--sentinel');
+    clone.setAttribute('aria-hidden', 'true');
+    clone.setAttribute('inert', '');
+    clone.querySelectorAll('[id]').forEach(function (element) { element.removeAttribute('id'); });
+    return clone;
+  }
+
+  const beforeSentinel = makeSentinel(cards[cards.length - 1]);
+  const afterSentinel = makeSentinel(cards[0]);
+  carousel.prepend(beforeSentinel);
+  carousel.append(afterSentinel);
+  const displayCards = [beforeSentinel].concat(cards, afterSentinel);
 
   function projectTitle(index) {
     return cards[index]?.querySelector('.project-title')?.textContent.trim() || 'Project';
@@ -226,32 +247,31 @@
     });
   }
 
+  function realIndexFor(card) {
+    if (card === beforeSentinel) return cards.length - 1;
+    if (card === afterSentinel) return 0;
+    return cards.indexOf(card);
+  }
+
+  let closestDisplayCard = cards[0];
+
   function render() {
     animationFrame = 0;
 
     const carouselRect = carousel.getBoundingClientRect();
     const carouselCenter = carouselRect.left + carouselRect.width / 2;
-    const maxAngle = window.innerWidth <= 767 ? 11 : 17;
     let closestIndex = 0;
     let closestDistance = Infinity;
 
-    cards.forEach(function (card, index) {
+    displayCards.forEach(function (card) {
       const cardRect = card.getBoundingClientRect();
       const cardCenter = cardRect.left + cardRect.width / 2;
       const distance = cardCenter - carouselCenter;
-      const offset = distance / Math.max(carouselRect.width * .68, 1);
-      const clamped = Math.max(-1, Math.min(1, offset));
-      const depth = Math.abs(clamped);
-      const media = card.querySelector('.project-shot');
-
-      media.style.setProperty('--showcase-angle', (-clamped * maxAngle).toFixed(2) + 'deg');
-      media.style.setProperty('--showcase-scale', (1 - depth * .09).toFixed(3));
-      media.style.setProperty('--showcase-opacity', (1 - depth * .22).toFixed(3));
-      media.style.setProperty('--showcase-saturation', (1 - depth * .18).toFixed(3));
 
       if (Math.abs(distance) < closestDistance) {
         closestDistance = Math.abs(distance);
-        closestIndex = index;
+        closestIndex = realIndexFor(card);
+        closestDisplayCard = card;
       }
     });
 
@@ -269,18 +289,28 @@
     lastAnnouncedIndex = index;
   }
 
-  function goTo(index, shouldAnnounce) {
-    const nextIndex = Math.max(0, Math.min(cards.length - 1, index));
-    const card = cards[nextIndex];
-    const targetLeft = card.offsetLeft - (carousel.clientWidth - card.clientWidth) / 2;
+  function goTo(index, shouldAnnounce, behavior) {
+    const nextIndex = (index % cards.length + cards.length) % cards.length;
+    const card = index < 0
+      ? beforeSentinel
+      : (index >= cards.length ? afterSentinel : cards[nextIndex]);
+    const carouselRect = carousel.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    const cardCenter = carousel.scrollLeft + cardRect.left - carouselRect.left + cardRect.width / 2;
+    const targetLeft = cardCenter - carousel.clientWidth / 2;
 
     targetIndex = nextIndex;
     activeIndex = nextIndex;
     updateControls();
-    carousel.scrollTo({
-      left: targetLeft,
-      behavior: reducedMotion.matches ? 'auto' : 'smooth'
-    });
+    const shouldJump = behavior === 'auto' || reducedMotion.matches;
+    if (shouldJump) {
+      carousel.classList.add('is-jumping');
+      carousel.scrollLeft = targetLeft;
+      void carousel.offsetWidth;
+      carousel.classList.remove('is-jumping');
+    } else {
+      carousel.scrollTo({ left: targetLeft, behavior: 'smooth' });
+    }
 
     if (shouldAnnounce) announce(nextIndex);
     requestRender();
@@ -291,6 +321,11 @@
     window.clearTimeout(scrollEndTimer);
     scrollEndTimer = window.setTimeout(function () {
       render();
+      if (closestDisplayCard === beforeSentinel) {
+        goTo(cards.length - 1, false, 'auto');
+      } else if (closestDisplayCard === afterSentinel) {
+        goTo(0, false, 'auto');
+      }
       if (activeIndex !== lastAnnouncedIndex) announce(activeIndex);
     }, 180);
   }, { passive: true });
@@ -303,6 +338,14 @@
 
     event.preventDefault();
     goTo((targetIndex ?? activeIndex) + (event.key === 'ArrowRight' ? 1 : -1), true);
+  });
+
+  previousButton?.addEventListener('click', function () {
+    goTo((targetIndex ?? activeIndex) - 1, true);
+  });
+
+  nextButton?.addEventListener('click', function () {
+    goTo((targetIndex ?? activeIndex) + 1, true);
   });
 
   carousel.addEventListener('pointerdown', function (event) {
@@ -345,7 +388,10 @@
   carousel.addEventListener('pointerup', stopDragging);
   carousel.addEventListener('pointercancel', stopDragging);
 
-  render();
+  requestAnimationFrame(function () {
+    goTo(0, false, 'auto');
+    render();
+  });
 
   /* Lets other parts of the page (the skills panel) list the projects and
      open one. `returnTo` gets focus back when the pop-up closes. */

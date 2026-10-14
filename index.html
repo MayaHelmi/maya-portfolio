@@ -62,7 +62,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;display=swap">
   </noscript>
   <!-- Single compiled stylesheet: Tailwind utilities and portfolio components. -->
-  <link rel="stylesheet" href="tailwind.css?v=20261014b">
+  <link rel="stylesheet" href="tailwind.css?v=20261014v">
 
   <!-- Apply the saved theme before paint, then defer the interaction code so
        it no longer blocks HTML parsing. -->
@@ -74,7 +74,7 @@
         (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     }());
   </script>
-  <script src="script.js?v=20261013c" defer></script>
+  <script src="script.js?v=20261014n" defer></script>
 </head>
 
 <body>
@@ -292,10 +292,16 @@
 
       <div class="showcase-head section-head">
         <h2 class="section-title" id="showcase-title">My Projects</h2>
-        <div class="showcase-carousel-controls" aria-label="Project carousel position">
+        <div class="showcase-carousel-controls" aria-label="Project carousel controls">
+          <button class="showcase-carousel-arrow" type="button" data-showcase-previous aria-label="Previous project">
+            <span aria-hidden="true">&lt;</span>
+          </button>
           <p class="showcase-carousel-status" aria-hidden="true">
             <span data-showcase-current>01</span> / <span data-showcase-total>08</span>
           </p>
+          <button class="showcase-carousel-arrow" type="button" data-showcase-next aria-label="Next project">
+            <span aria-hidden="true">&gt;</span>
+          </button>
           <p class="sr-only" data-showcase-live aria-live="polite"></p>
         </div>
       </div>
@@ -456,7 +462,8 @@
               <div class="project-head">
                 <h3 class="project-title">Glamé AI &mdash; Beauty-Tech Website Concept</h3>
                 <div class="project-badges">
-                  <span class="project-badge">In progress</span>
+                  <span class="project-badge">Live preview</span>
+                  <span class="project-badge badge-muted">In progress</span>
                   <span class="project-badge badge-muted">Front-end concept</span>
                   <span class="project-badge badge-muted">2026</span>
                 </div>
@@ -683,10 +690,6 @@
         <div class="skills-head">
           <h2 class="section-title">Skills and Tools</h2>
           <div class="skills-head-actions">
-            <p class="skills-hint" data-skills-hint hidden>
-              <span class="skills-hint-dot" aria-hidden="true"></span>
-              Select a skill to see where I&rsquo;ve used it
-            </p>
             <button class="skills-motion-toggle" type="button" data-skills-motion
               aria-pressed="false" hidden>
               <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
@@ -701,33 +704,72 @@
         <div class="skills-board" data-skills-board>
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <article class="skill-card card-shell">
-            <p class="kicker skill-group">Core development</p>
+            <p class="kicker skill-group">Front End</p>
             <ul class="skill-grid">
               <li><img src="images/skills/html5.svg" alt="HTML5 logo" width="48" height="48" loading="lazy"><span>HTML5</span></li>
               <li><img src="images/skills/css3.svg" alt="CSS3 logo" width="48" height="48" loading="lazy"><span>CSS3</span></li>
               <li><img src="images/skills/javascript.svg" alt="JavaScript logo" width="48" height="48" loading="lazy"><span>JavaScript</span></li>
-              <li><img src="images/skills/bootstrap.svg" alt="Bootstrap logo" width="48" height="48" loading="lazy"><span>Bootstrap</span></li>
               <li><img src="images/skills/tailwindcss.svg" alt="Tailwind CSS logo" width="48" height="48" loading="lazy"><span>Tailwind CSS</span></li>
+              <li><img src="images/skills/bootstrap.svg" alt="Bootstrap logo" width="48" height="48" loading="lazy"><span>Bootstrap</span></li>
               <li><img src="images/skills/flutter.svg" alt="Flutter logo" width="48" height="48" loading="lazy"><span>Flutter</span></li>
               <li><img src="images/skills/dart.svg" alt="Dart logo" width="48" height="48" loading="lazy"><span>Dart</span></li>
-              <li><img src="images/skills/php.svg" alt="PHP logo" width="48" height="48" loading="lazy"><span>PHP</span></li>
-            </ul>
-          </article>
-          <article class="skill-card card-shell">
-            <p class="kicker skill-group">Back end &amp; data</p>
-            <ul class="skill-grid">
-              <li><img src="images/skills/supabase.svg" alt="Supabase logo" width="48" height="48" loading="lazy"><span>Supabase<br>(PostgreSQL)</span></li>
-              <li><img src="images/skills/mysql.svg" alt="MySQL logo" width="48" height="48" loading="lazy"><span>MySQL / SQL</span></li>
-              <li><img src="images/skills/firebase.svg" alt="Firebase logo" width="48" height="48" loading="lazy"><span>Firebase / Firestore</span></li>
-              <li><img src="images/skills/php.svg" alt="PHP logo representing PDO" width="48" height="48" loading="lazy"><span>PDO</span></li>
-            </ul>
-          </article>
-          <article class="skill-card card-shell">
-            <p class="kicker skill-group">Design & tools</p>
-            <ul class="skill-grid">
+              <li data-project-tags="Flutter"><span class="skill-label--long">Cross-Platform Development</span></li>
+              <li data-project-tags="Flutter"><span>Mobile UI Development</span></li>
               <li><img src="images/skills/figma.svg" alt="Figma logo" width="48" height="48" loading="lazy"><span>Figma</span></li>
+              <li data-project-tags="Responsive Design"><span>Responsive Web Design</span></li>
+              <li data-project-tags="UI/UX"><span>UI/UX Design</span></li>
+              <li><span>SVG Animation</span></li>
+              <li><span>Arabic / English RTL</span></li>
+              <li><span>Accessibility</span></li>
+              <li><img src="images/skills/vscode.svg" alt="VS Code logo" width="48" height="48" loading="lazy"><span>VS Code</span></li>
               <li><img src="images/skills/git.svg" alt="Git logo" width="48" height="48" loading="lazy"><span>Git</span></li>
               <li><img src="images/skills/github.svg" alt="GitHub logo" width="48" height="48" loading="lazy"><span>GitHub</span></li>
+            </ul>
+          </article>
+          <article class="skill-card card-shell">
+            <p class="kicker skill-group">Back End</p>
+            <ul class="skill-grid">
+              <li><img src="images/skills/php.svg" alt="PHP logo" width="48" height="48" loading="lazy"><span>PHP</span></li>
+              <li><img src="images/skills/visualstudio.svg" alt="Visual Studio logo" width="48" height="48" loading="lazy"><span>ASP.NET Core MVC</span></li>
+              <li data-project-tags="C#|Razor"><span>C# / Razor</span></li>
+              <li><img src="images/skills/java.svg" alt="Java logo" width="48" height="48" loading="lazy"><span>Java</span></li>
+              <li><img src="images/skills/cplusplus.svg" alt="C++ logo" width="48" height="48" loading="lazy"><span>C++</span></li>
+              <li data-project-tags="Python build pipeline"><img src="images/skills/python.svg" alt="Python logo" width="48" height="48" loading="lazy"><span>Python</span></li>
+              <li><span>PDO</span></li>
+              <li><span>JSON</span></li>
+              <li><img src="images/skills/vscode.svg" alt="VS Code logo" width="48" height="48" loading="lazy"><span>VS Code</span></li>
+              <li><img src="images/skills/git.svg" alt="Git logo" width="48" height="48" loading="lazy"><span>Git</span></li>
+              <li><img src="images/skills/github.svg" alt="GitHub logo" width="48" height="48" loading="lazy"><span>GitHub</span></li>
+            </ul>
+          </article>
+          <article class="skill-card card-shell">
+            <p class="kicker skill-group">Database</p>
+            <ul class="skill-grid">
+              <li data-project-tags="Supabase"><img src="images/skills/supabase.svg" alt="Supabase logo" width="48" height="48" loading="lazy"><span>Supabase<br>(PostgreSQL)</span></li>
+              <li data-project-tags="MySQL"><img src="images/skills/mysql.svg" alt="MySQL logo" width="48" height="48" loading="lazy"><span>MySQL / SQL</span></li>
+              <li><img src="images/skills/firebase.svg" alt="Firebase logo" width="48" height="48" loading="lazy"><span>Firebase / Firestore</span></li>
+              <li><span>PDO</span></li>
+              <li><span>Database Design (ERD)</span></li>
+            </ul>
+          </article>
+          <article class="skill-card card-shell">
+            <p class="kicker skill-group">APIs</p>
+            <ul class="skill-grid">
+              <li><span>REST APIs</span></li>
+              <li data-project-tags="Gemini API"><span>Gemini API Integration</span></li>
+              <li><span>Fetch API</span></li>
+              <li><span>JSON</span></li>
+            </ul>
+          </article>
+          <article class="skill-card card-shell">
+            <p class="kicker skill-group">Professional Strengths</p>
+            <ul class="skill-grid">
+              <li><span>Problem Solving</span></li>
+              <li><span>Teamwork</span></li>
+              <li><span>Communication</span></li>
+              <li><span>Public Speaking</span></li>
+              <li><span>Entrepreneurship</span></li>
+              <li><span>Business Innovation</span></li>
             </ul>
           </article>
         </div>
@@ -736,69 +778,6 @@
           aria-labelledby="skill-panel-title" hidden></div>
         </div>
 
-        <p class="kicker skill-also">Also</p>
-        <div class="belt">
-          <div class="belt-row">
-            <div class="belt-track">
-              <ul class="skill-list">
-                <li>ASP.NET Core MVC</li>
-                <li>C# / Razor</li>
-                <li>JSON</li>
-                <li>Responsive Web Design</li>
-                <li>UI/UX Design</li>
-                <li>Cross-Platform Development</li>
-                <li>Mobile UI Development</li>
-                <li>Gemini API Integration</li>
-                <li>SVG Animation</li>
-                <li>Arabic / English RTL</li>
-                <li>REST APIs</li>
-                <li>Java</li>
-                <li>C++</li>
-                <li>VS Code</li>
-              </ul>
-              <ul class="skill-list" aria-hidden="true">
-                <li>ASP.NET Core MVC</li>
-                <li>C# / Razor</li>
-                <li>JSON</li>
-                <li>Responsive Web Design</li>
-                <li>UI/UX Design</li>
-                <li>Cross-Platform Development</li>
-                <li>Mobile UI Development</li>
-                <li>Gemini API Integration</li>
-                <li>SVG Animation</li>
-                <li>Arabic / English RTL</li>
-                <li>REST APIs</li>
-                <li>Java</li>
-                <li>C++</li>
-                <li>VS Code</li>
-              </ul>
-            </div>
-          </div>
-          <div class="belt-row belt-row--reverse">
-            <div class="belt-track">
-              <ul class="skill-list">
-                <li>Database Design (ERD)</li>
-                <li>Accessibility</li>
-                <li>Problem Solving</li>
-                <li>Teamwork</li>
-                <li>Communication</li>
-                <li>Public Speaking</li>
-                <li>Entrepreneurship</li>
-                <li>Business Innovation</li>
-              </ul>
-              <ul class="skill-list" aria-hidden="true">
-                <li>Database Design (ERD)</li>
-                <li>Accessibility</li>
-                <li>Problem Solving</li>
-                <li>Teamwork</li>
-                <li>Communication</li>
-                <li>Public Speaking</li>
-                <li>Entrepreneurship</li>
-                <li>Business Innovation</li>
-              </ul>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -1114,27 +1093,8 @@
     <p class="footer-base">Maya Helmi · Full-Stack Developer</p>
   </footer>
 
-
-  <script>
-    // Flip a card on tap only where there is no real hover (phones, tablets);
-    // with a mouse, hovering flips it. Taps on links inside are left alone.
-    if (window.matchMedia('(hover: none)').matches) {
-      document.querySelectorAll('.flip-card').forEach(function (card) {
-        card.addEventListener('click', function (e) {
-          if (e.target.closest('a, button, [role="button"]')) return;
-          card.classList.toggle('is-flipped');
-        });
-      });
-    }
-    document.querySelectorAll('.flip-card').forEach(function (card) {
-      card.addEventListener('keydown', function (e) {
-        if (e.target !== card) return;
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.classList.toggle('is-flipped'); }
-      });
-    });
-  </script>
-  <script src="showcase-carousel.js?v=20261013a"></script>
-  <script src="skills.js?v=20261014b"></script>
+  <script src="showcase-carousel.js?v=20261014n"></script>
+  <script src="skills.js?v=20261014u"></script>
   <script src="education.js?v=20261013a"></script>
 </body>
 

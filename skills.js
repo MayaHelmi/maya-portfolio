@@ -4,8 +4,8 @@
    1. Bubbles. Every skill becomes a round bubble that drifts around the
       section and bounces off the walls and off the other bubbles, like
       ping-pong balls. A bubble holds still under the pointer, and with a
-      mouse it can be grabbed and thrown. The four skill groups are kept as
-      a colour key above the bubbles; pointing at a group highlights it.
+      mouse it can be grabbed and thrown. Category tabs above the bubbles
+      separate the skill groups without colour-coding the circles.
 
    2. Evidence. Each skill that appears in a project carries a small
       count. Selecting it:
@@ -22,7 +22,6 @@
   const section = document.querySelector("#skills");
   const board = section && section.querySelector("[data-skills-board]");
   const panel = section && section.querySelector("[data-skill-panel]");
-  const hint = section && section.querySelector("[data-skills-hint]");
   const motionToggle = section && section.querySelector("[data-skills-motion]");
   const motionLabel = motionToggle && motionToggle.querySelector("[data-skills-motion-label]");
   if (!section || !board || !panel) return;
@@ -33,23 +32,6 @@
 
   const projects = window.portfolioProjects ? window.portfolioProjects.list() : [];
 
-  /* How each skill's name appears on the project cards. */
-  const tagNames = {
-    "HTML5": ["HTML5", "HTML"],
-    "CSS3": ["CSS3"],
-    "JavaScript": ["JavaScript"],
-    "Tailwind CSS": ["Tailwind CSS"],
-    "Flutter": ["Flutter"],
-    "Dart": ["Dart"],
-    "PHP": ["PHP"],
-    "Supabase (PostgreSQL)": ["Supabase"],
-    "MySQL / SQL": ["MySQL"],
-    "PDO": ["PDO"],
-    "Figma": ["Figma"],
-    "Bootstrap": ["Bootstrap"],
-    "Firebase / Firestore": ["Firebase / Firestore", "Firebase"]
-  };
-
   function skillName(item) {
     /* A <br> inside a label counts as a space ("Supabase (PostgreSQL)"). */
     const label = item.querySelector("span").cloneNode(true);
@@ -57,8 +39,9 @@
     return label.textContent.replace(/\s+/g, " ").trim();
   }
 
-  function usesOf(name) {
-    const tags = tagNames[name] || [];
+  function usesOf(item, name) {
+    const aliases = (item.dataset.projectTags || "").split("|").filter(Boolean);
+    const tags = [name].concat(aliases);
     const found = projects.filter(function (project) {
       if (name === "Git" || name === "GitHub") return project.hasGitHub;
       return project.tags.some(function (tag) { return tags.includes(tag); });
@@ -74,7 +57,9 @@
 
   const arena = document.createElement("ul");
   arena.className = "skill-arena";
-  arena.setAttribute("aria-label", "Skills");
+  arena.id = "skills-category-panel";
+  arena.setAttribute("role", "tabpanel");
+  arena.setAttribute("aria-label", "Skills in the selected category");
 
   const guides = document.createElement("div");
   guides.className = "skill-guides";
@@ -89,6 +74,8 @@
 
   const legend = document.createElement("ul");
   legend.className = "skill-legend";
+  legend.setAttribute("role", "tablist");
+  legend.setAttribute("aria-label", "Skill categories");
 
   const chips = [];       /* skills with evidence (clickable) */
   const balls = [];       /* every bubble, for the physics */
@@ -99,19 +86,26 @@
 
     const key = document.createElement("li");
     key.innerHTML = '<button type="button" class="skill-legend-item" data-group="' + groupIndex + '">' +
-      '<span class="skill-legend-dot" aria-hidden="true"></span>' + groupName + "</button>";
+      groupName + "</button>";
+    const tab = key.querySelector("button");
+    tab.id = "skill-category-" + groupIndex;
+    tab.setAttribute("role", "tab");
+    tab.setAttribute("aria-selected", "false");
+    tab.setAttribute("aria-controls", arena.id);
+    tab.tabIndex = -1;
     legend.appendChild(key);
 
     card.querySelectorAll(".skill-grid li").forEach(function (item) {
       const name = skillName(item);
-      if (seen.has(name)) return;
-      seen.add(name);
+      const groupSkill = groupIndex + "::" + name;
+      if (seen.has(groupSkill)) return;
+      seen.add(groupSkill);
 
       const ball = document.createElement("li");
       ball.className = "skill-ball";
       ball.dataset.group = groupIndex;
 
-      const uses = usesOf(name);
+      const uses = usesOf(item, name);
       const count = uses.projects.length;
       const face = document.createElement(count ? "button" : "div");
       face.className = "skill-ball-face";
@@ -144,7 +138,6 @@
   grid.replaceWith(legend);
   legend.after(arena);
   board.classList.add("is-arena");
-  if (hint && chips.length) hint.hidden = false;
   if (motionToggle && !reducedMotion.matches) motionToggle.hidden = false;
 
   /* ---- Entrance: the bubbles pop in one after another ---- */
@@ -260,8 +253,9 @@
     if (frozen() && !dragging) { lastTime = 0; return; }
     const seconds = lastTime ? Math.min(now - lastTime, 50) / 1000 : 0;
     lastTime = now;
+    const activeBalls = balls.filter(function (ball) { return ball.el.classList.contains("in-group"); });
 
-    balls.forEach(function (ball) {
+    activeBalls.forEach(function (ball) {
       if (ball.held) return;
 
       /* A thrown bubble eases back down to a gentle drift. */
@@ -280,10 +274,10 @@
     });
 
     /* Bubbles bounce off each other; a held bubble acts like a wall. */
-    for (let i = 0; i < balls.length; i += 1) {
-      for (let j = i + 1; j < balls.length; j += 1) {
-        const a = balls[i];
-        const b = balls[j];
+    for (let i = 0; i < activeBalls.length; i += 1) {
+      for (let j = i + 1; j < activeBalls.length; j += 1) {
+        const a = activeBalls[i];
+        const b = activeBalls[j];
         const dx = b.x - a.x;
         const dy = b.y - a.y;
         const distance = Math.hypot(dx, dy) || 0.01;
@@ -321,7 +315,7 @@
       }
     }
 
-    balls.forEach(keepInside);
+    activeBalls.forEach(keepInside);
     draw();
     frame = window.requestAnimationFrame(step);
   }
@@ -461,25 +455,67 @@
     moved = false;
   }, true);
 
-  /* Pointing at a group in the key highlights its bubbles. */
+  /* The key doubles as a compact tab bar. Selecting a category keeps only
+     that category visible; hovering previews another one. */
+  let selectedGroup = "0";
+
   function showGroup(index) {
     arena.classList.toggle("has-group", index !== null);
     balls.forEach(function (ball) {
-      ball.el.classList.toggle("in-group", index !== null && ball.el.dataset.group === String(index));
+      const inGroup = index !== null && ball.el.dataset.group === String(index);
+      ball.el.classList.toggle("in-group", inGroup);
+      ball.el.setAttribute("aria-hidden", String(!inGroup));
+      if (ball.face.matches("button")) ball.face.tabIndex = inGroup ? 0 : -1;
     });
   }
+
+  function selectGroup(index, moveFocus) {
+    const tabs = Array.from(legend.querySelectorAll(".skill-legend-item"));
+    const next = tabs[Math.max(0, Math.min(tabs.length - 1, Number(index)))];
+    if (!next) return;
+
+    if (active) close(false);
+    selectedGroup = next.dataset.group;
+    tabs.forEach(function (tab) {
+      const selected = tab === next;
+      tab.setAttribute("aria-selected", String(selected));
+      tab.tabIndex = selected ? 0 : -1;
+    });
+    arena.setAttribute("aria-labelledby", next.id);
+    showGroup(selectedGroup);
+    if (moveFocus) next.focus();
+  }
+
   legend.addEventListener("pointerover", function (event) {
     const item = event.target.closest(".skill-legend-item");
     if (item && !active) showGroup(item.dataset.group);
   });
   legend.addEventListener("pointerout", function (event) {
-    if (!event.relatedTarget || !legend.contains(event.relatedTarget)) showGroup(null);
+    if (!event.relatedTarget || !legend.contains(event.relatedTarget)) showGroup(selectedGroup);
   });
   legend.addEventListener("focusin", function (event) {
     const item = event.target.closest(".skill-legend-item");
     if (item && !active) showGroup(item.dataset.group);
   });
-  legend.addEventListener("focusout", function () { showGroup(null); });
+  legend.addEventListener("focusout", function () { showGroup(selectedGroup); });
+  legend.addEventListener("click", function (event) {
+    const item = event.target.closest(".skill-legend-item");
+    if (item) selectGroup(item.dataset.group, false);
+  });
+  legend.addEventListener("keydown", function (event) {
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+    const tabs = Array.from(legend.querySelectorAll(".skill-legend-item"));
+    const current = tabs.indexOf(event.target.closest(".skill-legend-item"));
+    if (current < 0) return;
+    event.preventDefault();
+    let next = current;
+    if (event.key === "Home") next = 0;
+    else if (event.key === "End") next = tabs.length - 1;
+    else next = (current + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
+    selectGroup(next, true);
+  });
+
+  selectGroup(0, false);
 
   if ("IntersectionObserver" in window) {
     new IntersectionObserver(function (entries) {
