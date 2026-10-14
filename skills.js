@@ -134,8 +134,26 @@
     });
   });
 
+  const categoryPicker = document.createElement("div");
+  categoryPicker.className = "skills-category-select";
+
+  const categoryLabel = document.createElement("label");
+  categoryLabel.htmlFor = "skills-category-select";
+  categoryLabel.textContent = "Choose a category";
+
+  const categorySelect = document.createElement("select");
+  categorySelect.id = "skills-category-select";
+  categorySelect.setAttribute("aria-controls", arena.id);
+  legend.querySelectorAll(".skill-legend-item").forEach(function (tab) {
+    const option = document.createElement("option");
+    option.value = tab.dataset.group;
+    option.textContent = tab.textContent.trim();
+    categorySelect.appendChild(option);
+  });
+  categoryPicker.append(categoryLabel, categorySelect);
+
   arena.prepend(guides);
-  grid.replaceWith(legend);
+  grid.replaceWith(categoryPicker, legend);
   legend.after(arena);
   board.classList.add("is-arena");
   if (motionToggle && !reducedMotion.matches) motionToggle.hidden = false;
@@ -481,6 +499,7 @@
       tab.setAttribute("aria-selected", String(selected));
       tab.tabIndex = selected ? 0 : -1;
     });
+    categorySelect.value = selectedGroup;
     arena.setAttribute("aria-labelledby", next.id);
     showGroup(selectedGroup);
     if (moveFocus) next.focus();
@@ -513,6 +532,9 @@
     else if (event.key === "End") next = tabs.length - 1;
     else next = (current + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
     selectGroup(next, true);
+  });
+  categorySelect.addEventListener("change", function () {
+    selectGroup(categorySelect.value, false);
   });
 
   selectGroup(0, false);
