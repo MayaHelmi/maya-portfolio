@@ -23,6 +23,8 @@
   const board = section && section.querySelector("[data-skills-board]");
   const panel = section && section.querySelector("[data-skill-panel]");
   const hint = section && section.querySelector("[data-skills-hint]");
+  const motionToggle = section && section.querySelector("[data-skills-motion]");
+  const motionLabel = motionToggle && motionToggle.querySelector("[data-skills-motion-label]");
   if (!section || !board || !panel) return;
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -73,6 +75,17 @@
   const arena = document.createElement("ul");
   arena.className = "skill-arena";
   arena.setAttribute("aria-label", "Skills");
+
+  const guides = document.createElement("div");
+  guides.className = "skill-guides";
+  guides.setAttribute("aria-hidden", "true");
+  groupCards.forEach(function (_, groupIndex) {
+    const guide = document.createElement("span");
+    guide.className = "skill-guide";
+    guide.dataset.group = groupIndex;
+    guide.style.setProperty("--guide-position", ((groupIndex + .5) / groupCards.length * 100) + "%");
+    guides.appendChild(guide);
+  });
 
   const legend = document.createElement("ul");
   legend.className = "skill-legend";
@@ -127,10 +140,12 @@
     });
   });
 
+  arena.prepend(guides);
   grid.replaceWith(legend);
   legend.after(arena);
   board.classList.add("is-arena");
   if (hint && chips.length) hint.hidden = false;
+  if (motionToggle && !reducedMotion.matches) motionToggle.hidden = false;
 
   /* ---- Entrance: the bubbles pop in one after another ---- */
 
@@ -155,6 +170,7 @@
   let frame = 0;
   let lastTime = 0;
   let inView = true;
+  let userPaused = false;
   let active = null;          /* the skill whose panel is open */
   let dragging = null;
 
@@ -205,8 +221,38 @@
     });
   }
 
+  /* Pausing gathers each category onto its own guide. Wide screens use
+     horizontal rows; narrow screens use vertical columns so every bubble
+     remains readable without overlapping. */
+  function organize() {
+    measure();
+    const groups = Array.from(new Set(balls.map(function (ball) { return ball.el.dataset.group; })));
+    const vertical = width < 600;
+
+    groups.forEach(function (group, groupIndex) {
+      const members = balls.filter(function (ball) { return ball.el.dataset.group === group; });
+      const maxRadius = members.reduce(function (largest, ball) { return Math.max(largest, ball.r); }, 0);
+      const span = vertical ? height : width;
+      const usable = Math.max(0, span - maxRadius * 2);
+
+      members.forEach(function (ball, memberIndex) {
+        const progress = members.length === 1 ? .5 : memberIndex / (members.length - 1);
+        if (vertical) {
+          ball.x = width * (groupIndex + .5) / groups.length;
+          ball.y = maxRadius + usable * progress;
+        } else {
+          ball.x = maxRadius + usable * progress;
+          ball.y = height * (groupIndex + .5) / groups.length;
+        }
+        keepInside(ball);
+      });
+    });
+
+    draw();
+  }
+
   function frozen() {
-    return reducedMotion.matches || !inView || document.hidden || active !== null;
+    return reducedMotion.matches || userPaused || !inView || document.hidden || active !== null;
   }
 
   function step(now) {
@@ -285,6 +331,40 @@
       lastTime = 0;
       frame = window.requestAnimationFrame(step);
     }
+  }
+
+  function syncMotionToggle() {
+    if (!motionToggle) return;
+    motionToggle.hidden = reducedMotion.matches;
+    motionToggle.setAttribute("aria-pressed", String(userPaused));
+    motionToggle.setAttribute("aria-label", userPaused ? "Resume skills animation" : "Pause skills animation");
+    if (motionLabel) motionLabel.textContent = userPaused ? "Resume animation" : "Pause animation";
+  }
+
+  if (motionToggle) {
+    let releaseTimer = 0;
+    motionToggle.addEventListener("click", function () {
+      userPaused = !userPaused;
+      window.clearTimeout(releaseTimer);
+
+      if (userPaused) {
+        if (frame) window.cancelAnimationFrame(frame);
+        frame = 0;
+        lastTime = 0;
+        arena.classList.remove("is-releasing");
+        arena.classList.add("is-organized");
+        void arena.offsetWidth;
+        organize();
+      } else {
+        arena.classList.add("is-releasing");
+        arena.classList.remove("is-organized");
+        releaseTimer = window.setTimeout(function () {
+          arena.classList.remove("is-releasing");
+        }, 700);
+      }
+      syncMotionToggle();
+      refresh();
+    });
   }
 
   function nudge(ball) {
@@ -414,6 +494,7 @@
   function layOut() {
     measure();
     if (reducedMotion.matches) {
+      arena.classList.remove("is-organized", "is-releasing");
       arena.classList.add("is-still");
       balls.forEach(function (ball) { ball.el.style.transform = ""; });
       return;
@@ -423,9 +504,10 @@
     if (!scattered) { scatter(); scattered = true; }
     draw();
   }
-  reducedMotion.addEventListener("change", function () { layOut(); refresh(); });
+  reducedMotion.addEventListener("change", function () { layOut(); syncMotionToggle(); refresh(); });
 
   layOut();
+  syncMotionToggle();
   refresh();
 
   let resizeTimer = 0;
@@ -434,7 +516,7 @@
     resizeTimer = window.setTimeout(function () {
       if (reducedMotion.matches) return;
       measure();
-      draw();
+      if (userPaused) organize(); else draw();
       if (active) place(active);
     }, 100);
   });
