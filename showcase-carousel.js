@@ -3,12 +3,9 @@
   if (!carousel) return;
 
   const section = carousel.closest('.showcase');
-  /* Lead with the final project, then continue through the full collection.
-     The two sentinels added below make either end wrap without a visual gap. */
-  const sourceCards = Array.from(carousel.querySelectorAll('.project-card'));
-  const leadCard = sourceCards.pop();
-  const cards = leadCard ? [leadCard].concat(sourceCards) : sourceCards;
-  if (leadCard) carousel.prepend(leadCard);
+  /* Cards show in page order. The two sentinels added below make either
+     end wrap without a visual gap. */
+  const cards = Array.from(carousel.querySelectorAll('.project-card'));
   const currentText = section.querySelector('[data-showcase-current]');
   const totalText = section.querySelector('[data-showcase-total]');
   const liveText = section.querySelector('[data-showcase-live]');
