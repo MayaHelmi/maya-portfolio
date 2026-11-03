@@ -6,7 +6,7 @@ https://mayahelmi.github.io/maya-portfolio/
 Everything lives on one page (`index.html`): projects (with a details pop-up),
 skills, education, achievements and contact. The other `.html` files are small
 redirects that keep old links working (`projects.html`, `certificates.html`,
-`recognition.html`, `besign.html`, `glame-ai.html`, `noi-beauty-lounge.html`).
+`recognition.html`, `besign.html`, `glame-ai.html`, `mabeauty-salon.html`).
 
 ## Folder structure
 
