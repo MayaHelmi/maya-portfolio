@@ -1,0 +1,62 @@
+/* ==========================================================================
+   MOTION TOKENS
+   Durations and easing curves for every transition and animation. The
+   scripts read the ones they need (deck shuffle, certificate viewer) with
+   getComputedStyle, so CSS and JS always agree.
+   ========================================================================== */
+:root {
+  /* Durations */
+  --duration-instant: .001ms;   /* "reduce motion": effectively off */
+  --duration-40: 40ms;
+  --duration-50: 50ms;
+  --duration-55: 55ms;
+  --duration-70: 70ms;
+  --duration-75: 75ms;
+  --duration-100: 100ms;
+  --duration-120: 120ms;
+  --duration-140: 140ms;
+  --duration-150: 150ms;
+  --duration-180: 180ms;
+  --duration-200: 200ms;
+  --duration-220: 220ms;
+  --duration-250: 250ms;
+  --duration-300: 300ms;
+  --duration-350: 350ms;
+  --duration-380: 380ms;
+  --duration-450: 450ms;
+  --duration-520: 520ms;
+  --duration-560: 560ms;
+  --duration-600: 600ms;
+  --duration-650: 650ms;
+  --duration-680: 680ms;
+  --duration-720: 720ms;
+  --duration-750: 750ms;
+  --duration-800: 800ms;
+  --duration-850: 850ms;
+  --duration-1000: 1000ms;
+  --duration-2000: 2000ms;
+  --duration-2200: 2200ms;
+
+  /* Easing curves */
+  --ease-standard: ease;
+  --ease-out: ease-out;
+  --ease-in-out: ease-in-out;
+  --ease-smooth: cubic-bezier(.4, 0, .2, 1);          /* flip cards, Tailwind transitions */
+  --ease-in-out-soft: cubic-bezier(.4, 0, .6, 1);     /* certificate close, skeleton pulse */
+  --ease-in-out-strong: cubic-bezier(.65, 0, .35, 1); /* achievements height change */
+  --ease-out-expo: cubic-bezier(.22, 1, .36, 1);      /* settling, fans, panels */
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);     /* bubbles overshoot */
+  --ease-hop: cubic-bezier(.3, .7, .4, 1);            /* "Hire me" hop */
+  --ease-modal: cubic-bezier(.2, .7, .2, 1);          /* project pop-up */
+  --ease-deal: cubic-bezier(.2, .8, .25, 1);          /* achievements deal */
+  --ease-blink: steps(1, end);                        /* typing cursor */
+
+  /* Choreography (JS): the achievements card trick and certificate viewer */
+  --motion-deck-gather: var(--duration-560);     /* one card sliding into the stack */
+  --motion-deck-gather-gap: var(--duration-40);  /* between cards joining the stack */
+  --motion-deck-rest: var(--duration-140);       /* the stack sits still for a beat */
+  --motion-deck-deal: var(--duration-680);       /* one card travelling to its place */
+  --motion-deck-deal-gap: var(--duration-75);    /* between cards leaving the stack */
+  --motion-viewer-open: var(--duration-520);
+  --motion-viewer-close: var(--duration-380);
+}

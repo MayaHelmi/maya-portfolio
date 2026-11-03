@@ -16,7 +16,13 @@
   if (!figure || !certs.length || !links.length) return;
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const EASE = "cubic-bezier(.22, 1, .36, 1)";
+  /* Motion values come from tokens/motion.css. */
+  const rootStyle = getComputedStyle(document.documentElement);
+  const token = function (name) { return rootStyle.getPropertyValue(name).trim(); };
+  const EASE = token("--ease-out-expo");
+  const EASE_CLOSE = token("--ease-in-out-soft");
+  const OPEN_MS = parseFloat(token("--motion-viewer-open"));
+  const CLOSE_MS = parseFloat(token("--motion-viewer-close"));
 
   certs.forEach(function (cert) {
     const d = Number(getComputedStyle(cert).getPropertyValue("--d")) || 0;
@@ -84,8 +90,8 @@
       const small = "translate(" + dx + "px, " + dy + "px) scale(" + scale + ")";
       const frames = [{ transform: small, opacity: .6 }, { transform: "none", opacity: 1 }];
       return viewerImage.animate(opening ? frames : frames.slice().reverse(), {
-        duration: opening ? 520 : 380,
-        easing: opening ? EASE : "cubic-bezier(.4, 0, .6, 1)",
+        duration: opening ? OPEN_MS : CLOSE_MS,
+        easing: opening ? EASE : EASE_CLOSE,
         fill: "both"
       }).finished.catch(function () {});
     }

@@ -11,6 +11,14 @@
    - a class of "nav-open"          -> the CSS shows the phone menu        */
 const page = document.documentElement;
 
+/* Read a design token (tokens/*.css) from :root. */
+function cssToken(name) {
+  return getComputedStyle(page).getPropertyValue(name).trim();
+}
+function cssTokenMs(name) {
+  return parseFloat(cssToken(name));
+}
+
 
 /* ============ 1. Dark / light theme ============ */
 
@@ -91,7 +99,7 @@ function setupSkeletonLoading() {
     host.classList.add("relative");
     if (host.matches(".project-modal-image-scroll")) host.classList.add("min-h-80");
     image.classList.remove("opacity-100");
-    image.classList.add("opacity-0", "transition-opacity", "duration-300");
+    image.classList.add("opacity-0", "transition-opacity", "duration-(--duration-300)");
 
     let skeleton = host.querySelector(":scope > [data-tailwind-skeleton]");
     if (!skeleton) {
@@ -428,7 +436,7 @@ function setupAchievements() {
   if (!treadmill || !track || !originalSet) return;
 
   const PIXELS_PER_SECOND = 42;
-  const EASE_IN_OUT = "cubic-bezier(.65, 0, .35, 1)";
+  const EASE_IN_OUT = cssToken("--ease-in-out-strong");
 
   /* ---- Build the hidden copies and the deck ---- */
 
@@ -744,12 +752,13 @@ function setupAchievements() {
   }
 
   /* Timing of the card trick, in milliseconds. */
-  const GATHER = 560;          /* one card sliding into the stack */
-  const GATHER_GAP = 40;       /* between cards joining the stack */
-  const REST = 140;            /* the stack sits still for a beat */
-  const DEAL = 680;            /* one card travelling to its place */
-  const DEAL_GAP = 75;         /* between cards leaving the stack */
-  const DEAL_EASE = "cubic-bezier(.2, .8, .25, 1)";
+  /* (values live in tokens/motion.css) */
+  const GATHER = cssTokenMs("--motion-deck-gather");          /* one card sliding into the stack */
+  const GATHER_GAP = cssTokenMs("--motion-deck-gather-gap");  /* between cards joining the stack */
+  const REST = cssTokenMs("--motion-deck-rest");              /* the stack sits still for a beat */
+  const DEAL = cssTokenMs("--motion-deck-deal");              /* one card travelling to its place */
+  const DEAL_GAP = cssTokenMs("--motion-deck-deal-gap");      /* between cards leaving the stack */
+  const DEAL_EASE = cssToken("--ease-deal");
 
   /* For each certificate (by its place in the list), the copy of it the
      visitor can actually see in the strip right now, and how much of it is

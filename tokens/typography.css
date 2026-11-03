@@ -1,0 +1,73 @@
+/* ==========================================================================
+   TYPOGRAPHY TOKENS
+   Font families, the type scale, weights, line-heights and letter-spacing.
+   ========================================================================== */
+:root {
+  /* Families */
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  /* Type scale */
+  --text-3xs: .55rem;
+  --text-2xs: .625rem;
+  --text-xs: .75rem;
+  --text-sm: .875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-section: clamp(1.75rem, 3.5vw, 2.25rem);
+  --text-feature: clamp(2rem, 4vw, 3.4rem);
+
+  /* Component sizes (one place each) */
+  --text-code:                .875em;
+  --text-capsule-icon:        clamp(1.375rem, 2.9vw, 2.1rem);
+  --text-capsule-label:       clamp(var(--text-xs), 1.2vw, var(--text-sm));
+  --text-hero-role:           clamp(1.35rem, 3.3vw, 2.25rem);
+  --text-snake:               30px;
+  --text-capsule-icon-phone:  clamp(1.7rem, 7.5vw, 2.2rem);
+  --text-about-lead:          clamp(1.35rem, 2.6vw, 1.75rem);
+  --text-about-code:          clamp(1.05rem, 2.4vw, 1.45rem);
+  --text-ordinal:             .65em;
+  --text-close-viewer:        1.6rem;
+  --text-select-label:        .7rem;
+  --text-select:              .9rem;
+  --text-legend:              .8rem;
+  --text-skill-ball:          clamp(.625rem, .8vw, var(--text-xs));
+  --text-arrow:               1.1rem;
+  --text-carousel-title:      clamp(1.5rem, 3vw, 2rem);
+  --text-close-modal:         1.65rem;
+  --text-modal-title-phone:   clamp(1.85rem, 10vw, 2.65rem);
+  --text-status-sm:           .6875rem;
+
+  /* Weights */
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+
+  /* Line-heights */
+  --leading-0:         0;
+  --leading-none:      1;
+  --leading-display:   1.02;
+  --leading-tightest:  1.1;
+  --leading-capsule:   1.15;
+  --leading-heading:   1.2;
+  --leading-lead:      1.25;
+  --leading-snug:      1.3;
+  --leading-card:      1.35;
+  --leading-body:      1.65;
+  --leading-relaxed:   1.75;
+
+  /* Letter-spacing (tracking-N = N hundredths of an em) */
+  --tracking-tight:  -0.01em;
+  --tracking-1:      .01em;
+  --tracking-2:      .02em;
+  --tracking-3:      .03em;
+  --tracking-4:      .04em;
+  --tracking-6:      .06em;
+  --tracking-7:      .07em;
+  --tracking-9:      .09em;
+  --tracking-10:     .1em;
+}

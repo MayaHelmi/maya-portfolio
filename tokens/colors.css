@@ -1,0 +1,90 @@
+/* ==========================================================================
+   COLOUR TOKENS
+   Every colour on the site. The light theme is the default; the dark theme
+   (the sun/moon button writes data-theme="dark" on <html>) overrides the
+   same names below, so components never need to know which theme is on.
+   ========================================================================== */
+:root {
+  color-scheme: light dark;
+
+  /* Text */
+  --text-strong: #241e20;   /* headings and bold text */
+  --text: #403538;          /* normal body text */
+  --text-soft: #75666b;     /* less important text */
+  --text-fade: #97868b;     /* dates, small labels */
+
+  /* Backgrounds */
+  --page-bg: #fbf7f4;       /* the page itself */
+  --page-bg-rgb: 251, 247, 244;
+  --soft-bg: #f2eae7;       /* slightly tinted strips and chips */
+  --card-bg: #fffaf8;       /* cards */
+  --dark-panel: #211a1d;    /* the footer and the dark award card */
+
+  /* Lines */
+  --border: #eadeda;
+  --border-strong: #d8c7c2;
+
+  /* Pink accent */
+  --pink: #b66f83;
+  --pink-strong: #945267;   /* hover / emphasis */
+  --pink-bg: #f4e4e8;       /* pale pink fill */
+  --pink-border: #dfbdc7;
+
+  /* Fixed channels for white text, overlays, masks and shadows */
+  --white: #fff;
+  --black: #000;
+  --white-rgb: 255, 255, 255;
+  --black-rgb: 0, 0, 0;
+  --shadow-rgb: 36, 30, 32;
+  --viewer-scrim-rgb: 20, 14, 18;
+  --project-overlay-rgb: 32, 24, 29;
+  --modal-shadow-rgb: 31, 20, 27;
+  --modal-scrim-rgb: 25, 18, 23;
+
+  /* Translucent mixes of the channels above (name = channel + alpha %) */
+  --header-bg: rgba(var(--page-bg-rgb), .88);
+  --modal-scrim-a72:      rgba(var(--modal-scrim-rgb), .72);
+  --project-overlay-a78:  rgba(var(--project-overlay-rgb), .78);
+  --project-overlay-a84:  rgba(var(--project-overlay-rgb), .84);
+  --viewer-scrim-a82:     rgba(var(--viewer-scrim-rgb), .82);
+  --white-a06:            rgba(var(--white-rgb), .06);
+  --white-a08:            rgba(var(--white-rgb), .08);
+  --white-a14:            rgba(var(--white-rgb), .14);
+  --white-a15:            rgba(var(--white-rgb), .15);
+  --white-a18:            rgba(var(--white-rgb), .18);
+  --white-a22:            rgba(var(--white-rgb), .22);
+  --white-a25:            rgba(var(--white-rgb), .25);
+  --white-a30:            rgba(var(--white-rgb), .3);
+  --white-a55:            rgba(var(--white-rgb), .55);
+  --white-a60:            rgba(var(--white-rgb), .6);
+  --white-a62:            rgba(var(--white-rgb), .62);
+  --white-a70:            rgba(var(--white-rgb), .7);
+  --white-a72:            rgba(var(--white-rgb), .72);
+  --white-a78:            rgba(var(--white-rgb), .78);
+  --white-a80:            rgba(var(--white-rgb), .8);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --text-strong: #fbf5f1;
+  --text: #e8ddda;
+  --text-soft: #b9aaae;
+  --text-fade: #8f7f84;
+
+  --page-bg: #101012;
+  --page-bg-rgb: 16, 16, 18;
+  --soft-bg: #181517;
+  --card-bg: #211d1f;
+  --dark-panel: #272124;
+
+  --border: #30282b;
+  --border-strong: #4b3c41;
+
+  --pink: #d19aaa;
+  --pink-strong: #e8bdc8;
+  --pink-bg: #2a1b23;
+  --pink-border: #5c4049;
+
+  --shadow-rgb: 0, 0, 0;
+}

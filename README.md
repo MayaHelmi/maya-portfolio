@@ -1,71 +1,48 @@
-live url:  https://mayahelmi.github.io/maya-portfolio/
-
 # Maya Helmi — portfolio
 
-The homepage contains the complete project and achievements collections.
-Each project's full details (problem, role, process, links) open in a pop-up
-on the homepage, so there are no separate project pages. Glamé is presented as an in-progress beauty-tech website concept; NOI
-is clearly identified as an independent salon website concept. The old
-`projects.html`, `certificates.html`, `recognition.html`, `besign.html`,
-`glame-ai.html` and `noi-beauty-lounge.html` URLs redirect to the homepage.
+Personal portfolio of Maya Helmi, Full-Stack Developer. Live at
+https://mayahelmi.github.io/maya-portfolio/
 
-## Opening it
+Everything lives on one page (`index.html`): projects (with a details pop-up),
+skills, education, achievements and contact. The other `.html` files are small
+redirects that keep old links working (`projects.html`, `certificates.html`,
+`recognition.html`, `besign.html`, `glame-ai.html`, `noi-beauty-lounge.html`).
 
-Double-click `index.html`. Nothing needs to be installed or built — the site
-is plain HTML, CSS and JavaScript, and the compiled Tailwind file is already
-in the folder. Deploying is still just uploading these files.
+## Folder structure
 
-## Where the styling lives
-
-| File | What it holds |
-| --- | --- |
-| `style.css` | Everything hand-written: colours, dark mode, typography, and the components (navbar, hero, cards, footer). This is the main stylesheet. |
-| `src/tailwind.css` | The Tailwind **source**. Design tokens and settings only — edit this one. |
-| `tailwind.css` | The **built** file the pages load. Generated from the file above — don't edit it by hand, your changes get overwritten on the next build. |
-| `script.js` | The theme toggle, the phone menu, and the achievements strip with its "View all" deck. |
-| `images/projects/` | Homepage project-card images plus on-demand full-page website captures for the project detail modal. Besign uses a screen-design composite. |
-
-Tailwind is used for the responsive column layouts, written straight onto the
-elements in the HTML:
-
-```html
-<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+```
+index.html, *.html     pages (old URLs redirect to the homepage)
+tokens/                design tokens as CSS custom properties on :root
+  colors.css           all colours + the dark-theme overrides
+  typography.css       font families, sizes, weights, line-heights, tracking
+  spacing.css          spacing scale, sizes, container widths, radii, shadows
+  motion.css           durations and easing curves (also read by the JS)
+css/
+  portfolio.css        hand-written component styles (uses var(--…) only)
+  tailwind.input.css   build entry: tokens + Tailwind utilities + portfolio.css
+  tailwind.css         BUILT stylesheet the pages load — don't edit by hand
+js/                    theme toggle, menu, carousel, skills, education, achievements
+assets/images/         photos, certificates, skill logos, project screenshots
+assets/icons/          favicons
+Maya-Helmi-CV.pdf      the downloadable CV (kept at the root so its link stays stable)
 ```
 
-which reads as: one column on a phone, two from 768px, three from 992px.
-Everything else — all the colour and component styling — stays in `style.css`.
+## Running it
 
-## Changing the Tailwind part
+Open `index.html` in a browser, or serve the folder (e.g. `npx serve .`).
+Nothing needs installing: the built `css/tailwind.css` is committed.
 
-Only needed if you edit `src/tailwind.css`, or add a Tailwind class to a page
-that isn't used anywhere yet.
+## Changing styles
+
+Change a colour, size or timing in `tokens/`, components in
+`css/portfolio.css`, then rebuild and commit `css/tailwind.css`:
 
 ```bash
 npm install
+npm run build:css     # or: npm run watch:css
 ```
 
-```bash
-npm run build:css
-```
-
-Or leave it running while you work, so it rebuilds on every save:
-
-```bash
-npm run watch:css
-```
-
-Then commit the updated `tailwind.css` along with your changes, because that
-is the file the live site actually loads.
-
-## Two things worth knowing
-
-**The breakpoints are custom.** Tailwind normally uses 640 / 768 / 1024, but
-`src/tailwind.css` sets them to **576 / 768 / 992** to match the `@media`
-lines already in `style.css`. So `md:` in the HTML and
-`@media (min-width: 768px)` in the stylesheet always mean the same width.
-
-**Tailwind's reset is switched off.** Tailwind usually ships a "preflight"
-reset that strips heading sizes, list bullets and margins. `style.css` already
-handles all of that, so `src/tailwind.css` imports only the utility classes
-and leaves the reset out. That is why adding Tailwind changed nothing about
-how the site already looked.
+Tailwind's theme (spacing, colours, motion) is mapped to the tokens in
+`css/tailwind.input.css`; breakpoints are 576 / 768 / 992 / 1200px, the same
+as the `@media` rules in `portfolio.css`. Tailwind's preflight reset is not
+used.

@@ -1,0 +1,79 @@
+/* ==========================================================================
+   TAILWIND ENTRY FILE
+
+   This is the file the build reads. It is NOT the file the pages load.
+   The build combines the design tokens (../tokens), Tailwind's utility
+   classes and portfolio.css into tailwind.css, the site's only stylesheet:
+
+       npm run build:css      (build once)
+       npm run watch:css      (rebuild automatically while you work)
+
+   The built file is kept in the project on purpose, so the site still opens
+   and looks right by double-clicking index.html, with no tools installed.
+   ========================================================================== */
+
+
+/* ============ 1. Which files to scan ============
+   Tailwind only writes out the classes it actually finds. */
+@source "../*.html";
+@source "../js/*.js";
+
+
+/* ============ 2. Layers, tokens, utilities, components ============
+   Only Tailwind's utilities are imported: no preflight reset (portfolio.css
+   has its own base styling) and no default theme (the theme below is built
+   entirely from the site's own tokens). The tokens and portfolio stylesheet
+   are imported without a layer so their cascade is unchanged. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "../tokens/colors.css";
+@import "../tokens/typography.css";
+@import "../tokens/spacing.css";
+@import "../tokens/motion.css";
+@import "./portfolio.css";
+
+
+/* ============ 3. Dark mode ============
+   dark: follows the sun/moon button in the navbar (data-theme="dark" on
+   <html>, see js/script.js) instead of the operating system. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+
+/* ============ 4. Tailwind theme, read from the tokens ============ */
+@theme {
+  /* Breakpoints must be literal values (they become @media queries); they
+     match the widths listed in tokens/spacing.css. */
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+
+  --spacing: var(--space-unit);
+
+  /* Colours point at tokens/colors.css, so they follow the theme switch. */
+  --color-ink: var(--text-strong);
+  --color-body: var(--text);
+  --color-soft: var(--text-soft);
+  --color-fade: var(--text-fade);
+  --color-page: var(--page-bg);
+  --color-sunken: var(--soft-bg);
+  --color-card: var(--card-bg);
+  --color-panel: var(--dark-panel);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-accent: var(--pink);
+  --color-accent-strong: var(--pink-strong);
+  --color-accent-soft: var(--pink-bg);
+  --color-accent-line: var(--pink-border);
+
+  /* Motion */
+  --default-transition-duration: var(--duration-150);
+  --default-transition-timing-function: var(--ease-smooth);
+  --animate-pulse: pulse var(--duration-2000) var(--ease-in-out-soft) infinite;
+
+  @keyframes pulse {
+    50% {
+      opacity: 0.5;
+    }
+  }
+}

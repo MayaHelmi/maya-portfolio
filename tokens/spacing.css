@@ -1,0 +1,144 @@
+/* ==========================================================================
+   SPACING TOKENS
+   The spacing scale, fluid spacing, component sizes, container widths,
+   corner radii and shadows.
+
+   Breakpoints (CSS variables cannot be used inside @media, so these are
+   written out in the stylesheets; Tailwind's sm/md/lg/xl use the same):
+     sm  576px    md  768px    lg  992px    xl  1200px
+   plus component-specific widths 480px, 520px and 960px.
+   ========================================================================== */
+:root {
+  /* Spacing scale (name = rem value, "_" for the decimal point) */
+  --space-unit: .25rem;      /* Tailwind's spacing step: gap-6 = 6 x this */
+  --space-0_15:   .15rem;
+  --space-0_2:    .2rem;
+  --space-0_25:   .25rem;
+  --space-0_3:    .3rem;
+  --space-0_35:   .35rem;
+  --space-0_4:    .4rem;
+  --space-0_45:   .45rem;
+  --space-0_48:   .48rem;
+  --space-0_5:    .5rem;
+  --space-0_55:   .55rem;
+  --space-0_6:    .6rem;
+  --space-0_65:   .65rem;
+  --space-0_7:    .7rem;
+  --space-0_75:   .75rem;
+  --space-0_8:    .8rem;
+  --space-0_85:   .85rem;
+  --space-0_875:  .875rem;
+  --space-0_9:    .9rem;
+  --space-1:      1rem;
+  --space-1_1:    1.1rem;
+  --space-1_15:   1.15rem;
+  --space-1_18:   1.18rem;
+  --space-1_25:   1.25rem;
+  --space-1_35:   1.35rem;
+  --space-1_4:    1.4rem;
+  --space-1_5:    1.5rem;
+  --space-1_75:   1.75rem;
+  --space-2:      2rem;
+  --space-2_25:   2.25rem;
+  --space-2_4:    2.4rem;
+  --space-2_5:    2.5rem;
+  --space-2_6:    2.6rem;
+  --space-2_75:   2.75rem;
+  --space-3:      3rem;
+  --space-3_25:   3.25rem;
+  --space-3_4:    3.4rem;
+  --space-3_5:    3.5rem;
+  --space-3_75:   3.75rem;
+  --space-4_5:    4.5rem;
+  --space-5:      5rem;
+  --space-5_2:    5.2rem;
+  --space-7:      7rem;
+  --space-7_5:    7.5rem;
+  --space-9_5:    9.5rem;
+  --space-14_5:   14.5rem;
+  --space-code-y: .1em;
+  --space-code-x: .35em;
+
+  /* Fluid spacing */
+  --space-hero-y:                  clamp(4rem, 8vw, 7rem);
+  --space-capsule-gap:             clamp(.675rem, 2.8vw, 1.6875rem);
+  --space-capsule-row:             13.5px;
+  --space-hero-x-phone:            12px;
+  --space-section-y:               clamp(3.5rem, 8vw, 6.5rem);
+  --space-education-gap:           clamp(1rem, 2.5vw, 2rem);
+  --space-education-card-gap:      clamp(1rem, 4vw, 3rem);
+  --space-education-card-pad:      clamp(1rem, 3vw, 2rem);
+  --space-viewer-top:              clamp(1rem, 4vh, 2.5rem);
+  --space-viewer-x:                clamp(3.75rem, 8vw, 6rem);
+  --space-viewer-nav:              clamp(.5rem, 2vw, 1.5rem);
+  --space-achievement-scroll-pad:  clamp(1.5rem, 6vw, 4rem);
+  --space-fluid-md:                clamp(1rem, 2vw, 1.5rem);
+  --space-carousel-gap:            clamp(1rem, 2.5vw, 1.75rem);
+  --space-modal-copy-top:          clamp(4rem, 7vw, 6.5rem);
+  --space-modal-copy-x:            clamp(1.5rem, 4vw, 3.5rem);
+  --space-modal-copy-bottom:       clamp(1.5rem, 4vw, 3rem);
+  --space-footer-top:              clamp(3rem, 6vw, 4.5rem);
+  --space-achievement-gap:         clamp(.9rem, 2vw, 1.4rem);
+
+  /* Page width: the widest the content gets, and the space kept at the
+     screen edges. Every section, the navbar and the footer line up on these. */
+  --page-max: 1320px;
+  --page-gutter: clamp(1rem, 2.5vw, 1.5rem);
+
+  /* Container widths and text measures */
+  --container-about:            920px;
+  --measure-body:               68ch;
+  --measure-code:               76ch;
+  --container-education-card:   336px;
+  --container-education-photo:  260px;
+  --container-education-facts:  760px;
+  --container-modal: 1180px;
+
+  /* Component sizes */
+  --header-height:      68px;
+  --size-tap:           44px;
+  --size-control-sm:    34px;
+  --size-control-lg:    46px;
+  --size-icon-skill:    48px;
+  --size-control:       36px;
+  --size-control-xs:    32px;
+  --size-icon-contact:  19px;
+
+  /* Corner radii */
+  --radius-6:       6px;
+  --radius-8:       8px;
+  --radius-9:       9px;
+  --radius-12:      12px;
+  --radius-14:      14px;
+  --radius-15:      15px;
+  --radius-16:      16px;
+  --radius-18:      18px;
+  --radius-19:      19px;
+  --radius-20:      20px;
+  --radius-22:      22px;
+  --radius-24:      24px;
+  --radius-28:      28px;
+  --radius-pill:    999px;
+  --radius-circle:  50%;
+
+  /* Shadows (they use the colour channels, so they follow the theme) */
+  --shadow-small: 0 1px 2px rgba(var(--shadow-rgb), .06);
+  --shadow-medium: 0 2px 4px rgba(var(--shadow-rgb), .04), 0 8px 24px rgba(var(--shadow-rgb), .07);
+  --shadow-large: 0 4px 8px rgba(var(--shadow-rgb), .06), 0 16px 40px rgba(var(--shadow-rgb), .12);
+  --shadow-sparkle-glow:  0 0 7px var(--pink-bg);
+  --shadow-cert:          0 4px 14px rgba(var(--shadow-rgb), .16);
+  --shadow-cert-hover:    0 24px 60px rgba(var(--shadow-rgb), .32);
+  --shadow-viewer:        0 30px 80px rgba(var(--black-rgb), .45);
+  --shadow-inset-arena:   inset 0 2px 12px rgba(var(--shadow-rgb), .04);
+  --shadow-grabbed:       0 18px 40px rgba(var(--shadow-rgb), .22);
+  --shadow-skill-active:  0 0 0 5px color-mix(in srgb, var(--pink) 25%, transparent), var(--shadow-large);
+  --shadow-label:         0 8px 24px rgba(var(--project-overlay-rgb), .18);
+  --shadow-badge-drop:    drop-shadow(0 10px 18px rgba(var(--project-overlay-rgb), .32));
+  --shadow-modal:         0 30px 90px rgba(var(--modal-shadow-rgb), .32);
+}
+
+:root[data-theme="dark"] {
+  --shadow-small: 0 1px 2px rgba(var(--shadow-rgb), .5);
+  --shadow-medium: 0 2px 4px rgba(var(--shadow-rgb), .4), 0 8px 24px rgba(var(--shadow-rgb), .45);
+  --shadow-large: 0 4px 8px rgba(var(--shadow-rgb), .45), 0 16px 40px rgba(var(--shadow-rgb), .55);
+}
