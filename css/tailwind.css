@@ -3397,7 +3397,6 @@ main {
 }
 @media (max-width: 767px) {
   .project-video {
-    top: 50%;
     gap: var(--space-0_35);
     min-height: auto;
     padding: var(--space-0_4) var(--space-0_75);

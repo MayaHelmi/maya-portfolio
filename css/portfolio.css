@@ -2576,10 +2576,9 @@ main { animation: page-in var(--duration-450) var(--ease-standard) both; }
 .project-video img { width: auto; height: var(--size-icon-youtube); }
 .project-video:hover { transform: translate3d(-50%, -50%, 0) scale(1.06); }
 .project-video:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
-/* Phones: a smaller button, centred on the picture. */
+/* Phones: a smaller button, still centred on the top border. */
 @media (max-width: 767px) {
   .project-video {
-    top: 50%;
     gap: var(--space-0_35);
     min-height: auto;
     padding: var(--space-0_4) var(--space-0_75);
