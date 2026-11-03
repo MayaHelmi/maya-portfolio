@@ -87,6 +87,12 @@
       return child.cloneNode(true);
     }) : [];
     target.replaceChildren(...children);
+    /* Copied images arrive still hidden by the loading skeleton (their
+       originals sit on the hidden back of the card and never loaded), so
+       watch each copy again and reveal it once it has loaded. */
+    target.querySelectorAll('img.opacity-0').forEach(function (img) {
+      window.portfolioSkeletons?.watch(img.parentElement, img);
+    });
   }
 
   function openProject(card, trigger) {
