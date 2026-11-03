@@ -470,7 +470,7 @@ body {
     display: none;
   }
 }
-h1, h2, h3, h4, .hero-role {
+h1, h2, h3, h4, .hero-role, .logo {
   font-family: var(--font-display);
 }
 h1, h2, h3, h4 {
@@ -580,6 +580,7 @@ a:focus-visible, button:focus-visible {
   margin: 0;
   font-size: var(--text-lg);
   font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
   white-space: nowrap;
 }
 .logo a {
