@@ -2544,3 +2544,34 @@ main { animation: page-in var(--duration-450) var(--ease-standard) both; }
   .capsule:not(.capsule-photo):focus-within { translate: none; }
   @view-transition { navigation: none; }
 }
+
+/* "Watch on YouTube" button centred over a project picture (Besign).
+   It sits beside the picture button, not inside it, so it stays a real link. */
+.project-shot-wrap { position: relative; }
+.project-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-0_5);
+  min-height: var(--size-tap);
+  padding: var(--space-0_5) var(--space-1);
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  box-shadow: var(--shadow-label);
+  color: var(--black);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  text-decoration: none;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  transition: transform var(--duration-180) var(--ease-standard);
+}
+.project-video img { width: auto; height: var(--size-icon-youtube); }
+.project-video:hover { transform: translate(-50%, -50%) scale(1.06); }
+.project-video:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  .project-video, .project-video:hover { transition: none; transform: translate(-50%, -50%); }
+}
