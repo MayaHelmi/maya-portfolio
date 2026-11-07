@@ -93,6 +93,7 @@
   --container-education-photo:  260px;
   --container-education-facts:  760px;
   --container-modal: 1180px;
+  --container-modal-phone: 360px;   /* width of the phone view in the project pop-up */
 
   /* Component sizes */
   --header-height:      68px;

@@ -62,7 +62,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;display=swap">
   </noscript>
   <!-- Single compiled stylesheet: Tailwind utilities and portfolio components. -->
-  <link rel="stylesheet" href="css/tailwind.css?v=20261103f">
+  <link rel="stylesheet" href="css/tailwind.css?v=20261107a">
 
   <!-- Apply the saved theme before paint, then defer the interaction code so
        it no longer blocks HTML parsing. -->
@@ -310,7 +310,8 @@
         role="region" aria-roledescription="carousel" aria-labelledby="showcase-title" tabindex="0">
 
           <article class="project-card flip-card" tabindex="0"
-            data-project-full-image="assets/images/optimized/mimelle-full.webp">
+            data-project-full-image="assets/images/optimized/mimelle-full.webp"
+            data-project-full-image-mobile="assets/images/optimized/mimelle-mobile.webp">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <button class="project-shot" type="button" data-project-trigger>
@@ -345,7 +346,8 @@
             </div>
           </article>
           <article class="project-card flip-card" tabindex="0"
-            data-project-full-image="assets/images/optimized/nour-al-hana-full.webp">
+            data-project-full-image="assets/images/optimized/nour-al-hana-full.webp"
+            data-project-full-image-mobile="assets/images/optimized/nour-al-hana-mobile.webp">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <button class="project-shot" type="button" data-project-trigger>
@@ -389,7 +391,8 @@
             </div>
           </article>
           <article class="project-card flip-card" tabindex="0"
-            data-project-full-image="assets/images/optimized/invite-sites-full.webp">
+            data-project-full-image="assets/images/optimized/invite-sites-full.webp"
+            data-project-full-image-mobile="assets/images/optimized/invite-sites-mobile.webp">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <button class="project-shot" type="button" data-project-trigger>
@@ -496,7 +499,8 @@
             </div>
           </article>
           <article class="project-card flip-card" tabindex="0"
-            data-project-full-image="assets/images/optimized/eight-weeks-at-orange-full.webp">
+            data-project-full-image="assets/images/optimized/eight-weeks-at-orange-full.webp"
+            data-project-full-image-mobile="assets/images/optimized/eight-weeks-at-orange-mobile.webp">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <button class="project-shot" type="button" data-project-trigger>
@@ -541,7 +545,8 @@
             </div>
           </article>
           <article class="project-card flip-card" tabindex="0"
-            data-project-full-image="assets/images/optimized/glame-ai-full.webp">
+            data-project-full-image="assets/images/optimized/glame-ai-full.webp"
+            data-project-full-image-mobile="assets/images/optimized/glame-ai-mobile.webp">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <button class="project-shot" type="button" data-project-trigger>
@@ -581,7 +586,8 @@
             </div>
           </article>
           <article class="project-card flip-card" tabindex="0"
-            data-project-full-image="assets/images/optimized/mabeauty-salon-full.webp">
+            data-project-full-image="assets/images/optimized/mabeauty-salon-full.webp"
+            data-project-full-image-mobile="assets/images/optimized/mabeauty-salon-mobile.webp">
             <div class="flip-inner">
             <div class="flip-face flip-front card-shell">
               <button class="project-shot" type="button" data-project-trigger>
@@ -635,7 +641,13 @@
           <div class="project-modal-preview">
             <div class="project-modal-preview-head">
               <p class="kicker" data-project-modal-preview-label>Website preview</p>
-              <p class="project-modal-scroll-hint" data-project-modal-scroll-hint>Scroll to view the full page ↓</p>
+              <div class="project-modal-preview-tools">
+                <div class="project-modal-view-toggle" role="group" aria-label="Preview device" data-project-modal-devices hidden>
+                  <button type="button" data-project-modal-device="desktop" aria-pressed="true">Desktop</button>
+                  <button type="button" data-project-modal-device="mobile" aria-pressed="false">Phone</button>
+                </div>
+                <p class="project-modal-scroll-hint" data-project-modal-scroll-hint>Scroll to view the full page ↓</p>
+              </div>
             </div>
             <div class="project-modal-image-scroll" role="region" aria-label="Scrollable website screenshot" tabindex="0">
               <img data-project-modal-image alt="Selected project preview" decoding="async">
@@ -1074,7 +1086,7 @@
     <p class="footer-base">Maya Helmi · Full-Stack Developer</p>
   </footer>
 
-  <script src="js/showcase-carousel.js?v=20261103"></script>
+  <script src="js/showcase-carousel.js?v=20261107a"></script>
   <script src="js/skills.js?v=20261014v"></script>
   <script src="js/education.js?v=20261013a"></script>
 </body>

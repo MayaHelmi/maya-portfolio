@@ -1981,12 +1981,18 @@ button.skill-ball-face:hover { transform: scale(1.08); box-shadow: var(--shadow-
 }
 
 .showcase-carousel {
+  /* Card width and gap are rounded to whole pixels (the first line is the
+     fallback for browsers without round()). Scroll positions are whole pixels,
+     so a set of cards that is a whole number of pixels wide lets the strip
+     jump between a card and its copy without even a 1px shift. */
   --showcase-slide: min(72vw, 720px);
+  --showcase-slide: round(min(72vw, 720px), 1px);
   --award-badge: clamp(108px, 14vw, 184px);
   display: flex !important;
   grid-template-columns: none !important;
   align-items: flex-start;
   gap: var(--space-carousel-gap);
+  gap: round(var(--space-carousel-gap), 1px);
   width: 100%;
   max-width: none;
   margin: 0;
@@ -2021,7 +2027,10 @@ button.skill-ball-face:hover { transform: scale(1.08); box-shadow: var(--shadow-
 }
 
 @media (min-width: 768px) {
-  .showcase-carousel { --showcase-slide: min(78vw, 820px); }
+  .showcase-carousel {
+    --showcase-slide: min(78vw, 820px);
+    --showcase-slide: round(min(78vw, 820px), 1px);
+  }
   .showcase-carousel .project-card {
     z-index: 1;
     opacity: .78;
@@ -2274,6 +2283,44 @@ html.project-modal-open { overflow: hidden; }
   margin-bottom: var(--space-0_65);
 }
 .project-modal-preview-head .kicker { margin: 0; }
+.project-modal-preview-tools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-0_65);
+}
+/* Desktop / Phone switch: two pills in one outline */
+.project-modal-view-toggle {
+  display: inline-flex;
+  padding: var(--space-0_15);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--card-bg);
+}
+.project-modal-view-toggle button {
+  min-height: var(--size-control-xs);
+  padding: 0 var(--space-0_85);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-soft);
+  font: inherit;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-4);
+  cursor: pointer;
+  transition: background var(--duration-200) var(--ease-standard), color var(--duration-200) var(--ease-standard);
+}
+.project-modal-view-toggle button:hover,
+.project-modal-view-toggle button:focus-visible { color: var(--pink); }
+.project-modal-view-toggle button[aria-pressed="true"] {
+  background: var(--pink-bg);
+  color: var(--pink-strong);
+}
+/* Phone view: the screenshot sits in a narrow, centred frame */
+.project-modal[data-preview-device="mobile"] .project-modal-image-scroll {
+  max-width: var(--container-modal-phone);
+  margin-inline: auto;
+}
 .project-modal-scroll-hint {
   margin: 0;
   color: var(--text-fade);
@@ -2400,7 +2447,7 @@ html.project-modal-open { overflow: hidden; }
 .project-modal-link { min-height: var(--size-tap); }
 
 @media (max-width: 767px) {
-  .showcase-carousel { --showcase-slide: 82vw; gap: var(--space-1); padding-bottom: var(--space-2); }
+  .showcase-carousel { --showcase-slide: 82vw; --showcase-slide: round(82vw, 1px); gap: var(--space-1); padding-bottom: var(--space-2); }
   .showcase-carousel .flip-front .project-shot { border-radius: var(--radius-16); }
   .showcase-carousel .flip-front .project-shot img { border-radius: var(--radius-15); }
   .showcase-carousel .flip-front .project-title { font-size: var(--text-xl); }
@@ -2421,6 +2468,7 @@ html.project-modal-open { overflow: hidden; }
     padding-right: var(--space-3_5);
   }
   .project-modal-scroll-hint { text-align: left; }
+  .project-modal-preview-tools { width: 100%; justify-content: space-between; }
   .project-modal-image-scroll { border-radius: var(--radius-12); }
   .project-modal[data-preview-kind="website"] .project-modal-image-scroll {
     height: min(48vh, 420px);
