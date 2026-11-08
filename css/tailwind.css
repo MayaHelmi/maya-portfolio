@@ -126,7 +126,7 @@
   --text-strong: #241e20;
   --text: #403538;
   --text-soft: #75666b;
-  --text-fade: #97868b;
+  --text-fade: #78666c;
   --page-bg: #fbf7f4;
   --page-bg-rgb: 251, 247, 244;
   --soft-bg: #f2eae7;
@@ -138,6 +138,8 @@
   --pink-strong: #945267;
   --pink-bg: #f4e4e8;
   --pink-border: #dfbdc7;
+  --pink-button: #945267;
+  --pink-button-hover: #7f4458;
   --white: #fff;
   --black: #000;
   --white-rgb: 255, 255, 255;
@@ -185,6 +187,8 @@
   --pink-strong: #e8bdc8;
   --pink-bg: #2a1b23;
   --pink-border: #5c4049;
+  --pink-button: #d19aaa;
+  --pink-button-hover: #e8bdc8;
   --shadow-rgb: 0, 0, 0;
 }
 :root {
@@ -654,12 +658,12 @@ a:focus-visible, button:focus-visible {
   border-color: var(--text-fade);
 }
 .primary-btn {
-  background: var(--pink);
+  background: var(--pink-button);
   color: var(--white);
   border-color: transparent;
 }
 .primary-btn:hover {
-  background: var(--pink-strong);
+  background: var(--pink-button-hover);
   color: var(--white);
 }
 @keyframes btn-hop {
@@ -1805,7 +1809,7 @@ html.cert-viewer-open {
     opacity: 1;
     transform: scaleY(1);
   }
-  .skill-arena {
+  .skill-arena-panel, .skill-arena {
     min-width: 0;
   }
 }
@@ -1866,7 +1870,7 @@ html.cert-viewer-open {
   align-items: center;
   justify-content: center;
   gap: var(--space-0_3);
-  padding: 0 var(--space-0_55);
+  padding: 0 var(--space-0_45);
   border: 0;
   border-radius: var(--radius-circle);
   background: var(--card-bg);
@@ -2641,6 +2645,14 @@ button.skill-ball-face:hover {
 .showcase-carousel-arrow:active {
   transform: translateY(0);
 }
+.showcase-carousel-arrow, .skills-motion-toggle {
+  position: relative;
+}
+.showcase-carousel-arrow::after, .skills-motion-toggle::after {
+  content: "";
+  position: absolute;
+  inset: calc((100% - var(--size-tap)) / 2);
+}
 .showcase-carousel-status {
   min-width: var(--space-3_75);
   margin: 0;
@@ -3288,6 +3300,14 @@ html.project-modal-open {
     min-width: 0;
     padding: var(--space-0_5) var(--space-0_75);
     white-space: nowrap;
+  }
+}
+@media (max-width: 420px) {
+  .showcase-head, .achievements-section .section-head {
+    flex-wrap: wrap;
+  }
+  .showcase-carousel-controls, .achievements-section .achievement-toggle {
+    margin-left: auto;
   }
 }
 @media (prefers-reduced-motion: reduce) {

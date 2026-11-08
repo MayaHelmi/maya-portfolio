@@ -228,8 +228,8 @@ a:focus-visible, button:focus-visible {
 .secondary-btn { background: var(--page-bg); color: var(--text-strong); border-color: var(--border-strong); }
 .secondary-btn:hover { background: var(--soft-bg); color: var(--text-strong); border-color: var(--text-fade); }
 
-.primary-btn { background: var(--pink); color: var(--white); border-color: transparent; }
-.primary-btn:hover { background: var(--pink-strong); color: var(--white); }
+.primary-btn { background: var(--pink-button); color: var(--white); border-color: transparent; }
+.primary-btn:hover { background: var(--pink-button-hover); color: var(--white); }
 
 /* The "Hire me" button hops every few seconds, like it cannot sit still.
    Most of the 4.4s cycle is stillness; the hop is a crouch, a jump and a
@@ -1291,6 +1291,7 @@ html.cert-viewer-open { overflow: hidden; }
     opacity: 1;
     transform: scaleY(1);
   }
+  .skill-arena-panel,
   .skill-arena { min-width: 0; }
 }
 
@@ -1354,7 +1355,7 @@ html.cert-viewer-open { overflow: hidden; }
   align-items: center;
   justify-content: center;
   gap: var(--space-0_3);
-  padding: 0 var(--space-0_55);
+  padding: 0 var(--space-0_45);   /* the longest single words ("Polymorphism") need the room */
   border: 0;
   border-radius: var(--radius-circle);
   background: var(--card-bg);
@@ -1969,6 +1970,16 @@ button.skill-ball-face:hover { transform: scale(1.08); box-shadow: var(--shadow-
 }
 .showcase-carousel-arrow:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
 .showcase-carousel-arrow:active { transform: translateY(0); }
+/* Same invisible 44px pad as the navbar circles (see .theme-toggle::after):
+   the arrow stays its drawn size, but a finger has the full tap size to hit. */
+.showcase-carousel-arrow,
+.skills-motion-toggle { position: relative; }
+.showcase-carousel-arrow::after,
+.skills-motion-toggle::after {
+  content: "";
+  position: absolute;
+  inset: calc((100% - var(--size-tap)) / 2);
+}
 .showcase-carousel-status {
   min-width: var(--space-3_75);
   margin: 0;
@@ -2508,6 +2519,15 @@ html.project-modal-open { overflow: hidden; }
     padding: var(--space-0_5) var(--space-0_75);
     white-space: nowrap;
   }
+}
+
+/* Narrow phones: the title and its controls no longer fit side by side, so
+   the controls drop to a second row, kept to the right. */
+@media (max-width: 420px) {
+  .showcase-head,
+  .achievements-section .section-head { flex-wrap: wrap; }
+  .showcase-carousel-controls,
+  .achievements-section .achievement-toggle { margin-left: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {

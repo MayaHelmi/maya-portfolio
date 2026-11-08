@@ -12,9 +12,18 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mayahelmi.github.io/maya-portfolio/">
   <meta property="og:site_name" content="Maya Helmi Portfolio">
-  <meta name="twitter:card" content="summary">
+  <!-- Preview picture when the link is shared (LinkedIn, WhatsApp, X). Must be a full URL. -->
+  <meta property="og:image" content="https://mayahelmi.github.io/maya-portfolio/assets/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Maya Helmi, Full-Stack Developer: portrait with front end, back end, database and API capsules">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Maya Helmi | Full-Stack Developer">
   <meta name="twitter:description" content="Full-stack web and Flutter projects, case studies, and achievements by Maya Helmi.">
+  <meta name="twitter:image" content="https://mayahelmi.github.io/maya-portfolio/assets/images/og-image.jpg">
+  <!-- Browser toolbar colour on phones. Starts as the light --page-bg; the
+       theme script below keeps it equal to the active theme's --page-bg. -->
+  <meta name="theme-color" content="#fbf7f4">
   <title>Maya Helmi | Full-Stack Developer</title>
 
   <script type="application/ld+json">
@@ -62,7 +71,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;display=swap">
   </noscript>
   <!-- Single compiled stylesheet: Tailwind utilities and portfolio components. -->
-  <link rel="stylesheet" href="css/tailwind.css?v=20261107a">
+  <link rel="stylesheet" href="css/tailwind.css?v=20261107b">
 
   <!-- Apply the saved theme before paint, then defer the interaction code so
        it no longer blocks HTML parsing. -->
@@ -72,9 +81,12 @@
       try { theme = localStorage.getItem("theme"); } catch (error) {}
       document.documentElement.dataset.theme = theme ||
         (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      /* Browser toolbar colour = the page background of the active theme */
+      var bar = document.querySelector('meta[name="theme-color"]');
+      if (bar) bar.content = getComputedStyle(document.documentElement).getPropertyValue("--page-bg").trim();
     }());
   </script>
-  <script src="js/script.js?v=20261014n" defer></script>
+  <script src="js/script.js?v=20261107b" defer></script>
 </head>
 
 <body>
@@ -213,23 +225,23 @@
 
         <ul class="hero-capsules">
           <li class="capsule capsule--rot-l">
-            <a class="capsule-link" href="#skills" aria-label="View my front-end development skills" title="Front end">
+            <a class="capsule-link" href="#skills" aria-label="Front End: view my skills" title="Front end">
               <svg class="capsule-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect x="3" y="4" width="18" height="16" rx="2" />
                 <path d="M3 8h18M8 12l-2 2 2 2M16 12l2 2-2 2M13.5 11l-3 6" />
               </svg>
-              <span class="capsule-label"><span>Front</span><span>End</span></span>
+              <span class="capsule-label"><span>Front</span> <span>End</span></span>
             </a>
           </li>
 
           <li class="capsule capsule--lift">
-            <a class="capsule-link" href="#skills" aria-label="View my back-end development skills" title="Back end">
+            <a class="capsule-link" href="#skills" aria-label="Back End: view my skills" title="Back end">
               <svg class="capsule-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect x="3" y="3" width="18" height="7" rx="2" />
                 <rect x="3" y="14" width="18" height="7" rx="2" />
                 <path d="M7 6.5h.01M7 17.5h.01M11 6.5h7M11 17.5h7" />
               </svg>
-              <span class="capsule-label"><span>Back</span><span>End</span></span>
+              <span class="capsule-label"><span>Back</span> <span>End</span></span>
             </a>
           </li>
 
@@ -239,17 +251,17 @@
           </li>
 
           <li class="capsule capsule--drop">
-            <a class="capsule-link" href="#skills" aria-label="View my database skills" title="Databases">
+            <a class="capsule-link" href="#skills" aria-label="Data Base: view my database skills" title="Databases">
               <svg class="capsule-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <ellipse cx="12" cy="5" rx="7" ry="3" />
                 <path d="M5 5v7c0 1.66 3.13 3 7 3s7-1.34 7-3V5M5 12v7c0 1.66 3.13 3 7 3s7-1.34 7-3v-7" />
               </svg>
-              <span class="capsule-label"><span>Data</span><span>Base</span></span>
+              <span class="capsule-label"><span>Data</span> <span>Base</span></span>
             </a>
           </li>
 
           <li class="capsule capsule--rot-r">
-            <a class="capsule-link" href="#skills" aria-label="View my API skills" title="APIs">
+            <a class="capsule-link" href="#skills" aria-label="APIs: view my skills" title="APIs">
               <svg class="capsule-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="5" cy="12" r="2.5" />
                 <circle cx="19" cy="6" r="2.5" />
@@ -273,8 +285,8 @@
           <h2 class="section-title">Get to Know Me</h2>
 
           <div class="about-content">
-            <p class="about-lead about-code-line"
-              aria-label="I combine full-stack development, memorable design, and entrepreneurial thinking to turn real-world problems into practical digital products that help businesses work better and connect with people.">
+            <p class="about-lead about-code-line">
+              <span class="sr-only">I combine full-stack development, memorable design, and entrepreneurial thinking to turn real-world problems into practical digital products that help businesses work better and connect with people.</span>
               <span class="about-typewriter" aria-hidden="true"
                 data-typewriter="I combine full-stack development, memorable design, and entrepreneurial thinking to turn real-world problems into practical digital products that help businesses work better and connect with people.">I combine full-stack development, memorable design, and entrepreneurial thinking to turn real-world problems into practical digital products that help businesses work better and connect with people.</span><span class="about-cursor" aria-hidden="true"></span>
             </p>
@@ -440,7 +452,7 @@
                   <span class="project-shot-label" aria-hidden="true">Besign</span>
                 </button>
                 <a class="project-video" href="https://youtu.be/40TrZNf3e2M" target="_blank" rel="noopener"
-                  aria-label="Watch the Besign video on YouTube (opens in a new tab)">
+                  aria-label="Watch on YouTube: the Besign video (opens in a new tab)">
                   <img src="assets/images/brands/youtube.svg" width="28" height="20" alt="" aria-hidden="true">
                   <span>Watch on YouTube</span>
                 </a>
@@ -666,7 +678,7 @@
               <p class="project-tech project-modal-tech" data-project-modal-tech></p>
             </div>
             <div class="project-modal-actions">
-              <a class="btn primary-btn project-modal-cta" data-project-modal-cta></a>
+              <a class="btn primary-btn project-modal-cta" href="#showcase" data-project-modal-cta></a>
               <div class="project-modal-more" data-project-modal-more></div>
             </div>
           </div>
@@ -698,7 +710,7 @@
             <ul class="skill-grid">
               <li><img src="assets/images/skills/figma.svg" alt="Figma logo" width="48" height="48" loading="lazy"><span>Figma</span></li>
               <li data-project-tags="UI/UX"><span>UI/UX Design</span></li>
-              <li><span>Accessibility</span></li>
+              <li><span class="skill-label--long">Accessibility</span></li>
             </ul>
           </article>
           <article class="skill-card card-shell">
@@ -712,7 +724,7 @@
               <li><img src="assets/images/skills/flutter.svg" alt="Flutter logo" width="48" height="48" loading="lazy"><span>Flutter</span></li>
               <li><img src="assets/images/skills/dart.svg" alt="Dart logo" width="48" height="48" loading="lazy"><span>Dart</span></li>
               <li data-project-tags="Flutter"><span class="skill-label--long">Cross-Platform Development</span></li>
-              <li data-project-tags="Flutter"><span>Mobile UI Development</span></li>
+              <li data-project-tags="Flutter"><span class="skill-label--long">Mobile UI Development</span></li>
               <li data-project-tags="Responsive Design"><span>Responsive Web Design</span></li>
               <li><span>SVG Animation</span></li>
               <li><span>Arabic / English RTL</span></li>
@@ -723,7 +735,7 @@
             <ul class="skill-grid">
               <li><img src="assets/images/skills/php.svg" alt="PHP logo" width="48" height="48" loading="lazy"><span>PHP</span></li>
               <li><span>PDO</span></li>
-              <li data-project-tags="Supabase"><img src="assets/images/skills/supabase.svg" alt="Supabase logo" width="48" height="48" loading="lazy"><span>Supabase<br>(PostgreSQL)</span></li>
+              <li data-project-tags="Supabase"><img src="assets/images/skills/supabase.svg" alt="Supabase logo" width="48" height="48" loading="lazy"><span class="skill-label--long">Supabase<br>(PostgreSQL)</span></li>
               <li><img src="assets/images/skills/firebase.svg" alt="Firebase logo" width="48" height="48" loading="lazy"><span>Firebase / Firestore</span></li>
             </ul>
           </article>
@@ -742,11 +754,11 @@
             <p class="kicker skill-group">Architecture</p>
             <ul class="skill-grid">
               <li><span>OOP</span></li>
-              <li><span>Encapsulation</span></li>
+              <li><span class="skill-label--long">Encapsulation</span></li>
               <li><span>Abstraction</span></li>
               <li><span>Inheritance</span></li>
-              <li><span>Polymorphism</span></li>
-              <li><span>MVC Architecture</span></li>
+              <li><span class="skill-label--long">Polymorphism</span></li>
+              <li><span class="skill-label--long">MVC Architecture</span></li>
               <li><span>SOLID Principles</span></li>
               <li><span>Design Patterns</span></li>
               <li><span>SDLC</span></li>
@@ -1086,8 +1098,8 @@
     <p class="footer-base">Maya Helmi · Full-Stack Developer</p>
   </footer>
 
-  <script src="js/showcase-carousel.js?v=20261107a"></script>
-  <script src="js/skills.js?v=20261014v"></script>
+  <script src="js/showcase-carousel.js?v=20261107b"></script>
+  <script src="js/skills.js?v=20261107b"></script>
   <script src="js/education.js?v=20261013a"></script>
 </body>
 

@@ -45,7 +45,6 @@
   let suppressOpen = false;
   let scrollEndTimer = 0;
   let lastAnnouncedIndex = 0;
-  let targetIndex = null;
   let targetDisplayIndex = null;
   let touching = false;
   let lastModalTrigger = null;
@@ -55,14 +54,16 @@
     const title = card.querySelector('.project-title')?.textContent.trim() || 'Project';
     const trigger = card.querySelector('[data-project-trigger]');
     card.removeAttribute('tabindex');
-    card.setAttribute('role', 'group');
     card.setAttribute('aria-roledescription', 'slide');
     card.setAttribute('aria-label', (index + 1) + ' of ' + cards.length + ': ' + title);
     card.querySelectorAll('img').forEach(function (image) {
       image.draggable = false;
     });
 
-    trigger.setAttribute('aria-label', 'Open details for ' + title);
+    /* Named after the label printed on the picture, so the spoken name
+       contains the visible words ("8 Weeks at Orange", not "Eight…"). */
+    const shotLabel = trigger.querySelector('.project-shot-label')?.textContent.trim() || title;
+    trigger.setAttribute('aria-label', shotLabel + ': open project details');
     trigger.setAttribute('aria-haspopup', 'dialog');
     trigger.setAttribute('aria-controls', modal.id);
     trigger.addEventListener('click', function () {
@@ -343,10 +344,7 @@
     });
 
     activeIndex = realIndexOf.get(displayCards[closestDisplayIndex]);
-    if (targetDisplayIndex === closestDisplayIndex) {
-      targetIndex = null;
-      targetDisplayIndex = null;
-    }
+    if (targetDisplayIndex === closestDisplayIndex) targetDisplayIndex = null;
     updateControls();
   }
 
@@ -417,7 +415,6 @@
     if (!card) return;
     const nextIndex = realIndexOf.get(card);
 
-    targetIndex = nextIndex;
     targetDisplayIndex = displayIndex;
     activeIndex = nextIndex;
     updateControls();
@@ -469,7 +466,19 @@
   }
   carousel.addEventListener('touchend', onTouchEnd, { passive: true });
   carousel.addEventListener('touchcancel', onTouchEnd, { passive: true });
-  window.addEventListener('resize', requestRender);
+  /* After a resize (rotation, zoom, the browser bar hiding) the browser may
+     leave the strip between cards or on a copy, so once the size settles the
+     card that was showing is put back in the middle. */
+  let resizeTimer = 0;
+  let indexBeforeResize = 0;
+  window.addEventListener('resize', function () {
+    if (!resizeTimer) indexBeforeResize = activeIndex;
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(function () {
+      resizeTimer = 0;
+      goToDisplay(COPIES + indexBeforeResize, false, 'auto');
+    }, 150);
+  });
   window.addEventListener('load', requestRender);
 
   carousel.addEventListener('keydown', function (event) {
@@ -493,7 +502,6 @@
 
     dragging = true;
     dragMoved = false;
-    targetIndex = null;
     targetDisplayIndex = null;
     dragStartX = event.clientX;
     dragStartScroll = carousel.scrollLeft;

@@ -39,6 +39,9 @@ page.dataset.theme = savedTheme || (systemIsDark ? "dark" : "light");
 function switchTheme() {
   const newTheme = page.dataset.theme === "dark" ? "light" : "dark";
   page.dataset.theme = newTheme;
+  /* Keep the phone's browser toolbar the same colour as the page */
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  if (themeColor) themeColor.content = getComputedStyle(page).getPropertyValue("--page-bg").trim();
   try {
     localStorage.setItem("theme", newTheme);
   } catch (error) {

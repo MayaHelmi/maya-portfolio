@@ -11,7 +11,7 @@
   --text-strong: #241e20;   /* headings and bold text */
   --text: #403538;          /* normal body text */
   --text-soft: #75666b;     /* less important text */
-  --text-fade: #97868b;     /* dates, small labels */
+  --text-fade: #78666c;     /* dates, small labels (4.5:1 on every light surface) */
 
   /* Backgrounds */
   --page-bg: #fbf7f4;       /* the page itself */
@@ -29,6 +29,9 @@
   --pink-strong: #945267;   /* hover / emphasis */
   --pink-bg: #f4e4e8;       /* pale pink fill */
   --pink-border: #dfbdc7;
+  /* Solid pink buttons: deep enough for white text to pass WCAG AA (5.7:1) */
+  --pink-button: #945267;
+  --pink-button-hover: #7f4458;
 
   /* Fixed channels for white text, overlays, masks and shadows */
   --white: #fff;
@@ -85,6 +88,8 @@
   --pink-strong: #e8bdc8;
   --pink-bg: #2a1b23;
   --pink-border: #5c4049;
+  --pink-button: #d19aaa;        /* dark text on it, so the lighter pink is fine */
+  --pink-button-hover: #e8bdc8;
 
   --shadow-rgb: 0, 0, 0;
 }

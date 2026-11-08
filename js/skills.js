@@ -55,11 +55,16 @@
   const grid = groupCards.length ? groupCards[0].parentElement : null;
   if (!grid) return;
 
+  /* The bubbles are a plain list; the panel around it is what the category
+     tabs control (a list element cannot be a tab panel itself). */
   const arena = document.createElement("ul");
   arena.className = "skill-arena";
-  arena.id = "skills-category-panel";
-  arena.setAttribute("role", "tabpanel");
-  arena.setAttribute("aria-label", "Skills in the selected category");
+  const arenaPanel = document.createElement("div");
+  arenaPanel.className = "skill-arena-panel";
+  arenaPanel.id = "skills-category-panel";
+  arenaPanel.setAttribute("role", "tabpanel");
+  arenaPanel.setAttribute("aria-label", "Skills in the selected category");
+  arenaPanel.appendChild(arena);
 
   const guides = document.createElement("div");
   guides.className = "skill-guides";
@@ -91,8 +96,9 @@
     tab.id = "skill-category-" + groupIndex;
     tab.setAttribute("role", "tab");
     tab.setAttribute("aria-selected", "false");
-    tab.setAttribute("aria-controls", arena.id);
+    tab.setAttribute("aria-controls", arenaPanel.id);
     tab.tabIndex = -1;
+    key.setAttribute("role", "presentation");   /* only the buttons are tabs */
     legend.appendChild(key);
 
     card.querySelectorAll(".skill-grid li").forEach(function (item) {
@@ -143,7 +149,7 @@
 
   const categorySelect = document.createElement("select");
   categorySelect.id = "skills-category-select";
-  categorySelect.setAttribute("aria-controls", arena.id);
+  categorySelect.setAttribute("aria-controls", arenaPanel.id);
   legend.querySelectorAll(".skill-legend-item").forEach(function (tab) {
     const option = document.createElement("option");
     option.value = tab.dataset.group;
@@ -154,7 +160,7 @@
 
   arena.prepend(guides);
   grid.replaceWith(categoryPicker, legend);
-  legend.after(arena);
+  legend.after(arenaPanel);
   board.classList.add("is-arena");
   if (motionToggle && !reducedMotion.matches) motionToggle.hidden = false;
 
@@ -349,7 +355,8 @@
     if (!motionToggle) return;
     motionToggle.hidden = reducedMotion.matches;
     motionToggle.setAttribute("aria-pressed", String(userPaused));
-    motionToggle.setAttribute("aria-label", userPaused ? "Resume skills animation" : "Pause skills animation");
+    /* The spoken name matches the visible words (voice control relies on that). */
+    motionToggle.setAttribute("aria-label", userPaused ? "Resume animation" : "Pause animation");
     if (motionLabel) motionLabel.textContent = userPaused ? "Resume animation" : "Pause animation";
   }
 
